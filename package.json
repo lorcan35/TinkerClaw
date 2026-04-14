@@ -1,20 +1,20 @@
 {
-  "name": "openclaw",
+  "name": "tinkerclaw",
   "version": "2026.3.14",
   "description": "Multi-channel AI gateway with extensible messaging integrations",
   "keywords": [],
-  "homepage": "https://github.com/openclaw/openclaw#readme",
+  "homepage": "https://github.com/lorcan35/TinkerClaw#readme",
   "bugs": {
-    "url": "https://github.com/openclaw/openclaw/issues"
+    "url": "https://github.com/lorcan35/TinkerClaw/issues"
   },
   "license": "MIT",
   "author": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openclaw/openclaw.git"
+    "url": "git+https://github.com/lorcan35/TinkerClaw.git"
   },
   "bin": {
-    "openclaw": "openclaw.mjs"
+    "tinkerclaw": "openclaw.mjs"
   },
   "directories": {
     "doc": "docs",

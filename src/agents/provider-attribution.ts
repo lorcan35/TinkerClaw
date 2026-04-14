@@ -28,14 +28,14 @@ export type ProviderAttributionPolicy = {
 
 export type ProviderAttributionIdentity = Pick<ProviderAttributionPolicy, "product" | "version">;
 
-const OPENCLAW_ATTRIBUTION_PRODUCT = "OpenClaw";
-const OPENCLAW_ATTRIBUTION_ORIGINATOR = "openclaw";
+const TINKERCLAW_ATTRIBUTION_PRODUCT = "OpenClaw";
+const TINKERCLAW_ATTRIBUTION_ORIGINATOR = "openclaw";
 
 export function resolveProviderAttributionIdentity(
   env: RuntimeVersionEnv = process.env as RuntimeVersionEnv,
 ): ProviderAttributionIdentity {
   return {
-    product: OPENCLAW_ATTRIBUTION_PRODUCT,
+    product: TINKERCLAW_ATTRIBUTION_PRODUCT,
     version: resolveRuntimeServiceVersion(env),
   };
 }
@@ -73,8 +73,8 @@ function buildOpenAIAttributionPolicy(
       "OpenAI native traffic supports hidden originator/User-Agent attribution. Verified against the Codex wire contract.",
     ...identity,
     headers: {
-      originator: OPENCLAW_ATTRIBUTION_ORIGINATOR,
-      "User-Agent": `${OPENCLAW_ATTRIBUTION_ORIGINATOR}/${identity.version}`,
+      originator: TINKERCLAW_ATTRIBUTION_ORIGINATOR,
+      "User-Agent": `${TINKERCLAW_ATTRIBUTION_ORIGINATOR}/${identity.version}`,
     },
   };
 }
@@ -92,8 +92,8 @@ function buildOpenAICodexAttributionPolicy(
       "OpenAI Codex ChatGPT-backed traffic supports the same hidden originator/User-Agent attribution contract.",
     ...identity,
     headers: {
-      originator: OPENCLAW_ATTRIBUTION_ORIGINATOR,
-      "User-Agent": `${OPENCLAW_ATTRIBUTION_ORIGINATOR}/${identity.version}`,
+      originator: TINKERCLAW_ATTRIBUTION_ORIGINATOR,
+      "User-Agent": `${TINKERCLAW_ATTRIBUTION_ORIGINATOR}/${identity.version}`,
     },
   };
 }
