@@ -283,6 +283,7 @@ const resolvePluginSdkScopedAliasMap = (): Record<string, string> => {
     });
     if (resolved) {
       aliasMap[`openclaw/plugin-sdk/${subpath}`] = resolved;
+      aliasMap[`tinkerclaw/plugin-sdk/${subpath}`] = resolved;
     }
   }
   return aliasMap;
