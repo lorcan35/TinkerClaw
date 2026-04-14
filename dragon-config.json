@@ -14,6 +14,21 @@
     },
     "default": "ollama/qwen3:1.7b"
   },
+  "agents": {
+    "defaults": {
+      "contextTokens": 160000
+    }
+  },
+  "channels": {
+    "telegram": {
+      "historyLimit": 50,
+      "dmHistoryLimit": 50
+    },
+    "whatsapp": {
+      "historyLimit": 50,
+      "dmHistoryLimit": 50
+    }
+  },
   "memory": {
     "enabled": true,
     "provider": "ollama"
