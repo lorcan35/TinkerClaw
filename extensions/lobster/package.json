@@ -6,7 +6,7 @@
   "dependencies": {
     "@sinclair/typebox": "0.34.48"
   },
-  "openclaw": {
+  "tinkerclaw": {
     "extensions": [
       "./index.ts"
     ]

@@ -8,14 +8,14 @@
     "google-auth-library": "^10.6.2"
   },
   "peerDependencies": {
-    "openclaw": ">=2026.3.11"
+    "tinkerclaw": ">=2026.3.11"
   },
   "peerDependenciesMeta": {
-    "openclaw": {
+    "tinkerclaw": {
       "optional": true
     }
   },
-  "openclaw": {
+  "tinkerclaw": {
     "extensions": [
       "./index.ts"
     ],

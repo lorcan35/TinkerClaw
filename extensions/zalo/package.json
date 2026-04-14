@@ -7,7 +7,7 @@
     "undici": "7.24.4",
     "zod": "^4.3.6"
   },
-  "openclaw": {
+  "tinkerclaw": {
     "extensions": [
       "./index.ts"
     ],
