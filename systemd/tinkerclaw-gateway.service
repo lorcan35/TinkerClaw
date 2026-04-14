@@ -1,0 +1,18 @@
+[Unit]
+Description=TinkerClaw Agent Gateway
+After=network.target ollama.service
+Wants=ollama.service
+
+[Service]
+Type=simple
+User=radxa
+WorkingDirectory=/home/radxa/tinkerclaw
+ExecStart=/usr/bin/node dist/index.js gateway --port 18789
+Restart=on-failure
+RestartSec=5
+Environment=NODE_ENV=production
+Environment=TINKERCLAW_STATE_DIR=/home/radxa/.tinkerclaw
+MemoryMax=2G
+
+[Install]
+WantedBy=multi-user.target

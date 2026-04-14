@@ -1,0 +1,21 @@
+{
+  "gateway": {
+    "bind": "loopback",
+    "port": 18789,
+    "auth": {
+      "mode": "token"
+    }
+  },
+  "models": {
+    "providers": {
+      "ollama": {
+        "baseUrl": "http://localhost:11434"
+      }
+    },
+    "default": "ollama/qwen3:1.7b"
+  },
+  "memory": {
+    "enabled": true,
+    "provider": "ollama"
+  }
+}
