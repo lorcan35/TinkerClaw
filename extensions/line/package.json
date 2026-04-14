@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/line",
+  "name": "@tinkerclaw/line",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw LINE channel plugin",
@@ -20,7 +20,7 @@
       "quickstartAllowFrom": true
     },
     "install": {
-      "npmSpec": "@openclaw/line",
+      "npmSpec": "@tinkerclaw/line",
       "localPath": "extensions/line",
       "defaultChoice": "npm"
     }

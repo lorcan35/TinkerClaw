@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/memory-core",
+  "name": "@tinkerclaw/memory-core",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw core memory search plugin",
   "type": "module",
   "peerDependencies": {
-    "tinkerclaw": ">=2026.3.11"
+    "tinkerclaw": "workspace:*"
   },
   "peerDependenciesMeta": {
     "tinkerclaw": {

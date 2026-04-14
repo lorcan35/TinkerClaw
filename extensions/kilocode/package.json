@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/kilocode-provider",
+  "name": "@tinkerclaw/kilocode-provider",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw Kilo Gateway provider plugin",

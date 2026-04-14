@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/zalo",
+  "name": "@tinkerclaw/zalo",
   "version": "2026.3.14",
   "description": "OpenClaw Zalo channel plugin",
   "type": "module",
@@ -26,7 +26,7 @@
       "quickstartAllowFrom": true
     },
     "install": {
-      "npmSpec": "@openclaw/zalo",
+      "npmSpec": "@tinkerclaw/zalo",
       "localPath": "extensions/zalo",
       "defaultChoice": "npm"
     }

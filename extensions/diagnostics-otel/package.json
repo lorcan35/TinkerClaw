@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/diagnostics-otel",
+  "name": "@tinkerclaw/diagnostics-otel",
   "version": "2026.3.14",
   "description": "OpenClaw diagnostics OpenTelemetry exporter",
   "type": "module",

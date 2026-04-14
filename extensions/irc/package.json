@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/irc",
+  "name": "@tinkerclaw/irc",
   "version": "2026.3.14",
   "description": "OpenClaw IRC channel plugin",
   "type": "module",

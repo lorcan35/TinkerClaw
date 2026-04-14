@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/qianfan-provider",
+  "name": "@tinkerclaw/qianfan-provider",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw Qianfan provider plugin",

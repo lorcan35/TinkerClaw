@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/google-plugin",
+  "name": "@tinkerclaw/google-plugin",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw Google plugin",

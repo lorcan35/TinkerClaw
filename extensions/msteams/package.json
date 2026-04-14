@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/msteams",
+  "name": "@tinkerclaw/msteams",
   "version": "2026.3.14",
   "description": "OpenClaw Microsoft Teams channel plugin",
   "type": "module",
@@ -25,7 +25,7 @@
       "order": 60
     },
     "install": {
-      "npmSpec": "@openclaw/msteams",
+      "npmSpec": "@tinkerclaw/msteams",
       "localPath": "extensions/msteams",
       "defaultChoice": "npm"
     },

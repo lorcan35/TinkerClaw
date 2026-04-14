@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/firecrawl-plugin",
+  "name": "@tinkerclaw/firecrawl-plugin",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw Firecrawl plugin",

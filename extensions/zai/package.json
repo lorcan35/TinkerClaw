@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/zai-provider",
+  "name": "@tinkerclaw/zai-provider",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw Z.AI provider plugin",

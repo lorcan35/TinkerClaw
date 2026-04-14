@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/telegram",
+  "name": "@tinkerclaw/telegram",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw Telegram channel plugin",

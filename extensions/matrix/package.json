@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/matrix",
+  "name": "@tinkerclaw/matrix",
   "version": "2026.3.14",
   "description": "OpenClaw Matrix channel plugin",
   "type": "module",
@@ -27,7 +27,7 @@
       "quickstartAllowFrom": true
     },
     "install": {
-      "npmSpec": "@openclaw/matrix",
+      "npmSpec": "@tinkerclaw/matrix",
       "localPath": "extensions/matrix",
       "defaultChoice": "npm"
     },

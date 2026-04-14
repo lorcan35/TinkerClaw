@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/twitch",
+  "name": "@tinkerclaw/twitch",
   "version": "2026.3.14",
   "description": "OpenClaw Twitch channel plugin",
   "type": "module",

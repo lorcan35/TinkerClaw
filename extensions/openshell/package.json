@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/openshell-sandbox",
+  "name": "@tinkerclaw/openshell-sandbox",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw OpenShell sandbox backend",

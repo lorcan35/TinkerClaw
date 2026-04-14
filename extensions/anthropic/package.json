@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/anthropic-provider",
+  "name": "@tinkerclaw/anthropic-provider",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw Anthropic provider plugin",

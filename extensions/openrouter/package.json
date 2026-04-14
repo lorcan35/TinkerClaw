@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/openrouter-provider",
+  "name": "@tinkerclaw/openrouter-provider",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw OpenRouter provider plugin",

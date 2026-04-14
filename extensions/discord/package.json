@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/discord",
+  "name": "@tinkerclaw/discord",
   "version": "2026.3.14",
   "description": "OpenClaw Discord channel plugin",
   "type": "module",

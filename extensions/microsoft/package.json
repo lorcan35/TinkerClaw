@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/microsoft-speech",
+  "name": "@tinkerclaw/microsoft-speech",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw Microsoft speech plugin",

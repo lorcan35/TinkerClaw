@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/bluebubbles",
+  "name": "@tinkerclaw/bluebubbles",
   "version": "2026.3.14",
   "description": "OpenClaw BlueBubbles channel plugin",
   "type": "module",
@@ -29,7 +29,7 @@
       "order": 75
     },
     "install": {
-      "npmSpec": "@openclaw/bluebubbles",
+      "npmSpec": "@tinkerclaw/bluebubbles",
       "localPath": "extensions/bluebubbles",
       "defaultChoice": "npm"
     }

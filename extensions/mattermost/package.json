@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/mattermost",
+  "name": "@tinkerclaw/mattermost",
   "version": "2026.3.14",
   "description": "OpenClaw Mattermost channel plugin",
   "type": "module",
@@ -22,7 +22,7 @@
       "order": 65
     },
     "install": {
-      "npmSpec": "@openclaw/mattermost",
+      "npmSpec": "@tinkerclaw/mattermost",
       "localPath": "extensions/mattermost",
       "defaultChoice": "npm"
     }

@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/zalouser",
+  "name": "@tinkerclaw/zalouser",
   "version": "2026.3.14",
   "description": "OpenClaw Zalo Personal Account plugin via native zca-js integration",
   "type": "module",
@@ -27,7 +27,7 @@
       "quickstartAllowFrom": false
     },
     "install": {
-      "npmSpec": "@openclaw/zalouser",
+      "npmSpec": "@tinkerclaw/zalouser",
       "localPath": "extensions/zalouser",
       "defaultChoice": "npm"
     },

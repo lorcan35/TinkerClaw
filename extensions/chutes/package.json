@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/chutes-provider",
+  "name": "@tinkerclaw/chutes-provider",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw Chutes.ai provider plugin",

@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/xiaomi-provider",
+  "name": "@tinkerclaw/xiaomi-provider",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw Xiaomi provider plugin",

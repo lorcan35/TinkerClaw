@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/elevenlabs-speech",
+  "name": "@tinkerclaw/elevenlabs-speech",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw ElevenLabs speech plugin",

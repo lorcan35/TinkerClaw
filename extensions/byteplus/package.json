@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/byteplus-provider",
+  "name": "@tinkerclaw/byteplus-provider",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw BytePlus provider plugin",

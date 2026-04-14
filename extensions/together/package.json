@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/together-provider",
+  "name": "@tinkerclaw/together-provider",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw Together provider plugin",

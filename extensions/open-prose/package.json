@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/open-prose",
+  "name": "@tinkerclaw/open-prose",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenProse VM skill pack plugin (slash command + telemetry).",

@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/kimi-provider",
+  "name": "@tinkerclaw/kimi-provider",
   "version": "2026.3.14",
   "private": true,
   "description": "OpenClaw Kimi provider plugin",
