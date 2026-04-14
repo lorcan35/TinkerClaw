@@ -47,7 +47,7 @@ Edit `~/.tinkerclaw/tinkerclaw.json`:
 - `gateway.bind`: `"loopback"` (Dragon only) or `"lan"` (allow remote)
 - `gateway.auth.token`: Auto-generated on first run
 - `models.providers.ollama.baseUrl`: Ollama endpoint (default `http://localhost:11434`)
-- `models.default`: Default model (e.g., `"ollama/qwen3:1.7b"`)
+- `models.default`: Default model (MiniMax M2.5 is the configured default on Dragon)
 - `memory.provider`: Embedding provider (`"ollama"` uses nomic-embed-text locally)
 
 ### Integration with Dragon Voice Server
@@ -71,6 +71,16 @@ In mode 3, Dragon handles STT/TTS only. TinkerClaw owns the conversation — ski
 | TinkerClaw | 18789 | Agent gateway (localhost only) |
 | Ollama | 11434 | Local LLM inference |
 | SearXNG | 8888 | Web search backend |
+
+All services run as systemd services and survive reboots.
+
+### ngrok Domains
+
+| Domain | Routes to |
+|--------|-----------|
+| tinkerclaw-dashboard.ngrok.dev | Dashboard |
+| tinkerclaw-voice.ngrok.dev | Voice server |
+| tinkerclaw-gateway.ngrok.dev | TinkerClaw gateway |
 
 ## License
 

@@ -55,7 +55,7 @@ export function resolveNewStateDir(homedir: () => string = resolveDefaultHomeDir
 /**
  * State directory for mutable data (sessions, logs, caches).
  * Can be overridden via TINKERCLAW_STATE_DIR.
- * Default: ~/.openclaw
+ * Default: ~/.tinkerclaw
  */
 export function resolveStateDir(
   env: NodeJS.ProcessEnv = process.env,
@@ -101,7 +101,7 @@ export const STATE_DIR = resolveStateDir();
 /**
  * Config file path (JSON5).
  * Can be overridden via TINKERCLAW_CONFIG_PATH.
- * Default: ~/.openclaw/openclaw.json (or $TINKERCLAW_STATE_DIR/openclaw.json)
+ * Default: ~/.tinkerclaw/tinkerclaw.json (or $TINKERCLAW_STATE_DIR/tinkerclaw.json)
  */
 export function resolveCanonicalConfigPath(
   env: NodeJS.ProcessEnv = process.env,
