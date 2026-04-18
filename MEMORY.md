@@ -44,11 +44,9 @@
 
 ## Known Issues
 
-- **Port 8888 conflict:** SearXNG occupies 8888, blocks Kimi Code CLI ACP. Need port reassignment.
-- **Kimi Code CLI not authenticated:** Browser OAuth needed. User code: 3VQZ-VY8B (authorization URL active).
-- **Tab5 separate VLAN:** Can't ping Dragon directly from DGX. Tab5 and Dragon on different subnets.
-- **ngrok tunnels:** Need `ngrok start --all` to restart after reboot.
-- **Memory fragmentation watchdog:** Tab5 reboots if largest SRAM block stays below 30KB for 3 minutes.
+- **Kimi ACP server:** `kimi acp` exits immediately (needs TTY/daemonization fix — systemd unit written to /tmp/kimi-acp.service but not yet installed)
+- **Tab5 separate VLAN:** Can't ping Dragon directly from DGX. Tab5 on 192.168.1.x, Dragon on 192.168.70.x
+- **Memory fragmentation watchdog:** Tab5 reboots if largest SRAM block stays below 30KB for 3 minutes
 
 ---
 
