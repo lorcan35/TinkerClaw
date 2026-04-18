@@ -1,0 +1,16 @@
+[Unit]
+Description=Kimi Code CLI ACP Server
+After=network.target
+
+[Service]
+Type=simple
+User=radxa
+Environment=PATH=/home/radxa/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/home/radxa/.local/bin/kimi acp
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
