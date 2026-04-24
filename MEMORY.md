@@ -6,12 +6,12 @@
 
 ## Current Setup
 
-- **Dragon:** Radxa Q6A at 192.168.70.242 (static IP on LAN)
+- **Dragon:** Radxa Q6A at 192.168.1.91 (DHCP — verified live 2026-04-24)
 - **TinkerClaw gateway:** Port 18789, `tinkerclaw-gateway.ngrok.dev`
 - **Voice server:** Port 3502, `tinkerclaw-voice.ngrok.dev`
 - **Dashboard:** Port 3500, `tinkerclaw-dashboard.ngrok.dev`
 - **SearXNG:** Port 8888 (conflicts with Kimi Code CLI ACP port)
-- **Tab5:** ESP32-P4 at 192.168.1.90 (separate VLAN from Dragon's 192.168.70.x)
+- **Tab5:** ESP32-P4 at 192.168.1.90 (DHCP — same `192.168.1.x` LAN as Dragon)
 
 ---
 
@@ -97,10 +97,8 @@ Internet
         ├── tinkerclaw-voice.ngrok.dev   → Dragon:3502 (voice server)
         └── tinkerclaw-dashboard.ngrok.dev → Dragon:3500 (dashboard)
 
-DGX (192.168.70.x)
-  └── Dragon (192.168.70.242) — TinkerClaw brain
-
-Tab5 VLAN (192.168.1.x)
-  └── Tab5 (192.168.1.90) — Voice client
+LAN (192.168.1.x)
+  ├── Dragon (192.168.1.91) — TinkerClaw brain (Radxa Q6A)
+  └── Tab5 (192.168.1.90) — Voice client (ESP32-P4)
       └── WiFi → Dragon via ngrok relay
 ```

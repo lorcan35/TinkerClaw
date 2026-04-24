@@ -40,13 +40,13 @@ Protocol contract: `TinkerBox/docs/protocol.md`
 ## Dragon Access
 
 ```bash
-ssh radxa@192.168.70.242
+ssh radxa@192.168.1.91
 # password: radxa
 ```
 
-**Critical: Dragon is on `192.168.70.242`, NOT `192.168.1.91` anymore. IP changed.**
+**Current Dragon IP: `192.168.1.91`** (verified live 2026-04-24, ping returns ~5 ms).  Network history note: at some point Dragon moved to a `192.168.70.x` VLAN and back; treat the IP as DHCP-managed and re-check via `ping radxa.local` or mDNS if it's not reachable on `1.91`.
 
-**Tab5 is on a separate VLAN (`192.168.1.x`).** Dragon and DGX are on `192.168.70.x`. They're on different subnets.
+**Tab5 sits on the same `192.168.1.x` LAN.** Tab5 IP is also DHCP — current lease 192.168.1.90.
 
 **Services on Dragon:**
 ```bash
@@ -165,7 +165,7 @@ Routes LLM requests through TinkerClaw Gateway instead of Dragon's native LLM.
 
 **Authenticate:**
 ```bash
-ssh radxa@192.168.70.242
+ssh radxa@192.168.1.91
 kimi login   # opens browser OAuth
 kimi acp     # starts ACP server
 ```
@@ -215,6 +215,10 @@ Overview | Conversations | Chat | Devices | Notes | Memory | Documents | Tools |
 5. **Voice responses max 30s of audio.** TTS is not for reading essays.
 6. **Test the protocol, not the implementation.** `docs/protocol.md` is the contract.
 7. **Issue before branch.** Every change has a GitHub issue ref.
+8. **Emile speaks Arabic/Dubai time.** Communicate in short bursts. He has ADHD — short messages > walls of text.
+9. **Emile's preferences:** Direct action over asking. Say "On it." Actions speak louder than paragraphs.
+10. **Never surprise Emile with changes.** Tell him first.
+11. **Voice latency is the product.** If Tab5 can't respond in <5s, it's broken.
 
 ---
 
