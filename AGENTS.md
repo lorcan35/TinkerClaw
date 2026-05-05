@@ -40,13 +40,16 @@ Protocol contract: `TinkerBox/docs/protocol.md`
 ## Dragon Access
 
 ```bash
-ssh radxa@192.168.1.91
+ssh radxa@192.168.70.242
 # password: radxa
 ```
 
-**Current Dragon IP: `192.168.1.91`** (verified live 2026-04-24, ping returns ~5 ms).  Network history note: at some point Dragon moved to a `192.168.70.x` VLAN and back; treat the IP as DHCP-managed and re-check via `ping radxa.local` or mDNS if it's not reachable on `1.91`.
+**Current Dragon IP: `192.168.70.242`** (verified live 2026-05-04 — SSH responsive, `tinkerclaw-voice` + `tinkerclaw-gateway` + `tinkerclaw-ngrok` all active).  Network history: LAN flips between `192.168.1.x` and `192.168.70.x` more than once.  Dragon's hostname `radxa-dragon-q6a` shows up in `nmap` reverse DNS, so when the IP rotates again, find it via:
+```bash
+nmap -p 22,3502,18789 --open <subnet>/24   # signature-port sweep
+```
 
-**Tab5 sits on the same `192.168.1.x` LAN.** Tab5 IP is also DHCP — current lease 192.168.1.90.
+**Tab5 sits on the same LAN.** Tab5 IP is also DHCP — current lease 2026-05-04: `192.168.70.128` (hostname `espressif`).  Was `192.168.1.90` on the .1.x LAN.
 
 **Services on Dragon:**
 ```bash
@@ -165,7 +168,7 @@ Routes LLM requests through TinkerClaw Gateway instead of Dragon's native LLM.
 
 **Authenticate:**
 ```bash
-ssh radxa@192.168.1.91
+ssh radxa@192.168.70.242   # current; see Dragon Access for the live IP
 kimi login   # opens browser OAuth
 kimi acp     # starts ACP server
 ```
