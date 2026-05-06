@@ -108,7 +108,7 @@ describe("config io write", () => {
 
   const createFastConfigIO = (home: string) =>
     createConfigIO({
-      env: { OPENCLAW_TEST_FAST: "1" } as NodeJS.ProcessEnv,
+      env: { TINKERCLAW_TEST_FAST: "1" } as NodeJS.ProcessEnv,
       homedir: () => home,
       logger: silentLogger,
     });
@@ -149,7 +149,7 @@ describe("config io write", () => {
       const warn = vi.fn();
       const io = createConfigIO({
         configPath,
-        env: { OPENCLAW_TEST_FAST: "1" } as NodeJS.ProcessEnv,
+        env: { TINKERCLAW_TEST_FAST: "1" } as NodeJS.ProcessEnv,
         fs: withHealthStateWriteFailure(healthPath),
         homedir: () => home,
         logger: { warn, error: vi.fn() },
@@ -336,7 +336,7 @@ describe("config io write", () => {
       await fs.writeFile(configPath, `${JSON.stringify(original, null, 2)}\n`, "utf-8");
       const warn = vi.fn();
       const io = createConfigIO({
-        env: { OPENCLAW_TEST_FAST: "1" } as NodeJS.ProcessEnv,
+        env: { TINKERCLAW_TEST_FAST: "1" } as NodeJS.ProcessEnv,
         homedir: () => home,
         logger: { warn, error: vi.fn() },
       });
@@ -434,7 +434,7 @@ describe("config io write", () => {
     },
   );
 
-  it("keeps writes inside an OPENCLAW_STATE_DIR override even when the real home config exists", async () => {
+  it("keeps writes inside an TINKERCLAW_STATE_DIR override even when the real home config exists", async () => {
     await withSuiteHome(async (home) => {
       const liveConfigPath = path.join(home, ".openclaw", "openclaw.json");
       await fs.mkdir(path.dirname(liveConfigPath), { recursive: true });
@@ -445,7 +445,7 @@ describe("config io write", () => {
       );
 
       const overrideDir = path.join(home, "isolated-state");
-      const env = { OPENCLAW_STATE_DIR: overrideDir } as NodeJS.ProcessEnv;
+      const env = { TINKERCLAW_STATE_DIR: overrideDir } as NodeJS.ProcessEnv;
       const io = createConfigIO({
         env,
         homedir: () => home,
@@ -535,7 +535,7 @@ describe("config io write", () => {
       const io = createConfigIO({
         env: {
           VITEST: "true",
-          OPENCLAW_TEST_CONFIG_OVERWRITE_LOG: "1",
+          TINKERCLAW_TEST_CONFIG_OVERWRITE_LOG: "1",
         } as NodeJS.ProcessEnv,
         homedir: () => home,
         logger: {
@@ -952,8 +952,8 @@ describe("config io write", () => {
   it("writes runtime-derived edits back to source SecretRef markers", async () => {
     await withSuiteHome(async (home) => {
       const configPath = path.join(home, ".openclaw", "openclaw.json");
-      const previousConfigPath = process.env.OPENCLAW_CONFIG_PATH;
-      process.env.OPENCLAW_CONFIG_PATH = configPath;
+      const previousConfigPath = process.env.TINKERCLAW_CONFIG_PATH;
+      process.env.TINKERCLAW_CONFIG_PATH = configPath;
       await fs.mkdir(path.dirname(configPath), { recursive: true });
       await fs.writeFile(
         configPath,
@@ -1035,9 +1035,9 @@ describe("config io write", () => {
         });
       } finally {
         if (previousConfigPath === undefined) {
-          delete process.env.OPENCLAW_CONFIG_PATH;
+          delete process.env.TINKERCLAW_CONFIG_PATH;
         } else {
-          process.env.OPENCLAW_CONFIG_PATH = previousConfigPath;
+          process.env.TINKERCLAW_CONFIG_PATH = previousConfigPath;
         }
       }
     });
@@ -1046,10 +1046,10 @@ describe("config io write", () => {
   it("notifies in-process reloaders with resolved source config when persisted env refs are restored", async () => {
     await withSuiteHome(async (home) => {
       const configPath = path.join(home, ".openclaw", "openclaw.json");
-      const previousConfigPath = process.env.OPENCLAW_CONFIG_PATH;
-      const previousGatewayToken = process.env.OPENCLAW_GATEWAY_TOKEN;
-      process.env.OPENCLAW_CONFIG_PATH = configPath;
-      process.env.OPENCLAW_GATEWAY_TOKEN = "gateway-token-runtime";
+      const previousConfigPath = process.env.TINKERCLAW_CONFIG_PATH;
+      const previousGatewayToken = process.env.TINKERCLAW_GATEWAY_TOKEN;
+      process.env.TINKERCLAW_CONFIG_PATH = configPath;
+      process.env.TINKERCLAW_GATEWAY_TOKEN = "gateway-token-runtime";
       await fs.mkdir(path.dirname(configPath), { recursive: true });
       await fs.writeFile(
         configPath,
@@ -1057,7 +1057,7 @@ describe("config io write", () => {
           {
             gateway: {
               mode: "local",
-              auth: { mode: "token", token: "${OPENCLAW_GATEWAY_TOKEN}" },
+              auth: { mode: "token", token: "${TINKERCLAW_GATEWAY_TOKEN}" },
             },
             agents: { defaults: { model: { primary: "openai/gpt-5.4" } } },
           },
@@ -1099,7 +1099,7 @@ describe("config io write", () => {
 
         expect(JSON.parse(await fs.readFile(configPath, "utf-8"))).toMatchObject({
           gateway: {
-            auth: { token: "${OPENCLAW_GATEWAY_TOKEN}" },
+            auth: { token: "${TINKERCLAW_GATEWAY_TOKEN}" },
           },
         });
         expect(observedSources).toEqual([
@@ -1118,14 +1118,14 @@ describe("config io write", () => {
       } finally {
         unsubscribe();
         if (previousConfigPath === undefined) {
-          delete process.env.OPENCLAW_CONFIG_PATH;
+          delete process.env.TINKERCLAW_CONFIG_PATH;
         } else {
-          process.env.OPENCLAW_CONFIG_PATH = previousConfigPath;
+          process.env.TINKERCLAW_CONFIG_PATH = previousConfigPath;
         }
         if (previousGatewayToken === undefined) {
-          delete process.env.OPENCLAW_GATEWAY_TOKEN;
+          delete process.env.TINKERCLAW_GATEWAY_TOKEN;
         } else {
-          process.env.OPENCLAW_GATEWAY_TOKEN = previousGatewayToken;
+          process.env.TINKERCLAW_GATEWAY_TOKEN = previousGatewayToken;
         }
       }
     });
@@ -1159,8 +1159,8 @@ describe("config io write", () => {
 
     await withSuiteHome(async (home) => {
       const configPath = path.join(home, ".openclaw", "openclaw.json");
-      const previousConfigPath = process.env.OPENCLAW_CONFIG_PATH;
-      process.env.OPENCLAW_CONFIG_PATH = configPath;
+      const previousConfigPath = process.env.TINKERCLAW_CONFIG_PATH;
+      process.env.TINKERCLAW_CONFIG_PATH = configPath;
       await fs.mkdir(path.dirname(configPath), { recursive: true });
       const sourceConfig = {
         gateway: { mode: "local" },
@@ -1194,7 +1194,7 @@ describe("config io write", () => {
         });
 
         const postWriteSnapshot = await createConfigIO({
-          env: { OPENCLAW_CONFIG_PATH: configPath, VITEST: "true" } as NodeJS.ProcessEnv,
+          env: { TINKERCLAW_CONFIG_PATH: configPath, VITEST: "true" } as NodeJS.ProcessEnv,
           homedir: () => home,
           logger: silentLogger,
         }).readConfigFileSnapshot();
@@ -1211,9 +1211,9 @@ describe("config io write", () => {
           plugins: [],
         } satisfies PluginManifestRegistry);
         if (previousConfigPath === undefined) {
-          delete process.env.OPENCLAW_CONFIG_PATH;
+          delete process.env.TINKERCLAW_CONFIG_PATH;
         } else {
-          process.env.OPENCLAW_CONFIG_PATH = previousConfigPath;
+          process.env.TINKERCLAW_CONFIG_PATH = previousConfigPath;
         }
       }
     });
@@ -1222,8 +1222,8 @@ describe("config io write", () => {
   it("skipPluginValidation bypasses plugin schema rejection on writeConfigFile (#76800)", async () => {
     await withSuiteHome(async (home) => {
       const configPath = path.join(home, ".openclaw", "openclaw.json");
-      const previousConfigPath = process.env.OPENCLAW_CONFIG_PATH;
-      process.env.OPENCLAW_CONFIG_PATH = configPath;
+      const previousConfigPath = process.env.TINKERCLAW_CONFIG_PATH;
+      process.env.TINKERCLAW_CONFIG_PATH = configPath;
       await fs.mkdir(path.dirname(configPath), { recursive: true });
       await fs.writeFile(configPath, "{}\n", "utf-8");
       mockLoadPluginManifestRegistry.mockReturnValue({
@@ -1274,9 +1274,9 @@ describe("config io write", () => {
           plugins: [],
         } satisfies PluginManifestRegistry);
         if (previousConfigPath === undefined) {
-          delete process.env.OPENCLAW_CONFIG_PATH;
+          delete process.env.TINKERCLAW_CONFIG_PATH;
         } else {
-          process.env.OPENCLAW_CONFIG_PATH = previousConfigPath;
+          process.env.TINKERCLAW_CONFIG_PATH = previousConfigPath;
         }
       }
     });

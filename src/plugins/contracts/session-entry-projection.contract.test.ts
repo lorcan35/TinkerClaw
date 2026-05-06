@@ -57,9 +57,9 @@ describe("plugin session extension SessionEntry projection", () => {
     );
     const storePath = path.join(stateDir, "sessions.json");
     const tempConfig = { session: { store: storePath } };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -99,9 +99,9 @@ describe("plugin session extension SessionEntry projection", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -139,9 +139,9 @@ describe("plugin session extension SessionEntry projection", () => {
     );
     const storePath = path.join(stateDir, "sessions.json");
     const tempConfig = { session: { store: storePath } };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -227,9 +227,9 @@ describe("plugin session extension SessionEntry projection", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -385,9 +385,9 @@ describe("plugin session extension SessionEntry projection", () => {
     );
     const storePath = path.join(stateDir, "sessions.json");
     const tempConfig = { session: { store: storePath } };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -424,9 +424,9 @@ describe("plugin session extension SessionEntry projection", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -453,9 +453,9 @@ describe("plugin session extension SessionEntry projection", () => {
     );
     const storePath = path.join(stateDir, "sessions.json");
     const tempConfig = { session: { store: storePath } };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -491,9 +491,9 @@ describe("plugin session extension SessionEntry projection", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -532,9 +532,9 @@ describe("plugin session extension SessionEntry projection", () => {
     );
     const storePath = path.join(stateDir, "sessions.json");
     const tempConfig = { session: { store: storePath } };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -575,9 +575,9 @@ describe("plugin session extension SessionEntry projection", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -626,9 +626,9 @@ describe("plugin session extension SessionEntry projection", () => {
     );
     const storePath = path.join(stateDir, "sessions.json");
     const tempConfig = { session: { store: storePath } };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -684,9 +684,9 @@ describe("plugin session extension SessionEntry projection", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -726,9 +726,9 @@ describe("plugin session extension SessionEntry projection", () => {
     );
     const storePath = path.join(stateDir, "sessions.json");
     const tempConfig = { session: { store: storePath } };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -773,9 +773,9 @@ describe("plugin session extension SessionEntry projection", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -788,9 +788,9 @@ describe("plugin session extension SessionEntry projection", () => {
     );
     const storePath = path.join(stateDir, "sessions.json");
     const tempConfig = { session: { store: storePath } };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -829,9 +829,9 @@ describe("plugin session extension SessionEntry projection", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -878,9 +878,9 @@ describe("plugin session extension SessionEntry projection", () => {
     );
     const storePath = path.join(stateDir, "sessions.json");
     const tempConfig = { session: { store: storePath } };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -933,9 +933,9 @@ describe("plugin session extension SessionEntry projection", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -971,9 +971,9 @@ describe("plugin session extension SessionEntry projection", () => {
     );
     const storePath = path.join(stateDir, "sessions.json");
     const tempConfig = { session: { store: storePath } };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -998,9 +998,9 @@ describe("plugin session extension SessionEntry projection", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }

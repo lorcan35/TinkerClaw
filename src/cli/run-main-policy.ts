@@ -42,7 +42,7 @@ export function shouldUseRootHelpFastPath(
 ): boolean {
   const invocation = resolveCliArgvInvocation(argv);
   return (
-    env.OPENCLAW_DISABLE_CLI_STARTUP_HELP_FAST_PATH !== "1" &&
+    env.TINKERCLAW_DISABLE_CLI_STARTUP_HELP_FAST_PATH !== "1" &&
     (invocation.isRootHelpInvocation ||
       (invocation.commandPath.length === 1 &&
         ROOT_HELP_ALIASES.has(invocation.commandPath[0] ?? "") &&
@@ -57,7 +57,7 @@ export function shouldUseBrowserHelpFastPath(
   argv: string[],
   env: NodeJS.ProcessEnv = process.env,
 ): boolean {
-  if (env.OPENCLAW_DISABLE_CLI_STARTUP_HELP_FAST_PATH === "1") {
+  if (env.TINKERCLAW_DISABLE_CLI_STARTUP_HELP_FAST_PATH === "1") {
     return false;
   }
   const invocation = resolveCliArgvInvocation(argv);

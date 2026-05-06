@@ -84,7 +84,7 @@ describe("agents_list tool", () => {
   });
 
   it("reports env-forced plugin runtime selections", async () => {
-    vi.stubEnv("OPENCLAW_AGENT_RUNTIME", "codex");
+    vi.stubEnv("TINKERCLAW_AGENT_RUNTIME", "codex");
     loadConfigMock.mockReturnValue({
       agents: {
         defaults: {

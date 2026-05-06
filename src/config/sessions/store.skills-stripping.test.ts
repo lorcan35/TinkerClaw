@@ -72,17 +72,17 @@ describe("session store strips resolvedSkills from persistence", () => {
   beforeEach(async () => {
     testDir = await suiteRootTracker.make("case");
     storePath = path.join(testDir, "sessions.json");
-    savedCacheTtl = process.env.OPENCLAW_SESSION_CACHE_TTL_MS;
-    process.env.OPENCLAW_SESSION_CACHE_TTL_MS = "0";
+    savedCacheTtl = process.env.TINKERCLAW_SESSION_CACHE_TTL_MS;
+    process.env.TINKERCLAW_SESSION_CACHE_TTL_MS = "0";
     clearSessionStoreCacheForTest();
   });
 
   afterEach(() => {
     clearSessionStoreCacheForTest();
     if (savedCacheTtl === undefined) {
-      delete process.env.OPENCLAW_SESSION_CACHE_TTL_MS;
+      delete process.env.TINKERCLAW_SESSION_CACHE_TTL_MS;
     } else {
-      process.env.OPENCLAW_SESSION_CACHE_TTL_MS = savedCacheTtl;
+      process.env.TINKERCLAW_SESSION_CACHE_TTL_MS = savedCacheTtl;
     }
   });
 

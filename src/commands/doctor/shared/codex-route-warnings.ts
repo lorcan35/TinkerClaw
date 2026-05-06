@@ -75,7 +75,7 @@ function resolveRuntime(params: {
   defaultsRuntime?: AgentRuntimePolicyConfig;
 }): string {
   return (
-    normalizeString(params.env?.OPENCLAW_AGENT_RUNTIME) ??
+    normalizeString(params.env?.TINKERCLAW_AGENT_RUNTIME) ??
     normalizeString(params.agentRuntime?.id) ??
     normalizeString(params.defaultsRuntime?.id) ??
     "pi"

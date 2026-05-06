@@ -159,7 +159,7 @@ describe("createCacheTrace", () => {
         },
       },
       env: {
-        OPENCLAW_CACHE_TRACE: "0",
+        TINKERCLAW_CACHE_TRACE: "0",
       },
       writer: {
         filePath: "memory",

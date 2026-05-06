@@ -78,7 +78,7 @@ function stubServiceGatewayTokenEnv() {
   service.readCommand.mockResolvedValue({
     programArguments: [],
     environment: {
-      OPENCLAW_GATEWAY_TOKEN: "service-token",
+      TINKERCLAW_GATEWAY_TOKEN: "service-token",
       SERVICE_GATEWAY_TOKEN: "service-token",
     },
   });
@@ -104,14 +104,14 @@ describe("runServiceRestart token drift", () => {
     clearGatewayRestartIntentSync.mockClear();
     service.readCommand.mockResolvedValue({
       programArguments: [],
-      environment: { OPENCLAW_GATEWAY_TOKEN: "service-token" },
+      environment: { TINKERCLAW_GATEWAY_TOKEN: "service-token" },
     });
     stubEmptyGatewayEnv();
   });
 
   it("prints the container restart hint when restart is requested for a not-loaded service", async () => {
     service.isLoaded.mockResolvedValue(false);
-    vi.stubEnv("OPENCLAW_CONTAINER_HINT", "openclaw-demo-container");
+    vi.stubEnv("TINKERCLAW_CONTAINER_HINT", "openclaw-demo-container");
 
     await runServiceRestart({
       serviceNoun: "Gateway",
@@ -149,9 +149,9 @@ describe("runServiceRestart token drift", () => {
     });
     service.readCommand.mockResolvedValue({
       programArguments: [],
-      environment: { OPENCLAW_GATEWAY_TOKEN: "env-token" },
+      environment: { TINKERCLAW_GATEWAY_TOKEN: "env-token" },
     });
-    vi.stubEnv("OPENCLAW_GATEWAY_TOKEN", "env-token");
+    vi.stubEnv("TINKERCLAW_GATEWAY_TOKEN", "env-token");
 
     await runServiceRestart(createServiceRunArgs(true));
 
@@ -377,7 +377,7 @@ describe("runServiceRestart token drift", () => {
   it("repairs stale loaded services during start before reporting success", async () => {
     service.readCommand.mockResolvedValue({
       programArguments: ["openclaw", "gateway"],
-      environment: { OPENCLAW_SERVICE_VERSION: "2026.4.24" },
+      environment: { TINKERCLAW_SERVICE_VERSION: "2026.4.24" },
     });
     const repairLoadedService = vi.fn(async () => ({
       result: "started" as const,
@@ -411,7 +411,7 @@ describe("runServiceRestart token drift", () => {
   it("fails start with an install hint when a stale loaded service has no repair callback", async () => {
     service.readCommand.mockResolvedValue({
       programArguments: ["openclaw", "gateway"],
-      environment: { OPENCLAW_SERVICE_VERSION: "2026.4.24" },
+      environment: { TINKERCLAW_SERVICE_VERSION: "2026.4.24" },
     });
 
     await expect(runServiceStart(createServiceRunArgs())).rejects.toThrow("__exit__:1");

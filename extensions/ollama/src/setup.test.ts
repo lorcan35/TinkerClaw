@@ -135,7 +135,7 @@ describe("ollama setup", () => {
   });
 
   it("Docker setup defaults to the host Ollama endpoint", async () => {
-    vi.stubEnv("OPENCLAW_DOCKER_SETUP", "1");
+    vi.stubEnv("TINKERCLAW_DOCKER_SETUP", "1");
     const prompter = {
       select: vi.fn().mockResolvedValueOnce("local-only"),
       text: vi.fn().mockResolvedValueOnce("http://host.docker.internal:11434"),

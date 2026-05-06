@@ -30,17 +30,17 @@ const noteMock = vi.fn();
 
 type EnvSnapshot = {
   HOME?: string;
-  OPENCLAW_HOME?: string;
-  OPENCLAW_STATE_DIR?: string;
-  OPENCLAW_OAUTH_DIR?: string;
+  TINKERCLAW_HOME?: string;
+  TINKERCLAW_STATE_DIR?: string;
+  TINKERCLAW_OAUTH_DIR?: string;
 };
 
 function captureEnv(): EnvSnapshot {
   return {
     HOME: process.env.HOME,
-    OPENCLAW_HOME: process.env.OPENCLAW_HOME,
-    OPENCLAW_STATE_DIR: process.env.OPENCLAW_STATE_DIR,
-    OPENCLAW_OAUTH_DIR: process.env.OPENCLAW_OAUTH_DIR,
+    TINKERCLAW_HOME: process.env.TINKERCLAW_HOME,
+    TINKERCLAW_STATE_DIR: process.env.TINKERCLAW_STATE_DIR,
+    TINKERCLAW_OAUTH_DIR: process.env.TINKERCLAW_OAUTH_DIR,
   };
 }
 
@@ -78,9 +78,9 @@ function doctorChangesText(): string {
 }
 
 function createAgentDir(agentId: string, includeNestedAgentDir = true) {
-  const stateDir = process.env.OPENCLAW_STATE_DIR;
+  const stateDir = process.env.TINKERCLAW_STATE_DIR;
   if (!stateDir) {
-    throw new Error("OPENCLAW_STATE_DIR is not set");
+    throw new Error("TINKERCLAW_STATE_DIR is not set");
   }
   const targetDir = includeNestedAgentDir
     ? path.join(stateDir, "agents", agentId, "agent")
@@ -138,10 +138,10 @@ describe("doctor state integrity oauth dir checks", () => {
     envSnapshot = captureEnv();
     tempHome = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-doctor-state-integrity-"));
     process.env.HOME = tempHome;
-    process.env.OPENCLAW_HOME = tempHome;
-    process.env.OPENCLAW_STATE_DIR = path.join(tempHome, ".openclaw");
-    delete process.env.OPENCLAW_OAUTH_DIR;
-    fs.mkdirSync(process.env.OPENCLAW_STATE_DIR, { recursive: true, mode: 0o700 });
+    process.env.TINKERCLAW_HOME = tempHome;
+    process.env.TINKERCLAW_STATE_DIR = path.join(tempHome, ".openclaw");
+    delete process.env.TINKERCLAW_OAUTH_DIR;
+    fs.mkdirSync(process.env.TINKERCLAW_STATE_DIR, { recursive: true, mode: 0o700 });
     noteMock.mockClear();
   });
 
@@ -183,8 +183,8 @@ describe("doctor state integrity oauth dir checks", () => {
     expect(confirmRuntimeRepair).toHaveBeenCalledWith(OAUTH_PROMPT_MATCHER);
   });
 
-  it("prompts for oauth dir when OPENCLAW_OAUTH_DIR is explicitly configured", async () => {
-    process.env.OPENCLAW_OAUTH_DIR = path.join(tempHome, ".oauth");
+  it("prompts for oauth dir when TINKERCLAW_OAUTH_DIR is explicitly configured", async () => {
+    process.env.TINKERCLAW_OAUTH_DIR = path.join(tempHome, ".oauth");
     const cfg: OpenClawConfig = {};
     const confirmRuntimeRepair = await runStateIntegrity(cfg);
     expect(confirmRuntimeRepair).toHaveBeenCalledWith(OAUTH_PROMPT_MATCHER);
@@ -333,7 +333,7 @@ describe("doctor state integrity oauth dir checks", () => {
 
     const realpathNative = fs.realpathSync.native.bind(fs.realpathSync);
     const resolvedResearchAgentDir = realpathNative(
-      path.join(process.env.OPENCLAW_STATE_DIR ?? "", "agents", "Research", "agent"),
+      path.join(process.env.TINKERCLAW_STATE_DIR ?? "", "agents", "Research", "agent"),
     );
     const realpathSpy = vi
       .spyOn(fs.realpathSync, "native")
@@ -416,8 +416,8 @@ describe("doctor state integrity oauth dir checks", () => {
       fs.symlinkSync(originalHome, symlinkHome, "dir");
       try {
         process.env.HOME = symlinkHome;
-        process.env.OPENCLAW_HOME = symlinkHome;
-        process.env.OPENCLAW_STATE_DIR = path.join(symlinkHome, ".openclaw");
+        process.env.TINKERCLAW_HOME = symlinkHome;
+        process.env.TINKERCLAW_STATE_DIR = path.join(symlinkHome, ".openclaw");
 
         setupSessionState(cfg, process.env, symlinkHome);
         const sessionsDir = resolveSessionTranscriptsDirForAgent(
@@ -504,7 +504,7 @@ describe("doctor state integrity oauth dir checks", () => {
       },
     });
     const tuiLastSessionPath = path.join(
-      process.env.OPENCLAW_STATE_DIR ?? "",
+      process.env.TINKERCLAW_STATE_DIR ?? "",
       "tui",
       "last-session.json",
     );

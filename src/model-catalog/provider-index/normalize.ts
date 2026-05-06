@@ -15,7 +15,7 @@ import type {
   OpenClawProviderIndexProvider,
 } from "./types.js";
 
-const OPENCLAW_PROVIDER_INDEX_VERSION = 1;
+const TINKERCLAW_PROVIDER_INDEX_VERSION = 1;
 
 function normalizeSafeKey(value: unknown): string {
   const key = normalizeOptionalString(value) ?? "";
@@ -211,7 +211,7 @@ function normalizeProvider(
 }
 
 export function normalizeOpenClawProviderIndex(value: unknown): OpenClawProviderIndex | undefined {
-  if (!isRecord(value) || value.version !== OPENCLAW_PROVIDER_INDEX_VERSION) {
+  if (!isRecord(value) || value.version !== TINKERCLAW_PROVIDER_INDEX_VERSION) {
     return undefined;
   }
   if (!isRecord(value.providers)) {
@@ -229,7 +229,7 @@ export function normalizeOpenClawProviderIndex(value: unknown): OpenClawProvider
     }
   }
   return {
-    version: OPENCLAW_PROVIDER_INDEX_VERSION,
+    version: TINKERCLAW_PROVIDER_INDEX_VERSION,
     providers: Object.fromEntries(
       Object.entries(providers).toSorted(([left], [right]) => left.localeCompare(right)),
     ),

@@ -15,8 +15,8 @@ import {
   writeTempPlugin,
 } from "./test-helpers/temp-plugin-extension-fixtures.js";
 
-const originalBundledPluginsDir = process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
-const originalDisableBundledPlugins = process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS;
+const originalBundledPluginsDir = process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR;
+const originalDisableBundledPlugins = process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS;
 const tempDirs: string[] = [];
 
 function createTempDir(): string {
@@ -24,7 +24,7 @@ function createTempDir(): string {
 }
 
 function createBundledTempDir(): string {
-  delete process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS;
+  delete process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS;
   return createTempPluginDir(tempDirs, "openclaw-codex-ext-", {
     parentDir: path.join(process.cwd(), "dist-runtime", "extensions"),
   });
@@ -42,7 +42,7 @@ afterEach(() => {
 describe("agent tool result middleware", () => {
   it("includes plugin-registered middleware and restores it from cache", async () => {
     const tmp = createBundledTempDir();
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = tmp;
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = tmp;
 
     writeTempPlugin({
       dir: tmp,
@@ -96,7 +96,7 @@ describe("agent tool result middleware", () => {
 
   it("rejects middleware when the manifest omits the runtime contract", () => {
     const tmp = createBundledTempDir();
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = tmp;
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = tmp;
 
     writeTempPlugin({
       dir: tmp,
@@ -137,7 +137,7 @@ describe("agent tool result middleware", () => {
 
   it("rejects middleware from non-bundled plugins even when they declare the contract", () => {
     const tmp = createTempDir();
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = "/nonexistent/bundled/plugins";
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = "/nonexistent/bundled/plugins";
 
     const pluginFile = writeTempPlugin({
       dir: tmp,
@@ -175,7 +175,7 @@ describe("agent tool result middleware", () => {
 
   it("merges runtimes when a plugin registers the same middleware function twice", () => {
     const tmp = createBundledTempDir();
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = tmp;
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = tmp;
 
     writeTempPlugin({
       dir: tmp,
@@ -212,7 +212,7 @@ export default { id: "tool-result-middleware", register(api) {
 
   it("lazily loads bundled middleware owners from manifest contracts", async () => {
     const tmp = createBundledTempDir();
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = tmp;
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = tmp;
 
     writeTempPlugin({
       dir: tmp,
@@ -264,7 +264,7 @@ export default { id: "tool-result-middleware", register(api) {
 describe("Codex app-server extension factories", () => {
   it("includes plugin-registered Codex app-server extension factories and restores them from cache", async () => {
     const tmp = createBundledTempDir();
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = tmp;
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = tmp;
 
     writeTempPlugin({
       dir: tmp,
@@ -319,7 +319,7 @@ describe("Codex app-server extension factories", () => {
 
   it("rejects Codex app-server extension factories from non-bundled plugins even when they declare the contract", () => {
     const tmp = createTempDir();
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = "/nonexistent/bundled/plugins";
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = "/nonexistent/bundled/plugins";
 
     const pluginFile = writeTempPlugin({
       dir: tmp,
@@ -357,7 +357,7 @@ describe("Codex app-server extension factories", () => {
 
   it("rejects bundled plugins that omit the Codex app-server extension contract", () => {
     const tmp = createBundledTempDir();
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = tmp;
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = tmp;
 
     writeTempPlugin({
       dir: tmp,
@@ -394,7 +394,7 @@ describe("Codex app-server extension factories", () => {
 
   it("rejects non-function Codex app-server extension factories from bundled plugins", () => {
     const tmp = createBundledTempDir();
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = tmp;
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = tmp;
 
     writeTempPlugin({
       dir: tmp,

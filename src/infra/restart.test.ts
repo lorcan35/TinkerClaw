@@ -189,7 +189,7 @@ describe("triggerOpenClawRestart", () => {
     delete process.env.VITEST;
     delete process.env.NODE_ENV;
     process.env.HOME = "/Users/test";
-    process.env.OPENCLAW_PROFILE = "default";
+    process.env.TINKERCLAW_PROFILE = "default";
     const uid = typeof process.getuid === "function" ? process.getuid() : 501;
     spawnSyncMock.mockImplementation((command: string, args: string[]) => {
       if (command === "/usr/sbin/lsof") {
@@ -221,7 +221,7 @@ describe("triggerOpenClawRestart", () => {
     delete process.env.VITEST;
     delete process.env.NODE_ENV;
     process.env.HOME = "/Users/test";
-    process.env.OPENCLAW_PROFILE = "default";
+    process.env.TINKERCLAW_PROFILE = "default";
     const uid = typeof process.getuid === "function" ? process.getuid() : 501;
     spawnSyncMock.mockImplementation((command: string, args: string[]) => {
       if (command === "/usr/sbin/lsof") {

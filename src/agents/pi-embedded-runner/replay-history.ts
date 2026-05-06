@@ -233,7 +233,7 @@ function stripStaleAssistantUsageBeforeLatestCompaction(messages: AgentMessage[]
 // records, not model output. Replaying them to the actual provider duplicates
 // content and, on Bedrock or strict OpenAI-compatible providers, can also
 // trigger turn-ordering rejections.
-const TRANSCRIPT_ONLY_OPENCLAW_MODELS = new Set<string>(["delivery-mirror", "gateway-injected"]);
+const TRANSCRIPT_ONLY_TINKERCLAW_MODELS = new Set<string>(["delivery-mirror", "gateway-injected"]);
 
 function sanitizeUserReplayContent(message: AgentMessage): AgentMessage | null {
   if (!message || message.role !== "user") {
@@ -277,7 +277,7 @@ function isTranscriptOnlyOpenclawAssistant(message: AgentMessage): boolean {
   return (
     provider === "openclaw" &&
     typeof model === "string" &&
-    TRANSCRIPT_ONLY_OPENCLAW_MODELS.has(model)
+    TRANSCRIPT_ONLY_TINKERCLAW_MODELS.has(model)
   );
 }
 

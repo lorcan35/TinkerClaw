@@ -165,8 +165,8 @@ describe("launchTuiCli", () => {
       ["/repo/openclaw.mjs", "tui"],
       expect.objectContaining({
         env: expect.objectContaining({
-          OPENCLAW_GATEWAY_URL: "ws://127.0.0.1:18789",
-          OPENCLAW_TUI_SETUP_AUTH_SOURCE: "config",
+          TINKERCLAW_GATEWAY_URL: "ws://127.0.0.1:18789",
+          TINKERCLAW_TUI_SETUP_AUTH_SOURCE: "config",
         }),
       }),
     );

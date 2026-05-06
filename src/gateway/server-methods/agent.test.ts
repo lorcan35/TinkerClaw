@@ -18,7 +18,7 @@ import { chatHandlers } from "./chat.js";
 import { expectSubagentFollowupReactivation } from "./subagent-followup.test-helpers.js";
 import type { GatewayRequestContext } from "./types.js";
 
-const ORIGINAL_STATE_DIR = process.env.OPENCLAW_STATE_DIR;
+const ORIGINAL_STATE_DIR = process.env.TINKERCLAW_STATE_DIR;
 
 const mocks = vi.hoisted(() => ({
   loadSessionEntry: vi.fn(),
@@ -402,9 +402,9 @@ async function invokeAgentIdentityGet(
 describe("gateway agent handler", () => {
   afterEach(() => {
     if (ORIGINAL_STATE_DIR === undefined) {
-      delete process.env.OPENCLAW_STATE_DIR;
+      delete process.env.TINKERCLAW_STATE_DIR;
     } else {
-      process.env.OPENCLAW_STATE_DIR = ORIGINAL_STATE_DIR;
+      process.env.TINKERCLAW_STATE_DIR = ORIGINAL_STATE_DIR;
     }
     resetDetachedTaskLifecycleRuntimeForTests();
     resetTaskRegistryForTests();
@@ -1405,7 +1405,7 @@ describe("gateway agent handler", () => {
     await invokeAgent(
       {
         message: [
-          "[Mon 2026-04-06 02:42 GMT+1] <<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>>",
+          "[Mon 2026-04-06 02:42 GMT+1] <<<BEGIN_TINKERCLAW_INTERNAL_CONTEXT>>>",
           "OpenClaw runtime context (internal):",
           "This context is runtime-generated, not user-authored. Keep internal details private.",
         ].join("\n"),
@@ -1518,7 +1518,7 @@ describe("gateway agent handler", () => {
 
   it("terminalizes successful async gateway agent runs in the shared task registry", async () => {
     await withTempDir({ prefix: "openclaw-gateway-agent-task-" }, async (root) => {
-      process.env.OPENCLAW_STATE_DIR = root;
+      process.env.TINKERCLAW_STATE_DIR = root;
       resetTaskRegistryForTests();
       primeMainAgentRun();
 
@@ -1544,7 +1544,7 @@ describe("gateway agent handler", () => {
 
   it("terminalizes failed async gateway agent runs in the shared task registry", async () => {
     await withTempDir({ prefix: "openclaw-gateway-agent-task-error-" }, async (root) => {
-      process.env.OPENCLAW_STATE_DIR = root;
+      process.env.TINKERCLAW_STATE_DIR = root;
       resetTaskRegistryForTests();
       primeMainAgentRun();
       mocks.agentCommand.mockRejectedValueOnce(new Error("agent unavailable"));
@@ -1571,7 +1571,7 @@ describe("gateway agent handler", () => {
 
   it("preserves aborted async gateway agent runs as timed out", async () => {
     await withTempDir({ prefix: "openclaw-gateway-agent-task-aborted-" }, async (root) => {
-      process.env.OPENCLAW_STATE_DIR = root;
+      process.env.TINKERCLAW_STATE_DIR = root;
       resetTaskRegistryForTests();
       primeMainAgentRun();
       mocks.agentCommand.mockResolvedValueOnce({
@@ -1607,7 +1607,7 @@ describe("gateway agent handler", () => {
 
   it("classifies aborted async gateway agent rejections as timed out", async () => {
     await withTempDir({ prefix: "openclaw-gateway-agent-task-abort-error-" }, async (root) => {
-      process.env.OPENCLAW_STATE_DIR = root;
+      process.env.TINKERCLAW_STATE_DIR = root;
       resetTaskRegistryForTests();
       primeMainAgentRun();
       const abortError = new Error("This operation was aborted");
@@ -1644,7 +1644,7 @@ describe("gateway agent handler", () => {
 
   it("does not overwrite operator-cancelled async gateway agent tasks after late completion", async () => {
     await withTempDir({ prefix: "openclaw-gateway-agent-task-cancelled-" }, async (root) => {
-      process.env.OPENCLAW_STATE_DIR = root;
+      process.env.TINKERCLAW_STATE_DIR = root;
       resetTaskRegistryForTests();
       primeMainAgentRun();
       let resolveRun: (value: {
@@ -1910,7 +1910,7 @@ describe("gateway agent handler", () => {
 
   it("dispatches async gateway agent task creation through the detached task runtime seam", async () => {
     await withTempDir({ prefix: "openclaw-gateway-agent-seam-" }, async (root) => {
-      process.env.OPENCLAW_STATE_DIR = root;
+      process.env.TINKERCLAW_STATE_DIR = root;
       resetTaskRegistryForTests();
       primeMainAgentRun();
 

@@ -8,7 +8,7 @@ import { isLiveTestEnabled } from "../live-test-helpers.js";
 import { prepareCliBundleMcpConfig } from "./bundle-mcp.js";
 
 const execFileAsync = promisify(execFile);
-const LIVE = isLiveTestEnabled(["OPENCLAW_LIVE_CLI_MCP_GEMINI"]);
+const LIVE = isLiveTestEnabled(["TINKERCLAW_LIVE_CLI_MCP_GEMINI"]);
 const describeLive = LIVE ? describe : describe.skip;
 
 async function canRunGemini(command: string): Promise<boolean> {
@@ -58,7 +58,7 @@ async function startLocalStreamableHttpMcpServer(): Promise<{
 
 describeLive("Gemini CLI MCP settings smoke", () => {
   it("connects to an OpenClaw-configured streamable-http server", async () => {
-    const geminiCommand = process.env.OPENCLAW_LIVE_GEMINI_COMMAND ?? "gemini";
+    const geminiCommand = process.env.TINKERCLAW_LIVE_GEMINI_COMMAND ?? "gemini";
     if (!(await canRunGemini(geminiCommand))) {
       console.warn(`Skipping Gemini MCP live smoke: ${geminiCommand} is not runnable.`);
       return;

@@ -267,7 +267,7 @@ function stopWatchdogTimer(): void {
 }
 
 function shouldStartBackgroundWatchdog(): boolean {
-  return process.env.VITEST !== "true" || process.env.OPENCLAW_TEST_SESSION_LOCK_WATCHDOG === "1";
+  return process.env.VITEST !== "true" || process.env.TINKERCLAW_TEST_SESSION_LOCK_WATCHDOG === "1";
 }
 
 function ensureWatchdogStarted(intervalMs: number): void {

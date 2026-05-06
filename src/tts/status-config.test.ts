@@ -22,20 +22,20 @@ async function withStatusTempHome(run: (home: string) => Promise<void>): Promise
   const home = path.join(fixtureRoot, `case-${fixtureId++}`);
   const previousHome = process.env.HOME;
   const previousUserProfile = process.env.USERPROFILE;
-  const previousOpenClawHome = process.env.OPENCLAW_HOME;
-  const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+  const previousOpenClawHome = process.env.TINKERCLAW_HOME;
+  const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
   fs.mkdirSync(home, { recursive: true });
   process.env.HOME = home;
   process.env.USERPROFILE = home;
-  delete process.env.OPENCLAW_HOME;
-  process.env.OPENCLAW_STATE_DIR = path.join(home, ".openclaw");
+  delete process.env.TINKERCLAW_HOME;
+  process.env.TINKERCLAW_STATE_DIR = path.join(home, ".openclaw");
   try {
     await run(home);
   } finally {
     restoreEnv("HOME", previousHome);
     restoreEnv("USERPROFILE", previousUserProfile);
-    restoreEnv("OPENCLAW_HOME", previousOpenClawHome);
-    restoreEnv("OPENCLAW_STATE_DIR", previousStateDir);
+    restoreEnv("TINKERCLAW_HOME", previousOpenClawHome);
+    restoreEnv("TINKERCLAW_STATE_DIR", previousStateDir);
   }
 }
 
@@ -332,7 +332,7 @@ describe("resolveStatusTtsSnapshot", () => {
     });
   });
 
-  it("derives the default prefs path from OPENCLAW_CONFIG_PATH when set", async () => {
+  it("derives the default prefs path from TINKERCLAW_CONFIG_PATH when set", async () => {
     await withStatusTempHome(async (home) => {
       const stateDir = path.join(home, ".openclaw-dev");
       const prefsPath = path.join(stateDir, "settings", "tts.json");
@@ -347,8 +347,8 @@ describe("resolveStatusTtsSnapshot", () => {
         }),
       );
 
-      delete process.env.OPENCLAW_STATE_DIR;
-      vi.stubEnv("OPENCLAW_CONFIG_PATH", path.join(stateDir, "openclaw.json"));
+      delete process.env.TINKERCLAW_STATE_DIR;
+      vi.stubEnv("TINKERCLAW_CONFIG_PATH", path.join(stateDir, "openclaw.json"));
       try {
         expect(
           resolveStatusTtsSnapshot({

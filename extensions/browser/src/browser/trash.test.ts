@@ -3,8 +3,8 @@ import os from "node:os";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const resolvePreferredOpenClawTmpDirMock = vi.hoisted(() => vi.fn(() => "/tmp/openclaw"));
-const OPENCLAW_TMP_ROOT = "/tmp/openclaw";
-const TRASH_SOURCE = `${OPENCLAW_TMP_ROOT}/demo`;
+const TINKERCLAW_TMP_ROOT = "/tmp/openclaw";
+const TRASH_SOURCE = `${TINKERCLAW_TMP_ROOT}/demo`;
 
 vi.mock("openclaw/plugin-sdk/temp-path", () => ({
   resolvePreferredOpenClawTmpDir: resolvePreferredOpenClawTmpDirMock,

@@ -8,14 +8,14 @@ import { createOllamaEmbeddingProvider } from "./src/embedding-provider.js";
 import { createOllamaStreamFn } from "./src/stream.js";
 import { createOllamaWebSearchProvider } from "./src/web-search-provider.js";
 
-const LIVE = process.env.OPENCLAW_LIVE_TEST === "1" && process.env.OPENCLAW_LIVE_OLLAMA === "1";
+const LIVE = process.env.TINKERCLAW_LIVE_TEST === "1" && process.env.TINKERCLAW_LIVE_OLLAMA === "1";
 const OLLAMA_BASE_URL =
-  process.env.OPENCLAW_LIVE_OLLAMA_BASE_URL?.trim() || "http://127.0.0.1:11434";
-const CHAT_MODEL = process.env.OPENCLAW_LIVE_OLLAMA_MODEL?.trim() || "llama3.2:latest";
+  process.env.TINKERCLAW_LIVE_OLLAMA_BASE_URL?.trim() || "http://127.0.0.1:11434";
+const CHAT_MODEL = process.env.TINKERCLAW_LIVE_OLLAMA_MODEL?.trim() || "llama3.2:latest";
 const EMBEDDING_MODEL =
-  process.env.OPENCLAW_LIVE_OLLAMA_EMBED_MODEL?.trim() || "embeddinggemma:latest";
-const PROVIDER_ID = process.env.OPENCLAW_LIVE_OLLAMA_PROVIDER_ID?.trim() || "ollama-live-custom";
-const RUN_WEB_SEARCH = process.env.OPENCLAW_LIVE_OLLAMA_WEB_SEARCH !== "0";
+  process.env.TINKERCLAW_LIVE_OLLAMA_EMBED_MODEL?.trim() || "embeddinggemma:latest";
+const PROVIDER_ID = process.env.TINKERCLAW_LIVE_OLLAMA_PROVIDER_ID?.trim() || "ollama-live-custom";
+const RUN_WEB_SEARCH = process.env.TINKERCLAW_LIVE_OLLAMA_WEB_SEARCH !== "0";
 
 async function collectStreamEvents<T>(stream: AsyncIterable<T>): Promise<T[]> {
   const events: T[] = [];
@@ -103,13 +103,13 @@ function buildCliEnv(root: string): NodeJS.ProcessEnv {
     TMPDIR: process.env.TMPDIR,
     NODE_PATH: process.env.NODE_PATH,
     NODE_OPTIONS: process.env.NODE_OPTIONS,
-    OPENCLAW_LIVE_TEST: "1",
-    OPENCLAW_LIVE_OLLAMA: "1",
-    OPENCLAW_LIVE_OLLAMA_WEB_SEARCH: "0",
-    OPENCLAW_STATE_DIR: path.join(root, "state"),
-    OPENCLAW_CONFIG_PATH: path.join(root, "openclaw.json"),
-    OPENCLAW_NO_RESPAWN: "1",
-    OPENCLAW_TEST_FAST: "1",
+    TINKERCLAW_LIVE_TEST: "1",
+    TINKERCLAW_LIVE_OLLAMA: "1",
+    TINKERCLAW_LIVE_OLLAMA_WEB_SEARCH: "0",
+    TINKERCLAW_STATE_DIR: path.join(root, "state"),
+    TINKERCLAW_CONFIG_PATH: path.join(root, "openclaw.json"),
+    TINKERCLAW_NO_RESPAWN: "1",
+    TINKERCLAW_TEST_FAST: "1",
     OLLAMA_API_KEY: "ollama-local",
   };
 }

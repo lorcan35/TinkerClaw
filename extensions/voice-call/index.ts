@@ -193,7 +193,7 @@ function asParamRecord(params: unknown): Record<string, unknown> {
 }
 
 function isCliOnlyProcess(): boolean {
-  return process.env.OPENCLAW_CLI === "1" && !process.argv.slice(2).includes("gateway");
+  return process.env.TINKERCLAW_CLI === "1" && !process.argv.slice(2).includes("gateway");
 }
 
 const VOICE_CALL_RUNTIME_KEY = Symbol.for("openclaw.voice-call.runtime");

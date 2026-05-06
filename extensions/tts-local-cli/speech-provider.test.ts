@@ -232,7 +232,7 @@ describe("buildCliSpeechProvider", () => {
   });
 
   it("can synthesize through a real local CLI fixture and ffmpeg", async () => {
-    if (process.env.OPENCLAW_LIVE_TEST !== "1") {
+    if (process.env.TINKERCLAW_LIVE_TEST !== "1") {
       return;
     }
     const fixture = createCliFixture();

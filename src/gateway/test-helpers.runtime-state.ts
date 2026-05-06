@@ -167,5 +167,5 @@ export const testConfigRoot = resolveGlobalSingleton(GATEWAY_TEST_CONFIG_ROOT_KE
 
 export function setTestConfigRoot(root: string): void {
   testConfigRoot.value = root;
-  process.env.OPENCLAW_CONFIG_PATH = path.join(root, "openclaw.json");
+  process.env.TINKERCLAW_CONFIG_PATH = path.join(root, "openclaw.json");
 }

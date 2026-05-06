@@ -3,7 +3,7 @@ import type { ConfigFileSnapshot, OpenClawConfig } from "./types.js";
 import { shouldWarnOnTouchedVersion } from "./version.js";
 
 export const ALLOW_OLDER_BINARY_DESTRUCTIVE_ACTIONS_ENV =
-  "OPENCLAW_ALLOW_OLDER_BINARY_DESTRUCTIVE_ACTIONS";
+  "TINKERCLAW_ALLOW_OLDER_BINARY_DESTRUCTIVE_ACTIONS";
 
 export type FutureConfigActionBlock = {
   action: string;

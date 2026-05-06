@@ -76,7 +76,7 @@ const RUNTIME_PLUGIN_INSTALL_CANDIDATES: readonly DownloadableInstallCandidate[]
 ];
 
 const MISSING_CHANNEL_CONFIG_DESCRIPTOR_DIAGNOSTIC = "without channelConfigs metadata";
-const UPDATE_IN_PROGRESS_ENV = "OPENCLAW_UPDATE_IN_PROGRESS";
+const UPDATE_IN_PROGRESS_ENV = "TINKERCLAW_UPDATE_IN_PROGRESS";
 
 function shouldFallbackClawHubToNpm(result: { ok: false; code?: string }): boolean {
   return (
@@ -108,7 +108,7 @@ function addConfiguredAgentRuntimePluginIds(
   cfg: OpenClawConfig,
   env?: NodeJS.ProcessEnv,
 ): void {
-  addConfiguredPluginId(ids, env?.OPENCLAW_AGENT_RUNTIME);
+  addConfiguredPluginId(ids, env?.TINKERCLAW_AGENT_RUNTIME);
   const agents = asObjectRecord(cfg.agents);
   const defaults = asObjectRecord(agents?.defaults);
   addConfiguredPluginId(ids, asObjectRecord(defaults?.agentRuntime)?.id);

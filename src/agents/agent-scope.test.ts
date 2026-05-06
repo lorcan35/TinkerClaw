@@ -577,19 +577,19 @@ describe("resolveAgentConfig", () => {
     expect(result?.workspace).toBe("~/openclaw");
   });
 
-  it("uses OPENCLAW_HOME for default agent workspace", () => {
+  it("uses TINKERCLAW_HOME for default agent workspace", () => {
     const home = path.join(path.sep, "srv", "openclaw-home");
-    vi.stubEnv("OPENCLAW_HOME", home);
+    vi.stubEnv("TINKERCLAW_HOME", home);
 
     const workspace = resolveAgentWorkspaceDir({} as OpenClawConfig, "main");
     expect(workspace).toBe(path.join(path.resolve(home), ".openclaw", "workspace"));
   });
 
-  it("uses OPENCLAW_HOME for default agentDir", () => {
+  it("uses TINKERCLAW_HOME for default agentDir", () => {
     const home = path.join(path.sep, "srv", "openclaw-home");
-    vi.stubEnv("OPENCLAW_HOME", home);
-    // Clear state dir so it falls back to OPENCLAW_HOME
-    vi.stubEnv("OPENCLAW_STATE_DIR", "");
+    vi.stubEnv("TINKERCLAW_HOME", home);
+    // Clear state dir so it falls back to TINKERCLAW_HOME
+    vi.stubEnv("TINKERCLAW_STATE_DIR", "");
 
     const agentDir = resolveAgentDir({} as OpenClawConfig, "main");
     expect(agentDir).toBe(path.join(path.resolve(home), ".openclaw", "agents", "main", "agent"));
@@ -619,7 +619,7 @@ describe("resolveAgentConfig", () => {
 
   it("non-default agent without defaults.workspace falls back to stateDir", () => {
     const stateDir = path.join(path.sep, "tmp", "test-state");
-    vi.stubEnv("OPENCLAW_STATE_DIR", stateDir);
+    vi.stubEnv("TINKERCLAW_STATE_DIR", stateDir);
     const cfg: OpenClawConfig = {
       agents: {
         list: [{ id: "main" }, { id: "work", default: true, workspace: "/work-ws" }],

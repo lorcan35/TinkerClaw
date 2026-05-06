@@ -44,7 +44,7 @@ describe("pruneDockerPluginDist", () => {
 
     const removed = pruneDockerPluginDist({
       repoRoot,
-      env: { OPENCLAW_EXTENSIONS: "diagnostics-otel" } as NodeJS.ProcessEnv,
+      env: { TINKERCLAW_EXTENSIONS: "diagnostics-otel" } as NodeJS.ProcessEnv,
     });
 
     expect(removed).toEqual(["dist/extensions/feishu", "dist-runtime/extensions/feishu"]);

@@ -61,7 +61,7 @@ const modelSuppressionLoader = createLazyImportLoader(
 );
 
 function shouldLogModelCatalogTiming(): boolean {
-  return process.env.OPENCLAW_DEBUG_INGRESS_TIMING === "1";
+  return process.env.TINKERCLAW_DEBUG_INGRESS_TIMING === "1";
 }
 
 function loadModelSuppression() {

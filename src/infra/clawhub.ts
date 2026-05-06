@@ -373,7 +373,7 @@ export class ClawHubRequestError extends Error {
 
 function normalizeBaseUrl(baseUrl?: string): string {
   const envValue =
-    normalizeOptionalString(process.env.OPENCLAW_CLAWHUB_URL) ||
+    normalizeOptionalString(process.env.TINKERCLAW_CLAWHUB_URL) ||
     normalizeOptionalString(process.env.CLAWHUB_URL) ||
     DEFAULT_CLAWHUB_URL;
   const value = (normalizeOptionalString(baseUrl) || envValue).replace(/\/+$/, "");
@@ -399,7 +399,7 @@ function extractTokenFromClawHubConfig(value: unknown): string | undefined {
 
 function resolveClawHubConfigPaths(): string[] {
   const explicit =
-    normalizeOptionalString(process.env.OPENCLAW_CLAWHUB_CONFIG_PATH) ||
+    normalizeOptionalString(process.env.TINKERCLAW_CLAWHUB_CONFIG_PATH) ||
     normalizeOptionalString(process.env.CLAWHUB_CONFIG_PATH) ||
     normalizeOptionalString(process.env.CLAWDHUB_CONFIG_PATH); // legacy misspelling from older clawhub CLI builds; keep for back-compat
   if (explicit) {
@@ -423,7 +423,7 @@ function resolveClawHubConfigPaths(): string[] {
 
 export async function resolveClawHubAuthToken(): Promise<string | undefined> {
   const envToken =
-    normalizeOptionalString(process.env.OPENCLAW_CLAWHUB_TOKEN) ||
+    normalizeOptionalString(process.env.TINKERCLAW_CLAWHUB_TOKEN) ||
     normalizeOptionalString(process.env.CLAWHUB_TOKEN) ||
     normalizeOptionalString(process.env.CLAWHUB_AUTH_TOKEN);
   if (envToken) {
@@ -542,10 +542,10 @@ function satisfiesSemverRange(version: string, range: string): boolean {
   return tokens.every((token) => satisfiesComparator(version, token));
 }
 
-const OPENCLAW_CALVER_STABLE_CORRECTION_PATTERN = /^[vV]?(\d{4}\.\d{1,2}\.\d{1,2})-\d+$/;
+const TINKERCLAW_CALVER_STABLE_CORRECTION_PATTERN = /^[vV]?(\d{4}\.\d{1,2}\.\d{1,2})-\d+$/;
 
 function normalizeCalVerCorrectionForPluginApi(pluginApiVersion: string): string {
-  const match = OPENCLAW_CALVER_STABLE_CORRECTION_PATTERN.exec(pluginApiVersion.trim());
+  const match = TINKERCLAW_CALVER_STABLE_CORRECTION_PATTERN.exec(pluginApiVersion.trim());
   return match?.[1] ?? pluginApiVersion;
 }
 

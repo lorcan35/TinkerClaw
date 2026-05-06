@@ -19,10 +19,10 @@ beforeAll(async () => {
 });
 
 beforeEach(() => {
-  originalTestFileLog = process.env.OPENCLAW_TEST_FILE_LOG;
-  originalOpenClawLogLevel = process.env.OPENCLAW_LOG_LEVEL;
-  delete process.env.OPENCLAW_TEST_FILE_LOG;
-  delete process.env.OPENCLAW_LOG_LEVEL;
+  originalTestFileLog = process.env.TINKERCLAW_TEST_FILE_LOG;
+  originalOpenClawLogLevel = process.env.TINKERCLAW_LOG_LEVEL;
+  delete process.env.TINKERCLAW_TEST_FILE_LOG;
+  delete process.env.TINKERCLAW_LOG_LEVEL;
   readLoggingConfigMock.mockReset();
   readLoggingConfigMock.mockReturnValue(undefined);
   shouldSkipMutatingLoggingConfigReadMock.mockReset();
@@ -33,14 +33,14 @@ beforeEach(() => {
 
 afterEach(() => {
   if (originalTestFileLog === undefined) {
-    delete process.env.OPENCLAW_TEST_FILE_LOG;
+    delete process.env.TINKERCLAW_TEST_FILE_LOG;
   } else {
-    process.env.OPENCLAW_TEST_FILE_LOG = originalTestFileLog;
+    process.env.TINKERCLAW_TEST_FILE_LOG = originalTestFileLog;
   }
   if (originalOpenClawLogLevel === undefined) {
-    delete process.env.OPENCLAW_LOG_LEVEL;
+    delete process.env.TINKERCLAW_LOG_LEVEL;
   } else {
-    process.env.OPENCLAW_LOG_LEVEL = originalOpenClawLogLevel;
+    process.env.TINKERCLAW_LOG_LEVEL = originalOpenClawLogLevel;
   }
   logging.resetLogger();
   logging.setLoggerOverride(null);
@@ -55,7 +55,7 @@ describe("getResolvedLoggerSettings", () => {
   });
 
   it("reads logging config when test file logging is explicitly enabled", () => {
-    process.env.OPENCLAW_TEST_FILE_LOG = "1";
+    process.env.TINKERCLAW_TEST_FILE_LOG = "1";
     readLoggingConfigMock.mockReturnValue({
       level: "debug",
       file: "/tmp/openclaw-configured.log",
@@ -72,7 +72,7 @@ describe("getResolvedLoggerSettings", () => {
   });
 
   it("uses defaults when config schema skips logging config reads", () => {
-    process.env.OPENCLAW_TEST_FILE_LOG = "1";
+    process.env.TINKERCLAW_TEST_FILE_LOG = "1";
     shouldSkipMutatingLoggingConfigReadMock.mockReturnValue(true);
 
     const settings = logging.getResolvedLoggerSettings();

@@ -363,14 +363,14 @@ describe("getApiKeyForModel", () => {
           api: "openai-codex-responses",
         } as Model<Api>;
 
-        const store = ensureAuthProfileStore(process.env.OPENCLAW_AGENT_DIR, {
+        const store = ensureAuthProfileStore(process.env.TINKERCLAW_AGENT_DIR, {
           allowKeychainPrompt: false,
         });
         const apiKey = await getApiKeyForModel({
           model,
           profileId: "openai-codex:default",
           store,
-          agentDir: process.env.OPENCLAW_AGENT_DIR,
+          agentDir: process.env.TINKERCLAW_AGENT_DIR,
         });
         expect(apiKey.apiKey).toBe(oauthFixture.access);
       },

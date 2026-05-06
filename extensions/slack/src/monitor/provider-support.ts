@@ -13,7 +13,7 @@ type SlackSocketModeConfig = Pick<
 type SlackSdkLogger = NonNullable<SlackSocketModeReceiverOptions["logger"]>;
 type SlackSdkLogLevel = ReturnType<SlackSdkLogger["getLevel"]>;
 
-const OPENCLAW_SLACK_CLIENT_PING_TIMEOUT_MS = 15_000;
+const TINKERCLAW_SLACK_CLIENT_PING_TIMEOUT_MS = 15_000;
 const SLACK_SOCKET_PONG_TIMEOUT_WARNING_PREFIX = "A pong wasn't received from the server";
 const SLACK_SOCKET_LOG_LEVEL_IGNORED_WARNING_RE =
   /^The logLevel given to .+ was ignored as you also gave logger$/;
@@ -221,7 +221,7 @@ export function createSlackBoltApp(params: {
     appToken: params.appToken ?? "",
     autoReconnectEnabled: false,
     clientPingTimeout:
-      params.socketMode?.clientPingTimeout ?? OPENCLAW_SLACK_CLIENT_PING_TIMEOUT_MS,
+      params.socketMode?.clientPingTimeout ?? TINKERCLAW_SLACK_CLIENT_PING_TIMEOUT_MS,
     logger: createSlackSocketModeLogger(),
     installerOptions: {
       clientOptions: params.clientOptions,

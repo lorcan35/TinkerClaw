@@ -98,9 +98,9 @@ describe("matrix client storage paths", () => {
   function createMigrationEnv(stateDir: string): NodeJS.ProcessEnv {
     return {
       HOME: path.dirname(stateDir),
-      OPENCLAW_HOME: path.dirname(stateDir),
-      OPENCLAW_STATE_DIR: stateDir,
-      OPENCLAW_TEST_FAST: "1",
+      TINKERCLAW_HOME: path.dirname(stateDir),
+      TINKERCLAW_STATE_DIR: stateDir,
+      TINKERCLAW_TEST_FAST: "1",
     } as NodeJS.ProcessEnv;
   }
 

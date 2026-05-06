@@ -55,12 +55,12 @@ const ENV_KEYS = [
   "USERPROFILE",
   "HOMEDRIVE",
   "HOMEPATH",
-  "OPENCLAW_HOME",
-  "OPENCLAW_STATE_DIR",
-  "OPENCLAW_CONFIG_PATH",
-  "OPENCLAW_AGENT_DIR",
+  "TINKERCLAW_HOME",
+  "TINKERCLAW_STATE_DIR",
+  "TINKERCLAW_CONFIG_PATH",
+  "TINKERCLAW_AGENT_DIR",
   "PI_CODING_AGENT_DIR",
-  "OPENCLAW_SERVICE_REPAIR_POLICY",
+  "TINKERCLAW_SERVICE_REPAIR_POLICY",
 ] as const;
 
 function normalizeLabel(value: string | undefined): string {
@@ -181,7 +181,7 @@ function scenarioConfig(options: OpenClawTestStateOptions): Record<string, unkno
 function scenarioEnv(options: OpenClawTestStateOptions): Record<string, string | undefined> {
   if ((options.scenario ?? "empty") === "external-service") {
     return {
-      OPENCLAW_SERVICE_REPAIR_POLICY: "external",
+      TINKERCLAW_SERVICE_REPAIR_POLICY: "external",
     };
   }
   return {};
@@ -200,16 +200,16 @@ function buildEnvVars(params: {
   const agentDirEnv =
     params.agentEnv === "main"
       ? {
-          OPENCLAW_AGENT_DIR: params.agentDir,
+          TINKERCLAW_AGENT_DIR: params.agentDir,
           PI_CODING_AGENT_DIR: params.agentDir,
         }
       : {
-          OPENCLAW_AGENT_DIR: undefined,
+          TINKERCLAW_AGENT_DIR: undefined,
           PI_CODING_AGENT_DIR: undefined,
         };
   const envVars: Record<string, string | undefined> = {
-    OPENCLAW_STATE_DIR: params.stateDir,
-    OPENCLAW_CONFIG_PATH: params.configPath,
+    TINKERCLAW_STATE_DIR: params.stateDir,
+    TINKERCLAW_CONFIG_PATH: params.configPath,
     ...agentDirEnv,
     ...params.scenarioEnv,
     ...params.extraEnv,
@@ -218,7 +218,7 @@ function buildEnvVars(params: {
     Object.assign(envVars, {
       HOME: params.home,
       USERPROFILE: params.home,
-      OPENCLAW_HOME: params.home,
+      TINKERCLAW_HOME: params.home,
       ...resolveWindowsHomeEnv(params.home),
     });
   }

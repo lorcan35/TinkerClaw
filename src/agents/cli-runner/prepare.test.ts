@@ -61,11 +61,11 @@ function createTestMcpLoopbackServerConfig(port: number) {
         type: "http",
         url: `http://127.0.0.1:${port}/mcp`,
         headers: {
-          Authorization: "Bearer ${OPENCLAW_MCP_TOKEN}",
-          "x-session-key": "${OPENCLAW_MCP_SESSION_KEY}",
-          "x-openclaw-agent-id": "${OPENCLAW_MCP_AGENT_ID}",
-          "x-openclaw-account-id": "${OPENCLAW_MCP_ACCOUNT_ID}",
-          "x-openclaw-message-channel": "${OPENCLAW_MCP_MESSAGE_CHANNEL}",
+          Authorization: "Bearer ${TINKERCLAW_MCP_TOKEN}",
+          "x-session-key": "${TINKERCLAW_MCP_SESSION_KEY}",
+          "x-openclaw-agent-id": "${TINKERCLAW_MCP_AGENT_ID}",
+          "x-openclaw-account-id": "${TINKERCLAW_MCP_ACCOUNT_ID}",
+          "x-openclaw-message-channel": "${TINKERCLAW_MCP_MESSAGE_CHANNEL}",
         },
       },
     },
@@ -109,7 +109,7 @@ function createCliBackendConfig(
 
 function createSessionFile() {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-cli-prepare-"));
-  vi.stubEnv("OPENCLAW_STATE_DIR", dir);
+  vi.stubEnv("TINKERCLAW_STATE_DIR", dir);
   const sessionFile = path.join(dir, "agents", "main", "sessions", "session-test.jsonl");
   fs.mkdirSync(path.dirname(sessionFile), { recursive: true });
   fs.writeFileSync(

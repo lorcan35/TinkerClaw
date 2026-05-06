@@ -384,8 +384,8 @@ describe("exportTrajectoryBundle", () => {
       })}\n`,
       "utf8",
     );
-    const previous = process.env.OPENCLAW_TRAJECTORY_DIR;
-    process.env.OPENCLAW_TRAJECTORY_DIR = envRuntimeDir;
+    const previous = process.env.TINKERCLAW_TRAJECTORY_DIR;
+    process.env.TINKERCLAW_TRAJECTORY_DIR = envRuntimeDir;
     try {
       const bundle = await exportTrajectoryBundle({
         outputDir,
@@ -399,9 +399,9 @@ describe("exportTrajectoryBundle", () => {
       expect(bundle.events.some((event) => event.type === "env-runtime")).toBe(false);
     } finally {
       if (previous === undefined) {
-        delete process.env.OPENCLAW_TRAJECTORY_DIR;
+        delete process.env.TINKERCLAW_TRAJECTORY_DIR;
       } else {
-        process.env.OPENCLAW_TRAJECTORY_DIR = previous;
+        process.env.TINKERCLAW_TRAJECTORY_DIR = previous;
       }
     }
   });

@@ -145,7 +145,7 @@ describe("createDiscordGatewayPlugin", () => {
     expect(resolveDiscordGatewayInfoTimeoutMs({ configuredTimeoutMs: 45_000 })).toBe(45_000);
     expect(
       resolveDiscordGatewayInfoTimeoutMs({
-        env: { OPENCLAW_DISCORD_GATEWAY_INFO_TIMEOUT_MS: "25000" },
+        env: { TINKERCLAW_DISCORD_GATEWAY_INFO_TIMEOUT_MS: "25000" },
       }),
     ).toBe(25_000);
     expect(resolveDiscordGatewayInfoTimeoutMs({ env: {} })).toBe(30_000);

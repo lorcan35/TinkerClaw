@@ -229,7 +229,7 @@ describe("resolveAllAgentSessionStoreTargets", () => {
 
       const env = {
         ...process.env,
-        OPENCLAW_STATE_DIR: envStateDir,
+        TINKERCLAW_STATE_DIR: envStateDir,
       };
       const cfg: OpenClawConfig = {};
       const mainStorePath = await resolveRealStorePath(mainSessionsDir);
@@ -264,7 +264,7 @@ describe("resolveAllAgentSessionStoreTargets", () => {
         const cfg = createCustomRootCfg(customRoot, "main");
         const env = {
           ...process.env,
-          OPENCLAW_STATE_DIR: envStateDir,
+          TINKERCLAW_STATE_DIR: envStateDir,
         };
 
         await expect(resolver.resolve(cfg, env)).resolves.toEqual(

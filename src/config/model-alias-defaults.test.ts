@@ -7,7 +7,7 @@ import type { OpenClawConfig } from "./types.js";
 describe("applyModelDefaults", () => {
   beforeEach(() => {
     vi.stubEnv(
-      "OPENCLAW_BUNDLED_PLUGINS_DIR",
+      "TINKERCLAW_BUNDLED_PLUGINS_DIR",
       path.resolve(import.meta.dirname, "../../extensions"),
     );
   });

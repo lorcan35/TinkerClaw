@@ -47,7 +47,7 @@ export type PluginRegistrySnapshotResult = {
   diagnostics: readonly PluginRegistrySnapshotDiagnostic[];
 };
 
-export const DISABLE_PERSISTED_PLUGIN_REGISTRY_ENV = "OPENCLAW_DISABLE_PERSISTED_PLUGIN_REGISTRY";
+export const DISABLE_PERSISTED_PLUGIN_REGISTRY_ENV = "TINKERCLAW_DISABLE_PERSISTED_PLUGIN_REGISTRY";
 
 function formatDeprecatedPersistedRegistryDisableWarning(): string {
   return `${DISABLE_PERSISTED_PLUGIN_REGISTRY_ENV} is a deprecated break-glass compatibility switch; use \`openclaw plugins registry --refresh\` or \`openclaw doctor --fix\` to repair registry state.`;

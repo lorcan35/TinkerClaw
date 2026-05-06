@@ -72,7 +72,7 @@ describe("startGatewayDiscovery", () => {
   it("starts registered local discovery services with gateway advertisement context", async () => {
     process.env.NODE_ENV = "development";
     delete process.env.VITEST;
-    process.env.OPENCLAW_SSH_PORT = "2222";
+    process.env.TINKERCLAW_SSH_PORT = "2222";
 
     const stopped: string[] = [];
     const bonjour = makeDiscoveryService({
@@ -125,7 +125,7 @@ describe("startGatewayDiscovery", () => {
     vi.useFakeTimers();
     process.env.NODE_ENV = "development";
     delete process.env.VITEST;
-    process.env.OPENCLAW_GATEWAY_DISCOVERY_ADVERTISE_TIMEOUT_MS = "10";
+    process.env.TINKERCLAW_GATEWAY_DISCOVERY_ADVERTISE_TIMEOUT_MS = "10";
 
     const service = makeDiscoveryService({
       id: "stuck-discovery",
@@ -177,10 +177,10 @@ describe("startGatewayDiscovery", () => {
     expect(result.bonjourStop).toBeNull();
   });
 
-  it("skips local discovery services for truthy OPENCLAW_DISABLE_BONJOUR values", async () => {
+  it("skips local discovery services for truthy TINKERCLAW_DISABLE_BONJOUR values", async () => {
     process.env.NODE_ENV = "development";
     delete process.env.VITEST;
-    process.env.OPENCLAW_DISABLE_BONJOUR = "yes";
+    process.env.TINKERCLAW_DISABLE_BONJOUR = "yes";
 
     const service = makeDiscoveryService({ id: "bonjour" });
     const result = await startGatewayDiscovery({

@@ -60,8 +60,8 @@ describe("cleanupLegacyPluginDependencyState", () => {
     await fs.mkdir(path.join(stateDirectory, "plugin-runtime-deps"), { recursive: true });
 
     const env = {
-      OPENCLAW_STATE_DIR: stateDir,
-      OPENCLAW_PLUGIN_STAGE_DIR: explicitStageDir,
+      TINKERCLAW_STATE_DIR: stateDir,
+      TINKERCLAW_PLUGIN_STAGE_DIR: explicitStageDir,
       STATE_DIRECTORY: stateDirectory,
     };
     const targets = await __testing.collectLegacyPluginDependencyTargets(env, { packageRoot });
@@ -119,7 +119,7 @@ describe("cleanupLegacyPluginDependencyState", () => {
     await fs.symlink(liveTarget, liveLink, "dir");
 
     const result = await cleanupLegacyPluginDependencyState({
-      env: { OPENCLAW_STATE_DIR: stateDir },
+      env: { TINKERCLAW_STATE_DIR: stateDir },
       packageRoot,
     });
 

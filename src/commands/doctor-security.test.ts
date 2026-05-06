@@ -32,23 +32,23 @@ describe("noteSecurityWarnings gateway exposure", () => {
     listReadOnlyChannelPluginsForConfigMock.mockReset();
     listReadOnlyChannelPluginsForConfigMock.mockImplementation(() => pluginRegistry.list);
     pluginRegistry.list = [];
-    prevToken = process.env.OPENCLAW_GATEWAY_TOKEN;
-    prevPassword = process.env.OPENCLAW_GATEWAY_PASSWORD;
+    prevToken = process.env.TINKERCLAW_GATEWAY_TOKEN;
+    prevPassword = process.env.TINKERCLAW_GATEWAY_PASSWORD;
     prevHome = process.env.HOME;
-    delete process.env.OPENCLAW_GATEWAY_TOKEN;
-    delete process.env.OPENCLAW_GATEWAY_PASSWORD;
+    delete process.env.TINKERCLAW_GATEWAY_TOKEN;
+    delete process.env.TINKERCLAW_GATEWAY_PASSWORD;
   });
 
   afterEach(() => {
     if (prevToken === undefined) {
-      delete process.env.OPENCLAW_GATEWAY_TOKEN;
+      delete process.env.TINKERCLAW_GATEWAY_TOKEN;
     } else {
-      process.env.OPENCLAW_GATEWAY_TOKEN = prevToken;
+      process.env.TINKERCLAW_GATEWAY_TOKEN = prevToken;
     }
     if (prevPassword === undefined) {
-      delete process.env.OPENCLAW_GATEWAY_PASSWORD;
+      delete process.env.TINKERCLAW_GATEWAY_PASSWORD;
     } else {
-      process.env.OPENCLAW_GATEWAY_PASSWORD = prevPassword;
+      process.env.TINKERCLAW_GATEWAY_PASSWORD = prevPassword;
     }
     if (prevHome === undefined) {
       delete process.env.HOME;
@@ -127,7 +127,7 @@ describe("noteSecurityWarnings gateway exposure", () => {
   });
 
   it("uses env token to avoid critical warning", async () => {
-    process.env.OPENCLAW_GATEWAY_TOKEN = "token-123";
+    process.env.TINKERCLAW_GATEWAY_TOKEN = "token-123";
     const cfg = { gateway: { bind: "lan" } } as OpenClawConfig;
     await noteSecurityWarnings(cfg);
     const message = lastMessage();
@@ -141,7 +141,7 @@ describe("noteSecurityWarnings gateway exposure", () => {
         bind: "lan",
         auth: {
           mode: "token",
-          token: { source: "env", provider: "default", id: "OPENCLAW_GATEWAY_TOKEN" },
+          token: { source: "env", provider: "default", id: "TINKERCLAW_GATEWAY_TOKEN" },
         },
       },
     } as OpenClawConfig;

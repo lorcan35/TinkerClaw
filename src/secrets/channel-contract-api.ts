@@ -58,7 +58,7 @@ function loadBundledChannelPublicArtifact(
       ) {
         continue;
       }
-      if (process.env.OPENCLAW_DEBUG_CHANNEL_CONTRACT_API === "1") {
+      if (process.env.TINKERCLAW_DEBUG_CHANNEL_CONTRACT_API === "1") {
         const detail = error instanceof Error ? error.message : String(error);
         process.stderr.write(
           `[channel-contract-api] failed to load ${channelId}/${artifactBasename}: ${detail}\n`,
@@ -140,7 +140,7 @@ function loadExternalChannelSecretContractFromRecord(
       return mod;
     }
   } catch (error) {
-    if (process.env.OPENCLAW_DEBUG_CHANNEL_CONTRACT_API === "1") {
+    if (process.env.TINKERCLAW_DEBUG_CHANNEL_CONTRACT_API === "1") {
       const detail = error instanceof Error ? error.message : String(error);
       process.stderr.write(
         `[channel-contract-api] failed to load ${record.id} contract ${safePath}: ${detail}\n`,

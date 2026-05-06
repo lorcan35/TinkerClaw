@@ -113,7 +113,7 @@ async function discoverPluginHits(root: string): Promise<CodexNativeAssetHit[]> 
 }
 
 function isCodexRuntimeConfigured(cfg: OpenClawConfig, env: NodeJS.ProcessEnv): boolean {
-  if (normalizeString(env.OPENCLAW_AGENT_RUNTIME) === "codex") {
+  if (normalizeString(env.TINKERCLAW_AGENT_RUNTIME) === "codex") {
     return true;
   }
   const defaults = cfg.agents?.defaults;

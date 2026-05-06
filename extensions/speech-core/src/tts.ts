@@ -189,7 +189,7 @@ function resolveTtsPrefsPathValue(prefsPath: string | undefined): string {
   if (prefsPath?.trim()) {
     return resolveUserPath(prefsPath.trim());
   }
-  const envPath = process.env.OPENCLAW_TTS_PREFS?.trim();
+  const envPath = process.env.TINKERCLAW_TTS_PREFS?.trim();
   if (envPath) {
     return resolveUserPath(envPath);
   }

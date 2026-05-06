@@ -277,7 +277,7 @@ test("sessions.patch preserves nested model ids under provider overrides", async
     "utf-8",
   );
 
-  await withEnvAsync({ OPENCLAW_CONFIG_PATH: undefined }, async () => {
+  await withEnvAsync({ TINKERCLAW_CONFIG_PATH: undefined }, async () => {
     const { clearConfigCache, clearRuntimeConfigSnapshot } = await getGatewayConfigModule();
     clearConfigCache();
     clearRuntimeConfigSnapshot();
@@ -293,7 +293,7 @@ test("sessions.patch preserves nested model ids under provider overrides", async
     const configPath = path.join(dir, "openclaw.json");
     await fs.writeFile(configPath, JSON.stringify(cfg, null, 2), "utf-8");
 
-    await withEnvAsync({ OPENCLAW_CONFIG_PATH: configPath }, async () => {
+    await withEnvAsync({ TINKERCLAW_CONFIG_PATH: configPath }, async () => {
       const started = await startConnectedServerWithClient();
       const { server, ws } = started;
       try {

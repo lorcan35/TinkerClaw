@@ -37,14 +37,14 @@ import { startGatewayServer } from "./server.js";
 import { extractPayloadText } from "./test-helpers.agent-results.js";
 
 const LIVE = isLiveTestEnabled();
-const CLI_LIVE = isTruthyEnvValue(process.env.OPENCLAW_LIVE_CLI_BACKEND);
-const CLI_RESUME = isTruthyEnvValue(process.env.OPENCLAW_LIVE_CLI_BACKEND_RESUME_PROBE);
-const CLI_DEBUG = isTruthyEnvValue(process.env.OPENCLAW_LIVE_CLI_BACKEND_DEBUG);
+const CLI_LIVE = isTruthyEnvValue(process.env.TINKERCLAW_LIVE_CLI_BACKEND);
+const CLI_RESUME = isTruthyEnvValue(process.env.TINKERCLAW_LIVE_CLI_BACKEND_RESUME_PROBE);
+const CLI_DEBUG = isTruthyEnvValue(process.env.TINKERCLAW_LIVE_CLI_BACKEND_DEBUG);
 const CLI_CI_SAFE_CODEX_CONFIG = isTruthyEnvValue(
-  process.env.OPENCLAW_LIVE_CLI_BACKEND_USE_CI_SAFE_CODEX_CONFIG,
+  process.env.TINKERCLAW_LIVE_CLI_BACKEND_USE_CI_SAFE_CODEX_CONFIG,
 );
 const CLI_MCP_SCHEMA_PROBE = isTruthyEnvValue(
-  process.env.OPENCLAW_LIVE_CLI_BACKEND_MCP_SCHEMA_PROBE,
+  process.env.TINKERCLAW_LIVE_CLI_BACKEND_MCP_SCHEMA_PROBE,
 );
 const describeLive = LIVE && CLI_LIVE ? describe : describe.skip;
 
@@ -58,7 +58,7 @@ const DEFAULT_MODEL =
 // so the outer test budget needs enough headroom to finish those retries.
 const CLI_BACKEND_LIVE_TIMEOUT_MS = 20 * 60_000;
 const CLI_BACKEND_REQUEST_TIMEOUT_MS = parsePositiveIntegerEnv(
-  "OPENCLAW_LIVE_CLI_BACKEND_REQUEST_TIMEOUT_MS",
+  "TINKERCLAW_LIVE_CLI_BACKEND_REQUEST_TIMEOUT_MS",
   15 * 60_000,
 );
 const CLI_BACKEND_AGENT_TIMEOUT_SECONDS = Math.max(
@@ -190,8 +190,8 @@ describeLive("gateway live (cli backend)", () => {
     async () => {
       const preservedEnv = new Set(
         parseJsonStringArray(
-          "OPENCLAW_LIVE_CLI_BACKEND_PRESERVE_ENV",
-          process.env.OPENCLAW_LIVE_CLI_BACKEND_PRESERVE_ENV,
+          "TINKERCLAW_LIVE_CLI_BACKEND_PRESERVE_ENV",
+          process.env.TINKERCLAW_LIVE_CLI_BACKEND_PRESERVE_ENV,
         ) ?? [],
       );
       const previousEnv = snapshotCliBackendLiveEnv();
@@ -200,11 +200,11 @@ describeLive("gateway live (cli backend)", () => {
       applyCliBackendLiveEnv(preservedEnv);
 
       const token = `test-${randomUUID()}`;
-      process.env.OPENCLAW_GATEWAY_TOKEN = token;
+      process.env.TINKERCLAW_GATEWAY_TOKEN = token;
       const port = await getFreeGatewayPort();
       logCliBackendLiveStep("env-ready", { port });
 
-      const rawModel = process.env.OPENCLAW_LIVE_CLI_BACKEND_MODEL ?? DEFAULT_MODEL;
+      const rawModel = process.env.TINKERCLAW_LIVE_CLI_BACKEND_MODEL ?? DEFAULT_MODEL;
       const initialParsed = parseModelRef(rawModel, "claude-cli");
       const initialProviderId = initialParsed?.provider ?? "";
       const initialModelKey = initialParsed
@@ -240,10 +240,11 @@ describeLive("gateway live (cli backend)", () => {
       });
       const providerDefaults = backendResolved?.config;
 
-      const cliCommand = process.env.OPENCLAW_LIVE_CLI_BACKEND_COMMAND ?? providerDefaults?.command;
+      const cliCommand =
+        process.env.TINKERCLAW_LIVE_CLI_BACKEND_COMMAND ?? providerDefaults?.command;
       if (!cliCommand) {
         throw new Error(
-          `OPENCLAW_LIVE_CLI_BACKEND_COMMAND is required for provider "${providerId}".`,
+          `TINKERCLAW_LIVE_CLI_BACKEND_COMMAND is required for provider "${providerId}".`,
         );
       }
 
@@ -255,8 +256,8 @@ describeLive("gateway live (cli backend)", () => {
 
       const cliClearEnv =
         parseJsonStringArray(
-          "OPENCLAW_LIVE_CLI_BACKEND_CLEAR_ENV",
-          process.env.OPENCLAW_LIVE_CLI_BACKEND_CLEAR_ENV,
+          "TINKERCLAW_LIVE_CLI_BACKEND_CLEAR_ENV",
+          process.env.TINKERCLAW_LIVE_CLI_BACKEND_CLEAR_ENV,
         ) ??
         providerDefaults?.clearEnv ??
         [];
@@ -267,13 +268,13 @@ describeLive("gateway live (cli backend)", () => {
           .filter((entry): entry is [string, string] => typeof entry[1] === "string"),
       );
       const cliImageArg =
-        process.env.OPENCLAW_LIVE_CLI_BACKEND_IMAGE_ARG?.trim() || providerDefaults?.imageArg;
+        process.env.TINKERCLAW_LIVE_CLI_BACKEND_IMAGE_ARG?.trim() || providerDefaults?.imageArg;
       const cliImageMode =
-        parseImageMode(process.env.OPENCLAW_LIVE_CLI_BACKEND_IMAGE_MODE) ??
+        parseImageMode(process.env.TINKERCLAW_LIVE_CLI_BACKEND_IMAGE_MODE) ??
         providerDefaults?.imageMode;
       if (cliImageMode && !cliImageArg) {
         throw new Error(
-          "OPENCLAW_LIVE_CLI_BACKEND_IMAGE_MODE requires OPENCLAW_LIVE_CLI_BACKEND_IMAGE_ARG.",
+          "TINKERCLAW_LIVE_CLI_BACKEND_IMAGE_MODE requires TINKERCLAW_LIVE_CLI_BACKEND_IMAGE_ARG.",
         );
       }
 
@@ -284,10 +285,10 @@ describeLive("gateway live (cli backend)", () => {
         ? await createMcpSchemaProbePlugin(tempDir)
         : undefined;
       const useMinimalToolsProfile = providerId === "codex-cli" && !schemaProbePluginPath;
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       const bundleMcp = backendResolved?.bundleMcp === true;
       const bootstrapWorkspace = await createBootstrapWorkspace(tempDir);
-      const disableMcpConfig = process.env.OPENCLAW_LIVE_CLI_BACKEND_DISABLE_MCP_CONFIG !== "0";
+      const disableMcpConfig = process.env.TINKERCLAW_LIVE_CLI_BACKEND_DISABLE_MCP_CONFIG !== "0";
       let cliArgs = baseCliArgs;
       if (
         bundleMcp &&
@@ -387,7 +388,7 @@ describeLive("gateway live (cli backend)", () => {
       };
       const tempConfigPath = path.join(tempDir, "openclaw.json");
       await fs.writeFile(tempConfigPath, `${JSON.stringify(nextCfg, null, 2)}\n`);
-      process.env.OPENCLAW_CONFIG_PATH = tempConfigPath;
+      process.env.TINKERCLAW_CONFIG_PATH = tempConfigPath;
       const deviceIdentity = await ensurePairedTestGatewayClientIdentity();
       logCliBackendLiveStep("config-written", {
         tempConfigPath,

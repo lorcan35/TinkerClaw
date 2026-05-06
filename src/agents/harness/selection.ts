@@ -294,7 +294,7 @@ export function resolveAgentHarnessPolicy(params: {
     sessionKey: params.sessionKey,
   });
   const defaultsPolicy = resolveAgentRuntimePolicy(params.config?.agents?.defaults);
-  const runtime = env.OPENCLAW_AGENT_RUNTIME?.trim()
+  const runtime = env.TINKERCLAW_AGENT_RUNTIME?.trim()
     ? resolveEmbeddedAgentRuntime(env)
     : normalizeEmbeddedAgentRuntime(agentPolicy?.id ?? defaultsPolicy?.id);
   if (isCliRuntimeAlias(runtime)) {

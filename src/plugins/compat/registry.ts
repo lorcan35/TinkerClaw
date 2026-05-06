@@ -45,7 +45,7 @@ export const PLUGIN_COMPAT_RECORDS = [
     replacement: "focused `openclaw/plugin-sdk/<subpath>` imports",
     docsPath: "/plugins/sdk-migration",
     surfaces: ["openclaw/plugin-sdk", "openclaw/plugin-sdk/compat"],
-    diagnostics: ["OPENCLAW_PLUGIN_SDK_COMPAT_DEPRECATED"],
+    diagnostics: ["TINKERCLAW_PLUGIN_SDK_COMPAT_DEPRECATED"],
     tests: [
       "src/plugins/contracts/plugin-sdk-index.test.ts",
       "src/plugins/contracts/plugin-sdk-root-alias.test.ts",
@@ -406,7 +406,7 @@ export const PLUGIN_COMPAT_RECORDS = [
     removeAfter: "2026-07-25",
     replacement: "`openclaw plugins registry --refresh` and `openclaw doctor --fix`",
     docsPath: "/cli/plugins#registry",
-    surfaces: ["OPENCLAW_DISABLE_PERSISTED_PLUGIN_REGISTRY", "plugin registry reads"],
+    surfaces: ["TINKERCLAW_DISABLE_PERSISTED_PLUGIN_REGISTRY", "plugin registry reads"],
     diagnostics: ["persisted-registry-disabled"],
     tests: ["src/plugins/plugin-registry.test.ts"],
   },
@@ -421,8 +421,8 @@ export const PLUGIN_COMPAT_RECORDS = [
     replacement: "`openclaw plugins registry --refresh` and `openclaw doctor --fix`",
     docsPath: "/cli/plugins#registry",
     surfaces: [
-      "OPENCLAW_DISABLE_PLUGIN_REGISTRY_MIGRATION",
-      "OPENCLAW_FORCE_PLUGIN_REGISTRY_MIGRATION",
+      "TINKERCLAW_DISABLE_PLUGIN_REGISTRY_MIGRATION",
+      "TINKERCLAW_FORCE_PLUGIN_REGISTRY_MIGRATION",
       "package postinstall plugin registry migration",
     ],
     diagnostics: ["postinstall migration skip", "postinstall migration force deprecation warning"],
@@ -630,7 +630,7 @@ export const PLUGIN_COMPAT_RECORDS = [
       "injected `api.runtime.*` helpers or focused `openclaw/plugin-sdk/<subpath>` imports",
     docsPath: "/plugins/sdk-migration",
     surfaces: ["openclaw/extension-api"],
-    diagnostics: ["OPENCLAW_EXTENSION_API_DEPRECATED"],
+    diagnostics: ["TINKERCLAW_EXTENSION_API_DEPRECATED"],
     tests: ["src/plugins/sdk-alias.test.ts", "src/index.test.ts"],
   },
   {

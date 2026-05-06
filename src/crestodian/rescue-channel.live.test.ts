@@ -7,19 +7,19 @@ import { clearConfigCache } from "../config/config.js";
 import type { OpenClawConfig } from "../config/types.openclaw.js";
 import { runCrestodianRescueMessage } from "./rescue-message.js";
 
-const originalStateDir = process.env.OPENCLAW_STATE_DIR;
-const originalConfigPath = process.env.OPENCLAW_CONFIG_PATH;
+const originalStateDir = process.env.TINKERCLAW_STATE_DIR;
+const originalConfigPath = process.env.TINKERCLAW_CONFIG_PATH;
 
 function truthy(value: string | undefined): boolean {
   return /^(1|true|yes|on)$/i.test(value?.trim() ?? "");
 }
 
 const runLive =
-  truthy(process.env.OPENCLAW_LIVE_TEST) &&
-  truthy(process.env.OPENCLAW_LIVE_CRESTODIAN_RESCUE_CHANNEL);
+  truthy(process.env.TINKERCLAW_LIVE_TEST) &&
+  truthy(process.env.TINKERCLAW_LIVE_CRESTODIAN_RESCUE_CHANNEL);
 const describeLive = runLive ? describe : describe.skip;
 
-function commandContext(channel = process.env.OPENCLAW_LIVE_CRESTODIAN_CHANNEL ?? "whatsapp") {
+function commandContext(channel = process.env.TINKERCLAW_LIVE_CRESTODIAN_CHANNEL ?? "whatsapp") {
   return {
     surface: channel,
     channel,
@@ -53,22 +53,22 @@ describeLive("Crestodian live rescue channel smoke", () => {
   afterEach(() => {
     clearConfigCache();
     if (originalStateDir === undefined) {
-      delete process.env.OPENCLAW_STATE_DIR;
+      delete process.env.TINKERCLAW_STATE_DIR;
     } else {
-      process.env.OPENCLAW_STATE_DIR = originalStateDir;
+      process.env.TINKERCLAW_STATE_DIR = originalStateDir;
     }
     if (originalConfigPath === undefined) {
-      delete process.env.OPENCLAW_CONFIG_PATH;
+      delete process.env.TINKERCLAW_CONFIG_PATH;
     } else {
-      process.env.OPENCLAW_CONFIG_PATH = originalConfigPath;
+      process.env.TINKERCLAW_CONFIG_PATH = originalConfigPath;
     }
   });
 
   it("handles /crestodian status and a persistent approval roundtrip", async () => {
     const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "crestodian-live-rescue-"));
     const configPath = path.join(tempDir, "openclaw.json");
-    vi.stubEnv("OPENCLAW_STATE_DIR", tempDir);
-    vi.stubEnv("OPENCLAW_CONFIG_PATH", configPath);
+    vi.stubEnv("TINKERCLAW_STATE_DIR", tempDir);
+    vi.stubEnv("TINKERCLAW_CONFIG_PATH", configPath);
     await fs.writeFile(
       configPath,
       JSON.stringify(

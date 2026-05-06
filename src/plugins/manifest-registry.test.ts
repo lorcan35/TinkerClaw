@@ -93,8 +93,8 @@ function loadRegistry(candidates: PluginCandidate[]) {
 
 function hermeticEnv(overrides: NodeJS.ProcessEnv = {}): NodeJS.ProcessEnv {
   return {
-    OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
-    OPENCLAW_VERSION: undefined,
+    TINKERCLAW_BUNDLED_PLUGINS_DIR: undefined,
+    TINKERCLAW_VERSION: undefined,
     VITEST: "true",
     ...overrides,
   };
@@ -328,7 +328,7 @@ describe("loadPluginManifestRegistry", () => {
       configSchema: { type: "object" },
     });
     const env = hermeticEnv({
-      OPENCLAW_STATE_DIR: stateDir,
+      TINKERCLAW_STATE_DIR: stateDir,
     });
 
     const first = loadPluginManifestRegistry({ env });
@@ -1845,14 +1845,14 @@ describe("loadPluginManifestRegistry", () => {
     {
       name: "skips plugins whose minHostVersion is newer than the current host",
       minHostVersion: ">=2026.3.22",
-      env: { OPENCLAW_VERSION: "2026.3.21" } as NodeJS.ProcessEnv,
+      env: { TINKERCLAW_VERSION: "2026.3.21" } as NodeJS.ProcessEnv,
       expectedMessage: "plugin requires OpenClaw >=2026.3.22, but this host is 2026.3.21",
       expectWarn: true,
     },
     {
       name: "skips plugins whose beta minHostVersion is newer than the current host",
       minHostVersion: ">=2026.5.1-beta.1",
-      env: { OPENCLAW_VERSION: "2026.4.30" } as NodeJS.ProcessEnv,
+      env: { TINKERCLAW_VERSION: "2026.4.30" } as NodeJS.ProcessEnv,
       expectedMessage: "plugin requires OpenClaw >=2026.5.1-beta.1, but this host is 2026.4.30",
       expectWarn: true,
     },
@@ -1865,7 +1865,7 @@ describe("loadPluginManifestRegistry", () => {
     {
       name: "warns distinctly when host version cannot be determined",
       minHostVersion: ">=2026.3.22",
-      env: { OPENCLAW_VERSION: "unknown" } as NodeJS.ProcessEnv,
+      env: { TINKERCLAW_VERSION: "unknown" } as NodeJS.ProcessEnv,
       expectedMessage: "host version could not be determined",
       expectWarn: true,
     },
@@ -1940,7 +1940,7 @@ describe("loadPluginManifestRegistry", () => {
           },
         }),
       ],
-      env: { OPENCLAW_VERSION: "2026.4.30" } as NodeJS.ProcessEnv,
+      env: { TINKERCLAW_VERSION: "2026.4.30" } as NodeJS.ProcessEnv,
     });
 
     expect(registry.plugins.some((plugin) => plugin.id === "codex")).toBe(true);
@@ -2277,16 +2277,16 @@ describe("loadPluginManifestRegistry", () => {
       config,
       env: hermeticEnv({
         HOME: homeA,
-        OPENCLAW_HOME: undefined,
-        OPENCLAW_STATE_DIR: path.join(homeA, ".state"),
+        TINKERCLAW_HOME: undefined,
+        TINKERCLAW_STATE_DIR: path.join(homeA, ".state"),
       }),
     });
     const second = loadPluginManifestRegistry({
       config,
       env: hermeticEnv({
         HOME: homeB,
-        OPENCLAW_HOME: undefined,
-        OPENCLAW_STATE_DIR: path.join(homeB, ".state"),
+        TINKERCLAW_HOME: undefined,
+        TINKERCLAW_STATE_DIR: path.join(homeB, ".state"),
       }),
     });
 
@@ -2321,13 +2321,13 @@ describe("loadPluginManifestRegistry", () => {
     const olderHost = loadPluginManifestRegistry({
       candidates,
       env: hermeticEnv({
-        OPENCLAW_VERSION: "2026.3.21",
+        TINKERCLAW_VERSION: "2026.3.21",
       }),
     });
     const newerHost = loadPluginManifestRegistry({
       candidates,
       env: hermeticEnv({
-        OPENCLAW_VERSION: "2026.3.22",
+        TINKERCLAW_VERSION: "2026.3.22",
       }),
     });
 

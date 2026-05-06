@@ -550,8 +550,8 @@ describe("OpenClaw SDK real Gateway e2e", () => {
   });
 });
 
-const liveGatewayUrl = process.env.OPENCLAW_SDK_LIVE_GATEWAY_URL;
-const liveGatewayToken = process.env.OPENCLAW_SDK_LIVE_GATEWAY_TOKEN;
+const liveGatewayUrl = process.env.TINKERCLAW_SDK_LIVE_GATEWAY_URL;
+const liveGatewayToken = process.env.TINKERCLAW_SDK_LIVE_GATEWAY_TOKEN;
 const liveGatewayDescribe = liveGatewayUrl && liveGatewayToken ? describe : describe.skip;
 
 function readLiveTextDelta(data: unknown): string {
@@ -581,9 +581,9 @@ liveGatewayDescribe("OpenClaw SDK live Gateway e2e", () => {
       await expect(oc.agents.list()).resolves.toBeDefined();
       await expect(oc.models.status({ probe: false })).resolves.toBeDefined();
 
-      const agent = await oc.agents.get(process.env.OPENCLAW_SDK_LIVE_AGENT_ID ?? "main");
+      const agent = await oc.agents.get(process.env.TINKERCLAW_SDK_LIVE_AGENT_ID ?? "main");
       const run = await agent.run({
-        input: "Reply with exactly: OPENCLAW_SDK_LIVE_OK",
+        input: "Reply with exactly: TINKERCLAW_SDK_LIVE_OK",
         sessionKey: `sdk-live-e2e-${Date.now()}`,
         deliver: false,
         timeoutMs: 120_000,
@@ -621,7 +621,7 @@ liveGatewayDescribe("OpenClaw SDK live Gateway e2e", () => {
       expect(result.status).toBe("completed");
       expect(events.terminal).toBe("run.completed");
       expect(events.eventTypes).toContain("run.started");
-      expect(events.text).toContain("OPENCLAW_SDK_LIVE_OK");
+      expect(events.text).toContain("TINKERCLAW_SDK_LIVE_OK");
     } finally {
       await oc.close();
     }

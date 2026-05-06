@@ -2,7 +2,7 @@ import type { ChildProcess } from "node:child_process";
 import { EventEmitter } from "node:events";
 import process from "node:process";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { OPENCLAW_CLI_ENV_VALUE } from "../infra/openclaw-exec-env.js";
+import { TINKERCLAW_CLI_ENV_VALUE } from "../infra/openclaw-exec-env.js";
 
 const spawnMock = vi.hoisted(() => vi.fn());
 
@@ -104,18 +104,18 @@ describe("runCommandWithTimeout", () => {
     const resolved = resolveCommandEnv({
       argv: ["node", "script.js"],
       baseEnv: {
-        OPENCLAW_BASE_ENV: "base",
-        OPENCLAW_TO_REMOVE: undefined,
+        TINKERCLAW_BASE_ENV: "base",
+        TINKERCLAW_TO_REMOVE: undefined,
       },
       env: {
-        OPENCLAW_TEST_ENV: "ok",
+        TINKERCLAW_TEST_ENV: "ok",
       },
     });
 
-    expect(resolved.OPENCLAW_BASE_ENV).toBe("base");
-    expect(resolved.OPENCLAW_TEST_ENV).toBe("ok");
-    expect(resolved.OPENCLAW_TO_REMOVE).toBeUndefined();
-    expect(resolved.OPENCLAW_CLI).toBe(OPENCLAW_CLI_ENV_VALUE);
+    expect(resolved.TINKERCLAW_BASE_ENV).toBe("base");
+    expect(resolved.TINKERCLAW_TEST_ENV).toBe("ok");
+    expect(resolved.TINKERCLAW_TO_REMOVE).toBeUndefined();
+    expect(resolved.TINKERCLAW_CLI).toBe(TINKERCLAW_CLI_ENV_VALUE);
   });
 
   it("suppresses npm fund prompts for npm argv", async () => {
@@ -204,13 +204,10 @@ describe("runCommandWithTimeout", () => {
     { timeout: 5_000 },
     async () => {
       await loadExecModules();
-      const result = await runCommandWithTimeout(
-        [process.execPath, "-e", "process.exit(0)"],
-        {
-          timeoutMs: 3_000,
-          input: "this input will EPIPE because the child ignores stdin\n",
-        },
-      );
+      const result = await runCommandWithTimeout([process.execPath, "-e", "process.exit(0)"], {
+        timeoutMs: 3_000,
+        input: "this input will EPIPE because the child ignores stdin\n",
+      });
       expect(result.code).toBe(0);
     },
   );

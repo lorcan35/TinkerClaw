@@ -86,8 +86,8 @@ describe("resolveRunWorkspaceDir", () => {
     const env = {
       ...process.env,
       HOME: "/home/runner",
-      OPENCLAW_HOME: undefined,
-      OPENCLAW_STATE_DIR: "/tmp/openclaw-state",
+      TINKERCLAW_HOME: undefined,
+      TINKERCLAW_STATE_DIR: "/tmp/openclaw-state",
     } satisfies NodeJS.ProcessEnv;
     const result = resolveRunWorkspaceDir({
       workspaceDir: undefined,

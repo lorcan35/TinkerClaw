@@ -68,8 +68,8 @@ describe("handleSystemRunInvoke mac app exec host routing", () => {
   }
 
   beforeEach(() => {
-    previousOpenClawHome = process.env.OPENCLAW_HOME;
-    process.env.OPENCLAW_HOME = sharedOpenClawHome;
+    previousOpenClawHome = process.env.TINKERCLAW_HOME;
+    process.env.TINKERCLAW_HOME = sharedOpenClawHome;
     fs.rmSync(resolveExecApprovalsPath(), { force: true });
     clearRuntimeConfigSnapshot();
   });
@@ -77,9 +77,9 @@ describe("handleSystemRunInvoke mac app exec host routing", () => {
   afterEach(() => {
     clearRuntimeConfigSnapshot();
     if (previousOpenClawHome === undefined) {
-      delete process.env.OPENCLAW_HOME;
+      delete process.env.TINKERCLAW_HOME;
     } else {
-      process.env.OPENCLAW_HOME = previousOpenClawHome;
+      process.env.TINKERCLAW_HOME = previousOpenClawHome;
     }
   });
 
@@ -267,16 +267,16 @@ describe("handleSystemRunInvoke mac app exec host routing", () => {
     run: (ctx: { tempHome: string }) => Promise<T>;
   }): Promise<T> {
     const tempHome = sharedOpenClawHome;
-    const previousOpenClawHome = process.env.OPENCLAW_HOME;
-    process.env.OPENCLAW_HOME = tempHome;
+    const previousOpenClawHome = process.env.TINKERCLAW_HOME;
+    process.env.TINKERCLAW_HOME = tempHome;
     saveExecApprovals(params.approvals);
     try {
       return await params.run({ tempHome });
     } finally {
       if (previousOpenClawHome === undefined) {
-        delete process.env.OPENCLAW_HOME;
+        delete process.env.TINKERCLAW_HOME;
       } else {
-        process.env.OPENCLAW_HOME = previousOpenClawHome;
+        process.env.TINKERCLAW_HOME = previousOpenClawHome;
       }
     }
   }
@@ -1134,7 +1134,7 @@ describe("handleSystemRunInvoke mac app exec host routing", () => {
       ask: "off",
       command: ["/bin/sh", "./script.sh"],
       env: {
-        OPENCLAW_TEST: "1",
+        TINKERCLAW_TEST: "1",
         LANG: "C",
         LC_TIME: "C",
       },

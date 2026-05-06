@@ -24,7 +24,7 @@ describe("commitment store delivery selection", () => {
   async function useTempStateDir(): Promise<string> {
     const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-commitments-store-"));
     tmpDirs.push(tmpDir);
-    vi.stubEnv("OPENCLAW_STATE_DIR", tmpDir);
+    vi.stubEnv("TINKERCLAW_STATE_DIR", tmpDir);
     return tmpDir;
   }
 

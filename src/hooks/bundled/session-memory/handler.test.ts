@@ -262,7 +262,7 @@ describe("session-memory hook", () => {
     await withEnvAsync(
       {
         NODE_ENV: "production",
-        OPENCLAW_TEST_FAST: undefined,
+        TINKERCLAW_TEST_FAST: undefined,
         VITEST: undefined,
       },
       async () => {
@@ -287,7 +287,7 @@ describe("session-memory hook", () => {
     await withEnvAsync(
       {
         NODE_ENV: "production",
-        OPENCLAW_TEST_FAST: undefined,
+        TINKERCLAW_TEST_FAST: undefined,
         VITEST: undefined,
       },
       async () => {
@@ -342,7 +342,7 @@ describe("session-memory hook", () => {
     await withEnvAsync(
       {
         NODE_ENV: "production",
-        OPENCLAW_TEST_FAST: undefined,
+        TINKERCLAW_TEST_FAST: undefined,
         VITEST: undefined,
       },
       async () => {

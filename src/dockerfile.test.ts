@@ -16,25 +16,25 @@ describe("Dockerfile", () => {
   it("uses full bookworm for build stages and slim bookworm for runtime", async () => {
     const dockerfile = await readFile(dockerfilePath, "utf8");
     expect(dockerfile).toContain(
-      'ARG OPENCLAW_NODE_BOOKWORM_IMAGE="node:24-bookworm@sha256:3a09aa6354567619221ef6c45a5051b671f953f0a1924d1f819ffb236e520e6b"',
+      'ARG TINKERCLAW_NODE_BOOKWORM_IMAGE="node:24-bookworm@sha256:3a09aa6354567619221ef6c45a5051b671f953f0a1924d1f819ffb236e520e6b"',
     );
     expect(dockerfile).toContain(
-      'ARG OPENCLAW_NODE_BOOKWORM_SLIM_IMAGE="node:24-bookworm-slim@sha256:e8e2e91b1378f83c5b2dd15f0247f34110e2fe895f6ca7719dbb780f929368eb"',
+      'ARG TINKERCLAW_NODE_BOOKWORM_SLIM_IMAGE="node:24-bookworm-slim@sha256:e8e2e91b1378f83c5b2dd15f0247f34110e2fe895f6ca7719dbb780f929368eb"',
     );
-    expect(dockerfile).toContain("FROM ${OPENCLAW_NODE_BOOKWORM_IMAGE} AS ext-deps");
-    expect(dockerfile).toContain("FROM ${OPENCLAW_NODE_BOOKWORM_IMAGE} AS build");
-    expect(dockerfile).toContain("FROM ${OPENCLAW_NODE_BOOKWORM_SLIM_IMAGE} AS base-runtime");
+    expect(dockerfile).toContain("FROM ${TINKERCLAW_NODE_BOOKWORM_IMAGE} AS ext-deps");
+    expect(dockerfile).toContain("FROM ${TINKERCLAW_NODE_BOOKWORM_IMAGE} AS build");
+    expect(dockerfile).toContain("FROM ${TINKERCLAW_NODE_BOOKWORM_SLIM_IMAGE} AS base-runtime");
     expect(dockerfile).toContain("FROM base-runtime");
     expect(dockerfile).toContain("current multi-arch manifest list entries");
     expect(dockerfile).not.toContain("current amd64 entry");
-    expect(dockerfile).not.toContain("OPENCLAW_VARIANT");
+    expect(dockerfile).not.toContain("TINKERCLAW_VARIANT");
   });
 
   it("installs CA certificates in the slim runtime stage", async () => {
     const dockerfile = await readFile(dockerfilePath, "utf8");
     const collapsed = collapseDockerContinuations(dockerfile);
     const runtimeIndex = collapsed.indexOf(
-      "FROM ${OPENCLAW_NODE_BOOKWORM_SLIM_IMAGE} AS base-runtime",
+      "FROM ${TINKERCLAW_NODE_BOOKWORM_SLIM_IMAGE} AS base-runtime",
     );
     const caInstallIndex = collapsed.indexOf(
       "ca-certificates procps hostname curl git lsof openssl python3",
@@ -50,7 +50,7 @@ describe("Dockerfile", () => {
   it("installs python3 in the slim runtime stage for workspace scripts", async () => {
     const dockerfile = collapseDockerContinuations(await readFile(dockerfilePath, "utf8"));
     const runtimeIndex = dockerfile.indexOf(
-      "FROM ${OPENCLAW_NODE_BOOKWORM_SLIM_IMAGE} AS base-runtime",
+      "FROM ${TINKERCLAW_NODE_BOOKWORM_SLIM_IMAGE} AS base-runtime",
     );
     const pythonInstallIndex = dockerfile.indexOf(
       "ca-certificates procps hostname curl git lsof openssl python3",
@@ -65,7 +65,7 @@ describe("Dockerfile", () => {
   it("installs optional browser dependencies after pnpm install", async () => {
     const dockerfile = await readFile(dockerfilePath, "utf8");
     const installIndex = dockerfile.indexOf("pnpm install --frozen-lockfile");
-    const browserArgIndex = dockerfile.indexOf("ARG OPENCLAW_INSTALL_BROWSER");
+    const browserArgIndex = dockerfile.indexOf("ARG TINKERCLAW_INSTALL_BROWSER");
 
     expect(installIndex).toBeGreaterThan(-1);
     expect(browserArgIndex).toBeGreaterThan(-1);
@@ -106,22 +106,22 @@ describe("Dockerfile", () => {
   it("prunes runtime dependencies after the build stage", async () => {
     const dockerfile = await readFile(dockerfilePath, "utf8");
     const normalizedExtensionLoop =
-      "for ext in $(printf '%s\\n' \"$OPENCLAW_EXTENSIONS\" | tr ',' ' '); do \\";
+      "for ext in $(printf '%s\\n' \"$TINKERCLAW_EXTENSIONS\" | tr ',' ' '); do \\";
     expect(dockerfile).toContain("FROM build AS runtime-assets");
-    expect(dockerfile).toContain("ARG OPENCLAW_EXTENSIONS");
-    expect(dockerfile).toContain("ARG OPENCLAW_BUNDLED_PLUGIN_DIR");
+    expect(dockerfile).toContain("ARG TINKERCLAW_EXTENSIONS");
+    expect(dockerfile).toContain("ARG TINKERCLAW_BUNDLED_PLUGIN_DIR");
     expect(dockerfile).toContain(
       "Opt-in plugin dependencies at build time (space- or comma-separated directory names).",
     );
     expect(dockerfile).toContain(
-      'Example: docker build --build-arg OPENCLAW_EXTENSIONS="diagnostics-otel,matrix" .',
+      'Example: docker build --build-arg TINKERCLAW_EXTENSIONS="diagnostics-otel,matrix" .',
     );
     expect(dockerfile.split(normalizedExtensionLoop).length - 1).toBe(2);
     expect(dockerfile).toContain("pnpm-workspace.runtime.yaml");
     expect(dockerfile).toContain("  - ui\\n");
     expect(dockerfile).toContain("CI=true NPM_CONFIG_FROZEN_LOCKFILE=false pnpm prune --prod");
     expect(dockerfile).toContain(
-      'OPENCLAW_EXTENSIONS="$OPENCLAW_EXTENSIONS" node scripts/prune-docker-plugin-dist.mjs',
+      'TINKERCLAW_EXTENSIONS="$TINKERCLAW_EXTENSIONS" node scripts/prune-docker-plugin-dist.mjs',
     );
     expect(dockerfile).toContain("prune must not rediscover unrelated workspaces");
     expect(dockerfile).not.toContain(
@@ -149,20 +149,20 @@ describe("Dockerfile", () => {
 
   it("does not override bundled plugin discovery in runtime images", async () => {
     const dockerfile = collapseDockerContinuations(await readFile(dockerfilePath, "utf8"));
-    expect(dockerfile).toContain(`ARG OPENCLAW_BUNDLED_PLUGIN_DIR=${BUNDLED_PLUGIN_ROOT_DIR}`);
-    expect(dockerfile).not.toMatch(/^\s*ENV\b[^\n]*\bOPENCLAW_BUNDLED_PLUGINS_DIR\b/m);
+    expect(dockerfile).toContain(`ARG TINKERCLAW_BUNDLED_PLUGIN_DIR=${BUNDLED_PLUGIN_ROOT_DIR}`);
+    expect(dockerfile).not.toMatch(/^\s*ENV\b[^\n]*\bTINKERCLAW_BUNDLED_PLUGINS_DIR\b/m);
   });
 
   it("normalizes plugin and agent paths permissions in image layers", async () => {
     const dockerfile = await readFile(dockerfilePath, "utf8");
     expect(dockerfile).toContain(
-      "RUN for dir in /app/${OPENCLAW_BUNDLED_PLUGIN_DIR} /app/.agent /app/.agents; do \\",
+      "RUN for dir in /app/${TINKERCLAW_BUNDLED_PLUGIN_DIR} /app/.agent /app/.agents; do \\",
     );
     expect(dockerfile).toContain('find "$dir" -type d -exec chmod 755 {} +');
     expect(dockerfile).toContain('find "$dir" -type f -exec chmod 644 {} +');
   });
 
-  it("Docker GPG fingerprint awk uses correct quoting for OPENCLAW_SANDBOX=1 build", async () => {
+  it("Docker GPG fingerprint awk uses correct quoting for TINKERCLAW_SANDBOX=1 build", async () => {
     const dockerfile = await readFile(dockerfilePath, "utf8");
     expect(dockerfile).toContain('== "fpr" {');
     expect(dockerfile).not.toContain('\\"fpr\\"');

@@ -10,8 +10,8 @@ import {
 
 function createEnv(stateDir: string): NodeJS.ProcessEnv {
   return {
-    OPENCLAW_STATE_DIR: stateDir,
-    OPENCLAW_TEST_FAST: "1",
+    TINKERCLAW_STATE_DIR: stateDir,
+    TINKERCLAW_TEST_FAST: "1",
   };
 }
 

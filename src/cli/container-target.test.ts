@@ -92,14 +92,14 @@ describe("parseCliContainerArgs", () => {
 });
 
 describe("resolveCliContainerTarget", () => {
-  it("uses argv first and falls back to OPENCLAW_CONTAINER", () => {
+  it("uses argv first and falls back to TINKERCLAW_CONTAINER", () => {
     expect(
       resolveCliContainerTarget(["node", "openclaw", "--container", "demo", "status"], {}),
     ).toBe("demo");
     expect(resolveCliContainerTarget(["node", "openclaw", "status"], {})).toBeNull();
     expect(
       resolveCliContainerTarget(["node", "openclaw", "status"], {
-        OPENCLAW_CONTAINER: "demo",
+        TINKERCLAW_CONTAINER: "demo",
       } as NodeJS.ProcessEnv),
     ).toBe("demo");
   });
@@ -113,7 +113,7 @@ describe("maybeRunCliInContainer", () => {
     });
   });
 
-  it("uses OPENCLAW_CONTAINER when the flag is absent", () => {
+  it("uses TINKERCLAW_CONTAINER when the flag is absent", () => {
     const spawnSync = vi
       .fn()
       .mockReturnValueOnce({
@@ -131,7 +131,7 @@ describe("maybeRunCliInContainer", () => {
 
     expect(
       maybeRunCliInContainer(["node", "openclaw", "status"], {
-        env: { OPENCLAW_CONTAINER: "demo" } as NodeJS.ProcessEnv,
+        env: { TINKERCLAW_CONTAINER: "demo" } as NodeJS.ProcessEnv,
         spawnSync,
       }),
     ).toEqual({
@@ -146,9 +146,9 @@ describe("maybeRunCliInContainer", () => {
         "exec",
         "-i",
         "--env",
-        "OPENCLAW_CONTAINER_HINT=demo",
+        "TINKERCLAW_CONTAINER_HINT=demo",
         "--env",
-        "OPENCLAW_CLI_CONTAINER_BYPASS=1",
+        "TINKERCLAW_CLI_CONTAINER_BYPASS=1",
         "demo",
         "openclaw",
         "status",
@@ -156,7 +156,7 @@ describe("maybeRunCliInContainer", () => {
       {
         stdio: "inherit",
         env: {
-          OPENCLAW_CONTAINER: "",
+          TINKERCLAW_CONTAINER: "",
         },
       },
     );
@@ -180,12 +180,12 @@ describe("maybeRunCliInContainer", () => {
 
     maybeRunCliInContainer(["node", "openclaw", "status"], {
       env: {
-        OPENCLAW_CONTAINER: "demo",
-        OPENCLAW_PROFILE: "work",
-        OPENCLAW_GATEWAY_PORT: "19001",
-        OPENCLAW_GATEWAY_URL: "ws://127.0.0.1:18789",
-        OPENCLAW_GATEWAY_TOKEN: "token",
-        OPENCLAW_GATEWAY_PASSWORD: "password",
+        TINKERCLAW_CONTAINER: "demo",
+        TINKERCLAW_PROFILE: "work",
+        TINKERCLAW_GATEWAY_PORT: "19001",
+        TINKERCLAW_GATEWAY_URL: "ws://127.0.0.1:18789",
+        TINKERCLAW_GATEWAY_TOKEN: "token",
+        TINKERCLAW_GATEWAY_PASSWORD: "password",
       } as NodeJS.ProcessEnv,
       spawnSync,
     });
@@ -197,9 +197,9 @@ describe("maybeRunCliInContainer", () => {
         "exec",
         "-i",
         "--env",
-        "OPENCLAW_CONTAINER_HINT=demo",
+        "TINKERCLAW_CONTAINER_HINT=demo",
         "--env",
-        "OPENCLAW_CLI_CONTAINER_BYPASS=1",
+        "TINKERCLAW_CLI_CONTAINER_BYPASS=1",
         "demo",
         "openclaw",
         "status",
@@ -207,7 +207,7 @@ describe("maybeRunCliInContainer", () => {
       {
         stdio: "inherit",
         env: {
-          OPENCLAW_CONTAINER: "",
+          TINKERCLAW_CONTAINER: "",
         },
       },
     );
@@ -231,8 +231,8 @@ describe("maybeRunCliInContainer", () => {
 
     maybeRunCliInContainer(["node", "openclaw", "status"], {
       env: {
-        OPENCLAW_CONTAINER: "demo",
-        OPENCLAW_PROXY_URL: " http://proxy.internal:3128 ",
+        TINKERCLAW_CONTAINER: "demo",
+        TINKERCLAW_PROXY_URL: " http://proxy.internal:3128 ",
       } as NodeJS.ProcessEnv,
       spawnSync,
     });
@@ -244,11 +244,11 @@ describe("maybeRunCliInContainer", () => {
         "exec",
         "-i",
         "--env",
-        "OPENCLAW_CONTAINER_HINT=demo",
+        "TINKERCLAW_CONTAINER_HINT=demo",
         "--env",
-        "OPENCLAW_CLI_CONTAINER_BYPASS=1",
+        "TINKERCLAW_CLI_CONTAINER_BYPASS=1",
         "--env",
-        "OPENCLAW_PROXY_URL=http://proxy.internal:3128",
+        "TINKERCLAW_PROXY_URL=http://proxy.internal:3128",
         "demo",
         "openclaw",
         "status",
@@ -256,8 +256,8 @@ describe("maybeRunCliInContainer", () => {
       {
         stdio: "inherit",
         env: {
-          OPENCLAW_CONTAINER: "",
-          OPENCLAW_PROXY_URL: " http://proxy.internal:3128 ",
+          TINKERCLAW_CONTAINER: "",
+          TINKERCLAW_PROXY_URL: " http://proxy.internal:3128 ",
         },
       },
     );
@@ -285,8 +285,8 @@ describe("maybeRunCliInContainer", () => {
     expect(() =>
       maybeRunCliInContainer(["node", "openclaw", "status"], {
         env: {
-          OPENCLAW_CONTAINER: "demo",
-          OPENCLAW_PROXY_URL: ` ${proxyUrl} `,
+          TINKERCLAW_CONTAINER: "demo",
+          TINKERCLAW_PROXY_URL: ` ${proxyUrl} `,
         } as NodeJS.ProcessEnv,
         spawnSync,
       }),
@@ -311,8 +311,8 @@ describe("maybeRunCliInContainer", () => {
     try {
       maybeRunCliInContainer(["node", "openclaw", "status"], {
         env: {
-          OPENCLAW_CONTAINER: "demo",
-          OPENCLAW_PROXY_URL:
+          TINKERCLAW_CONTAINER: "demo",
+          TINKERCLAW_PROXY_URL:
             "http://proxy-user:proxy-secret@127.1:3128?token=proxy-query-secret#proxy-fragment-secret",
         } as NodeJS.ProcessEnv,
         spawnSync,
@@ -321,7 +321,7 @@ describe("maybeRunCliInContainer", () => {
       message = err instanceof Error ? err.message : String(err);
     }
 
-    expect(message).toContain("OPENCLAW_PROXY_URL=http://redacted:redacted@127.0.0.1:3128/");
+    expect(message).toContain("TINKERCLAW_PROXY_URL=http://redacted:redacted@127.0.0.1:3128/");
     expect(message).not.toContain("proxy-user");
     expect(message).not.toContain("proxy-secret");
     expect(message).not.toContain("proxy-query-secret");
@@ -349,9 +349,9 @@ describe("maybeRunCliInContainer", () => {
 
     maybeRunCliInContainer(["node", "openclaw", "status"], {
       env: {
-        OPENCLAW_CONTAINER: "demo",
-        OPENCLAW_PROXY_URL: " http://127.0.0.1:3128 ",
-        OPENCLAW_CONTAINER_ALLOW_LOOPBACK_PROXY_URL: "1",
+        TINKERCLAW_CONTAINER: "demo",
+        TINKERCLAW_PROXY_URL: " http://127.0.0.1:3128 ",
+        TINKERCLAW_CONTAINER_ALLOW_LOOPBACK_PROXY_URL: "1",
       } as NodeJS.ProcessEnv,
       spawnSync,
     });
@@ -359,7 +359,7 @@ describe("maybeRunCliInContainer", () => {
     expect(spawnSync).toHaveBeenNthCalledWith(
       3,
       "podman",
-      expect.arrayContaining(["OPENCLAW_PROXY_URL=http://127.0.0.1:3128"]),
+      expect.arrayContaining(["TINKERCLAW_PROXY_URL=http://127.0.0.1:3128"]),
       expect.anything(),
     );
   });
@@ -403,16 +403,16 @@ describe("maybeRunCliInContainer", () => {
         "exec",
         "-i",
         "--env",
-        "OPENCLAW_CONTAINER_HINT=demo",
+        "TINKERCLAW_CONTAINER_HINT=demo",
         "--env",
-        "OPENCLAW_CLI_CONTAINER_BYPASS=1",
+        "TINKERCLAW_CLI_CONTAINER_BYPASS=1",
         "demo",
         "openclaw",
         "status",
       ],
       {
         stdio: "inherit",
-        env: { OPENCLAW_CONTAINER: "" },
+        env: { TINKERCLAW_CONTAINER: "" },
       },
     );
   });
@@ -456,16 +456,16 @@ describe("maybeRunCliInContainer", () => {
         "exec",
         "-i",
         "-e",
-        "OPENCLAW_CONTAINER_HINT=demo",
+        "TINKERCLAW_CONTAINER_HINT=demo",
         "-e",
-        "OPENCLAW_CLI_CONTAINER_BYPASS=1",
+        "TINKERCLAW_CLI_CONTAINER_BYPASS=1",
         "demo",
         "openclaw",
         "health",
       ],
       {
         stdio: "inherit",
-        env: { USER: "openclaw", OPENCLAW_CONTAINER: "" },
+        env: { USER: "openclaw", TINKERCLAW_CONTAINER: "" },
       },
     );
   });
@@ -519,16 +519,16 @@ describe("maybeRunCliInContainer", () => {
         "exec",
         "-i",
         "-e",
-        "OPENCLAW_CONTAINER_HINT=demo",
+        "TINKERCLAW_CONTAINER_HINT=demo",
         "-e",
-        "OPENCLAW_CLI_CONTAINER_BYPASS=1",
+        "TINKERCLAW_CLI_CONTAINER_BYPASS=1",
         "demo",
         "openclaw",
         "status",
       ],
       {
         stdio: "inherit",
-        env: { USER: "somalley", OPENCLAW_CONTAINER: "" },
+        env: { USER: "somalley", TINKERCLAW_CONTAINER: "" },
       },
     );
     expect(spawnSync).toHaveBeenCalledTimes(3);
@@ -625,21 +625,21 @@ describe("maybeRunCliInContainer", () => {
         "-i",
         "-t",
         "--env",
-        "OPENCLAW_CONTAINER_HINT=demo",
+        "TINKERCLAW_CONTAINER_HINT=demo",
         "--env",
-        "OPENCLAW_CLI_CONTAINER_BYPASS=1",
+        "TINKERCLAW_CLI_CONTAINER_BYPASS=1",
         "demo",
         "openclaw",
         "setup",
       ],
       {
         stdio: "inherit",
-        env: { OPENCLAW_CONTAINER: "" },
+        env: { TINKERCLAW_CONTAINER: "" },
       },
     );
   });
 
-  it("prefers --container over OPENCLAW_CONTAINER", () => {
+  it("prefers --container over TINKERCLAW_CONTAINER", () => {
     const spawnSync = vi
       .fn()
       .mockReturnValueOnce({
@@ -657,7 +657,7 @@ describe("maybeRunCliInContainer", () => {
 
     expect(
       maybeRunCliInContainer(["node", "openclaw", "--container", "flag-demo", "health"], {
-        env: { OPENCLAW_CONTAINER: "env-demo" } as NodeJS.ProcessEnv,
+        env: { TINKERCLAW_CONTAINER: "env-demo" } as NodeJS.ProcessEnv,
         spawnSync,
       }),
     ).toEqual({
@@ -690,7 +690,7 @@ describe("maybeRunCliInContainer", () => {
   it("skips recursion when the bypass env is set", () => {
     expect(
       maybeRunCliInContainer(["node", "openclaw", "--container", "demo", "status"], {
-        env: { OPENCLAW_CLI_CONTAINER_BYPASS: "1" } as NodeJS.ProcessEnv,
+        env: { TINKERCLAW_CLI_CONTAINER_BYPASS: "1" } as NodeJS.ProcessEnv,
       }),
     ).toEqual({
       handled: false,

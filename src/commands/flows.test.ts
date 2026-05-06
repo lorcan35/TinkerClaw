@@ -17,7 +17,7 @@ vi.mock("../config/config.js", () => ({
   loadConfig: vi.fn(() => ({})),
 }));
 
-const ORIGINAL_STATE_DIR = process.env.OPENCLAW_STATE_DIR;
+const ORIGINAL_STATE_DIR = process.env.TINKERCLAW_STATE_DIR;
 
 function createRuntime(): RuntimeEnv {
   return {
@@ -51,9 +51,9 @@ async function withTaskFlowCommandStateDir(run: (root: string) => Promise<void>)
 describe("flows commands", () => {
   afterEach(() => {
     if (ORIGINAL_STATE_DIR === undefined) {
-      delete process.env.OPENCLAW_STATE_DIR;
+      delete process.env.TINKERCLAW_STATE_DIR;
     } else {
-      process.env.OPENCLAW_STATE_DIR = ORIGINAL_STATE_DIR;
+      process.env.TINKERCLAW_STATE_DIR = ORIGINAL_STATE_DIR;
     }
     resetTaskRegistryDeliveryRuntimeForTests();
     resetTaskRegistryForTests({ persist: false });

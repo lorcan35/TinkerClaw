@@ -60,7 +60,7 @@ const CLI_PROXY_ENV_KEYS = [
 
 function createGatewayCliMainStartupTrace(argv: string[]) {
   const enabled =
-    isTruthyEnvValue(process.env.OPENCLAW_GATEWAY_STARTUP_TRACE) &&
+    isTruthyEnvValue(process.env.TINKERCLAW_GATEWAY_STARTUP_TRACE) &&
     argv.slice(2).includes("gateway");
   const started = performance.now();
   let last = started;
@@ -267,8 +267,8 @@ async function ensureCliEnvProxyDispatcher(): Promise<void> {
 
 function shouldBootstrapCliProxyBeforeFastPath(env: NodeJS.ProcessEnv = process.env): boolean {
   if (
-    isTruthyEnvValue(env.OPENCLAW_DEBUG_PROXY_ENABLED) ||
-    isTruthyEnvValue(env.OPENCLAW_DEBUG_PROXY_REQUIRE)
+    isTruthyEnvValue(env.TINKERCLAW_DEBUG_PROXY_ENABLED) ||
+    isTruthyEnvValue(env.TINKERCLAW_DEBUG_PROXY_REQUIRE)
   ) {
     return true;
   }
@@ -359,7 +359,7 @@ export async function runCli(argv: string[] = process.argv) {
     applyCliProfileEnv({ profile: parsedProfile.profile });
   }
   const containerTargetName =
-    parsedContainer.container ?? normalizeOptionalString(process.env.OPENCLAW_CONTAINER) ?? null;
+    parsedContainer.container ?? normalizeOptionalString(process.env.TINKERCLAW_CONTAINER) ?? null;
   if (containerTargetName && parsedProfile.profile) {
     throw new Error("--container cannot be combined with --profile/--dev");
   }

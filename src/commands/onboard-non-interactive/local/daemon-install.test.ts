@@ -64,7 +64,7 @@ describe("installGatewayDaemonNonInteractive", () => {
             token: {
               source: "env",
               provider: "default",
-              id: "OPENCLAW_GATEWAY_TOKEN",
+              id: "TINKERCLAW_GATEWAY_TOKEN",
             },
           },
         },

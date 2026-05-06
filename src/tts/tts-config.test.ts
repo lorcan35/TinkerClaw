@@ -27,18 +27,18 @@ describe("shouldAttemptTtsPayload", () => {
   });
 
   beforeEach(() => {
-    originalPrefsPath = process.env.OPENCLAW_TTS_PREFS;
+    originalPrefsPath = process.env.TINKERCLAW_TTS_PREFS;
     dir = path.join(root, `case-${caseId++}`);
     mkdirSync(dir, { recursive: true });
     prefsPath = path.join(dir, "tts.json");
-    process.env.OPENCLAW_TTS_PREFS = prefsPath;
+    process.env.TINKERCLAW_TTS_PREFS = prefsPath;
   });
 
   afterEach(() => {
     if (originalPrefsPath === undefined) {
-      delete process.env.OPENCLAW_TTS_PREFS;
+      delete process.env.TINKERCLAW_TTS_PREFS;
     } else {
-      process.env.OPENCLAW_TTS_PREFS = originalPrefsPath;
+      process.env.TINKERCLAW_TTS_PREFS = originalPrefsPath;
     }
   });
 

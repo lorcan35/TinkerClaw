@@ -23,8 +23,8 @@ function createCatalogFixtureEnv(overrides: NodeJS.ProcessEnv = {}): NodeJS.Proc
 
 function createCatalogFallbackOnlyEnv(): NodeJS.ProcessEnv {
   return createCatalogFixtureEnv({
-    OPENCLAW_DISABLE_BUNDLED_PLUGINS: "1",
-    OPENCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins",
+    TINKERCLAW_DISABLE_BUNDLED_PLUGINS: "1",
+    TINKERCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins",
   });
 }
 
@@ -92,7 +92,7 @@ export function describeBundledMetadataOnlyChannelCatalogContract(params: {
 
       const entry = listChannelPluginCatalogEntries({
         workspaceDir,
-        env: createCatalogFixtureEnv({ OPENCLAW_DISABLE_BUNDLED_PLUGINS: "1" }),
+        env: createCatalogFixtureEnv({ TINKERCLAW_DISABLE_BUNDLED_PLUGINS: "1" }),
       }).find((item) => item.id === params.meta.id);
 
       expect(entry?.install.npmSpec).toBe(params.npmSpec);

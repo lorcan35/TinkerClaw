@@ -23,8 +23,8 @@ import {
 import { loadPluginManifestRegistryForInstalledIndex } from "../../../plugins/manifest-registry-installed.js";
 import type { PluginManifestRecord } from "../../../plugins/manifest-registry.js";
 
-export const DISABLE_PLUGIN_REGISTRY_MIGRATION_ENV = "OPENCLAW_DISABLE_PLUGIN_REGISTRY_MIGRATION";
-export const FORCE_PLUGIN_REGISTRY_MIGRATION_ENV = "OPENCLAW_FORCE_PLUGIN_REGISTRY_MIGRATION";
+export const DISABLE_PLUGIN_REGISTRY_MIGRATION_ENV = "TINKERCLAW_DISABLE_PLUGIN_REGISTRY_MIGRATION";
+export const FORCE_PLUGIN_REGISTRY_MIGRATION_ENV = "TINKERCLAW_FORCE_PLUGIN_REGISTRY_MIGRATION";
 
 export type PluginRegistryInstallMigrationPreflightAction =
   | "disabled"

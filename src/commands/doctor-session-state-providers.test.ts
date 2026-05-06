@@ -48,7 +48,7 @@ describe("doctor session state provider routes", () => {
           },
         },
         sessionKey: "agent:main:telegram:direct:1",
-        env: { OPENCLAW_AGENT_RUNTIME: "codex-cli" },
+        env: { TINKERCLAW_AGENT_RUNTIME: "codex-cli" },
       }),
     ).toMatchObject({
       runtime: "codex-cli",

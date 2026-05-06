@@ -57,14 +57,14 @@ export function cleanupTempPluginTestEnvironment(
   clearPluginLoaderCache();
   setActivePluginRegistry(createEmptyPluginRegistry());
   if (originalBundledPluginsDir === undefined) {
-    delete process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
+    delete process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR;
   } else {
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = originalBundledPluginsDir;
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = originalBundledPluginsDir;
   }
   if (originalDisableBundledPlugins === undefined) {
-    delete process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS;
+    delete process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS;
   } else {
-    process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS = originalDisableBundledPlugins;
+    process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS = originalDisableBundledPlugins;
   }
 }
 

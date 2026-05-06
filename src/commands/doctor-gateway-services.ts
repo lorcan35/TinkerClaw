@@ -11,7 +11,7 @@ import {
   renderGatewayServiceCleanupHints,
   type ExtraGatewayService,
 } from "../daemon/inspect.js";
-import { OPENCLAW_WRAPPER_ENV_KEY } from "../daemon/program-args.js";
+import { TINKERCLAW_WRAPPER_ENV_KEY } from "../daemon/program-args.js";
 import { renderSystemNodeWarning, resolveSystemNodeInfo } from "../daemon/runtime-paths.js";
 import {
   auditGatewayServiceConfig,
@@ -79,20 +79,20 @@ function findGatewayEntrypoint(programArguments?: string[]): string | null {
 function buildGatewayServiceRepairEnv(
   command: GatewayServiceCommandConfig | null,
 ): NodeJS.ProcessEnv {
-  const wrapperPath = command?.environment?.[OPENCLAW_WRAPPER_ENV_KEY]?.trim();
-  if (!wrapperPath || Object.hasOwn(process.env, OPENCLAW_WRAPPER_ENV_KEY)) {
+  const wrapperPath = command?.environment?.[TINKERCLAW_WRAPPER_ENV_KEY]?.trim();
+  if (!wrapperPath || Object.hasOwn(process.env, TINKERCLAW_WRAPPER_ENV_KEY)) {
     return process.env;
   }
   return {
     ...process.env,
-    [OPENCLAW_WRAPPER_ENV_KEY]: wrapperPath,
+    [TINKERCLAW_WRAPPER_ENV_KEY]: wrapperPath,
   };
 }
 
 function resolveGatewayServiceWrapperPath(
   command: GatewayServiceCommandConfig | null,
 ): string | null {
-  return normalizeOptionalString(command?.environment?.[OPENCLAW_WRAPPER_ENV_KEY]) ?? null;
+  return normalizeOptionalString(command?.environment?.[TINKERCLAW_WRAPPER_ENV_KEY]) ?? null;
 }
 
 async function buildExpectedGatewayServicePlan(params: {
@@ -367,7 +367,7 @@ export async function maybeRepairGatewayServiceConfig(
   const serviceInstallEnv = buildGatewayServiceRepairEnv(command);
   const serviceWrapperPath = resolveGatewayServiceWrapperPath(command);
   if (serviceWrapperPath) {
-    note(`Gateway service invokes ${OPENCLAW_WRAPPER_ENV_KEY}: ${serviceWrapperPath}`, "Gateway");
+    note(`Gateway service invokes ${TINKERCLAW_WRAPPER_ENV_KEY}: ${serviceWrapperPath}`, "Gateway");
   }
   const serviceLayout = await summarizeGatewayServiceLayout(command);
   if (serviceLayout?.entrypointSourceCheckout) {

@@ -1460,7 +1460,7 @@ function truncateText(value: string, maxLength: number): string {
 }
 
 function resolveOpenClawCliExecutable(): string {
-  const envPath = process.env.OPENCLAW_CLI_PATH?.trim();
+  const envPath = process.env.TINKERCLAW_CLI_PATH?.trim();
   if (envPath && existsSync(envPath)) {
     return envPath;
   }

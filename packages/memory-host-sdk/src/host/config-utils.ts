@@ -188,7 +188,7 @@ function resolveRequiredHomeDir(
   env: NodeJS.ProcessEnv = process.env,
   homedir: () => string = os.homedir,
 ): string {
-  const explicitHome = normalizeHomeValue(env.OPENCLAW_HOME);
+  const explicitHome = normalizeHomeValue(env.TINKERCLAW_HOME);
   const rawHome = explicitHome
     ? explicitHome.replace(/^~(?=$|[\\/])/, resolveRawOsHomeDir(env, homedir) ?? "")
     : resolveRawOsHomeDir(env, homedir);
@@ -218,13 +218,13 @@ export function resolveStateDir(
   env: NodeJS.ProcessEnv = process.env,
   homedir: () => string = os.homedir,
 ): string {
-  const override = env.OPENCLAW_STATE_DIR?.trim();
+  const override = env.TINKERCLAW_STATE_DIR?.trim();
   if (override) {
     return resolveUserPath(override, env, homedir);
   }
   const effectiveHome = () => resolveRequiredHomeDir(env, homedir);
   const nextDir = path.join(effectiveHome(), NEW_STATE_DIRNAME);
-  if (env.OPENCLAW_TEST_FAST === "1" || fs.existsSync(nextDir)) {
+  if (env.TINKERCLAW_TEST_FAST === "1" || fs.existsSync(nextDir)) {
     return nextDir;
   }
   const existingLegacy = legacyStateDirs(effectiveHome).find((dir) => {
@@ -239,7 +239,7 @@ export function resolveStateDir(
 
 function resolveDefaultAgentWorkspaceDir(env: NodeJS.ProcessEnv = process.env): string {
   const home = resolveRequiredHomeDir(env, os.homedir);
-  const profile = env.OPENCLAW_PROFILE?.trim();
+  const profile = env.TINKERCLAW_PROFILE?.trim();
   if (profile && normalizeLowercaseStringOrEmpty(profile) !== "default") {
     return path.join(home, ".openclaw", `workspace-${profile}`);
   }

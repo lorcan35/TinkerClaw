@@ -1714,7 +1714,7 @@ describe("image tool managed inbound media", () => {
     const mediaPath = path.join(inboundDir, mediaId);
     await fs.mkdir(inboundDir, { recursive: true });
     await fs.writeFile(mediaPath, Buffer.from(ONE_PIXEL_PNG_B64, "base64"));
-    vi.stubEnv("OPENCLAW_STATE_DIR", stateDir);
+    vi.stubEnv("TINKERCLAW_STATE_DIR", stateDir);
     try {
       await run({ stateDir, mediaId, mediaPath });
     } finally {

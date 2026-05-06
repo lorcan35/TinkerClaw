@@ -28,7 +28,7 @@ export function collectConfiguredAgentHarnessRuntimes(
       pushRuntime(resolveAgentRuntimePolicy(agent)?.id);
     }
   }
-  pushRuntime(env.OPENCLAW_AGENT_RUNTIME);
+  pushRuntime(env.TINKERCLAW_AGENT_RUNTIME);
 
   return [...runtimes].toSorted((left, right) => left.localeCompare(right));
 }

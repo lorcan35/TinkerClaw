@@ -22,7 +22,7 @@ describe("mantis desktop browser smoke runtime", () => {
     const runtimeEnv = {
       PATH: process.env.PATH,
       CRABBOX_COORDINATOR_TOKEN: "runtime-token",
-      OPENCLAW_MANTIS_CRABBOX_PROVIDER: "hetzner",
+      TINKERCLAW_MANTIS_CRABBOX_PROVIDER: "hetzner",
     };
     const runner = vi.fn(
       async (command: string, args: readonly string[], options: { env?: NodeJS.ProcessEnv }) => {

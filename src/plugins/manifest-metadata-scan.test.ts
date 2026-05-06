@@ -43,8 +43,8 @@ describe("listOpenClawPluginManifestMetadata", () => {
     });
 
     const records = listOpenClawPluginManifestMetadata({
-      OPENCLAW_HOME: home,
-      OPENCLAW_BUNDLED_PLUGINS_DIR: bundledRoot,
+      TINKERCLAW_HOME: home,
+      TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledRoot,
     });
 
     const openai = records.find((record) => record.manifest.id === "openai");

@@ -56,7 +56,7 @@ function setHookRunnerForTest(hookRunner: unknown): void {
 
 function createSessionFile(params?: { history?: Array<{ role: "user"; content: string }> }) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-cli-hooks-"));
-  vi.stubEnv("OPENCLAW_STATE_DIR", dir);
+  vi.stubEnv("TINKERCLAW_STATE_DIR", dir);
   const sessionFile = path.join(dir, "agents", "main", "sessions", "s1.jsonl");
   fs.mkdirSync(path.dirname(sessionFile), { recursive: true });
   fs.writeFileSync(

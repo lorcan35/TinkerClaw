@@ -59,7 +59,7 @@ describe("resolveGatewayService", () => {
     const tempHome = await makeTempWorkspace("openclaw-service-future-config-");
     const stateDir = path.join(tempHome, ".openclaw");
     const configPath = path.join(stateDir, "openclaw.json");
-    const envSnapshot = captureEnv(["HOME", "OPENCLAW_STATE_DIR", "OPENCLAW_CONFIG_PATH"]);
+    const envSnapshot = captureEnv(["HOME", "TINKERCLAW_STATE_DIR", "TINKERCLAW_CONFIG_PATH"]);
     try {
       await fs.mkdir(stateDir, { recursive: true });
       await fs.writeFile(
@@ -75,8 +75,8 @@ describe("resolveGatewayService", () => {
         ),
       );
       process.env.HOME = tempHome;
-      process.env.OPENCLAW_STATE_DIR = stateDir;
-      process.env.OPENCLAW_CONFIG_PATH = configPath;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_CONFIG_PATH = configPath;
       clearConfigCache();
       clearRuntimeConfigSnapshot();
 
@@ -109,19 +109,19 @@ describe("readGatewayServiceState", () => {
       isLoaded: vi.fn(async () => true),
       readCommand: vi.fn(async () => ({
         programArguments: ["openclaw", "gateway", "run"],
-        environment: { OPENCLAW_GATEWAY_PORT: "18789" },
+        environment: { TINKERCLAW_GATEWAY_PORT: "18789" },
       })),
       readRuntime: vi.fn(async () => ({ status: "running" })),
     });
 
     const state = await readGatewayServiceState(service, {
-      env: { OPENCLAW_GATEWAY_PORT: "1" },
+      env: { TINKERCLAW_GATEWAY_PORT: "1" },
     });
 
     expect(state.installed).toBe(true);
     expect(state.loaded).toBe(true);
     expect(state.running).toBe(true);
-    expect(state.env.OPENCLAW_GATEWAY_PORT).toBe("18789");
+    expect(state.env.TINKERCLAW_GATEWAY_PORT).toBe("18789");
   });
 });
 
@@ -141,7 +141,7 @@ describe("startGatewayService", () => {
   it("restarts stopped installed services and returns post-start state", async () => {
     const readCommand = vi.fn(async () => ({
       programArguments: ["openclaw", "gateway", "run"],
-      environment: { OPENCLAW_GATEWAY_PORT: "18789" },
+      environment: { TINKERCLAW_GATEWAY_PORT: "18789" },
     }));
     const isLoaded = vi
       .fn<GatewayService["isLoaded"]>()
@@ -173,7 +173,7 @@ describe("startGatewayService", () => {
     const service = createService({
       readCommand: vi.fn(async () => ({
         programArguments: ["openclaw", "gateway", "run"],
-        environment: { OPENCLAW_SERVICE_VERSION: "2026.4.24" },
+        environment: { TINKERCLAW_SERVICE_VERSION: "2026.4.24" },
       })),
       isLoaded: vi.fn(async () => true),
       readRuntime: vi.fn(async () => ({ status: "stopped" })),

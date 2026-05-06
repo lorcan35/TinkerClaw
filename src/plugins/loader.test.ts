@@ -169,8 +169,8 @@ function writeBundledPlugin(params: {
     filename: params.filename ?? "index.cjs",
     body: params.body ?? simplePluginBody(params.id),
   });
-  delete process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS;
-  process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
+  delete process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS;
+  process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
   return { bundledDir, plugin };
 }
 
@@ -194,7 +194,7 @@ function writeWorkspacePlugin(params: {
 
 function withStateDir<T>(run: (stateDir: string) => T) {
   const stateDir = makeTempDir();
-  return withEnv({ OPENCLAW_STATE_DIR: stateDir }, () => run(stateDir));
+  return withEnv({ TINKERCLAW_STATE_DIR: stateDir }, () => run(stateDir));
 }
 
 function loadBundledMemoryPluginRegistry(options?: {
@@ -203,7 +203,7 @@ function loadBundledMemoryPluginRegistry(options?: {
   pluginFilename?: string;
 }) {
   if (!options && cachedBundledMemoryDir) {
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = cachedBundledMemoryDir;
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = cachedBundledMemoryDir;
     return loadOpenClawPlugins({
       cache: false,
       workspaceDir: cachedBundledMemoryDir,
@@ -252,7 +252,7 @@ function loadBundledMemoryPluginRegistry(options?: {
   if (!options) {
     cachedBundledMemoryDir = bundledDir;
   }
-  process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
+  process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
 
   return loadOpenClawPlugins({
     cache: false,
@@ -277,7 +277,7 @@ function setupBundledTelegramPlugin() {
       filename: "telegram.cjs",
     });
   }
-  process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = cachedBundledTelegramDir;
+  process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = cachedBundledTelegramDir;
 }
 
 function expectTelegramLoaded(registry: ReturnType<typeof loadOpenClawPlugins>) {
@@ -800,10 +800,10 @@ function createEnvResolvedPluginFixture(pluginId: string) {
   });
   const env = {
     ...process.env,
-    OPENCLAW_HOME: openclawHome,
+    TINKERCLAW_HOME: openclawHome,
     HOME: ignoredHome,
-    OPENCLAW_STATE_DIR: stateDir,
-    OPENCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins",
+    TINKERCLAW_STATE_DIR: stateDir,
+    TINKERCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins",
   };
   return { plugin, env };
 }
@@ -908,7 +908,7 @@ describe("loadOpenClawPlugins", () => {
       { stateDir },
     );
 
-    const registry = withEnv({ OPENCLAW_STATE_DIR: stateDir }, () =>
+    const registry = withEnv({ TINKERCLAW_STATE_DIR: stateDir }, () =>
       loadOpenClawPlugins({
         cache: false,
         config: {
@@ -954,7 +954,7 @@ describe("loadOpenClawPlugins", () => {
       dir: bundledDir,
       filename: "bundled.cjs",
     });
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
 
     const registry = loadOpenClawPlugins({
       cache: false,
@@ -1026,7 +1026,7 @@ describe("loadOpenClawPlugins", () => {
       ),
       "utf-8",
     );
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
 
     const registry = loadOpenClawPlugins({
       cache: false,
@@ -3289,7 +3289,7 @@ module.exports = { id: "throws-after-import", register() {} };`,
               ...options,
               env: {
                 ...process.env,
-                OPENCLAW_BUNDLED_PLUGINS_DIR: bundledA,
+                TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledA,
               },
             }),
           loadSecond: () =>
@@ -3297,7 +3297,7 @@ module.exports = { id: "throws-after-import", register() {} };`,
               ...options,
               env: {
                 ...process.env,
-                OPENCLAW_BUNDLED_PLUGINS_DIR: bundledB,
+                TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledB,
               },
             }),
         };
@@ -3347,9 +3347,9 @@ module.exports = { id: "throws-after-import", register() {} };`,
               env: {
                 ...process.env,
                 HOME: homeA,
-                OPENCLAW_HOME: undefined,
-                OPENCLAW_STATE_DIR: stateDir,
-                OPENCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
+                TINKERCLAW_HOME: undefined,
+                TINKERCLAW_STATE_DIR: stateDir,
+                TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
               },
             }),
           loadSecond: () =>
@@ -3358,9 +3358,9 @@ module.exports = { id: "throws-after-import", register() {} };`,
               env: {
                 ...process.env,
                 HOME: homeB,
-                OPENCLAW_HOME: undefined,
-                OPENCLAW_STATE_DIR: stateDir,
-                OPENCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
+                TINKERCLAW_HOME: undefined,
+                TINKERCLAW_STATE_DIR: stateDir,
+                TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
               },
             }),
         };
@@ -3421,10 +3421,10 @@ module.exports = { id: "throws-after-import", register() {} };`,
               ...options,
               env: {
                 ...process.env,
-                OPENCLAW_HOME: openclawHome,
+                TINKERCLAW_HOME: openclawHome,
                 HOME: ignoredHome,
-                OPENCLAW_STATE_DIR: stateDir,
-                OPENCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins",
+                TINKERCLAW_STATE_DIR: stateDir,
+                TINKERCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins",
               },
             }),
           loadVariant: () =>
@@ -3432,10 +3432,10 @@ module.exports = { id: "throws-after-import", register() {} };`,
               ...options,
               env: {
                 ...process.env,
-                OPENCLAW_HOME: secondHome,
+                TINKERCLAW_HOME: secondHome,
                 HOME: ignoredHome,
-                OPENCLAW_STATE_DIR: stateDir,
-                OPENCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins",
+                TINKERCLAW_STATE_DIR: stateDir,
+                TINKERCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins",
               },
             }),
         };
@@ -3528,8 +3528,8 @@ module.exports = { id: "throws-after-import", register() {} };`,
       loadOpenClawPlugins({
         env: {
           ...process.env,
-          OPENCLAW_STATE_DIR: stateDir,
-          OPENCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins",
+          TINKERCLAW_STATE_DIR: stateDir,
+          TINKERCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins",
         },
         config: {
           plugins: {
@@ -3573,8 +3573,8 @@ module.exports = { id: "throws-after-import", register() {} };`,
       env: {
         ...process.env,
         HOME: homeDir,
-        OPENCLAW_HOME: undefined,
-        OPENCLAW_BUNDLED_PLUGINS_DIR: override,
+        TINKERCLAW_HOME: undefined,
+        TINKERCLAW_BUNDLED_PLUGINS_DIR: override,
       },
       config: {
         plugins: {
@@ -3591,7 +3591,7 @@ module.exports = { id: "throws-after-import", register() {} };`,
     ).toBe(fs.realpathSync(plugin.file));
   });
 
-  it("prefers OPENCLAW_HOME over HOME for env-expanded load paths", () => {
+  it("prefers TINKERCLAW_HOME over HOME for env-expanded load paths", () => {
     const ignoredHome = makeTempDir();
     const openclawHome = makeTempDir();
     const stateDir = makeTempDir();
@@ -3607,9 +3607,9 @@ module.exports = { id: "throws-after-import", register() {} };`,
       env: {
         ...process.env,
         HOME: ignoredHome,
-        OPENCLAW_HOME: openclawHome,
-        OPENCLAW_STATE_DIR: stateDir,
-        OPENCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
+        TINKERCLAW_HOME: openclawHome,
+        TINKERCLAW_STATE_DIR: stateDir,
+        TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
       },
       config: {
         plugins: {
@@ -3811,7 +3811,7 @@ module.exports = { id: "throws-after-import", register() {} };`,
       body: `module.exports = { default: { default: { id: "missing-register-shape" } } };`,
     });
 
-    const registry = withEnv({ OPENCLAW_PLUGIN_LOAD_DEBUG: "1" }, () =>
+    const registry = withEnv({ TINKERCLAW_PLUGIN_LOAD_DEBUG: "1" }, () =>
       loadRegistryFromSinglePlugin({
         plugin,
         pluginConfig: {
@@ -5241,9 +5241,9 @@ module.exports = {
 
     const registry = withEnv(
       {
-        OPENCLAW_BUNDLED_PLUGINS_DIR: path.join(repoRoot, "extensions"),
-        OPENCLAW_TEST_TRUST_BUNDLED_PLUGINS_DIR: "1",
-        OPENCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
+        TINKERCLAW_BUNDLED_PLUGINS_DIR: path.join(repoRoot, "extensions"),
+        TINKERCLAW_TEST_TRUST_BUNDLED_PLUGINS_DIR: "1",
+        TINKERCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
       },
       () =>
         loadOpenClawPlugins({
@@ -5543,8 +5543,8 @@ module.exports = {
 
           return withEnv(
             {
-              OPENCLAW_DISABLE_BUNDLED_PLUGINS: "1",
-              OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
+              TINKERCLAW_DISABLE_BUNDLED_PLUGINS: "1",
+              TINKERCLAW_BUNDLED_PLUGINS_DIR: undefined,
             },
             () =>
               loadOpenClawPlugins({
@@ -5611,7 +5611,7 @@ module.exports = {
             ),
             "utf-8",
           );
-          process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
+          process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
 
           return loadOpenClawPlugins({
             cache: false,
@@ -5675,7 +5675,7 @@ module.exports = {
             ),
             "utf-8",
           );
-          process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
+          process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
 
           return loadOpenClawPlugins({
             cache: false,
@@ -5738,7 +5738,7 @@ module.exports = {
             ),
             "utf-8",
           );
-          process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
+          process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
 
           return loadOpenClawPlugins({
             cache: false,
@@ -5782,7 +5782,7 @@ module.exports = {
             ),
             "utf-8",
           );
-          process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
+          process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
 
           return loadOpenClawPlugins({
             cache: false,
@@ -5812,8 +5812,8 @@ module.exports = {
 
           return withEnv(
             {
-              OPENCLAW_DISABLE_BUNDLED_PLUGINS: "1",
-              OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
+              TINKERCLAW_DISABLE_BUNDLED_PLUGINS: "1",
+              TINKERCLAW_BUNDLED_PLUGINS_DIR: undefined,
             },
             () =>
               loadOpenClawPlugins({
@@ -6228,7 +6228,7 @@ module.exports = {
         label: "warns when loaded non-bundled plugin has no provenance and no allowlist is set",
         loadRegistry: () => {
           const stateDir = makeTempDir();
-          return withEnv({ OPENCLAW_STATE_DIR: stateDir }, () => {
+          return withEnv({ TINKERCLAW_STATE_DIR: stateDir }, () => {
             const globalDir = path.join(stateDir, "extensions", "rogue");
             mkdirSafe(globalDir);
             writePlugin({
@@ -6362,8 +6362,8 @@ module.exports = {
             logger: createWarningLogger(warnings),
             env: {
               ...process.env,
-              OPENCLAW_STATE_DIR: stateDir,
-              OPENCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins",
+              TINKERCLAW_STATE_DIR: stateDir,
+              TINKERCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins",
             },
             config: {
               plugins: {
@@ -6399,7 +6399,7 @@ module.exports = {
   it("uses the source runtime snapshot allowlist for plugin trust checks", () => {
     useNoBundledPlugins();
     const stateDir = makeTempDir();
-    withEnv({ OPENCLAW_STATE_DIR: stateDir }, () => {
+    withEnv({ TINKERCLAW_STATE_DIR: stateDir }, () => {
       const globalDir = path.join(stateDir, "extensions", "trusted-plugin");
       mkdirSafe(globalDir);
       writePlugin({
@@ -6509,7 +6509,7 @@ module.exports = {
       throw err;
     }
 
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = bundledDir;
     const registry = loadOpenClawPlugins({
       cache: false,
       workspaceDir: bundledDir,
@@ -6551,7 +6551,7 @@ module.exports = {
 } };`,
     });
 
-    const registry = withEnv({ OPENCLAW_STATE_DIR: stateDir }, () =>
+    const registry = withEnv({ TINKERCLAW_STATE_DIR: stateDir }, () =>
       loadRegistryFromSinglePlugin({
         plugin,
         pluginConfig: {
@@ -6579,17 +6579,19 @@ module.exports = {
       };`,
     });
 
-    const registry = withEnv({ OPENCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins" }, () =>
-      loadOpenClawPlugins({
-        cache: false,
-        workspaceDir: plugin.dir,
-        config: {
-          plugins: {
-            load: { paths: [plugin.file] },
-            allow: ["legacy-root-import"],
+    const registry = withEnv(
+      { TINKERCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins" },
+      () =>
+        loadOpenClawPlugins({
+          cache: false,
+          workspaceDir: plugin.dir,
+          config: {
+            plugins: {
+              load: { paths: [plugin.file] },
+              allow: ["legacy-root-import"],
+            },
           },
-        },
-      }),
+        }),
     );
     const record = registry.plugins.find((entry) => entry.id === "legacy-root-import");
     expect(record?.status, record?.error).toBe("loaded");
@@ -6624,7 +6626,7 @@ module.exports = {
 
     try {
       const registry = withEnv(
-        { OPENCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins" },
+        { TINKERCLAW_BUNDLED_PLUGINS_DIR: "/nonexistent/bundled/plugins" },
         () =>
           loadOpenClawPlugins({
             cache: false,
@@ -6662,7 +6664,7 @@ module.exports = {
   it("suppresses trust warning logs for non-activating snapshot loads", () => {
     useNoBundledPlugins();
     const stateDir = makeTempDir();
-    withEnv({ OPENCLAW_STATE_DIR: stateDir }, () => {
+    withEnv({ TINKERCLAW_STATE_DIR: stateDir }, () => {
       const globalDir = path.join(stateDir, "extensions", "rogue");
       mkdirSafe(globalDir);
       writePlugin({

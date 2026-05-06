@@ -116,8 +116,8 @@ beforeAll(async () => {
 beforeEach(() => {
   vi.unstubAllEnvs();
   for (const key of [
-    "OPENCLAW_DEBUG_PROXY_ENABLED",
-    "OPENCLAW_DEBUG_PROXY_URL",
+    "TINKERCLAW_DEBUG_PROXY_ENABLED",
+    "TINKERCLAW_DEBUG_PROXY_URL",
     "ALL_PROXY",
     "all_proxy",
     "HTTP_PROXY",
@@ -126,7 +126,7 @@ beforeEach(() => {
     "https_proxy",
     "NO_PROXY",
     "no_proxy",
-    "OPENCLAW_PROXY_URL",
+    "TINKERCLAW_PROXY_URL",
   ]) {
     vi.stubEnv(key, "");
   }
@@ -417,8 +417,8 @@ describe("resolveTelegramFetch", () => {
   });
 
   it("uses the OpenClaw debug proxy URL when no explicit proxy fetch is provided", async () => {
-    vi.stubEnv("OPENCLAW_DEBUG_PROXY_ENABLED", "1");
-    vi.stubEnv("OPENCLAW_DEBUG_PROXY_URL", "http://127.0.0.1:7777");
+    vi.stubEnv("TINKERCLAW_DEBUG_PROXY_ENABLED", "1");
+    vi.stubEnv("TINKERCLAW_DEBUG_PROXY_URL", "http://127.0.0.1:7777");
     undiciFetch.mockResolvedValue({ ok: true } as Response);
 
     const resolved = resolveTelegramFetch(undefined);
@@ -433,8 +433,8 @@ describe("resolveTelegramFetch", () => {
     );
   });
 
-  it("uses OPENCLAW_PROXY_URL as a Telegram explicit proxy when proxy env is absent", async () => {
-    vi.stubEnv("OPENCLAW_PROXY_URL", "http://127.0.0.1:7788");
+  it("uses TINKERCLAW_PROXY_URL as a Telegram explicit proxy when proxy env is absent", async () => {
+    vi.stubEnv("TINKERCLAW_PROXY_URL", "http://127.0.0.1:7788");
     undiciFetch.mockResolvedValue({ ok: true } as Response);
 
     const transport = resolveTelegramTransport(undefined, {
@@ -466,8 +466,8 @@ describe("resolveTelegramFetch", () => {
     );
   });
 
-  it("preserves caller-provided custom fetch when OPENCLAW_PROXY_URL is present", async () => {
-    vi.stubEnv("OPENCLAW_PROXY_URL", "http://127.0.0.1:7788");
+  it("preserves caller-provided custom fetch when TINKERCLAW_PROXY_URL is present", async () => {
+    vi.stubEnv("TINKERCLAW_PROXY_URL", "http://127.0.0.1:7788");
     const proxyFetch = vi.fn(async () => ({ ok: true }) as Response) as unknown as typeof fetch;
 
     const transport = resolveTelegramTransport(proxyFetch, {
@@ -488,8 +488,8 @@ describe("resolveTelegramFetch", () => {
     expect(transport.dispatcherAttempts).toBeUndefined();
   });
 
-  it("prefers standard proxy env over OPENCLAW_PROXY_URL for Telegram", async () => {
-    vi.stubEnv("OPENCLAW_PROXY_URL", "http://127.0.0.1:7788");
+  it("prefers standard proxy env over TINKERCLAW_PROXY_URL for Telegram", async () => {
+    vi.stubEnv("TINKERCLAW_PROXY_URL", "http://127.0.0.1:7788");
     vi.stubEnv("https_proxy", "http://127.0.0.1:7890");
     undiciFetch.mockResolvedValue({ ok: true } as Response);
 

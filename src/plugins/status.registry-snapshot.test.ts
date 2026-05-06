@@ -88,8 +88,8 @@ describe("buildPluginRegistrySnapshotReport", () => {
         bundledPluginsDir: makeTempDir(),
         disablePersistedRegistry: false,
       }),
-      OPENCLAW_DISABLE_BUNDLED_PLUGINS: "1",
-      OPENCLAW_STATE_DIR: stateDir,
+      TINKERCLAW_DISABLE_BUNDLED_PLUGINS: "1",
+      TINKERCLAW_STATE_DIR: stateDir,
     };
     const config = {
       plugins: {

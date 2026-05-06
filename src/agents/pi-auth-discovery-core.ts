@@ -56,7 +56,7 @@ export function addEnvBackedPiCredentials(
 }
 
 export function scrubLegacyStaticAuthJsonEntriesForDiscovery(pathname: string): void {
-  if (process.env.OPENCLAW_AUTH_STORE_READONLY === "1") {
+  if (process.env.TINKERCLAW_AUTH_STORE_READONLY === "1") {
     return;
   }
   if (!fs.existsSync(pathname)) {

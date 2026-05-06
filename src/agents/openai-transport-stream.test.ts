@@ -23,7 +23,7 @@ import { SYSTEM_PROMPT_CACHE_BOUNDARY } from "./system-prompt-cache-boundary.js"
 
 describe("openai transport stream", () => {
   it("adds OpenClaw attribution to native OpenAI transport headers and protects it from pi", () => {
-    vi.stubEnv("OPENCLAW_VERSION", "2026.3.22");
+    vi.stubEnv("TINKERCLAW_VERSION", "2026.3.22");
     const headers = __testing.buildOpenAIClientHeaders(
       {
         id: "gpt-5.4",
@@ -60,7 +60,7 @@ describe("openai transport stream", () => {
   });
 
   it("adds OpenClaw attribution to native OpenAI Codex transport headers", () => {
-    vi.stubEnv("OPENCLAW_VERSION", "2026.3.22");
+    vi.stubEnv("TINKERCLAW_VERSION", "2026.3.22");
     const headers = __testing.buildOpenAIClientHeaders(
       {
         id: "gpt-5.4-codex",

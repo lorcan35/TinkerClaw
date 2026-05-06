@@ -15,7 +15,7 @@ const SHELL_CODING_TOOL_FACTORY_NAMES = new Set(["apply_patch", "exec", "process
 // Names here must be emitted directly by createOpenClawTools(). Catalog entries
 // backed by plugin registration, such as browser/x_search/code_execution, stay
 // out of this set so narrow allowlists still materialize plugin tools.
-const OPENCLAW_TOOL_FACTORY_NAMES = new Set([
+const TINKERCLAW_TOOL_FACTORY_NAMES = new Set([
   "agents_list",
   "canvas",
   "cron",
@@ -80,7 +80,7 @@ function isKnownLocalCodingToolName(normalized: string): boolean {
   return (
     BASE_CODING_TOOL_FACTORY_NAMES.has(normalized) ||
     SHELL_CODING_TOOL_FACTORY_NAMES.has(normalized) ||
-    OPENCLAW_TOOL_FACTORY_NAMES.has(normalized)
+    TINKERCLAW_TOOL_FACTORY_NAMES.has(normalized)
   );
 }
 
@@ -127,7 +127,7 @@ function resolveCodingToolConstructionPlanForAllowlist(
     BASE_CODING_TOOL_FACTORY_NAMES.has(name),
   );
   const includeShellTools = normalized.some((name) => SHELL_CODING_TOOL_FACTORY_NAMES.has(name));
-  const includeOpenClawTools = normalized.some((name) => OPENCLAW_TOOL_FACTORY_NAMES.has(name));
+  const includeOpenClawTools = normalized.some((name) => TINKERCLAW_TOOL_FACTORY_NAMES.has(name));
   const includePluginTools = normalized.some(
     (name) =>
       name === "group:plugins" ||

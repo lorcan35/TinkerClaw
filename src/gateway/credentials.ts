@@ -79,8 +79,8 @@ export function resolveGatewayCredentialsFromValues(params: {
   passwordPrecedence?: GatewayCredentialPrecedence;
 }): ResolvedGatewayCredentials {
   const env = params.env ?? process.env;
-  const envToken = trimToUndefined(env.OPENCLAW_GATEWAY_TOKEN);
-  const envPassword = trimToUndefined(env.OPENCLAW_GATEWAY_PASSWORD);
+  const envToken = trimToUndefined(env.TINKERCLAW_GATEWAY_TOKEN);
+  const envPassword = trimToUndefined(env.TINKERCLAW_GATEWAY_PASSWORD);
   const configToken = trimCredentialToUndefined(params.configToken);
   const configPassword = trimCredentialToUndefined(params.configPassword);
   const tokenPrecedence = params.tokenPrecedence ?? "env-first";

@@ -435,8 +435,8 @@ describe("/model chat UX", () => {
     try {
       await withEnvAsync(
         {
-          OPENCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
-          OPENCLAW_STATE_DIR: stateDir,
+          TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
+          TINKERCLAW_STATE_DIR: stateDir,
           WORKSPACE_MODEL_LIST_CREDENTIALS: credentialPath,
         },
         async () => {
@@ -543,8 +543,8 @@ describe("/model chat UX", () => {
         {
           ANTHROPIC_API_KEY: undefined,
           ANTHROPIC_OAUTH_TOKEN: undefined,
-          OPENCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
-          OPENCLAW_STATE_DIR: stateDir,
+          TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
+          TINKERCLAW_STATE_DIR: stateDir,
           WORKSPACE_MODEL_CREDENTIALS: credentialPath,
         },
         async () => {

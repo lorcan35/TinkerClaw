@@ -44,7 +44,7 @@ function resolveDoctorMode(cfg: OpenClawConfig): DoctorFlowMode {
 }
 
 const UPDATE_PARENT_SUPPORTS_DOCTOR_CONFIG_WRITE_ENV =
-  "OPENCLAW_UPDATE_PARENT_SUPPORTS_DOCTOR_CONFIG_WRITE";
+  "TINKERCLAW_UPDATE_PARENT_SUPPORTS_DOCTOR_CONFIG_WRITE";
 
 function isTruthyEnvValue(value: string | undefined): boolean {
   if (!value) {
@@ -57,7 +57,7 @@ function isTruthyEnvValue(value: string | undefined): boolean {
 export function shouldSkipLegacyUpdateDoctorConfigWrite(params: {
   env: NodeJS.ProcessEnv;
 }): boolean {
-  if (!isTruthyEnvValue(params.env.OPENCLAW_UPDATE_IN_PROGRESS)) {
+  if (!isTruthyEnvValue(params.env.TINKERCLAW_UPDATE_IN_PROGRESS)) {
     return false;
   }
   if (isTruthyEnvValue(params.env[UPDATE_PARENT_SUPPORTS_DOCTOR_CONFIG_WRITE_ENV])) {

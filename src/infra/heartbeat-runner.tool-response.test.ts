@@ -265,7 +265,7 @@ describe("runHeartbeatOnce heartbeat response tool", () => {
   });
 
   it("uses the heartbeat response tool prompt when the Codex runtime is env-forced", async () => {
-    vi.stubEnv("OPENCLAW_AGENT_RUNTIME", "codex");
+    vi.stubEnv("TINKERCLAW_AGENT_RUNTIME", "codex");
     await withTempTelegramHeartbeatSandbox(async ({ tmpDir, storePath, replySpy }) => {
       const cfg = createConfig({ tmpDir, storePath, model: "openai/gpt-5.5" });
       await seedMainSessionStore(storePath, cfg, {

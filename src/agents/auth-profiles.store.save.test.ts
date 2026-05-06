@@ -193,8 +193,8 @@ describe("saveAuthProfileStore", () => {
     const stateDir = path.join(root, ".openclaw");
     const childAgentDir = path.join(stateDir, "agents", "worker", "agent");
     const childAuthPath = resolveAuthStorePath(childAgentDir);
-    vi.stubEnv("OPENCLAW_STATE_DIR", stateDir);
-    vi.stubEnv("OPENCLAW_AGENT_DIR", "");
+    vi.stubEnv("TINKERCLAW_STATE_DIR", stateDir);
+    vi.stubEnv("TINKERCLAW_AGENT_DIR", "");
     try {
       saveAuthProfileStore({
         version: 1,
@@ -263,8 +263,8 @@ describe("saveAuthProfileStore", () => {
     const stateDir = path.join(root, ".openclaw");
     const childAgentDir = path.join(stateDir, "agents", "worker", "agent");
     const childAuthPath = resolveAuthStorePath(childAgentDir);
-    vi.stubEnv("OPENCLAW_STATE_DIR", stateDir);
-    vi.stubEnv("OPENCLAW_AGENT_DIR", "");
+    vi.stubEnv("TINKERCLAW_STATE_DIR", stateDir);
+    vi.stubEnv("TINKERCLAW_AGENT_DIR", "");
     try {
       saveAuthProfileStore({
         version: 1,
@@ -336,8 +336,8 @@ describe("saveAuthProfileStore", () => {
     const stateDir = path.join(root, ".openclaw");
     const childAgentDir = path.join(stateDir, "agents", "worker", "agent");
     const childAuthPath = resolveAuthStorePath(childAgentDir);
-    vi.stubEnv("OPENCLAW_STATE_DIR", stateDir);
-    vi.stubEnv("OPENCLAW_AGENT_DIR", "");
+    vi.stubEnv("TINKERCLAW_STATE_DIR", stateDir);
+    vi.stubEnv("TINKERCLAW_AGENT_DIR", "");
     try {
       saveAuthProfileStore({
         version: 1,

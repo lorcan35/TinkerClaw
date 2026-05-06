@@ -318,7 +318,7 @@ export async function runGatewayUpdateCheck(params: {
     return;
   }
   const auto = resolveAutoUpdatePolicy(params.cfg);
-  const autoDisabledByEnv = isTruthyEnvValue(process.env.OPENCLAW_NO_AUTO_UPDATE);
+  const autoDisabledByEnv = isTruthyEnvValue(process.env.TINKERCLAW_NO_AUTO_UPDATE);
   const shouldRunAutoUpdate = auto.enabled && !autoDisabledByEnv;
   const shouldRunUpdateHints = params.cfg.update?.checkOnStart !== false;
   if (!shouldRunUpdateHints && !shouldRunAutoUpdate) {
@@ -413,7 +413,7 @@ export async function runGatewayUpdateCheck(params: {
     }
 
     if (auto.enabled && autoDisabledByEnv) {
-      params.log.info("auto-update disabled by OPENCLAW_NO_AUTO_UPDATE", {
+      params.log.info("auto-update disabled by TINKERCLAW_NO_AUTO_UPDATE", {
         version: resolved.version,
         tag,
       });

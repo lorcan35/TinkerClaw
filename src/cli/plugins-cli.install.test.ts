@@ -37,7 +37,7 @@ import {
 } from "./plugins-cli-test-helpers.js";
 
 const CLI_STATE_ROOT = "/tmp/openclaw-state";
-const ORIGINAL_OPENCLAW_STATE_DIR = process.env.OPENCLAW_STATE_DIR;
+const ORIGINAL_TINKERCLAW_STATE_DIR = process.env.TINKERCLAW_STATE_DIR;
 const PROFILE_STATE_ROOT = "/tmp/openclaw-ledger-profile";
 
 const OFFICIAL_EXTERNAL_NPM_INSTALLS_WITHOUT_INTEGRITY = listOfficialExternalPluginCatalogEntries()
@@ -58,7 +58,7 @@ function cliInstallPath(pluginId: string): string {
 }
 
 function useProfileExtensionsDir(): string {
-  process.env.OPENCLAW_STATE_DIR = PROFILE_STATE_ROOT;
+  process.env.TINKERCLAW_STATE_DIR = PROFILE_STATE_ROOT;
   return path.join(PROFILE_STATE_ROOT, "extensions");
 }
 
@@ -277,10 +277,10 @@ describe("plugins cli install", () => {
   });
 
   afterEach(() => {
-    if (ORIGINAL_OPENCLAW_STATE_DIR === undefined) {
-      delete process.env.OPENCLAW_STATE_DIR;
+    if (ORIGINAL_TINKERCLAW_STATE_DIR === undefined) {
+      delete process.env.TINKERCLAW_STATE_DIR;
     } else {
-      process.env.OPENCLAW_STATE_DIR = ORIGINAL_OPENCLAW_STATE_DIR;
+      process.env.TINKERCLAW_STATE_DIR = ORIGINAL_TINKERCLAW_STATE_DIR;
     }
   });
 

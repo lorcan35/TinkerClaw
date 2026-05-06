@@ -23,7 +23,7 @@ export function resolveAgentRuntimeMetadata(
   agentId: string,
   env: NodeJS.ProcessEnv = process.env,
 ): AgentRuntimeMetadata {
-  const envRuntime = normalizeRuntimeValue(env.OPENCLAW_AGENT_RUNTIME);
+  const envRuntime = normalizeRuntimeValue(env.TINKERCLAW_AGENT_RUNTIME);
   const normalizedAgentId = normalizeAgentId(agentId);
   const agentEntry = listAgentEntries(cfg).find(
     (entry) => normalizeAgentId(entry.id) === normalizedAgentId,

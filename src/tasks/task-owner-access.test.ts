@@ -8,14 +8,14 @@ import {
 } from "./task-owner-access.js";
 import { createTaskRecord, resetTaskRegistryForTests } from "./task-registry.js";
 
-const ORIGINAL_STATE_DIR = process.env.OPENCLAW_STATE_DIR;
+const ORIGINAL_STATE_DIR = process.env.TINKERCLAW_STATE_DIR;
 
 afterEach(() => {
   resetTaskRegistryForTests({ persist: false });
   if (ORIGINAL_STATE_DIR == null) {
-    delete process.env.OPENCLAW_STATE_DIR;
+    delete process.env.TINKERCLAW_STATE_DIR;
   } else {
-    process.env.OPENCLAW_STATE_DIR = ORIGINAL_STATE_DIR;
+    process.env.TINKERCLAW_STATE_DIR = ORIGINAL_STATE_DIR;
   }
 });
 

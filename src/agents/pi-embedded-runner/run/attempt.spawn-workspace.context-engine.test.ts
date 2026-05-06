@@ -148,9 +148,9 @@ describe("runEmbeddedAttempt context engine sessionKey forwarding", () => {
         prompt: [
           "visible ask",
           "",
-          "<<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>>",
+          "<<<BEGIN_TINKERCLAW_INTERNAL_CONTEXT>>>",
           "secret runtime context",
-          "<<<END_OPENCLAW_INTERNAL_CONTEXT>>>",
+          "<<<END_TINKERCLAW_INTERNAL_CONTEXT>>>",
         ].join("\n"),
         transcriptPrompt: "visible ask",
       },
@@ -174,7 +174,7 @@ describe("runEmbeddedAttempt context engine sessionKey forwarding", () => {
           customType: "openclaw.runtime-context",
           display: false,
           content:
-            "<<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>>\nsecret runtime context\n<<<END_OPENCLAW_INTERNAL_CONTEXT>>>",
+            "<<<BEGIN_TINKERCLAW_INTERNAL_CONTEXT>>>\nsecret runtime context\n<<<END_TINKERCLAW_INTERNAL_CONTEXT>>>",
         }),
       ]),
     );
@@ -183,7 +183,7 @@ describe("runEmbeddedAttempt context engine sessionKey forwarding", () => {
     );
     expect(JSON.stringify(seen.messages)).not.toContain("not user-authored");
     expect(seen.systemPrompt).not.toContain("secret runtime context");
-    expect(seen.systemPrompt).not.toContain("OPENCLAW_INTERNAL_CONTEXT");
+    expect(seen.systemPrompt).not.toContain("TINKERCLAW_INTERNAL_CONTEXT");
     const trajectoryEvents = (
       await fs.readFile(path.join(tempPaths[0] ?? "", "session.trajectory.jsonl"), "utf8")
     )
@@ -205,7 +205,7 @@ describe("runEmbeddedAttempt context engine sessionKey forwarding", () => {
       modelCompleted?.data?.finalPromptText,
       traceArtifacts?.data?.finalPromptText,
     ]) {
-      expect(String(value)).not.toContain("OPENCLAW_INTERNAL_CONTEXT");
+      expect(String(value)).not.toContain("TINKERCLAW_INTERNAL_CONTEXT");
       expect(String(value)).not.toContain("secret runtime context");
     }
   });
@@ -421,9 +421,9 @@ describe("runEmbeddedAttempt context engine sessionKey forwarding", () => {
         prompt: [
           "what does this mean?",
           "",
-          "<<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>>",
+          "<<<BEGIN_TINKERCLAW_INTERNAL_CONTEXT>>>",
           "secret runtime context",
-          "<<<END_OPENCLAW_INTERNAL_CONTEXT>>>",
+          "<<<END_TINKERCLAW_INTERNAL_CONTEXT>>>",
         ].join("\n"),
         transcriptPrompt: "what does this mean?",
         currentTurnContext: {
@@ -448,7 +448,7 @@ describe("runEmbeddedAttempt context engine sessionKey forwarding", () => {
     expect(seenPrompt).toContain("WT daily plan - Sat May 2");
     expect(seenPrompt).toContain("./quoted-secret.png");
     expect(seenPrompt).toContain("media://inbound/quoted.png");
-    expect(seenPrompt).not.toContain("OPENCLAW_INTERNAL_CONTEXT");
+    expect(seenPrompt).not.toContain("TINKERCLAW_INTERNAL_CONTEXT");
     expect(seenPrompt).not.toContain("secret runtime context");
     expect(result.finalPromptText).toBe(seenPrompt);
     expect(hoisted.detectAndLoadPromptImagesMock).toHaveBeenCalledTimes(1);
@@ -478,9 +478,9 @@ describe("runEmbeddedAttempt context engine sessionKey forwarding", () => {
         prompt: [
           "visible ask",
           "",
-          "<<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>>",
+          "<<<BEGIN_TINKERCLAW_INTERNAL_CONTEXT>>>",
           "secret runtime context",
-          "<<<END_OPENCLAW_INTERNAL_CONTEXT>>>",
+          "<<<END_TINKERCLAW_INTERNAL_CONTEXT>>>",
         ].join("\n"),
         transcriptPrompt: "visible ask",
         inputProvenance: {

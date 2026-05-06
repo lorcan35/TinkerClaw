@@ -343,7 +343,7 @@ function readNativeCompactionCompletion(
 }
 
 function resolveCompactionWaitTimeoutMs(): number {
-  const raw = process.env.OPENCLAW_CODEX_COMPACTION_WAIT_TIMEOUT_MS?.trim();
+  const raw = process.env.TINKERCLAW_CODEX_COMPACTION_WAIT_TIMEOUT_MS?.trim();
   const parsed = raw ? Number.parseInt(raw, 10) : Number.NaN;
   if (Number.isFinite(parsed) && parsed > 0) {
     return parsed;

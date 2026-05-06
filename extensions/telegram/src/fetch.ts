@@ -233,7 +233,7 @@ function hasEnvHttpProxyForTelegramApi(env: NodeJS.ProcessEnv = process.env): bo
 function resolveOpenClawProxyUrlForTelegram(
   env: NodeJS.ProcessEnv = process.env,
 ): string | undefined {
-  const proxyUrl = env.OPENCLAW_PROXY_URL?.trim();
+  const proxyUrl = env.TINKERCLAW_PROXY_URL?.trim();
   return proxyUrl ? proxyUrl : undefined;
 }
 

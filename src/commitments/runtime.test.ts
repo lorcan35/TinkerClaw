@@ -41,7 +41,7 @@ describe("commitment extraction runtime", () => {
   async function createConfig(): Promise<OpenClawConfig> {
     const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-commitment-runtime-"));
     tmpDirs.push(tmpDir);
-    vi.stubEnv("OPENCLAW_STATE_DIR", tmpDir);
+    vi.stubEnv("TINKERCLAW_STATE_DIR", tmpDir);
     return {
       commitments: {
         enabled: true,

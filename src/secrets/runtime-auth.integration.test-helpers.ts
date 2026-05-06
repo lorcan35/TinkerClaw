@@ -35,12 +35,12 @@ export function beginSecretsRuntimeIsolationForTest(): SecretsRuntimeEnvSnapshot
   secretsRuntimePluginMocks.resolvePluginWebSearchProvidersMock.mockReset();
   secretsRuntimePluginMocks.resolvePluginWebSearchProvidersMock.mockReturnValue([]);
   const envSnapshot = captureEnv([
-    "OPENCLAW_BUNDLED_PLUGINS_DIR",
-    "OPENCLAW_DISABLE_BUNDLED_PLUGINS",
-    "OPENCLAW_VERSION",
+    "TINKERCLAW_BUNDLED_PLUGINS_DIR",
+    "TINKERCLAW_DISABLE_BUNDLED_PLUGINS",
+    "TINKERCLAW_VERSION",
   ]);
-  delete process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
-  delete process.env.OPENCLAW_VERSION;
+  delete process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR;
+  delete process.env.TINKERCLAW_VERSION;
   return envSnapshot;
 }
 

@@ -9,7 +9,7 @@ vi.mock("../plugins/bundled-dir.js", async (importOriginal) => {
   return {
     ...actual,
     resolveBundledPluginsDir: (env: NodeJS.ProcessEnv = process.env) =>
-      env.OPENCLAW_BUNDLED_PLUGINS_DIR,
+      env.TINKERCLAW_BUNDLED_PLUGINS_DIR,
   };
 });
 
@@ -81,12 +81,12 @@ describe("plugin auto-enable preferOver", () => {
     const channelId = "cache-drift-channel";
     writeBundledChannelPackage(rootDir, channelId);
 
-    vi.stubEnv("OPENCLAW_BUNDLED_PLUGINS_DIR", rootDir);
+    vi.stubEnv("TINKERCLAW_BUNDLED_PLUGINS_DIR", rootDir);
     await setBundledPluginsDirFixture(rootDir);
     const { normalizeChatChannelId } = await import("../channels/ids.js");
     expect(normalizeChatChannelId(channelId)).toBe(channelId);
 
-    vi.stubEnv("OPENCLAW_BUNDLED_PLUGINS_DIR", path.join(rootDir, "missing"));
+    vi.stubEnv("TINKERCLAW_BUNDLED_PLUGINS_DIR", path.join(rootDir, "missing"));
     await setBundledPluginsDirFixture(undefined);
     const { materializePluginAutoEnableCandidates } = await import("./plugin-auto-enable.js");
 
@@ -110,8 +110,8 @@ describe("plugin auto-enable preferOver", () => {
         },
       ],
       env: {
-        OPENCLAW_STATE_DIR: path.join(rootDir, "state"),
-        OPENCLAW_BUNDLED_PLUGINS_DIR: path.join(rootDir, "missing"),
+        TINKERCLAW_STATE_DIR: path.join(rootDir, "state"),
+        TINKERCLAW_BUNDLED_PLUGINS_DIR: path.join(rootDir, "missing"),
       },
       manifestRegistry: EMPTY_MANIFEST_REGISTRY,
     });

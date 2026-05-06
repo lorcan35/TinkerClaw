@@ -905,7 +905,7 @@ describe("repairMissingConfiguredPluginInstalls", () => {
         },
       },
       env: {
-        OPENCLAW_UPDATE_IN_PROGRESS: "1",
+        TINKERCLAW_UPDATE_IN_PROGRESS: "1",
       },
     });
 
@@ -950,7 +950,7 @@ describe("repairMissingConfiguredPluginInstalls", () => {
         },
       },
       env: {
-        OPENCLAW_UPDATE_IN_PROGRESS: "1",
+        TINKERCLAW_UPDATE_IN_PROGRESS: "1",
       },
     });
 
@@ -987,7 +987,7 @@ describe("repairMissingConfiguredPluginInstalls", () => {
         },
       },
       env: {
-        OPENCLAW_UPDATE_IN_PROGRESS: "1",
+        TINKERCLAW_UPDATE_IN_PROGRESS: "1",
       },
     });
 
@@ -1208,7 +1208,7 @@ describe("repairMissingConfiguredPluginInstalls", () => {
       },
       {},
     ],
-    ["environment runtime override", {}, { OPENCLAW_AGENT_RUNTIME: "codex" }],
+    ["environment runtime override", {}, { TINKERCLAW_AGENT_RUNTIME: "codex" }],
   ])("repairs a missing Codex plugin selected by %s", async (_label, cfg, env) => {
     mocks.installPluginFromNpmSpec.mockResolvedValueOnce({
       ok: true,

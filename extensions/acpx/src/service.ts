@@ -25,7 +25,7 @@ type AcpxRuntimeLike = AcpRuntime & {
   }>;
 };
 
-const ENABLE_STARTUP_PROBE_ENV = "OPENCLAW_ACPX_RUNTIME_STARTUP_PROBE";
+const ENABLE_STARTUP_PROBE_ENV = "TINKERCLAW_ACPX_RUNTIME_STARTUP_PROBE";
 const ACPX_BACKEND_ID = "acpx";
 
 type AcpxRuntimeModule = typeof import("./runtime.js");
@@ -197,8 +197,8 @@ export function createAcpxRuntimeService(
   return {
     id: "acpx-runtime",
     async start(ctx: OpenClawPluginServiceContext): Promise<void> {
-      if (process.env.OPENCLAW_SKIP_ACPX_RUNTIME === "1") {
-        ctx.logger.info("skipping embedded acpx runtime backend (OPENCLAW_SKIP_ACPX_RUNTIME=1)");
+      if (process.env.TINKERCLAW_SKIP_ACPX_RUNTIME === "1") {
+        ctx.logger.info("skipping embedded acpx runtime backend (TINKERCLAW_SKIP_ACPX_RUNTIME=1)");
         return;
       }
 
@@ -238,7 +238,7 @@ export function createAcpxRuntimeService(
       });
       ctx.logger.info(`embedded acpx runtime backend registered (cwd: ${pluginConfig.cwd})`);
 
-      if (!shouldRunStartupProbe() || process.env.OPENCLAW_SKIP_ACPX_RUNTIME_PROBE === "1") {
+      if (!shouldRunStartupProbe() || process.env.TINKERCLAW_SKIP_ACPX_RUNTIME_PROBE === "1") {
         return;
       }
 

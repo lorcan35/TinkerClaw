@@ -7,9 +7,9 @@ describe("SUPERVISOR_HINT_ENV_VARS", () => {
       expect.arrayContaining([
         "LAUNCH_JOB_LABEL",
         "INVOCATION_ID",
-        "OPENCLAW_WINDOWS_TASK_NAME",
-        "OPENCLAW_SERVICE_MARKER",
-        "OPENCLAW_SERVICE_KIND",
+        "TINKERCLAW_WINDOWS_TASK_NAME",
+        "TINKERCLAW_SERVICE_MARKER",
+        "TINKERCLAW_SERVICE_KIND",
       ]),
     );
   });
@@ -28,13 +28,13 @@ describe("detectRespawnSupervisor", () => {
 
   it("detects scheduled-task supervision on Windows from either hint family", () => {
     expect(
-      detectRespawnSupervisor({ OPENCLAW_WINDOWS_TASK_NAME: "OpenClaw Gateway" }, "win32"),
+      detectRespawnSupervisor({ TINKERCLAW_WINDOWS_TASK_NAME: "OpenClaw Gateway" }, "win32"),
     ).toBe("schtasks");
     expect(
       detectRespawnSupervisor(
         {
-          OPENCLAW_SERVICE_MARKER: "openclaw",
-          OPENCLAW_SERVICE_KIND: "gateway",
+          TINKERCLAW_SERVICE_MARKER: "openclaw",
+          TINKERCLAW_SERVICE_KIND: "gateway",
         },
         "win32",
       ),
@@ -42,8 +42,8 @@ describe("detectRespawnSupervisor", () => {
     expect(
       detectRespawnSupervisor(
         {
-          OPENCLAW_SERVICE_MARKER: "openclaw",
-          OPENCLAW_SERVICE_KIND: "worker",
+          TINKERCLAW_SERVICE_MARKER: "openclaw",
+          TINKERCLAW_SERVICE_KIND: "worker",
         },
         "win32",
       ),
@@ -54,8 +54,8 @@ describe("detectRespawnSupervisor", () => {
     expect(
       detectRespawnSupervisor(
         {
-          OPENCLAW_SERVICE_MARKER: "openclaw",
-          OPENCLAW_SERVICE_KIND: "gateway",
+          TINKERCLAW_SERVICE_MARKER: "openclaw",
+          TINKERCLAW_SERVICE_KIND: "gateway",
         },
         "linux",
       ),

@@ -5,9 +5,9 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { resetFacadeRuntimeStateForTest } from "./facade-runtime.js";
 
 const ORIGINAL_ENV = {
-  OPENCLAW_DISABLE_BUNDLED_PLUGINS: process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS,
-  OPENCLAW_CONFIG_PATH: process.env.OPENCLAW_CONFIG_PATH,
-  OPENCLAW_TEST_FAST: process.env.OPENCLAW_TEST_FAST,
+  TINKERCLAW_DISABLE_BUNDLED_PLUGINS: process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS,
+  TINKERCLAW_CONFIG_PATH: process.env.TINKERCLAW_CONFIG_PATH,
+  TINKERCLAW_TEST_FAST: process.env.TINKERCLAW_TEST_FAST,
 } as const;
 
 const tempDirs: string[] = [];
@@ -25,8 +25,8 @@ function resetQaRunnerRuntimeState() {
 describe("plugin-sdk qa-runner-runtime linked plugin smoke", () => {
   beforeEach(() => {
     resetQaRunnerRuntimeState();
-    process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS = "1";
-    process.env.OPENCLAW_TEST_FAST = "1";
+    process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS = "1";
+    process.env.TINKERCLAW_TEST_FAST = "1";
   });
 
   afterEach(() => {
@@ -55,7 +55,7 @@ describe("plugin-sdk qa-runner-runtime linked plugin smoke", () => {
       }),
       "utf8",
     );
-    process.env.OPENCLAW_CONFIG_PATH = configPath;
+    process.env.TINKERCLAW_CONFIG_PATH = configPath;
 
     fs.mkdirSync(pluginDir, { recursive: true });
     fs.writeFileSync(

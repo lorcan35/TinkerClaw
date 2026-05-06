@@ -6,13 +6,13 @@ import type { OpenClawConfig } from "../../config/types.openclaw.js";
 import { createImageTool } from "./image-tool.js";
 
 const LIVE =
-  process.env.OPENCLAW_LIVE_TEST === "1" && process.env.OPENCLAW_LIVE_OLLAMA_IMAGE === "1";
+  process.env.TINKERCLAW_LIVE_TEST === "1" && process.env.TINKERCLAW_LIVE_OLLAMA_IMAGE === "1";
 const OLLAMA_BASE_URL =
-  process.env.OPENCLAW_LIVE_OLLAMA_BASE_URL?.trim() || "http://127.0.0.1:11434";
-const OLLAMA_IMAGE_MODEL = process.env.OPENCLAW_LIVE_OLLAMA_IMAGE_MODEL?.trim() || "qwen2.5vl:7b";
+  process.env.TINKERCLAW_LIVE_OLLAMA_BASE_URL?.trim() || "http://127.0.0.1:11434";
+const OLLAMA_IMAGE_MODEL = process.env.TINKERCLAW_LIVE_OLLAMA_IMAGE_MODEL?.trim() || "qwen2.5vl:7b";
 
 function resolveLiveNumCtx(): number {
-  const parsed = Number.parseInt(process.env.OPENCLAW_LIVE_OLLAMA_IMAGE_NUM_CTX ?? "2048", 10);
+  const parsed = Number.parseInt(process.env.TINKERCLAW_LIVE_OLLAMA_IMAGE_NUM_CTX ?? "2048", 10);
   return Number.isFinite(parsed) ? Math.max(512, parsed) : 2048;
 }
 

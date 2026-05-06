@@ -461,7 +461,7 @@ function resolveBundledPluginPackagePublicSurfaceAliasMap(params: {
 }
 
 function shouldIncludePrivateLocalOnlyPluginSdkSubpaths() {
-  return process.env.OPENCLAW_ENABLE_PRIVATE_QA_CLI === "1";
+  return process.env.TINKERCLAW_ENABLE_PRIVATE_QA_CLI === "1";
 }
 
 function hasPluginSdkSubpathArtifact(packageRoot: string, subpath: string) {

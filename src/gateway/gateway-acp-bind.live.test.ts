@@ -35,7 +35,7 @@ import { renderCatFacePngBase64 } from "./live-image-probe.js";
 import { startGatewayServer } from "./server.js";
 
 const LIVE = isLiveTestEnabled();
-const ACP_BIND_LIVE = isTruthyEnvValue(process.env.OPENCLAW_LIVE_ACP_BIND);
+const ACP_BIND_LIVE = isTruthyEnvValue(process.env.TINKERCLAW_LIVE_ACP_BIND);
 const describeLive = LIVE && ACP_BIND_LIVE ? describe : describe.skip;
 
 const CONNECT_TIMEOUT_MS = 90_000;
@@ -157,12 +157,12 @@ function shouldRequireBoundAssistantTranscript(liveAgent: LiveAcpAgent): boolean
   return (
     liveAgent === "droid" ||
     liveAgent === "opencode" ||
-    isTruthyEnvValue(process.env.OPENCLAW_LIVE_ACP_BIND_REQUIRE_TRANSCRIPT)
+    isTruthyEnvValue(process.env.TINKERCLAW_LIVE_ACP_BIND_REQUIRE_TRANSCRIPT)
   );
 }
 
 function shouldRequireCronMcpProbe(): boolean {
-  return isTruthyEnvValue(process.env.OPENCLAW_LIVE_ACP_BIND_REQUIRE_CRON);
+  return isTruthyEnvValue(process.env.TINKERCLAW_LIVE_ACP_BIND_REQUIRE_CRON);
 }
 
 function normalizeOpenAiModelRef(value: string): string {
@@ -175,8 +175,8 @@ function normalizeOpenAiModelRef(value: string): string {
 
 function resolveLiveParentModel(): string {
   return normalizeOpenAiModelRef(
-    process.env.OPENCLAW_LIVE_ACP_BIND_PARENT_MODEL?.trim() ||
-      process.env.OPENCLAW_LIVE_ACP_BIND_CODEX_MODEL?.trim() ||
+    process.env.TINKERCLAW_LIVE_ACP_BIND_PARENT_MODEL?.trim() ||
+      process.env.TINKERCLAW_LIVE_ACP_BIND_CODEX_MODEL?.trim() ||
       DEFAULT_LIVE_PARENT_MODEL,
   );
 }
@@ -192,7 +192,8 @@ async function prepareCodexHomeForLiveBindTest(): Promise<void> {
   if (!home) {
     return;
   }
-  const model = process.env.OPENCLAW_LIVE_ACP_BIND_CODEX_MODEL?.trim() || DEFAULT_LIVE_CODEX_MODEL;
+  const model =
+    process.env.TINKERCLAW_LIVE_ACP_BIND_CODEX_MODEL?.trim() || DEFAULT_LIVE_CODEX_MODEL;
   const codexHome = path.join(home, ".codex");
   await fs.mkdir(codexHome, { recursive: true });
   const configPath = path.join(codexHome, "config.toml");
@@ -561,19 +562,19 @@ describeLive("gateway live (ACP bind)", () => {
     "binds a synthetic Slack DM conversation to a live ACP session and reroutes the next turn",
     async () => {
       const previous = {
-        configPath: process.env.OPENCLAW_CONFIG_PATH,
-        stateDir: process.env.OPENCLAW_STATE_DIR,
-        token: process.env.OPENCLAW_GATEWAY_TOKEN,
-        port: process.env.OPENCLAW_GATEWAY_PORT,
-        skipChannels: process.env.OPENCLAW_SKIP_CHANNELS,
-        skipGmail: process.env.OPENCLAW_SKIP_GMAIL_WATCHER,
-        skipCron: process.env.OPENCLAW_SKIP_CRON,
-        skipCanvas: process.env.OPENCLAW_SKIP_CANVAS_HOST,
+        configPath: process.env.TINKERCLAW_CONFIG_PATH,
+        stateDir: process.env.TINKERCLAW_STATE_DIR,
+        token: process.env.TINKERCLAW_GATEWAY_TOKEN,
+        port: process.env.TINKERCLAW_GATEWAY_PORT,
+        skipChannels: process.env.TINKERCLAW_SKIP_CHANNELS,
+        skipGmail: process.env.TINKERCLAW_SKIP_GMAIL_WATCHER,
+        skipCron: process.env.TINKERCLAW_SKIP_CRON,
+        skipCanvas: process.env.TINKERCLAW_SKIP_CANVAS_HOST,
         codexHome: process.env.CODEX_HOME,
       };
-      const liveAgent = normalizeAcpAgent(process.env.OPENCLAW_LIVE_ACP_BIND_AGENT);
+      const liveAgent = normalizeAcpAgent(process.env.TINKERCLAW_LIVE_ACP_BIND_AGENT);
       const agentCommandOverride =
-        process.env.OPENCLAW_LIVE_ACP_BIND_AGENT_COMMAND?.trim() || undefined;
+        process.env.TINKERCLAW_LIVE_ACP_BIND_AGENT_COMMAND?.trim() || undefined;
       const tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-live-acp-bind-"));
       const tempStateDir = path.join(tempRoot, "state");
       const tempConfigPath = path.join(tempRoot, "openclaw.json");
@@ -589,13 +590,13 @@ describeLive("gateway live (ACP bind)", () => {
       const memoryNonce = randomBytes(4).toString("hex").toUpperCase();
 
       clearRuntimeConfigSnapshot();
-      process.env.OPENCLAW_STATE_DIR = tempStateDir;
-      process.env.OPENCLAW_SKIP_CHANNELS = "1";
-      process.env.OPENCLAW_SKIP_GMAIL_WATCHER = "1";
-      process.env.OPENCLAW_SKIP_CRON = "0";
-      process.env.OPENCLAW_SKIP_CANVAS_HOST = "1";
-      process.env.OPENCLAW_GATEWAY_TOKEN = token;
-      process.env.OPENCLAW_GATEWAY_PORT = String(port);
+      process.env.TINKERCLAW_STATE_DIR = tempStateDir;
+      process.env.TINKERCLAW_SKIP_CHANNELS = "1";
+      process.env.TINKERCLAW_SKIP_GMAIL_WATCHER = "1";
+      process.env.TINKERCLAW_SKIP_CRON = "0";
+      process.env.TINKERCLAW_SKIP_CANVAS_HOST = "1";
+      process.env.TINKERCLAW_GATEWAY_TOKEN = token;
+      process.env.TINKERCLAW_GATEWAY_PORT = String(port);
       if (liveAgent === "codex" && !agentCommandOverride) {
         await prepareCodexHomeForLiveBindTest();
       }
@@ -678,7 +679,7 @@ describeLive("gateway live (ACP bind)", () => {
         },
       };
       await fs.writeFile(tempConfigPath, `${JSON.stringify(nextCfg, null, 2)}\n`);
-      process.env.OPENCLAW_CONFIG_PATH = tempConfigPath;
+      process.env.TINKERCLAW_CONFIG_PATH = tempConfigPath;
       logLiveStep(`using parent live model ${parentModel}`);
       clearConfigCache();
       clearRuntimeConfigSnapshot();
@@ -1067,44 +1068,44 @@ describeLive("gateway live (ACP bind)", () => {
         await server.close();
         await fs.rm(tempRoot, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
         if (previous.configPath === undefined) {
-          delete process.env.OPENCLAW_CONFIG_PATH;
+          delete process.env.TINKERCLAW_CONFIG_PATH;
         } else {
-          process.env.OPENCLAW_CONFIG_PATH = previous.configPath;
+          process.env.TINKERCLAW_CONFIG_PATH = previous.configPath;
         }
         if (previous.stateDir === undefined) {
-          delete process.env.OPENCLAW_STATE_DIR;
+          delete process.env.TINKERCLAW_STATE_DIR;
         } else {
-          process.env.OPENCLAW_STATE_DIR = previous.stateDir;
+          process.env.TINKERCLAW_STATE_DIR = previous.stateDir;
         }
         if (previous.token === undefined) {
-          delete process.env.OPENCLAW_GATEWAY_TOKEN;
+          delete process.env.TINKERCLAW_GATEWAY_TOKEN;
         } else {
-          process.env.OPENCLAW_GATEWAY_TOKEN = previous.token;
+          process.env.TINKERCLAW_GATEWAY_TOKEN = previous.token;
         }
         if (previous.port === undefined) {
-          delete process.env.OPENCLAW_GATEWAY_PORT;
+          delete process.env.TINKERCLAW_GATEWAY_PORT;
         } else {
-          process.env.OPENCLAW_GATEWAY_PORT = previous.port;
+          process.env.TINKERCLAW_GATEWAY_PORT = previous.port;
         }
         if (previous.skipChannels === undefined) {
-          delete process.env.OPENCLAW_SKIP_CHANNELS;
+          delete process.env.TINKERCLAW_SKIP_CHANNELS;
         } else {
-          process.env.OPENCLAW_SKIP_CHANNELS = previous.skipChannels;
+          process.env.TINKERCLAW_SKIP_CHANNELS = previous.skipChannels;
         }
         if (previous.skipGmail === undefined) {
-          delete process.env.OPENCLAW_SKIP_GMAIL_WATCHER;
+          delete process.env.TINKERCLAW_SKIP_GMAIL_WATCHER;
         } else {
-          process.env.OPENCLAW_SKIP_GMAIL_WATCHER = previous.skipGmail;
+          process.env.TINKERCLAW_SKIP_GMAIL_WATCHER = previous.skipGmail;
         }
         if (previous.skipCron === undefined) {
-          delete process.env.OPENCLAW_SKIP_CRON;
+          delete process.env.TINKERCLAW_SKIP_CRON;
         } else {
-          process.env.OPENCLAW_SKIP_CRON = previous.skipCron;
+          process.env.TINKERCLAW_SKIP_CRON = previous.skipCron;
         }
         if (previous.skipCanvas === undefined) {
-          delete process.env.OPENCLAW_SKIP_CANVAS_HOST;
+          delete process.env.TINKERCLAW_SKIP_CANVAS_HOST;
         } else {
-          process.env.OPENCLAW_SKIP_CANVAS_HOST = previous.skipCanvas;
+          process.env.TINKERCLAW_SKIP_CANVAS_HOST = previous.skipCanvas;
         }
         if (previous.codexHome === undefined) {
           delete process.env.CODEX_HOME;

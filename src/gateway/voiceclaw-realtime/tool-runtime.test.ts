@@ -4,12 +4,12 @@ import { VoiceClawRealtimeToolRuntime } from "./tool-runtime.js";
 import { buildToolResultContext } from "./tools.js";
 import type { VoiceClawToolCallEvent } from "./types.js";
 
-const previousToolTimeoutMs = process.env.OPENCLAW_VOICECLAW_REALTIME_TOOL_TIMEOUT_MS;
-const previousMaxConcurrentTools = process.env.OPENCLAW_VOICECLAW_REALTIME_MAX_CONCURRENT_TOOLS;
+const previousToolTimeoutMs = process.env.TINKERCLAW_VOICECLAW_REALTIME_TOOL_TIMEOUT_MS;
+const previousMaxConcurrentTools = process.env.TINKERCLAW_VOICECLAW_REALTIME_MAX_CONCURRENT_TOOLS;
 
 afterEach(() => {
-  restoreEnv("OPENCLAW_VOICECLAW_REALTIME_TOOL_TIMEOUT_MS", previousToolTimeoutMs);
-  restoreEnv("OPENCLAW_VOICECLAW_REALTIME_MAX_CONCURRENT_TOOLS", previousMaxConcurrentTools);
+  restoreEnv("TINKERCLAW_VOICECLAW_REALTIME_TOOL_TIMEOUT_MS", previousToolTimeoutMs);
+  restoreEnv("TINKERCLAW_VOICECLAW_REALTIME_MAX_CONCURRENT_TOOLS", previousMaxConcurrentTools);
 });
 
 describe("VoiceClawRealtimeToolRuntime", () => {
@@ -86,7 +86,7 @@ describe("VoiceClawRealtimeToolRuntime", () => {
   });
 
   it("does not turn non-cooperative cancellations into timeout injections", async () => {
-    process.env.OPENCLAW_VOICECLAW_REALTIME_TOOL_TIMEOUT_MS = "10";
+    process.env.TINKERCLAW_VOICECLAW_REALTIME_TOOL_TIMEOUT_MS = "10";
     const runtime = new VoiceClawRealtimeToolRuntime([
       makeTool("stuck", async () => await new Promise<never>(() => {})),
     ]);
@@ -103,8 +103,8 @@ describe("VoiceClawRealtimeToolRuntime", () => {
   });
 
   it("frees the concurrency slot after a non-cooperative tool times out", async () => {
-    process.env.OPENCLAW_VOICECLAW_REALTIME_TOOL_TIMEOUT_MS = "10";
-    process.env.OPENCLAW_VOICECLAW_REALTIME_MAX_CONCURRENT_TOOLS = "1";
+    process.env.TINKERCLAW_VOICECLAW_REALTIME_TOOL_TIMEOUT_MS = "10";
+    process.env.TINKERCLAW_VOICECLAW_REALTIME_MAX_CONCURRENT_TOOLS = "1";
     const runtime = new VoiceClawRealtimeToolRuntime([
       makeTool("stuck", async () => await new Promise<never>(() => {})),
       makeTool("quick", async () => ({

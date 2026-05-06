@@ -58,7 +58,7 @@ export type {
   NativeHookRelayRegistrationHandle,
 } from "../agents/harness/native-hook-relay.js";
 
-export { VERSION as OPENCLAW_VERSION } from "../version.js";
+export { VERSION as TINKERCLAW_VERSION } from "../version.js";
 export { formatErrorMessage } from "../infra/errors.js";
 export { formatApprovalDisplayPath } from "../infra/approval-display-paths.js";
 export { emitAgentEvent, onAgentEvent, resetAgentEventsForTest } from "../infra/agent-events.js";

@@ -457,7 +457,7 @@ export type GatewayConfig = {
   webchat?: GatewayWebchatConfig;
   /**
    * Pre-auth Gateway WebSocket handshake timeout in milliseconds.
-   * Env var OPENCLAW_HANDSHAKE_TIMEOUT_MS takes precedence. Default: 15000.
+   * Env var TINKERCLAW_HANDSHAKE_TIMEOUT_MS takes precedence. Default: 15000.
    */
   handshakeTimeoutMs?: number;
   /**

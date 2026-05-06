@@ -493,37 +493,37 @@ describe("systemd runtime parsing", () => {
 describe("resolveSystemdUserUnitPath", () => {
   it.each([
     {
-      name: "uses default service name when OPENCLAW_PROFILE is unset",
+      name: "uses default service name when TINKERCLAW_PROFILE is unset",
       env: { HOME: "/home/test" },
       expected: "/home/test/.config/systemd/user/openclaw-gateway.service",
     },
     {
-      name: "uses profile-specific service name when OPENCLAW_PROFILE is set to a custom value",
-      env: { HOME: "/home/test", OPENCLAW_PROFILE: "jbphoenix" },
+      name: "uses profile-specific service name when TINKERCLAW_PROFILE is set to a custom value",
+      env: { HOME: "/home/test", TINKERCLAW_PROFILE: "jbphoenix" },
       expected: "/home/test/.config/systemd/user/openclaw-gateway-jbphoenix.service",
     },
     {
-      name: "prefers OPENCLAW_SYSTEMD_UNIT over OPENCLAW_PROFILE",
+      name: "prefers TINKERCLAW_SYSTEMD_UNIT over TINKERCLAW_PROFILE",
       env: {
         HOME: "/home/test",
-        OPENCLAW_PROFILE: "jbphoenix",
-        OPENCLAW_SYSTEMD_UNIT: "custom-unit",
+        TINKERCLAW_PROFILE: "jbphoenix",
+        TINKERCLAW_SYSTEMD_UNIT: "custom-unit",
       },
       expected: "/home/test/.config/systemd/user/custom-unit.service",
     },
     {
-      name: "handles OPENCLAW_SYSTEMD_UNIT with .service suffix",
+      name: "handles TINKERCLAW_SYSTEMD_UNIT with .service suffix",
       env: {
         HOME: "/home/test",
-        OPENCLAW_SYSTEMD_UNIT: "custom-unit.service",
+        TINKERCLAW_SYSTEMD_UNIT: "custom-unit.service",
       },
       expected: "/home/test/.config/systemd/user/custom-unit.service",
     },
     {
-      name: "trims whitespace from OPENCLAW_SYSTEMD_UNIT",
+      name: "trims whitespace from TINKERCLAW_SYSTEMD_UNIT",
       env: {
         HOME: "/home/test",
-        OPENCLAW_SYSTEMD_UNIT: "  custom-unit  ",
+        TINKERCLAW_SYSTEMD_UNIT: "  custom-unit  ",
       },
       expected: "/home/test/.config/systemd/user/custom-unit.service",
     },
@@ -584,14 +584,14 @@ describe("readSystemdServiceExecStart", () => {
     vi.restoreAllMocks();
   });
 
-  it("loads OPENCLAW_GATEWAY_TOKEN from EnvironmentFile", async () => {
+  it("loads TINKERCLAW_GATEWAY_TOKEN from EnvironmentFile", async () => {
     const readFileSpy = mockReadGatewayServiceFile(
       ["[Service]", "ExecStart=/usr/bin/openclaw gateway run", "EnvironmentFile=%h/.openclaw/.env"],
-      { [`${TEST_SERVICE_HOME}/.openclaw/.env`]: "OPENCLAW_GATEWAY_TOKEN=env-file-token\n" },
+      { [`${TEST_SERVICE_HOME}/.openclaw/.env`]: "TINKERCLAW_GATEWAY_TOKEN=env-file-token\n" },
     );
 
     const command = await readSystemdServiceExecStart({ HOME: TEST_SERVICE_HOME });
-    expect(command?.environment?.OPENCLAW_GATEWAY_TOKEN).toBe("env-file-token");
+    expect(command?.environment?.TINKERCLAW_GATEWAY_TOKEN).toBe("env-file-token");
     expect(readFileSpy).toHaveBeenCalledTimes(2);
   });
 
@@ -601,14 +601,14 @@ describe("readSystemdServiceExecStart", () => {
         "[Service]",
         "ExecStart=/usr/bin/openclaw gateway run",
         "EnvironmentFile=%h/.openclaw/.env",
-        'Environment="OPENCLAW_GATEWAY_TOKEN=inline-token"',
+        'Environment="TINKERCLAW_GATEWAY_TOKEN=inline-token"',
       ],
-      { [`${TEST_SERVICE_HOME}/.openclaw/.env`]: "OPENCLAW_GATEWAY_TOKEN=env-file-token\n" },
+      { [`${TEST_SERVICE_HOME}/.openclaw/.env`]: "TINKERCLAW_GATEWAY_TOKEN=env-file-token\n" },
     );
 
     const command = await readSystemdServiceExecStart({ HOME: TEST_SERVICE_HOME });
-    expect(command?.environment?.OPENCLAW_GATEWAY_TOKEN).toBe("env-file-token");
-    expect(command?.environmentValueSources?.OPENCLAW_GATEWAY_TOKEN).toBe("inline-and-file");
+    expect(command?.environment?.TINKERCLAW_GATEWAY_TOKEN).toBe("env-file-token");
+    expect(command?.environmentValueSources?.TINKERCLAW_GATEWAY_TOKEN).toBe("inline-and-file");
   });
 
   it("ignores missing optional EnvironmentFile entries", async () => {
@@ -630,18 +630,18 @@ describe("readSystemdServiceExecStart", () => {
         ].join("\n");
       }
       if (pathValue === "/home/test/.openclaw/first.env") {
-        return "OPENCLAW_GATEWAY_TOKEN=first-token\n"; // pragma: allowlist secret
+        return "TINKERCLAW_GATEWAY_TOKEN=first-token\n"; // pragma: allowlist secret
       }
       if (pathValue === "/home/test/.openclaw/second env.env") {
-        return 'OPENCLAW_GATEWAY_PASSWORD="second password"\n'; // pragma: allowlist secret
+        return 'TINKERCLAW_GATEWAY_PASSWORD="second password"\n'; // pragma: allowlist secret
       }
       throw new Error(`unexpected readFile path: ${pathValue}`);
     });
 
     const command = await readSystemdServiceExecStart({ HOME: "/home/test" });
     expect(command?.environment).toEqual({
-      OPENCLAW_GATEWAY_TOKEN: "first-token",
-      OPENCLAW_GATEWAY_PASSWORD: "second password", // pragma: allowlist secret
+      TINKERCLAW_GATEWAY_TOKEN: "first-token",
+      TINKERCLAW_GATEWAY_PASSWORD: "second password", // pragma: allowlist secret
     });
   });
 
@@ -657,20 +657,20 @@ describe("readSystemdServiceExecStart", () => {
       }
       if (pathValue.endsWith("/.config/systemd/user/gateway.env")) {
         return [
-          "OPENCLAW_GATEWAY_TOKEN=relative-token", // pragma: allowlist secret
-          "OPENCLAW_GATEWAY_PASSWORD=relative-password", // pragma: allowlist secret
+          "TINKERCLAW_GATEWAY_TOKEN=relative-token", // pragma: allowlist secret
+          "TINKERCLAW_GATEWAY_PASSWORD=relative-password", // pragma: allowlist secret
         ].join("\n");
       }
       if (pathValue.endsWith("/.config/systemd/user/override.env")) {
-        return "OPENCLAW_GATEWAY_TOKEN=override-token\n"; // pragma: allowlist secret
+        return "TINKERCLAW_GATEWAY_TOKEN=override-token\n"; // pragma: allowlist secret
       }
       throw new Error(`unexpected readFile path: ${pathValue}`);
     });
 
     const command = await readSystemdServiceExecStart({ HOME: "/home/test" });
     expect(command?.environment).toEqual({
-      OPENCLAW_GATEWAY_TOKEN: "override-token",
-      OPENCLAW_GATEWAY_PASSWORD: "relative-password", // pragma: allowlist secret
+      TINKERCLAW_GATEWAY_TOKEN: "override-token",
+      TINKERCLAW_GATEWAY_PASSWORD: "relative-password", // pragma: allowlist secret
     });
   });
 
@@ -688,8 +688,8 @@ describe("readSystemdServiceExecStart", () => {
         return [
           "# comment",
           "; another comment",
-          'OPENCLAW_GATEWAY_TOKEN="quoted token"', // pragma: allowlist secret
-          "OPENCLAW_GATEWAY_PASSWORD=quoted-password", // pragma: allowlist secret
+          'TINKERCLAW_GATEWAY_TOKEN="quoted token"', // pragma: allowlist secret
+          "TINKERCLAW_GATEWAY_PASSWORD=quoted-password", // pragma: allowlist secret
         ].join("\n");
       }
       throw new Error(`unexpected readFile path: ${pathValue}`);
@@ -697,12 +697,12 @@ describe("readSystemdServiceExecStart", () => {
 
     const command = await readSystemdServiceExecStart({ HOME: "/home/test" });
     expect(command?.environment).toEqual({
-      OPENCLAW_GATEWAY_TOKEN: "quoted token",
-      OPENCLAW_GATEWAY_PASSWORD: "quoted-password", // pragma: allowlist secret
+      TINKERCLAW_GATEWAY_TOKEN: "quoted token",
+      TINKERCLAW_GATEWAY_PASSWORD: "quoted-password", // pragma: allowlist secret
     });
     expect(command?.environmentValueSources).toEqual({
-      OPENCLAW_GATEWAY_TOKEN: "file",
-      OPENCLAW_GATEWAY_PASSWORD: "file", // pragma: allowlist secret
+      TINKERCLAW_GATEWAY_TOKEN: "file",
+      TINKERCLAW_GATEWAY_PASSWORD: "file", // pragma: allowlist secret
     });
   });
 });
@@ -721,8 +721,8 @@ describe("stageSystemdService", () => {
     const stateDir = path.join(home, ".openclaw");
     const env = {
       HOME: home,
-      OPENCLAW_STATE_DIR: stateDir,
-      OPENCLAW_SYSTEMD_UNIT: "openclaw-gateway-stage-test",
+      TINKERCLAW_STATE_DIR: stateDir,
+      TINKERCLAW_SYSTEMD_UNIT: "openclaw-gateway-stage-test",
     };
     const unitPath = resolveSystemdUserUnitPath(env);
     const envFilePath = path.join(stateDir, "gateway.systemd.env");
@@ -751,7 +751,7 @@ describe("stageSystemdService", () => {
     await withStageFixture(async ({ env, stateDir, unitPath, envFilePath }) => {
       await fs.writeFile(
         path.join(stateDir, ".env"),
-        ["OPENCLAW_GATEWAY_TOKEN=dotenv-token", "LLM_API_KEY=dotenv-key"].join("\n"),
+        ["TINKERCLAW_GATEWAY_TOKEN=dotenv-token", "LLM_API_KEY=dotenv-key"].join("\n"),
         "utf8",
       );
 
@@ -763,9 +763,9 @@ describe("stageSystemdService", () => {
         programArguments: ["/usr/bin/openclaw", "gateway", "run"],
         workingDirectory: "/tmp",
         environment: {
-          OPENCLAW_GATEWAY_TOKEN: "dotenv-token",
+          TINKERCLAW_GATEWAY_TOKEN: "dotenv-token",
           LLM_API_KEY: "dotenv-key",
-          OPENCLAW_GATEWAY_PORT: "18789",
+          TINKERCLAW_GATEWAY_PORT: "18789",
         },
       });
 
@@ -776,10 +776,10 @@ describe("stageSystemdService", () => {
       ]);
 
       expect(unit).toContain(`EnvironmentFile=-${envFilePath}`);
-      expect(unit).toContain("Environment=OPENCLAW_GATEWAY_PORT=18789");
-      expect(unit).not.toContain("Environment=OPENCLAW_GATEWAY_TOKEN=dotenv-token");
+      expect(unit).toContain("Environment=TINKERCLAW_GATEWAY_PORT=18789");
+      expect(unit).not.toContain("Environment=TINKERCLAW_GATEWAY_TOKEN=dotenv-token");
       expect(unit).not.toContain("Environment=LLM_API_KEY=dotenv-key");
-      expect(envFile).toBe("OPENCLAW_GATEWAY_TOKEN=dotenv-token\nLLM_API_KEY=dotenv-key\n");
+      expect(envFile).toBe("TINKERCLAW_GATEWAY_TOKEN=dotenv-token\nLLM_API_KEY=dotenv-key\n");
       expect(envFileStat.mode & 0o777).toBe(0o600);
     });
   });
@@ -788,7 +788,7 @@ describe("stageSystemdService", () => {
     await withStageFixture(async ({ env, stateDir, unitPath, envFilePath }) => {
       await fs.writeFile(
         path.join(stateDir, ".env"),
-        ["OPENCLAW_GATEWAY_TOKEN=stale-token", "LLM_API_KEY=dotenv-key"].join("\n"),
+        ["TINKERCLAW_GATEWAY_TOKEN=stale-token", "LLM_API_KEY=dotenv-key"].join("\n"),
         "utf8",
       );
 
@@ -800,7 +800,7 @@ describe("stageSystemdService", () => {
         programArguments: ["/usr/bin/openclaw", "gateway", "run"],
         workingDirectory: "/tmp",
         environment: {
-          OPENCLAW_GATEWAY_TOKEN: "fresh-token",
+          TINKERCLAW_GATEWAY_TOKEN: "fresh-token",
           LLM_API_KEY: "dotenv-key",
         },
       });
@@ -811,18 +811,18 @@ describe("stageSystemdService", () => {
       ]);
 
       expect(unit).toContain(`EnvironmentFile=-${envFilePath}`);
-      expect(unit).toContain("Environment=OPENCLAW_GATEWAY_TOKEN=fresh-token");
+      expect(unit).toContain("Environment=TINKERCLAW_GATEWAY_TOKEN=fresh-token");
       expect(envFile).toBe("LLM_API_KEY=dotenv-key\n");
     });
   });
 
   it("clears stale inline-managed keys from env file on re-stage (#76860)", async () => {
     await withStageFixture(async ({ env, stateDir, unitPath, envFilePath }) => {
-      // Existing env file carries a stale OPENCLAW_GATEWAY_TOKEN that the
+      // Existing env file carries a stale TINKERCLAW_GATEWAY_TOKEN that the
       // operator previously wrote there but staging now supplies inline.
       await fs.writeFile(
         envFilePath,
-        ["OPENCLAW_GATEWAY_TOKEN=stale-gateway-token", "OPENROUTER_API_KEY=or-operator-key"].join(
+        ["TINKERCLAW_GATEWAY_TOKEN=stale-gateway-token", "OPENROUTER_API_KEY=or-operator-key"].join(
           "\n",
         ) + "\n",
         { encoding: "utf8", mode: 0o600 },
@@ -837,19 +837,19 @@ describe("stageSystemdService", () => {
         stdout: { write: vi.fn() } as unknown as NodeJS.WritableStream,
         programArguments: ["/usr/bin/openclaw", "gateway", "run"],
         workingDirectory: "/tmp",
-        // Staging manages OPENCLAW_GATEWAY_TOKEN inline; OPENCLAW_SERVICE_MANAGED_ENV_KEYS
+        // Staging manages TINKERCLAW_GATEWAY_TOKEN inline; TINKERCLAW_SERVICE_MANAGED_ENV_KEYS
         // marks it as an OpenClaw-managed key so the stale env-file copy is cleared.
         environment: {
-          OPENCLAW_GATEWAY_TOKEN: "fresh-gateway-token",
+          TINKERCLAW_GATEWAY_TOKEN: "fresh-gateway-token",
           LLM_API_KEY: "dotenv-key",
           OPENROUTER_API_KEY: "or-operator-key",
-          OPENCLAW_SERVICE_MANAGED_ENV_KEYS: "OPENCLAW_GATEWAY_TOKEN",
+          TINKERCLAW_SERVICE_MANAGED_ENV_KEYS: "TINKERCLAW_GATEWAY_TOKEN",
         },
         environmentValueSources: {
-          OPENCLAW_GATEWAY_TOKEN: "inline-and-file",
+          TINKERCLAW_GATEWAY_TOKEN: "inline-and-file",
           LLM_API_KEY: "inline",
           OPENROUTER_API_KEY: "file",
-          OPENCLAW_SERVICE_MANAGED_ENV_KEYS: "inline",
+          TINKERCLAW_SERVICE_MANAGED_ENV_KEYS: "inline",
         },
       });
 
@@ -859,11 +859,11 @@ describe("stageSystemdService", () => {
       ]);
       // Stale inline-managed key must be removed from the env file so the
       // fresh inline Environment= value wins (EnvironmentFile would override it).
-      expect(envFile).not.toContain("OPENCLAW_GATEWAY_TOKEN");
+      expect(envFile).not.toContain("TINKERCLAW_GATEWAY_TOKEN");
       // Operator-added key not managed inline must survive.
       expect(envFile).toContain("OPENROUTER_API_KEY=or-operator-key");
       expect(envFile).toContain("LLM_API_KEY=dotenv-key");
-      expect(unit).toContain("Environment=OPENCLAW_GATEWAY_TOKEN=fresh-gateway-token");
+      expect(unit).toContain("Environment=TINKERCLAW_GATEWAY_TOKEN=fresh-gateway-token");
       expect(unit).not.toContain("Environment=OPENROUTER_API_KEY=or-operator-key");
       expect(unit).not.toContain("Environment=LLM_API_KEY=dotenv-key");
     });
@@ -884,7 +884,7 @@ describe("stageSystemdService", () => {
         stdout: { write: vi.fn() } as unknown as NodeJS.WritableStream,
         programArguments: ["/usr/bin/openclaw", "gateway", "run"],
         workingDirectory: "/tmp",
-        environment: { OPENCLAW_GATEWAY_PORT: "18789" },
+        environment: { TINKERCLAW_GATEWAY_PORT: "18789" },
       });
 
       const envFile = await fs.readFile(envFilePath, "utf8");
@@ -937,8 +937,8 @@ describe("systemd service install and uninstall", () => {
     const stateDir = path.join(home, ".openclaw");
     const env = {
       HOME: home,
-      OPENCLAW_STATE_DIR: stateDir,
-      OPENCLAW_SYSTEMD_UNIT: "openclaw-node",
+      TINKERCLAW_STATE_DIR: stateDir,
+      TINKERCLAW_SYSTEMD_UNIT: "openclaw-node",
     };
     const unitPath = resolveSystemdUserUnitPath(env);
 
@@ -955,7 +955,7 @@ describe("systemd service install and uninstall", () => {
     execFileMock.mockReset();
   });
 
-  it("activates the OPENCLAW_SYSTEMD_UNIT override during install", async () => {
+  it("activates the TINKERCLAW_SYSTEMD_UNIT override during install", async () => {
     await withNodeSystemdFixture(async ({ env, unitPath }) => {
       execFileMock
         .mockImplementationOnce((_cmd, args, _opts, cb) => {
@@ -981,7 +981,7 @@ describe("systemd service install and uninstall", () => {
         programArguments: ["/usr/bin/openclaw", "node", "run"],
         workingDirectory: "/tmp",
         environment: {
-          OPENCLAW_SYSTEMD_UNIT: "openclaw-node",
+          TINKERCLAW_SYSTEMD_UNIT: "openclaw-node",
         },
       });
 
@@ -1030,7 +1030,7 @@ describe("systemd service install and uninstall", () => {
         programArguments: ["/usr/bin/openclaw", "node", "run"],
         workingDirectory: "/tmp",
         environment: {
-          OPENCLAW_SYSTEMD_UNIT: "openclaw-node",
+          TINKERCLAW_SYSTEMD_UNIT: "openclaw-node",
         },
       });
 
@@ -1075,7 +1075,7 @@ describe("systemd service install and uninstall", () => {
         programArguments: ["/usr/bin/openclaw", "node", "run"],
         workingDirectory: "/tmp",
         environment: {
-          OPENCLAW_SYSTEMD_UNIT: "openclaw-node",
+          TINKERCLAW_SYSTEMD_UNIT: "openclaw-node",
         },
       });
 
@@ -1120,7 +1120,7 @@ describe("systemd service install and uninstall", () => {
         programArguments: ["/usr/bin/openclaw", "node", "run"],
         workingDirectory: "/tmp",
         environment: {
-          OPENCLAW_SYSTEMD_UNIT: "openclaw-node",
+          TINKERCLAW_SYSTEMD_UNIT: "openclaw-node",
         },
       });
 
@@ -1160,7 +1160,7 @@ describe("systemd service install and uninstall", () => {
           programArguments: ["/usr/bin/openclaw", "node", "run"],
           workingDirectory: "/tmp",
           environment: {
-            OPENCLAW_SYSTEMD_UNIT: "openclaw-node",
+            TINKERCLAW_SYSTEMD_UNIT: "openclaw-node",
           },
         }),
       ).rejects.toThrow("systemctl --user unavailable: Failed to connect to bus: No medium found");
@@ -1169,7 +1169,7 @@ describe("systemd service install and uninstall", () => {
     });
   });
 
-  it("disables the OPENCLAW_SYSTEMD_UNIT override during uninstall", async () => {
+  it("disables the TINKERCLAW_SYSTEMD_UNIT override during uninstall", async () => {
     await withNodeSystemdFixture(async ({ env, unitPath }) => {
       await fs.mkdir(path.dirname(unitPath), { recursive: true });
       await fs.writeFile(unitPath, "[Unit]\nDescription=OpenClaw Node\n", "utf8");
@@ -1246,7 +1246,7 @@ describe("systemd service control", () => {
         assertUserSystemctlArgs(args, "restart", "openclaw-gateway-work.service");
         cb(null, "", "");
       });
-    await assertRestartSuccess({ OPENCLAW_PROFILE: "work" });
+    await assertRestartSuccess({ TINKERCLAW_PROFILE: "work" });
   });
 
   it("surfaces stop failures with systemctl detail", async () => {

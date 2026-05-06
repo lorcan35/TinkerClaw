@@ -100,7 +100,7 @@ describe("ensureAuthProfileStore", () => {
     previousAgentDir: string | undefined;
     previousPiAgentDir: string | undefined;
   }): void {
-    restoreEnvValue("OPENCLAW_AGENT_DIR", params.previousAgentDir);
+    restoreEnvValue("TINKERCLAW_AGENT_DIR", params.previousAgentDir);
     restoreEnvValue("PI_CODING_AGENT_DIR", params.previousPiAgentDir);
   }
 
@@ -167,7 +167,7 @@ describe("ensureAuthProfileStore", () => {
 
   it("merges main auth profiles into agent store and keeps agent overrides", () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-auth-merge-"));
-    const previousAgentDir = process.env.OPENCLAW_AGENT_DIR;
+    const previousAgentDir = process.env.TINKERCLAW_AGENT_DIR;
     const previousPiAgentDir = process.env.PI_CODING_AGENT_DIR;
     try {
       const mainDir = path.join(root, "main-agent");
@@ -175,7 +175,7 @@ describe("ensureAuthProfileStore", () => {
       fs.mkdirSync(mainDir, { recursive: true });
       fs.mkdirSync(agentDir, { recursive: true });
 
-      process.env.OPENCLAW_AGENT_DIR = mainDir;
+      process.env.TINKERCLAW_AGENT_DIR = mainDir;
       process.env.PI_CODING_AGENT_DIR = mainDir;
 
       const mainStore = {
@@ -234,7 +234,7 @@ describe("ensureAuthProfileStore", () => {
 
   it("uses the main agent's newer OAuth profile when an agent still has a stale default profile", () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-auth-drift-"));
-    const previousAgentDir = process.env.OPENCLAW_AGENT_DIR;
+    const previousAgentDir = process.env.TINKERCLAW_AGENT_DIR;
     const previousPiAgentDir = process.env.PI_CODING_AGENT_DIR;
     try {
       const mainDir = path.join(root, "main-agent");
@@ -242,7 +242,7 @@ describe("ensureAuthProfileStore", () => {
       fs.mkdirSync(mainDir, { recursive: true });
       fs.mkdirSync(agentDir, { recursive: true });
 
-      process.env.OPENCLAW_AGENT_DIR = mainDir;
+      process.env.TINKERCLAW_AGENT_DIR = mainDir;
       process.env.PI_CODING_AGENT_DIR = mainDir;
 
       const freshProfileId = "openai-codex:user@example.com";
@@ -332,7 +332,7 @@ describe("ensureAuthProfileStore", () => {
 
   it("keeps a newer agent replacement credential while repairing stale default references", () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-auth-drift-newer-agent-"));
-    const previousAgentDir = process.env.OPENCLAW_AGENT_DIR;
+    const previousAgentDir = process.env.TINKERCLAW_AGENT_DIR;
     const previousPiAgentDir = process.env.PI_CODING_AGENT_DIR;
     try {
       const mainDir = path.join(root, "main-agent");
@@ -340,7 +340,7 @@ describe("ensureAuthProfileStore", () => {
       fs.mkdirSync(mainDir, { recursive: true });
       fs.mkdirSync(agentDir, { recursive: true });
 
-      process.env.OPENCLAW_AGENT_DIR = mainDir;
+      process.env.TINKERCLAW_AGENT_DIR = mainDir;
       process.env.PI_CODING_AGENT_DIR = mainDir;
 
       const freshProfileId = "openai-codex:user@example.com";
@@ -415,7 +415,7 @@ describe("ensureAuthProfileStore", () => {
 
   it("preserves a valid main default OAuth profile while replacing a stale agent override", () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-auth-drift-base-default-"));
-    const previousAgentDir = process.env.OPENCLAW_AGENT_DIR;
+    const previousAgentDir = process.env.TINKERCLAW_AGENT_DIR;
     const previousPiAgentDir = process.env.PI_CODING_AGENT_DIR;
     try {
       const mainDir = path.join(root, "main-agent");
@@ -423,7 +423,7 @@ describe("ensureAuthProfileStore", () => {
       fs.mkdirSync(mainDir, { recursive: true });
       fs.mkdirSync(agentDir, { recursive: true });
 
-      process.env.OPENCLAW_AGENT_DIR = mainDir;
+      process.env.TINKERCLAW_AGENT_DIR = mainDir;
       process.env.PI_CODING_AGENT_DIR = mainDir;
 
       const freshProfileId = "openai-codex:user@example.com";
@@ -504,7 +504,7 @@ describe("ensureAuthProfileStore", () => {
 
   it("keeps a stale default OAuth profile when the main profile belongs to a different identity", () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-auth-drift-mismatch-"));
-    const previousAgentDir = process.env.OPENCLAW_AGENT_DIR;
+    const previousAgentDir = process.env.TINKERCLAW_AGENT_DIR;
     const previousPiAgentDir = process.env.PI_CODING_AGENT_DIR;
     try {
       const mainDir = path.join(root, "main-agent");
@@ -512,7 +512,7 @@ describe("ensureAuthProfileStore", () => {
       fs.mkdirSync(mainDir, { recursive: true });
       fs.mkdirSync(agentDir, { recursive: true });
 
-      process.env.OPENCLAW_AGENT_DIR = mainDir;
+      process.env.TINKERCLAW_AGENT_DIR = mainDir;
       process.env.PI_CODING_AGENT_DIR = mainDir;
 
       const freshProfileId = "openai-codex:user@example.com";
@@ -575,7 +575,7 @@ describe("ensureAuthProfileStore", () => {
 
   it("rewrites invalidated per-agent Codex order to the main agent's healthy relogin profile", () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-auth-codex-relogin-"));
-    const previousAgentDir = process.env.OPENCLAW_AGENT_DIR;
+    const previousAgentDir = process.env.TINKERCLAW_AGENT_DIR;
     const previousPiAgentDir = process.env.PI_CODING_AGENT_DIR;
     try {
       const mainDir = path.join(root, "main-agent");
@@ -583,7 +583,7 @@ describe("ensureAuthProfileStore", () => {
       fs.mkdirSync(mainDir, { recursive: true });
       fs.mkdirSync(agentDir, { recursive: true });
 
-      process.env.OPENCLAW_AGENT_DIR = mainDir;
+      process.env.TINKERCLAW_AGENT_DIR = mainDir;
       process.env.PI_CODING_AGENT_DIR = mainDir;
 
       const now = Date.now();
@@ -784,8 +784,8 @@ describe("ensureAuthProfileStore", () => {
 
   it("merges legacy oauth.json into auth-profiles.json", () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-oauth-migrate-"));
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
-    const previousAgentDir = process.env.OPENCLAW_AGENT_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
+    const previousAgentDir = process.env.TINKERCLAW_AGENT_DIR;
     const previousPiAgentDir = process.env.PI_CODING_AGENT_DIR;
     try {
       const agentDir = path.join(root, "agent");
@@ -809,8 +809,8 @@ describe("ensureAuthProfileStore", () => {
         "utf8",
       );
 
-      process.env.OPENCLAW_STATE_DIR = root;
-      process.env.OPENCLAW_AGENT_DIR = agentDir;
+      process.env.TINKERCLAW_STATE_DIR = root;
+      process.env.TINKERCLAW_AGENT_DIR = agentDir;
       process.env.PI_CODING_AGENT_DIR = agentDir;
       clearRuntimeAuthProfileStoreSnapshots();
 
@@ -835,7 +835,7 @@ describe("ensureAuthProfileStore", () => {
       });
     } finally {
       clearRuntimeAuthProfileStoreSnapshots();
-      restoreEnvValue("OPENCLAW_STATE_DIR", previousStateDir);
+      restoreEnvValue("TINKERCLAW_STATE_DIR", previousStateDir);
       restoreAgentDirEnv({ previousAgentDir, previousPiAgentDir });
       fs.rmSync(root, { recursive: true, force: true });
     }
@@ -843,7 +843,7 @@ describe("ensureAuthProfileStore", () => {
 
   it("exposes provider-managed runtime auth without persisting copied tokens", () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-external-auth-"));
-    const previousAgentDir = process.env.OPENCLAW_AGENT_DIR;
+    const previousAgentDir = process.env.TINKERCLAW_AGENT_DIR;
     const previousPiAgentDir = process.env.PI_CODING_AGENT_DIR;
     try {
       const agentDir = path.join(root, "agent");
@@ -863,7 +863,7 @@ describe("ensureAuthProfileStore", () => {
         },
       ]);
 
-      process.env.OPENCLAW_AGENT_DIR = agentDir;
+      process.env.TINKERCLAW_AGENT_DIR = agentDir;
       process.env.PI_CODING_AGENT_DIR = agentDir;
       clearRuntimeAuthProfileStoreSnapshots();
 
@@ -885,7 +885,7 @@ describe("ensureAuthProfileStore", () => {
 
   it("does not write inherited auth stores during secrets runtime reads", () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-secrets-runtime-"));
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
       const stateDir = path.join(root, ".openclaw");
       const mainAgentDir = path.join(stateDir, "agents", "main", "agent");
@@ -910,7 +910,7 @@ describe("ensureAuthProfileStore", () => {
         )}\n`,
         "utf8",
       );
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       clearRuntimeAuthProfileStoreSnapshots();
 
       const store = loadAuthProfileStoreForRuntime(workerAgentDir, { readOnly: true });
@@ -922,14 +922,14 @@ describe("ensureAuthProfileStore", () => {
       expect(fs.existsSync(workerStorePath)).toBe(false);
     } finally {
       clearRuntimeAuthProfileStoreSnapshots();
-      restoreEnvValue("OPENCLAW_STATE_DIR", previousStateDir);
+      restoreEnvValue("TINKERCLAW_STATE_DIR", previousStateDir);
       fs.rmSync(root, { recursive: true, force: true });
     }
   });
 
   it("does not clone inherited auth stores during normal agent reads", () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-auth-read-through-"));
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
       const stateDir = path.join(root, ".openclaw");
       const mainAgentDir = path.join(stateDir, "agents", "main", "agent");
@@ -956,7 +956,7 @@ describe("ensureAuthProfileStore", () => {
         )}\n`,
         "utf8",
       );
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       clearRuntimeAuthProfileStoreSnapshots();
 
       const store = ensureAuthProfileStore(workerAgentDir);
@@ -969,7 +969,7 @@ describe("ensureAuthProfileStore", () => {
       expect(fs.existsSync(workerStorePath)).toBe(false);
     } finally {
       clearRuntimeAuthProfileStoreSnapshots();
-      restoreEnvValue("OPENCLAW_STATE_DIR", previousStateDir);
+      restoreEnvValue("TINKERCLAW_STATE_DIR", previousStateDir);
       fs.rmSync(root, { recursive: true, force: true });
     }
   });

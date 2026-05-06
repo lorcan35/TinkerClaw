@@ -743,7 +743,7 @@ describe("lmstudio setup", () => {
   });
 
   it("interactive Docker setup defaults to the host LM Studio endpoint", async () => {
-    vi.stubEnv("OPENCLAW_DOCKER_SETUP", "1");
+    vi.stubEnv("TINKERCLAW_DOCKER_SETUP", "1");
     const { prompter, text } = createQueuedWizardPrompterHarness([
       "http://host.docker.internal:1234",
       "",

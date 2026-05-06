@@ -59,10 +59,10 @@ function createResetAwareSessionStore(baseStore: AcpSessionStore): ResetAwareSes
   };
 }
 
-const OPENCLAW_BRIDGE_EXECUTABLE = "openclaw";
-const OPENCLAW_BRIDGE_SUBCOMMAND = "acp";
+const TINKERCLAW_BRIDGE_EXECUTABLE = "openclaw";
+const TINKERCLAW_BRIDGE_SUBCOMMAND = "acp";
 const CODEX_ACP_AGENT_ID = "codex";
-const CODEX_ACP_OPENCLAW_PREFIX = "openai-codex/";
+const CODEX_ACP_TINKERCLAW_PREFIX = "openai-codex/";
 const CODEX_ACP_REASONING_EFFORTS = new Set(["low", "medium", "high", "xhigh"]);
 const CODEX_ACP_THINKING_ALIASES = new Map<string, string | undefined>([
   ["off", undefined],
@@ -187,14 +187,14 @@ function isOpenClawBridgeCommand(command: string | undefined): boolean {
     return false;
   }
   const parts = unwrapEnvCommand(splitCommandParts(command.trim()));
-  if (basename(parts[0] ?? "") === OPENCLAW_BRIDGE_EXECUTABLE) {
-    return parts[1] === OPENCLAW_BRIDGE_SUBCOMMAND;
+  if (basename(parts[0] ?? "") === TINKERCLAW_BRIDGE_EXECUTABLE) {
+    return parts[1] === TINKERCLAW_BRIDGE_SUBCOMMAND;
   }
   if (basename(parts[0] ?? "") !== "node") {
     return false;
   }
   const scriptName = basename(parts[1] ?? "");
-  return /^openclaw(?:\.[cm]?js)?$/i.test(scriptName) && parts[2] === OPENCLAW_BRIDGE_SUBCOMMAND;
+  return /^openclaw(?:\.[cm]?js)?$/i.test(scriptName) && parts[2] === TINKERCLAW_BRIDGE_SUBCOMMAND;
 }
 
 function isCodexAcpPackageSpec(value: string): boolean {
@@ -280,8 +280,8 @@ function normalizeCodexAcpModelOverride(
   }
 
   let value = raw;
-  if (value.toLowerCase().startsWith(CODEX_ACP_OPENCLAW_PREFIX)) {
-    value = value.slice(CODEX_ACP_OPENCLAW_PREFIX.length);
+  if (value.toLowerCase().startsWith(CODEX_ACP_TINKERCLAW_PREFIX)) {
+    value = value.slice(CODEX_ACP_TINKERCLAW_PREFIX.length);
   }
   const parts = value.split("/");
   if (parts.length > 2) {

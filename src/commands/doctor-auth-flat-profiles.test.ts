@@ -34,7 +34,7 @@ async function makeTestState(): Promise<OpenClawTestState> {
     layout: "state-only",
     prefix: "openclaw-doctor-flat-auth-",
     env: {
-      OPENCLAW_AGENT_DIR: undefined,
+      TINKERCLAW_AGENT_DIR: undefined,
     },
   });
   states.push(state);

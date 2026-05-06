@@ -17,7 +17,7 @@ const REQUIRE_PROFILE_KEYS = isLiveProfileKeyModeEnabled();
 const LIVE_CREDENTIAL_PRECEDENCE = REQUIRE_PROFILE_KEYS ? "profile-first" : "env-first";
 const DEFAULT_TARGET_MODEL_REFS = "openai-codex/gpt-5.5,google/gemini-3-flash-preview";
 const TARGET_MODEL_REFS = parseTargetModelRefs(
-  process.env.OPENCLAW_LIVE_TOOL_REPLAY_REPAIR_MODELS ?? DEFAULT_TARGET_MODEL_REFS,
+  process.env.TINKERCLAW_LIVE_TOOL_REPLAY_REPAIR_MODELS ?? DEFAULT_TARGET_MODEL_REFS,
 );
 const describeLive = LIVE ? describe : describe.skip;
 
@@ -37,7 +37,7 @@ function parseTargetModelRefs(raw: string | undefined): TargetModelRef[] {
       const modelId = rest.join("/").trim();
       if (!provider?.trim() || !modelId) {
         throw new Error(
-          `Invalid OPENCLAW_LIVE_TOOL_REPLAY_REPAIR_MODELS entry: ${JSON.stringify(ref)}`,
+          `Invalid TINKERCLAW_LIVE_TOOL_REPLAY_REPAIR_MODELS entry: ${JSON.stringify(ref)}`,
         );
       }
       return { ref, provider: provider.trim(), modelId };

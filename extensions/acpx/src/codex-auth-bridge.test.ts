@@ -11,7 +11,7 @@ const execFileAsync = promisify(execFile);
 const tempDirs: string[] = [];
 const previousEnv = {
   CODEX_HOME: process.env.CODEX_HOME,
-  OPENCLAW_AGENT_DIR: process.env.OPENCLAW_AGENT_DIR,
+  TINKERCLAW_AGENT_DIR: process.env.TINKERCLAW_AGENT_DIR,
   PI_CODING_AGENT_DIR: process.env.PI_CODING_AGENT_DIR,
 };
 
@@ -75,7 +75,7 @@ function expectWrapperToContainPathSuffix(wrapper: string, pathSuffix: string[])
 afterEach(async () => {
   vi.restoreAllMocks();
   restoreEnv("CODEX_HOME");
-  restoreEnv("OPENCLAW_AGENT_DIR");
+  restoreEnv("TINKERCLAW_AGENT_DIR");
   restoreEnv("PI_CODING_AGENT_DIR");
   for (const dir of tempDirs.splice(0)) {
     await fs.rm(dir, { recursive: true, force: true });
@@ -97,7 +97,7 @@ describe("prepareAcpxCodexAuthConfig", () => {
       "bin",
       "codex-acp.js",
     );
-    process.env.OPENCLAW_AGENT_DIR = agentDir;
+    process.env.TINKERCLAW_AGENT_DIR = agentDir;
     delete process.env.PI_CODING_AGENT_DIR;
 
     const pluginConfig = resolveAcpxPluginConfig({
@@ -309,7 +309,7 @@ describe("prepareAcpxCodexAuthConfig", () => {
       'notify = ["SkyComputerUseClient", "turn-ended"]\n',
     );
     process.env.CODEX_HOME = sourceCodexHome;
-    process.env.OPENCLAW_AGENT_DIR = agentDir;
+    process.env.TINKERCLAW_AGENT_DIR = agentDir;
     delete process.env.PI_CODING_AGENT_DIR;
 
     const pluginConfig = resolveAcpxPluginConfig({

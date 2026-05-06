@@ -78,7 +78,7 @@ vi.mock("openclaw/plugin-sdk/agent-runtime", async (importOriginal) => {
         if (refreshed?.access) {
           oauthCredential = refreshed as typeof oauthCredential;
           params.store.profiles[params.profileId] = oauthCredential;
-          if (params.agentDir || process.env.OPENCLAW_STATE_DIR) {
+          if (params.agentDir || process.env.TINKERCLAW_STATE_DIR) {
             actual.saveAuthProfileStore(params.store, params.agentDir);
           }
         }
@@ -810,8 +810,8 @@ describe("bridgeCodexAppServerStartOptions", () => {
     const stateDir = path.join(root, "state");
     const childAgentDir = path.join(stateDir, "agents", "worker", "agent");
     const childAuthPath = path.join(childAgentDir, "auth-profiles.json");
-    vi.stubEnv("OPENCLAW_STATE_DIR", stateDir);
-    vi.stubEnv("OPENCLAW_AGENT_DIR", "");
+    vi.stubEnv("TINKERCLAW_STATE_DIR", stateDir);
+    vi.stubEnv("TINKERCLAW_AGENT_DIR", "");
     oauthMocks.refreshOpenAICodexToken.mockResolvedValueOnce({
       access: "main-refreshed-access-token",
       refresh: "main-refreshed-refresh-token",
@@ -861,8 +861,8 @@ describe("bridgeCodexAppServerStartOptions", () => {
     const stateDir = path.join(root, "state");
     const childAgentDir = path.join(stateDir, "agents", "worker", "agent");
     const childAuthPath = path.join(childAgentDir, "auth-profiles.json");
-    vi.stubEnv("OPENCLAW_STATE_DIR", stateDir);
-    vi.stubEnv("OPENCLAW_AGENT_DIR", "");
+    vi.stubEnv("TINKERCLAW_STATE_DIR", stateDir);
+    vi.stubEnv("TINKERCLAW_AGENT_DIR", "");
     oauthMocks.refreshOpenAICodexToken.mockResolvedValueOnce({
       access: "main-refreshed-access-token",
       refresh: "main-refreshed-refresh-token",

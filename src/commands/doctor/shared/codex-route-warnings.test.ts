@@ -90,7 +90,7 @@ describe("collectCodexRouteWarnings", () => {
     expect(warnings[0]).toContain('runtime is "codex"');
   });
 
-  it("still warns when OPENCLAW_AGENT_RUNTIME selects native Codex with a legacy model ref", () => {
+  it("still warns when TINKERCLAW_AGENT_RUNTIME selects native Codex with a legacy model ref", () => {
     const warnings = collectCodexRouteWarnings({
       cfg: {
         agents: {
@@ -100,7 +100,7 @@ describe("collectCodexRouteWarnings", () => {
         },
       } as OpenClawConfig,
       env: {
-        OPENCLAW_AGENT_RUNTIME: "codex",
+        TINKERCLAW_AGENT_RUNTIME: "codex",
       },
     });
 

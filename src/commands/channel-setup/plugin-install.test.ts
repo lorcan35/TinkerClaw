@@ -115,7 +115,7 @@ const bundledChatNpmSpec = "@openclaw/bundled-chat@1.2.3";
 const bundledChatIntegrity = "sha512-bundled-chat";
 const bundledChatForkNpmSpec = "@vendor/bundled-chat-fork@1.2.3";
 const bundledChatForkIntegrity = "sha512-vendor-bundled-chat-fork";
-const ORIGINAL_OPENCLAW_STATE_DIR = process.env.OPENCLAW_STATE_DIR;
+const ORIGINAL_TINKERCLAW_STATE_DIR = process.env.TINKERCLAW_STATE_DIR;
 
 const baseEntry: ChannelPluginCatalogEntry = {
   id: "bundled-chat",
@@ -237,10 +237,10 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  if (ORIGINAL_OPENCLAW_STATE_DIR === undefined) {
-    delete process.env.OPENCLAW_STATE_DIR;
+  if (ORIGINAL_TINKERCLAW_STATE_DIR === undefined) {
+    delete process.env.TINKERCLAW_STATE_DIR;
   } else {
-    process.env.OPENCLAW_STATE_DIR = ORIGINAL_OPENCLAW_STATE_DIR;
+    process.env.TINKERCLAW_STATE_DIR = ORIGINAL_TINKERCLAW_STATE_DIR;
   }
 });
 
@@ -362,7 +362,7 @@ describe("ensureChannelSetupPluginInstalled", () => {
       select: vi.fn(async () => "npm") as WizardPrompter["select"],
     });
     const profileStateDir = "/tmp/openclaw-ledger-channel";
-    process.env.OPENCLAW_STATE_DIR = profileStateDir;
+    process.env.TINKERCLAW_STATE_DIR = profileStateDir;
     vi.mocked(fs.existsSync).mockReturnValue(false);
     installPluginFromNpmSpec.mockResolvedValue({
       ok: true,

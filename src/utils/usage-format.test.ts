@@ -17,16 +17,16 @@ import {
 } from "./usage-format.js";
 
 describe("usage-format", () => {
-  const originalAgentDir = process.env.OPENCLAW_AGENT_DIR;
-  const originalStateDir = process.env.OPENCLAW_STATE_DIR;
+  const originalAgentDir = process.env.TINKERCLAW_AGENT_DIR;
+  const originalStateDir = process.env.TINKERCLAW_STATE_DIR;
   let stateDir: string;
   let agentDir: string;
 
   beforeEach(async () => {
     stateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-usage-format-"));
     agentDir = path.join(stateDir, "agents", "main", "agent");
-    process.env.OPENCLAW_STATE_DIR = stateDir;
-    delete process.env.OPENCLAW_AGENT_DIR;
+    process.env.TINKERCLAW_STATE_DIR = stateDir;
+    delete process.env.TINKERCLAW_AGENT_DIR;
     await fs.mkdir(agentDir, { recursive: true });
     __resetUsageFormatCachesForTest();
     __resetGatewayModelPricingCacheForTest();
@@ -34,14 +34,14 @@ describe("usage-format", () => {
 
   afterEach(async () => {
     if (originalAgentDir === undefined) {
-      delete process.env.OPENCLAW_AGENT_DIR;
+      delete process.env.TINKERCLAW_AGENT_DIR;
     } else {
-      process.env.OPENCLAW_AGENT_DIR = originalAgentDir;
+      process.env.TINKERCLAW_AGENT_DIR = originalAgentDir;
     }
     if (originalStateDir === undefined) {
-      delete process.env.OPENCLAW_STATE_DIR;
+      delete process.env.TINKERCLAW_STATE_DIR;
     } else {
-      process.env.OPENCLAW_STATE_DIR = originalStateDir;
+      process.env.TINKERCLAW_STATE_DIR = originalStateDir;
     }
     __resetUsageFormatCachesForTest();
     __resetGatewayModelPricingCacheForTest();

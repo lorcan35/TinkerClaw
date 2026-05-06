@@ -209,8 +209,8 @@ describe("buildWorkspaceSkillStatus", () => {
         }),
         createEntry("needs-env", {
           metadata: {
-            primaryEnv: "OPENCLAW_TEST_MISSING_SKILL_KEY",
-            requires: { env: ["OPENCLAW_TEST_MISSING_SKILL_KEY"] },
+            primaryEnv: "TINKERCLAW_TEST_MISSING_SKILL_KEY",
+            requires: { env: ["TINKERCLAW_TEST_MISSING_SKILL_KEY"] },
           },
         }),
         createEntry("prompt-hidden", {
@@ -261,8 +261,8 @@ describe("buildWorkspaceSkillStatus", () => {
     });
     expect(byName.get("needs-env")).toMatchObject({
       eligible: false,
-      primaryEnv: "OPENCLAW_TEST_MISSING_SKILL_KEY",
-      missing: { env: ["OPENCLAW_TEST_MISSING_SKILL_KEY"] },
+      primaryEnv: "TINKERCLAW_TEST_MISSING_SKILL_KEY",
+      missing: { env: ["TINKERCLAW_TEST_MISSING_SKILL_KEY"] },
     });
     expect(byName.get("prompt-hidden")).toMatchObject({
       eligible: true,

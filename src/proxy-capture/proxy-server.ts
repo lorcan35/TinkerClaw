@@ -10,14 +10,14 @@ import { getDebugProxyCaptureStore } from "./store.sqlite.js";
 
 const TRUTHY_ENV = new Set(["1", "true", "yes", "on"]);
 const DEBUG_PROXY_DIRECT_CONNECT_OVERRIDE =
-  "OPENCLAW_DEBUG_PROXY_ALLOW_DIRECT_CONNECT_WITH_MANAGED_PROXY";
+  "TINKERCLAW_DEBUG_PROXY_ALLOW_DIRECT_CONNECT_WITH_MANAGED_PROXY";
 
 function isTruthyEnvValue(value: string | undefined): boolean {
   return TRUTHY_ENV.has((value ?? "").trim().toLowerCase());
 }
 
 function isManagedProxyActive(env: NodeJS.ProcessEnv = process.env): boolean {
-  return isTruthyEnvValue(env["OPENCLAW_PROXY_ACTIVE"]);
+  return isTruthyEnvValue(env["TINKERCLAW_PROXY_ACTIVE"]);
 }
 
 function allowsDirectConnectWithManagedProxy(env: NodeJS.ProcessEnv = process.env): boolean {

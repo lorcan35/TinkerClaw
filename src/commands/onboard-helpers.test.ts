@@ -66,10 +66,10 @@ describe("handleReset", () => {
     fs.writeFileSync(profileConfigPath, "{}\n");
 
     vi.stubEnv("HOME", homeDir);
-    vi.stubEnv("OPENCLAW_HOME", homeDir);
-    vi.stubEnv("OPENCLAW_PROFILE", "work");
-    vi.stubEnv("OPENCLAW_STATE_DIR", profileStateDir);
-    vi.stubEnv("OPENCLAW_CONFIG_PATH", profileConfigPath);
+    vi.stubEnv("TINKERCLAW_HOME", homeDir);
+    vi.stubEnv("TINKERCLAW_PROFILE", "work");
+    vi.stubEnv("TINKERCLAW_STATE_DIR", profileStateDir);
+    vi.stubEnv("TINKERCLAW_CONFIG_PATH", profileConfigPath);
 
     const runtime = { log: vi.fn() } as unknown as RuntimeEnv;
 

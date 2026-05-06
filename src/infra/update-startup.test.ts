@@ -67,12 +67,12 @@ describe("update-startup", () => {
     vi.setSystemTime(new Date("2026-01-17T10:00:00Z"));
     tempDir = await suiteRootTracker.make("case");
     envSnapshot = captureEnv([
-      "OPENCLAW_NO_AUTO_UPDATE",
-      "OPENCLAW_STATE_DIR",
+      "TINKERCLAW_NO_AUTO_UPDATE",
+      "TINKERCLAW_STATE_DIR",
       "NODE_ENV",
       "VITEST",
     ]);
-    process.env.OPENCLAW_STATE_DIR = tempDir;
+    process.env.TINKERCLAW_STATE_DIR = tempDir;
 
     process.env.NODE_ENV = "test";
 
@@ -371,9 +371,9 @@ describe("update-startup", () => {
     expect(runAutoUpdate).toHaveBeenCalledTimes(1);
   });
 
-  it("honors OPENCLAW_NO_AUTO_UPDATE for configured auto-updates", async () => {
+  it("honors TINKERCLAW_NO_AUTO_UPDATE for configured auto-updates", async () => {
     mockPackageUpdateStatus("beta", "2.0.0-beta.1");
-    process.env.OPENCLAW_NO_AUTO_UPDATE = "1";
+    process.env.TINKERCLAW_NO_AUTO_UPDATE = "1";
     const log = { info: vi.fn() };
     const runAutoUpdate = createAutoUpdateSuccessMock();
 
@@ -387,7 +387,7 @@ describe("update-startup", () => {
 
     expect(runAutoUpdate).not.toHaveBeenCalled();
     expect(log.info).toHaveBeenCalledWith(
-      "auto-update disabled by OPENCLAW_NO_AUTO_UPDATE",
+      "auto-update disabled by TINKERCLAW_NO_AUTO_UPDATE",
       expect.objectContaining({
         version: "2.0.0-beta.1",
         tag: "beta",
@@ -430,7 +430,7 @@ describe("update-startup", () => {
       expect.objectContaining({
         timeoutMs: 45 * 60 * 1000,
         env: expect.objectContaining({
-          OPENCLAW_AUTO_UPDATE: "1",
+          TINKERCLAW_AUTO_UPDATE: "1",
         }),
       }),
     );

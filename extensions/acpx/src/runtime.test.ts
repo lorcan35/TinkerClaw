@@ -7,8 +7,8 @@ type TestSessionStore = {
   save(record: Record<string, unknown>): Promise<void>;
 };
 
-const DOCUMENTED_OPENCLAW_BRIDGE_COMMAND =
-  "env OPENCLAW_HIDE_BANNER=1 OPENCLAW_SUPPRESS_NOTES=1 openclaw acp --url ws://127.0.0.1:18789 --token-file ~/.openclaw/gateway.token --session agent:main:main";
+const DOCUMENTED_TINKERCLAW_BRIDGE_COMMAND =
+  "env TINKERCLAW_HIDE_BANNER=1 TINKERCLAW_SUPPRESS_NOTES=1 openclaw acp --url ws://127.0.0.1:18789 --token-file ~/.openclaw/gateway.token --session agent:main:main";
 const CODEX_ACP_COMMAND = "npx @zed-industries/codex-acp@0.13.0";
 const CODEX_ACP_WRAPPER_COMMAND = `node "/tmp/openclaw/acpx/codex-acp-wrapper.mjs"`;
 
@@ -687,7 +687,7 @@ describe("AcpxRuntime fresh reset wrapper", () => {
       mcpServers: [{ name: "tools", command: "mcp-tools" }] as never,
       agentRegistry: {
         resolve: (agentName: string) =>
-          agentName === "openclaw" ? DOCUMENTED_OPENCLAW_BRIDGE_COMMAND : agentName,
+          agentName === "openclaw" ? DOCUMENTED_TINKERCLAW_BRIDGE_COMMAND : agentName,
         list: () => ["codex", "openclaw"],
       },
     });
@@ -723,7 +723,9 @@ describe("AcpxRuntime fresh reset wrapper", () => {
       mcpServers: [{ name: "tools", command: "mcp-tools" }] as never,
       agentRegistry: {
         resolve: (agentName: string) =>
-          agentName === "openclaw" ? "env OPENCLAW_HIDE_BANNER=1 node openclaw.mjs acp" : agentName,
+          agentName === "openclaw"
+            ? "env TINKERCLAW_HIDE_BANNER=1 node openclaw.mjs acp"
+            : agentName,
         list: () => ["codex", "openclaw"],
       },
     });
@@ -753,7 +755,7 @@ describe("AcpxRuntime fresh reset wrapper", () => {
     const baseStore: TestSessionStore = {
       load: vi.fn(async () => ({
         acpxRecordId: "agent:openclaw:acp:test",
-        agentCommand: DOCUMENTED_OPENCLAW_BRIDGE_COMMAND,
+        agentCommand: DOCUMENTED_TINKERCLAW_BRIDGE_COMMAND,
       })),
       save: vi.fn(async () => {}),
     };
@@ -796,7 +798,7 @@ describe("AcpxRuntime fresh reset wrapper", () => {
       probeAgent: "openclaw",
       agentRegistry: {
         resolve: (agentName: string) =>
-          agentName === "openclaw" ? DOCUMENTED_OPENCLAW_BRIDGE_COMMAND : agentName,
+          agentName === "openclaw" ? DOCUMENTED_TINKERCLAW_BRIDGE_COMMAND : agentName,
         list: () => ["codex", "openclaw"],
       },
     });

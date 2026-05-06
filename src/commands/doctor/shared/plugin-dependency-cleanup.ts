@@ -95,7 +95,7 @@ async function collectLegacyPluginDependencyTargets(
       cwd: process.cwd(),
     });
   const roots = uniqueSorted([resolveStateDir(env), resolveConfigDir(env), packageRoot]);
-  const explicitStageRoots = splitPathList(env.OPENCLAW_PLUGIN_STAGE_DIR).map((entry) =>
+  const explicitStageRoots = splitPathList(env.TINKERCLAW_PLUGIN_STAGE_DIR).map((entry) =>
     resolveUserPath(entry, env),
   );
   const stateDirectoryRoots = splitPathList(env.STATE_DIRECTORY).map((entry) =>

@@ -30,8 +30,8 @@ export function mkdirSafe(dir: string) {
 
 const fixtureRoot = mkdtempSafe(path.join(os.tmpdir(), "openclaw-plugin-"));
 let tempDirIndex = 0;
-const prevBundledDir = process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
-const prevDisableBundledPlugins = process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS;
+const prevBundledDir = process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR;
+const prevDisableBundledPlugins = process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS;
 
 export const EMPTY_PLUGIN_SCHEMA = {
   type: "object",
@@ -103,8 +103,8 @@ export function writePlugin(params: {
 }
 
 export function useNoBundledPlugins() {
-  process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS = "1";
-  delete process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
+  process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS = "1";
+  delete process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR;
 }
 
 export function loadBundleFixture(params: {
@@ -118,7 +118,7 @@ export function loadBundleFixture(params: {
   const stateDir = makeTempDir();
   const bundleRoot = path.join(workspaceDir, ".openclaw", "extensions", params.pluginId);
   params.build(bundleRoot);
-  return withEnv({ OPENCLAW_STATE_DIR: stateDir, ...params.env }, () =>
+  return withEnv({ TINKERCLAW_STATE_DIR: stateDir, ...params.env }, () =>
     loadOpenClawPlugins({
       workspaceDir,
       onlyPluginIds: params.onlyPluginIds ?? [params.pluginId],
@@ -141,14 +141,14 @@ export function resetPluginLoaderTestStateForTest() {
   resetPluginRuntimeStateForTest();
   resetDiagnosticEventsForTest();
   if (prevBundledDir === undefined) {
-    delete process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
+    delete process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR;
   } else {
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = prevBundledDir;
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = prevBundledDir;
   }
   if (prevDisableBundledPlugins === undefined) {
-    delete process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS;
+    delete process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS;
   } else {
-    process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS = prevDisableBundledPlugins;
+    process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS = prevDisableBundledPlugins;
   }
 }
 
@@ -159,8 +159,8 @@ export function cleanupPluginLoaderFixturesForTest() {
     // ignore cleanup failures in tests
   }
   if (prevDisableBundledPlugins === undefined) {
-    delete process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS;
+    delete process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS;
   } else {
-    process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS = prevDisableBundledPlugins;
+    process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS = prevDisableBundledPlugins;
   }
 }

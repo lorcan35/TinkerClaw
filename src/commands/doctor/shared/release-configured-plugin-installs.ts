@@ -15,7 +15,7 @@ import { repairMissingPluginInstallsForIds } from "./missing-configured-plugin-i
 import { asObjectRecord } from "./object.js";
 
 export const CONFIGURED_PLUGIN_INSTALL_RELEASE_VERSION = "2026.5.2-beta.1";
-const UPDATE_IN_PROGRESS_ENV = "OPENCLAW_UPDATE_IN_PROGRESS";
+const UPDATE_IN_PROGRESS_ENV = "TINKERCLAW_UPDATE_IN_PROGRESS";
 
 const AGENT_HARNESS_RUNTIME_PLUGIN_IDS: Readonly<Record<string, string>> = {
   // Codex can be selected as a harness for OpenAI models without a plugin entry.

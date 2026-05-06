@@ -115,10 +115,10 @@ describe("normalizeProviders", () => {
     const env = {
       ...process.env,
       OPENAI_API_KEY: "sk-test-secret-value-12345", // pragma: allowlist secret
-      OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
-      OPENCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
-      OPENCLAW_SKIP_PROVIDERS: undefined,
-      OPENCLAW_TEST_MINIMAL_GATEWAY: undefined,
+      TINKERCLAW_BUNDLED_PLUGINS_DIR: undefined,
+      TINKERCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
+      TINKERCLAW_SKIP_PROVIDERS: undefined,
+      TINKERCLAW_TEST_MINIMAL_GATEWAY: undefined,
     };
     const secretRefManagedProviders = new Set<string>();
     try {

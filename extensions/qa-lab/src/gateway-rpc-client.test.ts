@@ -22,11 +22,11 @@ describe("startQaGatewayRpcClient", () => {
   });
 
   it("calls the in-process gateway cli helper without mutating process.env", async () => {
-    const originalHome = process.env.OPENCLAW_HOME;
-    delete process.env.OPENCLAW_HOME;
+    const originalHome = process.env.TINKERCLAW_HOME;
+    delete process.env.TINKERCLAW_HOME;
 
     gatewayRpcMock.callGatewayFromCli.mockImplementationOnce(async () => {
-      expect(process.env.OPENCLAW_HOME).toBeUndefined();
+      expect(process.env.TINKERCLAW_HOME).toBeUndefined();
       return { ok: true };
     });
 
@@ -60,7 +60,7 @@ describe("startQaGatewayRpcClient", () => {
       },
     );
 
-    expect(process.env.OPENCLAW_HOME).toBe(originalHome);
+    expect(process.env.TINKERCLAW_HOME).toBe(originalHome);
   });
 
   it("wraps request failures with gateway logs", async () => {
@@ -68,11 +68,12 @@ describe("startQaGatewayRpcClient", () => {
     const client = await startQaGatewayRpcClient({
       wsUrl: "ws://127.0.0.1:18789",
       token: "qa-token",
-      logs: () => "OPENCLAW_GATEWAY_TOKEN=secret-token\nAuthorization: Bearer secret+/token=123456",
+      logs: () =>
+        "TINKERCLAW_GATEWAY_TOKEN=secret-token\nAuthorization: Bearer secret+/token=123456",
     });
 
     await expect(client.request("health")).rejects.toThrow(
-      "gateway not connected\nGateway logs:\nOPENCLAW_GATEWAY_TOKEN=<redacted>\nAuthorization: Bearer <redacted>",
+      "gateway not connected\nGateway logs:\nTINKERCLAW_GATEWAY_TOKEN=<redacted>\nAuthorization: Bearer <redacted>",
     );
   });
 

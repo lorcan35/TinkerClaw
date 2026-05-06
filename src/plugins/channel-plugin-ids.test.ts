@@ -1236,7 +1236,7 @@ describe("resolveGatewayStartupPluginIds", () => {
     expectStartupPluginIdsCase({
       config: {} as OpenClawConfig,
       env: {
-        OPENCLAW_STATE_DIR: "/tmp/openclaw-with-persisted-demo-channel",
+        TINKERCLAW_STATE_DIR: "/tmp/openclaw-with-persisted-demo-channel",
       } as NodeJS.ProcessEnv,
       expected: ["browser", "memory-core"],
     });
@@ -1261,7 +1261,7 @@ describe("resolveGatewayStartupPluginIds", () => {
         } as OpenClawConfig,
         workspaceDir: "/tmp",
         env: {
-          OPENCLAW_STATE_DIR: "/tmp/openclaw-with-persisted-demo-channel",
+          TINKERCLAW_STATE_DIR: "/tmp/openclaw-with-persisted-demo-channel",
         } as NodeJS.ProcessEnv,
       }),
     ).toEqual([]);
@@ -1416,7 +1416,7 @@ describe("resolveGatewayStartupPluginIds", () => {
       config: createStartupConfig({
         enabledPluginIds: ["codex"],
       }),
-      env: { OPENCLAW_AGENT_RUNTIME: "codex" },
+      env: { TINKERCLAW_AGENT_RUNTIME: "codex" },
       expected: ["demo-channel", "browser", "codex", "memory-core"],
     });
   });

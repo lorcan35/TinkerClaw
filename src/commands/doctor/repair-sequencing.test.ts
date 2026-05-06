@@ -505,7 +505,7 @@ describe("doctor repair sequencing", () => {
       },
       doctorFixCommand: "openclaw doctor --fix",
       env: {
-        OPENCLAW_UPDATE_IN_PROGRESS: "1",
+        TINKERCLAW_UPDATE_IN_PROGRESS: "1",
       },
     });
 

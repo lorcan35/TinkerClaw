@@ -70,7 +70,7 @@ describe("runHeartbeatOnce commitments", () => {
     visibleReplies?: "automatic" | "message_tool";
   }) {
     return await withTempHeartbeatSandbox(async ({ tmpDir, storePath, replySpy }) => {
-      vi.stubEnv("OPENCLAW_STATE_DIR", tmpDir);
+      vi.stubEnv("TINKERCLAW_STATE_DIR", tmpDir);
       const sessionKey = "agent:main:telegram:user-155462274";
       const cfg: OpenClawConfig = {
         agents: {
@@ -160,7 +160,7 @@ describe("runHeartbeatOnce commitments", () => {
   it("keeps due heartbeat tasks tool-capable when commitments are also due", async () => {
     const { result, sendTelegram, store } = await withTempHeartbeatSandbox(
       async ({ tmpDir, storePath, replySpy }) => {
-        vi.stubEnv("OPENCLAW_STATE_DIR", tmpDir);
+        vi.stubEnv("TINKERCLAW_STATE_DIR", tmpDir);
         const sessionKey = "agent:main:telegram:user-155462274";
         const cfg: OpenClawConfig = {
           agents: {
@@ -247,7 +247,7 @@ describe("runHeartbeatOnce commitments", () => {
   it("does not deliver due commitments when heartbeat target is none", async () => {
     const { result, sendTelegram, store } = await withTempHeartbeatSandbox(
       async ({ tmpDir, storePath, replySpy }) => {
-        vi.stubEnv("OPENCLAW_STATE_DIR", tmpDir);
+        vi.stubEnv("TINKERCLAW_STATE_DIR", tmpDir);
         const sessionKey = "agent:main:telegram:user-155462274";
         const cfg: OpenClawConfig = {
           agents: {
@@ -326,7 +326,7 @@ describe("runHeartbeatOnce commitments", () => {
     vi.setSystemTime(nowMs);
 
     await withTempHeartbeatSandbox(async ({ tmpDir, storePath }) => {
-      vi.stubEnv("OPENCLAW_STATE_DIR", tmpDir);
+      vi.stubEnv("TINKERCLAW_STATE_DIR", tmpDir);
       const dueSessionKey = "agent:main:telegram:user-155462274";
       const cfg: OpenClawConfig = {
         agents: {

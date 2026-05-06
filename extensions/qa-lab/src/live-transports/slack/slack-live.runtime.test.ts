@@ -8,10 +8,10 @@ describe("Slack live QA runtime helpers", () => {
   it("resolves env credential payloads", () => {
     expect(
       __testing.resolveSlackQaRuntimeEnv({
-        OPENCLAW_QA_SLACK_CHANNEL_ID: "C123456789",
-        OPENCLAW_QA_SLACK_DRIVER_BOT_TOKEN: "xoxb-driver",
-        OPENCLAW_QA_SLACK_SUT_BOT_TOKEN: "xoxb-sut",
-        OPENCLAW_QA_SLACK_SUT_APP_TOKEN: "xapp-sut",
+        TINKERCLAW_QA_SLACK_CHANNEL_ID: "C123456789",
+        TINKERCLAW_QA_SLACK_DRIVER_BOT_TOKEN: "xoxb-driver",
+        TINKERCLAW_QA_SLACK_SUT_BOT_TOKEN: "xoxb-sut",
+        TINKERCLAW_QA_SLACK_SUT_APP_TOKEN: "xapp-sut",
       }),
     ).toEqual({
       channelId: "C123456789",
@@ -24,12 +24,12 @@ describe("Slack live QA runtime helpers", () => {
   it("rejects malformed Slack channel ids", () => {
     expect(() =>
       __testing.resolveSlackQaRuntimeEnv({
-        OPENCLAW_QA_SLACK_CHANNEL_ID: "qa-channel",
-        OPENCLAW_QA_SLACK_DRIVER_BOT_TOKEN: "xoxb-driver",
-        OPENCLAW_QA_SLACK_SUT_BOT_TOKEN: "xoxb-sut",
-        OPENCLAW_QA_SLACK_SUT_APP_TOKEN: "xapp-sut",
+        TINKERCLAW_QA_SLACK_CHANNEL_ID: "qa-channel",
+        TINKERCLAW_QA_SLACK_DRIVER_BOT_TOKEN: "xoxb-driver",
+        TINKERCLAW_QA_SLACK_SUT_BOT_TOKEN: "xoxb-sut",
+        TINKERCLAW_QA_SLACK_SUT_APP_TOKEN: "xapp-sut",
       }),
-    ).toThrow("OPENCLAW_QA_SLACK channelId must be a Slack id like C123 or U123.");
+    ).toThrow("TINKERCLAW_QA_SLACK channelId must be a Slack id like C123 or U123.");
   });
 
   it("parses Convex credential payloads", () => {
@@ -109,7 +109,7 @@ describe("Slack live QA runtime helpers", () => {
         status: "fail",
       },
     ]);
-    expect(result.scenarios[0]?.details).toContain("Missing OPENCLAW_QA_CONVEX_SITE_URL");
+    expect(result.scenarios[0]?.details).toContain("Missing TINKERCLAW_QA_CONVEX_SITE_URL");
     await expect(fs.stat(result.reportPath)).resolves.toMatchObject({
       isFile: expect.any(Function),
     });

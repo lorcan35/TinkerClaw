@@ -16,10 +16,10 @@ import { createEmptyPluginRegistry } from "./registry-empty.js";
 import { resetPluginRuntimeStateForTest, setActivePluginRegistry } from "./runtime.js";
 
 const ORIGINAL_ENV = {
-  OPENCLAW_STATE_DIR: process.env.OPENCLAW_STATE_DIR,
-  OPENCLAW_HOME: process.env.OPENCLAW_HOME,
-  OPENCLAW_DISABLE_BUNDLED_PLUGINS: process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS,
-  OPENCLAW_BUNDLED_PLUGINS_DIR: process.env.OPENCLAW_BUNDLED_PLUGINS_DIR,
+  TINKERCLAW_STATE_DIR: process.env.TINKERCLAW_STATE_DIR,
+  TINKERCLAW_HOME: process.env.TINKERCLAW_HOME,
+  TINKERCLAW_DISABLE_BUNDLED_PLUGINS: process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS,
+  TINKERCLAW_BUNDLED_PLUGINS_DIR: process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR,
 } as const;
 
 const tempDirs: string[] = [];
@@ -226,10 +226,10 @@ describe("manifest model id normalization", () => {
     writeInstallIndex({ stateDir: stateDirA, pluginDir: pluginDirA });
     writeNormalizerManifest({ pluginDir: pluginDirA, prefix: "alpha" });
 
-    process.env.OPENCLAW_STATE_DIR = stateDirA;
-    process.env.OPENCLAW_HOME = undefined;
-    process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS = "1";
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = undefined;
+    process.env.TINKERCLAW_STATE_DIR = stateDirA;
+    process.env.TINKERCLAW_HOME = undefined;
+    process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS = "1";
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = undefined;
 
     expect(normalizeDemoModel()).toBe("alpha/demo-model");
 
@@ -241,7 +241,7 @@ describe("manifest model id normalization", () => {
     writeInstallIndex({ stateDir: stateDirB, pluginDir: pluginDirB });
     writeNormalizerManifest({ pluginDir: pluginDirB, prefix: "charlie" });
 
-    process.env.OPENCLAW_STATE_DIR = stateDirB;
+    process.env.TINKERCLAW_STATE_DIR = stateDirB;
     expect(normalizeDemoModel()).toBe("charlie/demo-model");
   });
 
@@ -252,10 +252,10 @@ describe("manifest model id normalization", () => {
     writeInstallIndex({ stateDir, pluginDir });
     writeNormalizerManifest({ pluginDir, prefix: "alpha" });
 
-    process.env.OPENCLAW_STATE_DIR = stateDir;
-    process.env.OPENCLAW_HOME = undefined;
-    process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS = "1";
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = undefined;
+    process.env.TINKERCLAW_STATE_DIR = stateDir;
+    process.env.TINKERCLAW_HOME = undefined;
+    process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS = "1";
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = undefined;
 
     const readFileSyncSpy = vi.spyOn(fs, "readFileSync");
 

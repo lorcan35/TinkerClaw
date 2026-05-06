@@ -1035,11 +1035,11 @@ describe("config strict validation", () => {
   it("rejects resolved-only gateway.bind aliases as invalid schema values, not legacy", async () => {
     await withTempHome(async (home) => {
       await writeOpenClawConfig(home, {
-        gateway: { bind: "${OPENCLAW_BIND}" },
+        gateway: { bind: "${TINKERCLAW_BIND}" },
       });
 
-      const prev = process.env.OPENCLAW_BIND;
-      process.env.OPENCLAW_BIND = "0.0.0.0";
+      const prev = process.env.TINKERCLAW_BIND;
+      process.env.TINKERCLAW_BIND = "0.0.0.0";
       try {
         const snap = await readConfigFileSnapshot();
         expect(snap.valid).toBe(false);
@@ -1047,9 +1047,9 @@ describe("config strict validation", () => {
         expect(snap.issues.some((issue) => issue.path === "gateway.bind")).toBe(true);
       } finally {
         if (prev === undefined) {
-          delete process.env.OPENCLAW_BIND;
+          delete process.env.TINKERCLAW_BIND;
         } else {
-          process.env.OPENCLAW_BIND = prev;
+          process.env.TINKERCLAW_BIND = prev;
         }
       }
     });

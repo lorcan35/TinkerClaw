@@ -429,9 +429,9 @@ describe("CLI attempt execution", () => {
 
     const updatedEntry = await persistCliTurnTranscript({
       body: [
-        "<<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>>",
+        "<<<BEGIN_TINKERCLAW_INTERNAL_CONTEXT>>>",
         "secret runtime context",
-        "<<<END_OPENCLAW_INTERNAL_CONTEXT>>>",
+        "<<<END_TINKERCLAW_INTERNAL_CONTEXT>>>",
         "",
         "visible ask",
       ].join("\n"),

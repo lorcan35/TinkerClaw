@@ -24,15 +24,15 @@ vi.mock("./builtin-pi.js", () => ({
   }),
 }));
 
-const originalRuntime = process.env.OPENCLAW_AGENT_RUNTIME;
+const originalRuntime = process.env.TINKERCLAW_AGENT_RUNTIME;
 
 afterEach(() => {
   clearAgentHarnesses();
   piRunAttempt.mockClear();
   if (originalRuntime == null) {
-    delete process.env.OPENCLAW_AGENT_RUNTIME;
+    delete process.env.TINKERCLAW_AGENT_RUNTIME;
   } else {
-    process.env.OPENCLAW_AGENT_RUNTIME = originalRuntime;
+    process.env.TINKERCLAW_AGENT_RUNTIME = originalRuntime;
   }
 });
 
@@ -97,7 +97,7 @@ function registerFailingCodexHarness(): void {
 
 describe("runAgentHarnessAttempt", () => {
   it("fails when a forced plugin harness is unavailable and fallback is omitted", async () => {
-    process.env.OPENCLAW_AGENT_RUNTIME = "codex";
+    process.env.TINKERCLAW_AGENT_RUNTIME = "codex";
 
     await expect(runAgentHarnessAttempt(createAttemptParams())).rejects.toThrow(
       'Requested agent harness "codex" is not registered.',
@@ -370,7 +370,7 @@ describe("selectAgentHarness", () => {
   });
 
   it("keeps an existing session pinned to its plugin harness even when env now forces PI", () => {
-    process.env.OPENCLAW_AGENT_RUNTIME = "pi";
+    process.env.TINKERCLAW_AGENT_RUNTIME = "pi";
     registerFailingCodexHarness();
 
     expect(

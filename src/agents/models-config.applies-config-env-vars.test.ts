@@ -9,7 +9,7 @@ import {
 } from "./models-config.plan.js";
 import type { ProviderConfig } from "./models-config.providers.secrets.js";
 
-const TEST_ENV_VAR = "OPENCLAW_MODELS_CONFIG_TEST_ENV";
+const TEST_ENV_VAR = "TINKERCLAW_MODELS_CONFIG_TEST_ENV";
 
 function createImplicitOpenRouterProvider(): ProviderConfig {
   return {

@@ -227,7 +227,7 @@ describe("talk.config handler", () => {
             resolved: {
               provider: "acme",
               config: expect.objectContaining({
-                apiKey: "__OPENCLAW_REDACTED__",
+                apiKey: "__TINKERCLAW_REDACTED__",
               }),
             },
           }),

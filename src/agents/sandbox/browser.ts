@@ -8,8 +8,8 @@ import {
 import {
   DEFAULT_BROWSER_ACTION_TIMEOUT_MS,
   DEFAULT_BROWSER_EVALUATE_ENABLED,
-  DEFAULT_OPENCLAW_BROWSER_COLOR,
-  DEFAULT_OPENCLAW_BROWSER_PROFILE_NAME,
+  DEFAULT_TINKERCLAW_BROWSER_COLOR,
+  DEFAULT_TINKERCLAW_BROWSER_PROFILE_NAME,
   resolveProfile,
   type ResolvedBrowserConfig,
 } from "../../plugin-sdk/browser-profiles.js";
@@ -102,12 +102,12 @@ function buildSandboxBrowserResolvedConfig(params: {
     localLaunchTimeoutMs: 15_000,
     localCdpReadyTimeoutMs: 8_000,
     actionTimeoutMs: DEFAULT_BROWSER_ACTION_TIMEOUT_MS,
-    color: DEFAULT_OPENCLAW_BROWSER_COLOR,
+    color: DEFAULT_TINKERCLAW_BROWSER_COLOR,
     executablePath: undefined,
     headless: params.headless,
     noSandbox: false,
     attachOnly: true,
-    defaultProfile: DEFAULT_OPENCLAW_BROWSER_PROFILE_NAME,
+    defaultProfile: DEFAULT_TINKERCLAW_BROWSER_PROFILE_NAME,
     extraArgs: [],
     tabCleanup: {
       enabled: true,
@@ -116,9 +116,9 @@ function buildSandboxBrowserResolvedConfig(params: {
       sweepMinutes: 5,
     },
     profiles: {
-      [DEFAULT_OPENCLAW_BROWSER_PROFILE_NAME]: {
+      [DEFAULT_TINKERCLAW_BROWSER_PROFILE_NAME]: {
         cdpPort: params.cdpPort,
-        color: DEFAULT_OPENCLAW_BROWSER_COLOR,
+        color: DEFAULT_TINKERCLAW_BROWSER_COLOR,
       },
     },
     ssrfPolicy: params.ssrfPolicy,
@@ -356,7 +356,7 @@ export async function ensureSandboxBrowser(params: {
 
   const existing = BROWSER_BRIDGES.get(params.scopeKey);
   const existingProfile = existing
-    ? resolveProfile(existing.bridge.state.resolved, DEFAULT_OPENCLAW_BROWSER_PROFILE_NAME)
+    ? resolveProfile(existing.bridge.state.resolved, DEFAULT_TINKERCLAW_BROWSER_PROFILE_NAME)
     : null;
 
   let desiredAuthToken = normalizeOptionalString(params.bridgeAuth?.token);

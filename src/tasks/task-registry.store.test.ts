@@ -19,7 +19,7 @@ import {
 } from "./task-registry.store.js";
 import type { TaskRecord } from "./task-registry.types.js";
 
-const ORIGINAL_STATE_DIR = process.env.OPENCLAW_STATE_DIR;
+const ORIGINAL_STATE_DIR = process.env.TINKERCLAW_STATE_DIR;
 
 function createStoredTask(): TaskRecord {
   return {
@@ -43,9 +43,9 @@ function createStoredTask(): TaskRecord {
 describe("task-registry store runtime", () => {
   afterEach(() => {
     if (ORIGINAL_STATE_DIR === undefined) {
-      delete process.env.OPENCLAW_STATE_DIR;
+      delete process.env.TINKERCLAW_STATE_DIR;
     } else {
-      process.env.OPENCLAW_STATE_DIR = ORIGINAL_STATE_DIR;
+      process.env.TINKERCLAW_STATE_DIR = ORIGINAL_STATE_DIR;
     }
     resetTaskRegistryForTests();
     resetTaskFlowRegistryForTests({ persist: false });

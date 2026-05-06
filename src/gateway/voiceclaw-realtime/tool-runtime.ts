@@ -252,13 +252,16 @@ function isRealtimeDirectToolAllowed(tool: AnyAgentTool): boolean {
 }
 
 function resolveToolTimeoutMs(): number {
-  const value = Number.parseInt(process.env.OPENCLAW_VOICECLAW_REALTIME_TOOL_TIMEOUT_MS ?? "", 10);
+  const value = Number.parseInt(
+    process.env.TINKERCLAW_VOICECLAW_REALTIME_TOOL_TIMEOUT_MS ?? "",
+    10,
+  );
   return Number.isFinite(value) && value > 0 ? value : DEFAULT_TOOL_TIMEOUT_MS;
 }
 
 function resolveMaxConcurrentTools(): number {
   const value = Number.parseInt(
-    process.env.OPENCLAW_VOICECLAW_REALTIME_MAX_CONCURRENT_TOOLS ?? "",
+    process.env.TINKERCLAW_VOICECLAW_REALTIME_MAX_CONCURRENT_TOOLS ?? "",
     10,
   );
   return Number.isFinite(value) && value > 0 ? value : DEFAULT_MAX_CONCURRENT_TOOLS;

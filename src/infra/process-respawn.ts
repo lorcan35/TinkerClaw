@@ -92,8 +92,8 @@ export function restartGatewayProcessWithFreshPid(): GatewayRespawnResult {
  * the installed package contents have been replaced.
  */
 export function respawnGatewayProcessForUpdate(): GatewayUpdateRespawnResult {
-  if (isTruthy(process.env.OPENCLAW_NO_RESPAWN)) {
-    return { mode: "disabled", detail: "OPENCLAW_NO_RESPAWN" };
+  if (isTruthy(process.env.TINKERCLAW_NO_RESPAWN)) {
+    return { mode: "disabled", detail: "TINKERCLAW_NO_RESPAWN" };
   }
   const supervisor = detectRespawnSupervisor(process.env);
   if (supervisor) {

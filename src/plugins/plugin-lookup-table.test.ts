@@ -369,11 +369,11 @@ describe("loadPluginLookUpTable", () => {
     } as OpenClawConfig;
     const snapshotEnv = {
       HOME: "/home/snapshot",
-      OPENCLAW_HOME: undefined,
+      TINKERCLAW_HOME: undefined,
     } as NodeJS.ProcessEnv;
     const requestedEnv = {
       HOME: "/home/requested",
-      OPENCLAW_HOME: undefined,
+      TINKERCLAW_HOME: undefined,
     } as NodeJS.ProcessEnv;
     const policyHash = resolveInstalledPluginIndexPolicyHash(config);
     const index = createIndex(plugins, { policyHash });
@@ -420,11 +420,11 @@ describe("loadPluginLookUpTable", () => {
     const config = {} as OpenClawConfig;
     const snapshotEnv = {
       HOME: "/home/snapshot",
-      OPENCLAW_HOME: undefined,
+      TINKERCLAW_HOME: undefined,
     } as NodeJS.ProcessEnv;
     const requestedEnv = {
       HOME: "/home/requested",
-      OPENCLAW_HOME: undefined,
+      TINKERCLAW_HOME: undefined,
     } as NodeJS.ProcessEnv;
     const policyHash = resolveInstalledPluginIndexPolicyHash(config);
     const index = createIndex(plugins, { policyHash });

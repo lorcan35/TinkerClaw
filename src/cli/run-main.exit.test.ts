@@ -205,7 +205,7 @@ function makeProxyHandle() {
       no_proxy: undefined,
       NO_PROXY: undefined,
       GLOBAL_AGENT_NO_PROXY: undefined,
-      OPENCLAW_PROXY_ACTIVE: undefined,
+      TINKERCLAW_PROXY_ACTIVE: undefined,
     },
     stop: vi.fn(async () => {}),
     kill: vi.fn(),
@@ -227,8 +227,8 @@ describe("runCli exit behavior", () => {
       ({ primaryCommand }: { primaryCommand?: string }) =>
         primaryCommand === "googlemeet" ? ["google-meet"] : [],
     );
-    delete process.env.OPENCLAW_DISABLE_CLI_STARTUP_HELP_FAST_PATH;
-    delete process.env.OPENCLAW_HIDE_BANNER;
+    delete process.env.TINKERCLAW_DISABLE_CLI_STARTUP_HELP_FAST_PATH;
+    delete process.env.TINKERCLAW_HIDE_BANNER;
   });
 
   it("does not force process.exit after successful routed command", async () => {
@@ -291,7 +291,7 @@ describe("runCli exit behavior", () => {
   });
 
   it("honors banner suppression on the gateway foreground fast path", async () => {
-    process.env.OPENCLAW_HIDE_BANNER = "1";
+    process.env.TINKERCLAW_HIDE_BANNER = "1";
 
     await runCli(["node", "openclaw", "gateway"]);
 

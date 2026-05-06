@@ -20,10 +20,10 @@ describe("mantis Slack desktop smoke runtime", () => {
     const runtimeEnv = {
       PATH: process.env.PATH,
       OPENAI_API_KEY: "openai-runtime-key",
-      OPENCLAW_QA_SLACK_CHANNEL_ID: "C123",
-      OPENCLAW_QA_SLACK_DRIVER_BOT_TOKEN: "driver-token",
-      OPENCLAW_QA_SLACK_SUT_APP_TOKEN: "app-token",
-      OPENCLAW_QA_SLACK_SUT_BOT_TOKEN: "sut-token",
+      TINKERCLAW_QA_SLACK_CHANNEL_ID: "C123",
+      TINKERCLAW_QA_SLACK_DRIVER_BOT_TOKEN: "driver-token",
+      TINKERCLAW_QA_SLACK_SUT_APP_TOKEN: "app-token",
+      TINKERCLAW_QA_SLACK_SUT_BOT_TOKEN: "sut-token",
     };
     const runner = vi.fn(
       async (command: string, args: readonly string[], options: { env?: NodeJS.ProcessEnv }) => {
@@ -86,7 +86,7 @@ describe("mantis Slack desktop smoke runtime", () => {
       ["/tmp/crabbox", "stop"],
     ]);
     expect(
-      commands.every((entry) => entry.env?.OPENCLAW_LIVE_OPENAI_KEY === "openai-runtime-key"),
+      commands.every((entry) => entry.env?.TINKERCLAW_LIVE_OPENAI_KEY === "openai-runtime-key"),
     ).toBe(true);
     const runArgs = commands.find(
       (entry) => entry.command === "/tmp/crabbox" && entry.args[0] === "run",
@@ -99,7 +99,7 @@ describe("mantis Slack desktop smoke runtime", () => {
     expect(remoteScript).toContain("pnpm build");
     expect(remoteScript).toContain("openclaw qa slack");
     expect(remoteScript).toContain("--scenario 'slack-canary'");
-    expect(remoteScript).toContain("OPENCLAW_MANTIS_SLACK_BROWSER_PROFILE_DIR");
+    expect(remoteScript).toContain("TINKERCLAW_MANTIS_SLACK_BROWSER_PROFILE_DIR");
     const rsyncArgs = commands
       .filter((entry) => entry.command === "rsync")
       .flatMap((entry) => entry.args);

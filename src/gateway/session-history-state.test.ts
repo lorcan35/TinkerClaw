@@ -148,9 +148,9 @@ describe("SessionHistorySseState", () => {
             {
               type: "text",
               text: [
-                "<<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>>",
+                "<<<BEGIN_TINKERCLAW_INTERNAL_CONTEXT>>>",
                 "secret runtime context",
-                "<<<END_OPENCLAW_INTERNAL_CONTEXT>>>",
+                "<<<END_TINKERCLAW_INTERNAL_CONTEXT>>>",
                 "",
                 "visible ask",
               ].join("\n"),
@@ -180,9 +180,9 @@ describe("SessionHistorySseState", () => {
             {
               type: "text",
               text: [
-                "<<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>>",
+                "<<<BEGIN_TINKERCLAW_INTERNAL_CONTEXT>>>",
                 "subagent completion payload",
-                "<<<END_OPENCLAW_INTERNAL_CONTEXT>>>",
+                "<<<END_TINKERCLAW_INTERNAL_CONTEXT>>>",
               ].join("\n"),
             },
           ],
@@ -277,9 +277,9 @@ describe("SessionHistorySseState", () => {
             {
               type: "text",
               text: [
-                "<<<BEGIN_OPENCLAW_INTERNAL_CONTEXT>>>",
+                "<<<BEGIN_TINKERCLAW_INTERNAL_CONTEXT>>>",
                 "runtime details",
-                "<<<END_OPENCLAW_INTERNAL_CONTEXT>>>",
+                "<<<END_TINKERCLAW_INTERNAL_CONTEXT>>>",
               ].join("\n"),
             },
           ],

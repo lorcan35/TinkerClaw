@@ -73,7 +73,7 @@ vi.mock("../plugins/provider-zai-endpoint.js", () => ({
 }));
 
 vi.mock("../agents/agent-paths.js", () => ({
-  resolveOpenClawAgentDir: () => process.env.OPENCLAW_AGENT_DIR ?? "/tmp/openclaw-agent",
+  resolveOpenClawAgentDir: () => process.env.TINKERCLAW_AGENT_DIR ?? "/tmp/openclaw-agent",
 }));
 
 vi.mock("../agents/agent-scope.js", () => ({
@@ -142,7 +142,7 @@ const testAuthProfileStores = vi.hoisted(
 
 // These tests verify profile payloads, not file locking; keep auth stores in memory.
 function resolveTestAuthStoreKey(agentDir?: string): string {
-  return agentDir?.trim() || process.env.OPENCLAW_AGENT_DIR || "__main__";
+  return agentDir?.trim() || process.env.TINKERCLAW_AGENT_DIR || "__main__";
 }
 
 function readTestAuthProfileStore(agentDir?: string): {
@@ -555,8 +555,8 @@ async function createDefaultProviderPlugins(): Promise<ProviderPlugin[]> {
 
 describe("applyAuthChoice", () => {
   const lifecycle = createAuthTestLifecycle([
-    "OPENCLAW_STATE_DIR",
-    "OPENCLAW_AGENT_DIR",
+    "TINKERCLAW_STATE_DIR",
+    "TINKERCLAW_AGENT_DIR",
     "PI_CODING_AGENT_DIR",
     "ANTHROPIC_API_KEY",
     "OPENROUTER_API_KEY",
@@ -575,8 +575,8 @@ describe("applyAuthChoice", () => {
     testAuthProfileStores.clear();
     const stateDir = path.join(authTestRoot, `state-${++authStateCounter}`);
     const agentDir = path.join(stateDir, "agent");
-    process.env.OPENCLAW_STATE_DIR = stateDir;
-    process.env.OPENCLAW_AGENT_DIR = agentDir;
+    process.env.TINKERCLAW_STATE_DIR = stateDir;
+    process.env.TINKERCLAW_AGENT_DIR = agentDir;
     process.env.PI_CODING_AGENT_DIR = agentDir;
   }
   function createPrompter(overrides: Partial<WizardPrompter>): WizardPrompter {

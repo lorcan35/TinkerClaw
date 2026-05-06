@@ -302,13 +302,13 @@ describe("configured plugin install release step", () => {
       },
       currentVersion: "2026.5.2-beta.1",
       touchedVersion: "2026.5.1",
-      env: { OPENCLAW_UPDATE_IN_PROGRESS: "1" },
+      env: { TINKERCLAW_UPDATE_IN_PROGRESS: "1" },
     });
 
     expect(mocks.repairMissingPluginInstallsForIds).toHaveBeenCalledWith(
       expect.objectContaining({
         pluginIds: ["codex"],
-        env: { OPENCLAW_UPDATE_IN_PROGRESS: "1" },
+        env: { TINKERCLAW_UPDATE_IN_PROGRESS: "1" },
       }),
     );
     expect(result).toEqual({

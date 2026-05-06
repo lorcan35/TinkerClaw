@@ -523,10 +523,10 @@ describe("provider-runtime", () => {
     };
     const config = {} as OpenClawConfig;
     const originalHome = process.env.HOME;
-    const originalOpenClawHome = process.env.OPENCLAW_HOME;
+    const originalOpenClawHome = process.env.TINKERCLAW_HOME;
     try {
       process.env.HOME = "/home/one";
-      delete process.env.OPENCLAW_HOME;
+      delete process.env.TINKERCLAW_HOME;
       resolvePluginProvidersMock.mockReturnValueOnce([firstProvider]);
       expect(resolveProviderRuntimePlugin({ provider: DEMO_PROVIDER_ID, config })).toBe(
         firstProvider,
@@ -544,9 +544,9 @@ describe("provider-runtime", () => {
         process.env.HOME = originalHome;
       }
       if (originalOpenClawHome === undefined) {
-        delete process.env.OPENCLAW_HOME;
+        delete process.env.TINKERCLAW_HOME;
       } else {
-        process.env.OPENCLAW_HOME = originalOpenClawHome;
+        process.env.TINKERCLAW_HOME = originalOpenClawHome;
       }
     }
 

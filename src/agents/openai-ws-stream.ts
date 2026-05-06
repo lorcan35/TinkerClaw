@@ -226,8 +226,8 @@ function resolveWsSessionPoolConfig(env: NodeJS.ProcessEnv = process.env): {
   idleMs: number;
 } {
   const enabled =
-    env.OPENCLAW_OPENAI_WS_POOL === "1" || env.OPENCLAW_OPENAI_WS_SESSION_POOL === "1";
-  const rawIdleMs = Number(env.OPENCLAW_OPENAI_WS_SESSION_POOL_IDLE_MS);
+    env.TINKERCLAW_OPENAI_WS_POOL === "1" || env.TINKERCLAW_OPENAI_WS_SESSION_POOL === "1";
+  const rawIdleMs = Number(env.TINKERCLAW_OPENAI_WS_SESSION_POOL_IDLE_MS);
   const idleMs = Number.isFinite(rawIdleMs)
     ? Math.min(300_000, Math.max(1_000, Math.trunc(rawIdleMs)))
     : 30_000;

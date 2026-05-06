@@ -67,12 +67,14 @@ export {
   shouldEnableWindowsGitBashPasteFallback,
 } from "./tui-submit.js";
 
-const OPENCLAW_CLI_WRAPPER_PATH = fileURLToPath(new URL("../../openclaw.mjs", import.meta.url));
-const OPENCLAW_RUN_NODE_SCRIPT_PATH = fileURLToPath(
+const TINKERCLAW_CLI_WRAPPER_PATH = fileURLToPath(new URL("../../openclaw.mjs", import.meta.url));
+const TINKERCLAW_RUN_NODE_SCRIPT_PATH = fileURLToPath(
   new URL("../../scripts/run-node.mjs", import.meta.url),
 );
-const OPENCLAW_DIST_ENTRY_JS_PATH = fileURLToPath(new URL("../../dist/entry.js", import.meta.url));
-const OPENCLAW_DIST_ENTRY_MJS_PATH = fileURLToPath(
+const TINKERCLAW_DIST_ENTRY_JS_PATH = fileURLToPath(
+  new URL("../../dist/entry.js", import.meta.url),
+);
+const TINKERCLAW_DIST_ENTRY_MJS_PATH = fileURLToPath(
   new URL("../../dist/entry.mjs", import.meta.url),
 );
 
@@ -105,11 +107,11 @@ export function resolveLocalAuthCliInvocation(params?: {
 }): { command: string; args: string[] } {
   const hasDistEntry =
     params?.hasDistEntry ??
-    (existsSync(OPENCLAW_DIST_ENTRY_JS_PATH) || existsSync(OPENCLAW_DIST_ENTRY_MJS_PATH));
-  const hasRunNodeScript = params?.hasRunNodeScript ?? existsSync(OPENCLAW_RUN_NODE_SCRIPT_PATH);
+    (existsSync(TINKERCLAW_DIST_ENTRY_JS_PATH) || existsSync(TINKERCLAW_DIST_ENTRY_MJS_PATH));
+  const hasRunNodeScript = params?.hasRunNodeScript ?? existsSync(TINKERCLAW_RUN_NODE_SCRIPT_PATH);
   const command = params?.execPath ?? process.execPath;
-  const wrapperPath = params?.wrapperPath ?? OPENCLAW_CLI_WRAPPER_PATH;
-  const runNodePath = params?.runNodePath ?? OPENCLAW_RUN_NODE_SCRIPT_PATH;
+  const wrapperPath = params?.wrapperPath ?? TINKERCLAW_CLI_WRAPPER_PATH;
+  const runNodePath = params?.runNodePath ?? TINKERCLAW_RUN_NODE_SCRIPT_PATH;
 
   // Prefer the packaged wrapper when build output exists, but keep source-tree
   // auth working in unbuilt checkouts that only have scripts/run-node.mjs.

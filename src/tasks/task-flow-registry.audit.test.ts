@@ -13,7 +13,7 @@ import {
   resetTaskRegistryForTests,
 } from "./task-registry.js";
 
-const ORIGINAL_STATE_DIR = process.env.OPENCLAW_STATE_DIR;
+const ORIGINAL_STATE_DIR = process.env.TINKERCLAW_STATE_DIR;
 
 async function withTaskFlowAuditStateDir(run: (root: string) => Promise<void>): Promise<void> {
   await withOpenClawTestState(
@@ -39,9 +39,9 @@ async function withTaskFlowAuditStateDir(run: (root: string) => Promise<void>): 
 describe("task-flow-registry audit", () => {
   afterEach(() => {
     if (ORIGINAL_STATE_DIR === undefined) {
-      delete process.env.OPENCLAW_STATE_DIR;
+      delete process.env.TINKERCLAW_STATE_DIR;
     } else {
-      process.env.OPENCLAW_STATE_DIR = ORIGINAL_STATE_DIR;
+      process.env.TINKERCLAW_STATE_DIR = ORIGINAL_STATE_DIR;
     }
     resetTaskRegistryDeliveryRuntimeForTests();
     resetTaskRegistryForTests();

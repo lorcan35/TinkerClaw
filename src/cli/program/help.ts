@@ -51,7 +51,7 @@ export function configureProgramHelp(program: Command, ctx: ProgramContext) {
     .version(ctx.programVersion)
     .option(
       "--container <name>",
-      "Run the CLI inside a running Podman/Docker container named <name> (default: env OPENCLAW_CONTAINER)",
+      "Run the CLI inside a running Podman/Docker container named <name> (default: env TINKERCLAW_CONTAINER)",
     )
     .option(
       "--dev",
@@ -122,7 +122,7 @@ export function configureProgramHelp(program: Command, ctx: ProgramContext) {
   }
 
   program.addHelpText("beforeAll", () => {
-    if (hasEmittedCliBanner() || process.env.OPENCLAW_SUPPRESS_HELP_BANNER === "1") {
+    if (hasEmittedCliBanner() || process.env.TINKERCLAW_SUPPRESS_HELP_BANNER === "1") {
       return "";
     }
     const rich = isRich();

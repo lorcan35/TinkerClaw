@@ -169,8 +169,8 @@ describe("installed plugin index persistence", () => {
     fs.mkdirSync(pluginDir, { recursive: true });
     const candidate = createCandidate(pluginDir);
     const env = {
-      OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
-      OPENCLAW_VERSION: "2026.4.25",
+      TINKERCLAW_BUNDLED_PLUGINS_DIR: undefined,
+      TINKERCLAW_VERSION: "2026.4.25",
       VITEST: "true",
     };
 
@@ -265,8 +265,8 @@ describe("installed plugin index persistence", () => {
       stateDir,
       candidates: [candidate],
       env: {
-        OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
-        OPENCLAW_VERSION: "2026.4.25",
+        TINKERCLAW_BUNDLED_PLUGINS_DIR: undefined,
+        TINKERCLAW_VERSION: "2026.4.25",
         VITEST: "true",
       },
     });
@@ -285,8 +285,8 @@ describe("installed plugin index persistence", () => {
     fs.mkdirSync(pluginDir, { recursive: true });
     const candidate = createCandidate(pluginDir);
     const env = {
-      OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
-      OPENCLAW_VERSION: "2026.4.25",
+      TINKERCLAW_BUNDLED_PLUGINS_DIR: undefined,
+      TINKERCLAW_VERSION: "2026.4.25",
       VITEST: "true",
     };
     const initial = await refreshPersistedInstalledPluginIndex({
@@ -341,8 +341,8 @@ describe("installed plugin index persistence", () => {
     const candidate = createCandidate(pluginDir);
     const nextCandidate = createCandidate(nextPluginDir, { id: "next-demo" });
     const env = {
-      OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
-      OPENCLAW_VERSION: "2026.4.25",
+      TINKERCLAW_BUNDLED_PLUGINS_DIR: undefined,
+      TINKERCLAW_VERSION: "2026.4.25",
       VITEST: "true",
     };
     await refreshPersistedInstalledPluginIndex({
@@ -393,8 +393,8 @@ describe("installed plugin index persistence", () => {
       stateDir,
       candidates: [],
       env: {
-        OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
-        OPENCLAW_VERSION: "2026.4.25",
+        TINKERCLAW_BUNDLED_PLUGINS_DIR: undefined,
+        TINKERCLAW_VERSION: "2026.4.25",
         VITEST: "true",
       },
     });
@@ -460,8 +460,8 @@ describe("installed plugin index persistence", () => {
       stateDir,
       candidates: [],
       env: {
-        OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
-        OPENCLAW_VERSION: "2026.4.25",
+        TINKERCLAW_BUNDLED_PLUGINS_DIR: undefined,
+        TINKERCLAW_VERSION: "2026.4.25",
         VITEST: "true",
       },
     });

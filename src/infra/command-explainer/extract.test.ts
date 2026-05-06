@@ -625,7 +625,7 @@ describe("command explainer tree-sitter runtime", () => {
   });
 
   it("detects eval, source, aliases, and carrier shell wrappers", async () => {
-    const evalCommand = await explainShellCommand('eval "$OPENCLAW_CMD"');
+    const evalCommand = await explainShellCommand('eval "$TINKERCLAW_CMD"');
     expect(evalCommand.risks).toContainEqual(expect.objectContaining({ kind: "eval" }));
 
     const builtinEval = await explainShellCommand("builtin eval 'echo hi'");

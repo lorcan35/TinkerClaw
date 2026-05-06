@@ -97,7 +97,7 @@ export async function dashboardCommand(
 
   if (fallbackToManualAuth) {
     runtime.log(
-      "Token auto-auth not delivered. Append your gateway token (from OPENCLAW_GATEWAY_TOKEN or gateway.auth.token) as a URL fragment with key `token` to authenticate.",
+      "Token auto-auth not delivered. Append your gateway token (from TINKERCLAW_GATEWAY_TOKEN or gateway.auth.token) as a URL fragment with key `token` to authenticate.",
     );
   }
 }

@@ -1250,7 +1250,7 @@ export async function installPluginFromClawHub(
         source: "clawhub",
         clawhubUrl:
           normalizeOptionalString(params.baseUrl) ||
-          normalizeOptionalString(process.env.OPENCLAW_CLAWHUB_URL) ||
+          normalizeOptionalString(process.env.TINKERCLAW_CLAWHUB_URL) ||
           "https://clawhub.ai",
         clawhubPackage: parsed.name,
         clawhubFamily,

@@ -33,8 +33,8 @@ export {
   type GatewayHttpRequestAuthCheckResult,
 } from "./http-auth-utils.js";
 
-export const OPENCLAW_MODEL_ID = "openclaw";
-export const OPENCLAW_DEFAULT_MODEL_ID = "openclaw/default";
+export const TINKERCLAW_MODEL_ID = "openclaw";
+export const TINKERCLAW_DEFAULT_MODEL_ID = "openclaw/default";
 
 function resolveAgentIdFromHeader(req: IncomingMessage): string | undefined {
   const raw =
@@ -56,7 +56,7 @@ export function resolveAgentIdFromModel(
     return undefined;
   }
   const lowered = normalizeLowercaseStringOrEmpty(raw);
-  if (lowered === OPENCLAW_MODEL_ID || lowered === OPENCLAW_DEFAULT_MODEL_ID) {
+  if (lowered === TINKERCLAW_MODEL_ID || lowered === TINKERCLAW_DEFAULT_MODEL_ID) {
     return resolveDefaultAgentId(cfg);
   }
 

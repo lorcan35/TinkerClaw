@@ -25,7 +25,7 @@ describe("gateway-watch tmux wrapper", () => {
     expect(
       resolveGatewayWatchTmuxSessionName({
         args: ["gateway", "--force", "--port", "19001"],
-        env: { OPENCLAW_PROFILE: "Dev Profile" },
+        env: { TINKERCLAW_PROFILE: "Dev Profile" },
       }),
     ).toBe("openclaw-gateway-watch-dev-profile-19001");
     expect(
@@ -41,9 +41,9 @@ describe("gateway-watch tmux wrapper", () => {
       args: ["gateway", "--force", "--raw-stream-path", "a b.jsonl"],
       cwd: "/repo with spaces/openclaw",
       env: {
-        OPENCLAW_GATEWAY_PORT: "19001",
-        OPENCLAW_PROFILE: "Dev Profile",
-        OPENCLAW_TRACE_SYNC_IO: "0",
+        TINKERCLAW_GATEWAY_PORT: "19001",
+        TINKERCLAW_PROFILE: "Dev Profile",
+        TINKERCLAW_TRACE_SYNC_IO: "0",
         SHELL: "/bin/zsh",
       },
       nodePath: "/opt/node",
@@ -52,13 +52,13 @@ describe("gateway-watch tmux wrapper", () => {
 
     expect(command).toContain("exec '/bin/zsh' -lc");
     expect(command).toContain("/repo with spaces/openclaw");
-    expect(command).toContain("'OPENCLAW_GATEWAY_WATCH_TMUX_CHILD=1'");
-    expect(command).toContain("'OPENCLAW_GATEWAY_WATCH_SESSION=openclaw-gateway-watch-main'");
+    expect(command).toContain("'TINKERCLAW_GATEWAY_WATCH_TMUX_CHILD=1'");
+    expect(command).toContain("'TINKERCLAW_GATEWAY_WATCH_SESSION=openclaw-gateway-watch-main'");
     expect(command).toContain("'\\''-u'\\'' '\\''NO_COLOR'\\''");
     expect(command).toContain("'FORCE_COLOR=1'");
-    expect(command).toContain("'OPENCLAW_GATEWAY_PORT=19001'");
-    expect(command).toContain("'OPENCLAW_PROFILE=Dev Profile'");
-    expect(command).toContain("'OPENCLAW_TRACE_SYNC_IO=0'");
+    expect(command).toContain("'TINKERCLAW_GATEWAY_PORT=19001'");
+    expect(command).toContain("'TINKERCLAW_PROFILE=Dev Profile'");
+    expect(command).toContain("'TINKERCLAW_TRACE_SYNC_IO=0'");
     expect(command).toContain("/opt/node");
     expect(command).toContain("scripts/watch-node.mjs");
     expect(command).toContain("gateway");
@@ -88,8 +88,10 @@ describe("gateway-watch tmux wrapper", () => {
 
     expect(code).toBe(0);
     const command = spawnSync.mock.calls[1]?.[1]?.[6] as string;
-    expect(command).toContain("'OPENCLAW_RUN_NODE_CPU_PROF_DIR=.artifacts/gateway-watch-profiles'");
-    expect(command).toContain("'OPENCLAW_TRACE_SYNC_IO=0'");
+    expect(command).toContain(
+      "'TINKERCLAW_RUN_NODE_CPU_PROF_DIR=.artifacts/gateway-watch-profiles'",
+    );
+    expect(command).toContain("'TINKERCLAW_TRACE_SYNC_IO=0'");
     expect(command).not.toContain("--benchmark");
     expect(command).toContain("'gateway'");
     expect(command).toContain("'--force'");
@@ -111,7 +113,7 @@ describe("gateway-watch tmux wrapper", () => {
     const code = runGatewayWatchTmuxMain({
       args: ["gateway", "--force", "--benchmark"],
       cwd: "/repo",
-      env: { OPENCLAW_TRACE_SYNC_IO: "1", SHELL: "/bin/zsh" },
+      env: { TINKERCLAW_TRACE_SYNC_IO: "1", SHELL: "/bin/zsh" },
       nodePath: "/node",
       spawnSync,
       stderr: stderr.stream,
@@ -120,11 +122,11 @@ describe("gateway-watch tmux wrapper", () => {
 
     expect(code).toBe(0);
     const command = spawnSync.mock.calls[1]?.[1]?.[6] as string;
-    expect(command).toContain("'OPENCLAW_TRACE_SYNC_IO=1'");
+    expect(command).toContain("'TINKERCLAW_TRACE_SYNC_IO=1'");
     expect(command).toContain(
-      "'OPENCLAW_RUN_NODE_OUTPUT_LOG=.artifacts/gateway-watch-profiles/gateway-watch-output.log'",
+      "'TINKERCLAW_RUN_NODE_OUTPUT_LOG=.artifacts/gateway-watch-profiles/gateway-watch-output.log'",
     );
-    expect(command).toContain("'OPENCLAW_RUN_NODE_FILTER_SYNC_IO_STDERR=1'");
+    expect(command).toContain("'TINKERCLAW_RUN_NODE_FILTER_SYNC_IO_STDERR=1'");
     expect(stderr.chunks.join("")).toContain(
       "gateway:watch benchmark trace output: .artifacts/gateway-watch-profiles/gateway-watch-output.log",
     );
@@ -152,7 +154,9 @@ describe("gateway-watch tmux wrapper", () => {
 
     expect(code).toBe(0);
     const command = spawnSync.mock.calls[1]?.[1]?.[6] as string;
-    expect(command).toContain("'OPENCLAW_RUN_NODE_CPU_PROF_DIR=.artifacts/gateway-watch-profiles'");
+    expect(command).toContain(
+      "'TINKERCLAW_RUN_NODE_CPU_PROF_DIR=.artifacts/gateway-watch-profiles'",
+    );
     expect(command).not.toContain("--benchmark-no-force");
     expect(command).toContain("'gateway'");
     expect(command).not.toContain("'--force'");
@@ -238,7 +242,7 @@ describe("gateway-watch tmux wrapper", () => {
         "set-environment",
         "-t",
         "openclaw-gateway-watch-main",
-        "OPENCLAW_GATEWAY_WATCH_CWD",
+        "TINKERCLAW_GATEWAY_WATCH_CWD",
         "/repo",
       ],
       expect.objectContaining({ encoding: "utf8" }),
@@ -357,7 +361,7 @@ describe("gateway-watch tmux wrapper", () => {
     const code = runGatewayWatchTmuxMain({
       args: ["gateway", "--force", "--port=19001"],
       cwd: "/repo",
-      env: { OPENCLAW_PROFILE: "dev", SHELL: "/bin/zsh" },
+      env: { TINKERCLAW_PROFILE: "dev", SHELL: "/bin/zsh" },
       nodePath: "/node",
       spawnSync,
       stderr: stderr.stream,
@@ -449,7 +453,7 @@ describe("gateway-watch tmux wrapper", () => {
     const code = runGatewayWatchTmuxMain({
       args: ["gateway", "--force"],
       cwd: "/repo",
-      env: { OPENCLAW_GATEWAY_WATCH_TMUX: "0" },
+      env: { TINKERCLAW_GATEWAY_WATCH_TMUX: "0" },
       nodePath: "/node",
       spawnSync,
     });
@@ -460,7 +464,7 @@ describe("gateway-watch tmux wrapper", () => {
       ["scripts/watch-node.mjs", "gateway", "--force"],
       {
         cwd: "/repo",
-        env: { OPENCLAW_GATEWAY_WATCH_TMUX: "0" },
+        env: { TINKERCLAW_GATEWAY_WATCH_TMUX: "0" },
         stdio: "inherit",
       },
     );

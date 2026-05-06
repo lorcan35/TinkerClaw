@@ -150,7 +150,7 @@ const expectedSortedCatalog = (): ModelCatalogRpcEntry[] => [
 
 describe("gateway server models + voicewake", () => {
   const listModels = async (params?: { view?: "default" | "configured" | "all" }) =>
-    withEnvAsync({ OPENCLAW_DISABLE_BUNDLED_PLUGINS: "1" }, async () =>
+    withEnvAsync({ TINKERCLAW_DISABLE_BUNDLED_PLUGINS: "1" }, async () =>
       params
         ? await rpcReq<{ models: ModelCatalogRpcEntry[] }>(ws, "models.list", params)
         : await rpcReq<{ models: ModelCatalogRpcEntry[] }>(ws, "models.list"),
@@ -167,9 +167,9 @@ describe("gateway server models + voicewake", () => {
   };
 
   const withModelsConfig = async <T>(config: unknown, run: () => Promise<T>): Promise<T> => {
-    const configPath = process.env.OPENCLAW_CONFIG_PATH;
+    const configPath = process.env.TINKERCLAW_CONFIG_PATH;
     if (!configPath) {
-      throw new Error("Missing OPENCLAW_CONFIG_PATH");
+      throw new Error("Missing TINKERCLAW_CONFIG_PATH");
     }
     let previousConfig: string | undefined;
     try {
@@ -770,12 +770,12 @@ describe("gateway server models + voicewake", () => {
 
 describe("gateway server misc", () => {
   test("hello-ok advertises the gateway port for canvas host", async () => {
-    await withEnvAsync({ OPENCLAW_GATEWAY_TOKEN: "secret" }, async () => {
+    await withEnvAsync({ TINKERCLAW_GATEWAY_TOKEN: "secret" }, async () => {
       testTailnetIPv4.value = "100.64.0.1";
       testState.gatewayBind = "lan";
       const canvasPort = await getFreePort();
       testState.canvasHostPort = canvasPort;
-      await withEnvAsync({ OPENCLAW_CANVAS_HOST_PORT: String(canvasPort) }, async () => {
+      await withEnvAsync({ TINKERCLAW_CANVAS_HOST_PORT: String(canvasPort) }, async () => {
         const testPort = await getFreePort();
         const canvasHostUrl = resolveCanvasHostUrl({
           canvasPort,

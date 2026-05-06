@@ -1427,11 +1427,11 @@ describe("resolvePluginTools optional tools", () => {
     {
       name: "uses loaded plugin tools with an explicit env",
       params: {
-        env: { OPENCLAW_HOME: "/srv/openclaw-home" } as NodeJS.ProcessEnv,
+        env: { TINKERCLAW_HOME: "/srv/openclaw-home" } as NodeJS.ProcessEnv,
         toolAllowlist: ["optional_tool"],
       },
       expectedLoaderCall: {
-        env: { OPENCLAW_HOME: "/srv/openclaw-home" },
+        env: { TINKERCLAW_HOME: "/srv/openclaw-home" },
       },
     },
     {

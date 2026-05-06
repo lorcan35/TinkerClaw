@@ -701,7 +701,7 @@ describe("runGatewayUpdate", () => {
       return { stdout: "", stderr: "", code: 0 };
     };
 
-    const result = await withEnvAsync({ OPENCLAW_UPDATE_PREFLIGHT_LINT: "1" }, async () =>
+    const result = await withEnvAsync({ TINKERCLAW_UPDATE_PREFLIGHT_LINT: "1" }, async () =>
       runWithCommand(runCommand, { channel: "dev" }),
     );
 
@@ -709,9 +709,9 @@ describe("runGatewayUpdate", () => {
     expect(calls).toContain("pnpm lint");
     expect(lintEnv).toHaveLength(1);
     expect(lintEnv[0]).toMatchObject({
-      OPENCLAW_LOCAL_CHECK: "1",
-      OPENCLAW_LOCAL_CHECK_MODE: "throttled",
-      OPENCLAW_OXLINT_SHARDS_SERIAL: "1",
+      TINKERCLAW_LOCAL_CHECK: "1",
+      TINKERCLAW_LOCAL_CHECK_MODE: "throttled",
+      TINKERCLAW_OXLINT_SHARDS_SERIAL: "1",
     });
   });
 
@@ -1622,8 +1622,8 @@ describe("runGatewayUpdate", () => {
     expect(result.status).toBe("ok");
     expect(calls).toContain(doctorCommand);
     expect(result.steps.map((step) => step.name)).toContain("openclaw doctor");
-    expect(doctorEnv?.OPENCLAW_UPDATE_IN_PROGRESS).toBe("1");
-    expect(doctorEnv?.OPENCLAW_UPDATE_PARENT_SUPPORTS_DOCTOR_CONFIG_WRITE).toBe("1");
+    expect(doctorEnv?.TINKERCLAW_UPDATE_IN_PROGRESS).toBe("1");
+    expect(doctorEnv?.TINKERCLAW_UPDATE_PARENT_SUPPORTS_DOCTOR_CONFIG_WRITE).toBe("1");
   });
 
   it("fails global npm updates when post-update doctor fails", async () => {
@@ -1901,7 +1901,7 @@ describe("runGatewayUpdate", () => {
     await expect(fs.access(staleInstallChunk)).rejects.toMatchObject({ code: "ENOENT" });
   });
 
-  it("uses OPENCLAW_UPDATE_PACKAGE_SPEC for global package updates", async () => {
+  it("uses TINKERCLAW_UPDATE_PACKAGE_SPEC for global package updates", async () => {
     const { nodeModules, pkgRoot } = await createGlobalPackageFixture(tempDir);
     const expectedInstallCommand =
       "npm i -g http://10.211.55.2:8138/openclaw-next.tgz --no-fund --no-audit --loglevel=error";
@@ -1913,7 +1913,7 @@ describe("runGatewayUpdate", () => {
     });
 
     await withEnvAsync(
-      { OPENCLAW_UPDATE_PACKAGE_SPEC: "http://10.211.55.2:8138/openclaw-next.tgz" },
+      { TINKERCLAW_UPDATE_PACKAGE_SPEC: "http://10.211.55.2:8138/openclaw-next.tgz" },
       async () => {
         const result = await runWithCommand(runCommand, { cwd: pkgRoot });
         expect(result.status).toBe("ok");

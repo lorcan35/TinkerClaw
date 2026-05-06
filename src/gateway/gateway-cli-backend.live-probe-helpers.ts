@@ -28,8 +28,8 @@ const CLI_CRON_MCP_PROBE_VERIFY_POLL_MS = 2_000;
 
 function shouldLogCliCronProbe(): boolean {
   return (
-    isTruthyEnvValue(process.env.OPENCLAW_LIVE_CLI_BACKEND_DEBUG) ||
-    isTruthyEnvValue(process.env.OPENCLAW_CLI_BACKEND_LOG_OUTPUT)
+    isTruthyEnvValue(process.env.TINKERCLAW_LIVE_CLI_BACKEND_DEBUG) ||
+    isTruthyEnvValue(process.env.TINKERCLAW_CLI_BACKEND_LOG_OUTPUT)
   );
 }
 

@@ -125,13 +125,13 @@ type SlackQaSummary = {
 type SlackCredentialLease = Awaited<ReturnType<typeof acquireQaCredentialLease<SlackQaRuntimeEnv>>>;
 type SlackCredentialHeartbeat = ReturnType<typeof startQaCredentialLeaseHeartbeat>;
 
-const SLACK_QA_CAPTURE_CONTENT_ENV = "OPENCLAW_QA_SLACK_CAPTURE_CONTENT";
-const QA_REDACT_PUBLIC_METADATA_ENV = "OPENCLAW_QA_REDACT_PUBLIC_METADATA";
+const SLACK_QA_CAPTURE_CONTENT_ENV = "TINKERCLAW_QA_SLACK_CAPTURE_CONTENT";
+const QA_REDACT_PUBLIC_METADATA_ENV = "TINKERCLAW_QA_REDACT_PUBLIC_METADATA";
 const SLACK_QA_ENV_KEYS = [
-  "OPENCLAW_QA_SLACK_CHANNEL_ID",
-  "OPENCLAW_QA_SLACK_DRIVER_BOT_TOKEN",
-  "OPENCLAW_QA_SLACK_SUT_BOT_TOKEN",
-  "OPENCLAW_QA_SLACK_SUT_APP_TOKEN",
+  "TINKERCLAW_QA_SLACK_CHANNEL_ID",
+  "TINKERCLAW_QA_SLACK_DRIVER_BOT_TOKEN",
+  "TINKERCLAW_QA_SLACK_SUT_BOT_TOKEN",
+  "TINKERCLAW_QA_SLACK_SUT_APP_TOKEN",
 ] as const;
 
 const slackQaCredentialPayloadSchema = z.object({
@@ -220,7 +220,7 @@ function inferSlackCredentialSource(
   env: NodeJS.ProcessEnv = process.env,
 ): "convex" | "env" {
   const normalized =
-    value?.trim().toLowerCase() || env.OPENCLAW_QA_CREDENTIAL_SOURCE?.trim().toLowerCase();
+    value?.trim().toLowerCase() || env.TINKERCLAW_QA_CREDENTIAL_SOURCE?.trim().toLowerCase();
   return normalized === "convex" ? "convex" : "env";
 }
 
@@ -247,12 +247,12 @@ function validateSlackQaRuntimeEnv(runtimeEnv: SlackQaRuntimeEnv, label: string)
 
 function resolveSlackQaRuntimeEnv(env: NodeJS.ProcessEnv = process.env): SlackQaRuntimeEnv {
   const runtimeEnv = {
-    channelId: resolveEnvValue(env, "OPENCLAW_QA_SLACK_CHANNEL_ID"),
-    driverBotToken: resolveEnvValue(env, "OPENCLAW_QA_SLACK_DRIVER_BOT_TOKEN"),
-    sutBotToken: resolveEnvValue(env, "OPENCLAW_QA_SLACK_SUT_BOT_TOKEN"),
-    sutAppToken: resolveEnvValue(env, "OPENCLAW_QA_SLACK_SUT_APP_TOKEN"),
+    channelId: resolveEnvValue(env, "TINKERCLAW_QA_SLACK_CHANNEL_ID"),
+    driverBotToken: resolveEnvValue(env, "TINKERCLAW_QA_SLACK_DRIVER_BOT_TOKEN"),
+    sutBotToken: resolveEnvValue(env, "TINKERCLAW_QA_SLACK_SUT_BOT_TOKEN"),
+    sutAppToken: resolveEnvValue(env, "TINKERCLAW_QA_SLACK_SUT_APP_TOKEN"),
   };
-  return validateSlackQaRuntimeEnv(runtimeEnv, "OPENCLAW_QA_SLACK");
+  return validateSlackQaRuntimeEnv(runtimeEnv, "TINKERCLAW_QA_SLACK");
 }
 
 function parseSlackQaCredentialPayload(payload: unknown): SlackQaRuntimeEnv {

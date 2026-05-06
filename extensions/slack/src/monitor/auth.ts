@@ -43,7 +43,7 @@ const DEFAULT_CHANNEL_MEMBERS_CACHE_TTL_MS = 60_000;
 const CHANNEL_MEMBERS_CACHE_MAX = 512;
 
 function getPairingAllowFromCacheTtlMs(): number {
-  const raw = process.env.OPENCLAW_SLACK_PAIRING_ALLOWFROM_CACHE_TTL_MS?.trim();
+  const raw = process.env.TINKERCLAW_SLACK_PAIRING_ALLOWFROM_CACHE_TTL_MS?.trim();
   if (!raw) {
     return DEFAULT_PAIRING_ALLOW_FROM_CACHE_TTL_MS;
   }
@@ -55,7 +55,7 @@ function getPairingAllowFromCacheTtlMs(): number {
 }
 
 function getChannelMembersCacheTtlMs(): number {
-  const raw = process.env.OPENCLAW_SLACK_CHANNEL_MEMBERS_CACHE_TTL_MS?.trim();
+  const raw = process.env.TINKERCLAW_SLACK_CHANNEL_MEMBERS_CACHE_TTL_MS?.trim();
   if (!raw) {
     return DEFAULT_CHANNEL_MEMBERS_CACHE_TTL_MS;
   }

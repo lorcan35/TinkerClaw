@@ -128,7 +128,7 @@ function collectGatewayServiceStartRepairIssues(
     return [];
   }
   const issues: GatewayServiceStartRepairIssue[] = [];
-  const serviceVersion = command.environment?.OPENCLAW_SERVICE_VERSION?.trim();
+  const serviceVersion = command.environment?.TINKERCLAW_SERVICE_VERSION?.trim();
   if (serviceVersion && serviceVersion !== VERSION) {
     issues.push({
       code: "version-mismatch",

@@ -114,7 +114,7 @@ export function buildOpenClawCompileCacheRespawnPlan(params: {
   if (!isSourceCheckoutInstallRoot(params.installRoot)) {
     return undefined;
   }
-  if (env.OPENCLAW_SOURCE_COMPILE_CACHE_RESPAWNED === "1") {
+  if (env.TINKERCLAW_SOURCE_COMPILE_CACHE_RESPAWNED === "1") {
     return undefined;
   }
   if (!params.compileCacheDir && !isNodeCompileCacheRequested(env)) {
@@ -123,7 +123,7 @@ export function buildOpenClawCompileCacheRespawnPlan(params: {
   const nextEnv: NodeJS.ProcessEnv = {
     ...env,
     NODE_DISABLE_COMPILE_CACHE: "1",
-    OPENCLAW_SOURCE_COMPILE_CACHE_RESPAWNED: "1",
+    TINKERCLAW_SOURCE_COMPILE_CACHE_RESPAWNED: "1",
   };
   delete nextEnv.NODE_COMPILE_CACHE;
   return {

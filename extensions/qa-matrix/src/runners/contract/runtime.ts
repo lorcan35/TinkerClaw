@@ -149,7 +149,7 @@ type MatrixQaTimings = {
 };
 
 function shouldWriteMatrixQaProgress() {
-  const override = process.env.OPENCLAW_QA_MATRIX_PROGRESS;
+  const override = process.env.TINKERCLAW_QA_MATRIX_PROGRESS;
   if (override === "0") {
     return false;
   }
@@ -184,7 +184,7 @@ function parsePositiveMatrixQaEnvMs(name: string, fallback: number) {
 
 function createMatrixQaRunDeadline() {
   const timeoutMs = parsePositiveMatrixQaEnvMs(
-    "OPENCLAW_QA_MATRIX_TIMEOUT_MS",
+    "TINKERCLAW_QA_MATRIX_TIMEOUT_MS",
     DEFAULT_MATRIX_QA_RUN_TIMEOUT_MS,
   );
   return {
@@ -195,7 +195,7 @@ function createMatrixQaRunDeadline() {
 
 function resolveMatrixQaCanaryTimeoutMs() {
   return parsePositiveMatrixQaEnvMs(
-    "OPENCLAW_QA_MATRIX_CANARY_TIMEOUT_MS",
+    "TINKERCLAW_QA_MATRIX_CANARY_TIMEOUT_MS",
     DEFAULT_MATRIX_QA_CANARY_TIMEOUT_MS,
   );
 }
@@ -240,7 +240,7 @@ async function cleanupMatrixQaResource(params: {
   recovery?: string;
 }) {
   const timeoutMs = parsePositiveMatrixQaEnvMs(
-    "OPENCLAW_QA_MATRIX_CLEANUP_TIMEOUT_MS",
+    "TINKERCLAW_QA_MATRIX_CLEANUP_TIMEOUT_MS",
     DEFAULT_MATRIX_QA_CLEANUP_TIMEOUT_MS,
   );
   try {
@@ -559,7 +559,7 @@ export async function runMatrixQaLive(params: {
     scenarios,
   });
   const observedEvents: MatrixQaObservedEvent[] = [];
-  const includeObservedEventContent = process.env.OPENCLAW_QA_MATRIX_CAPTURE_CONTENT === "1";
+  const includeObservedEventContent = process.env.TINKERCLAW_QA_MATRIX_CAPTURE_CONTENT === "1";
   const startedAtDate = new Date();
   const startedAt = startedAtDate.toISOString();
   const runStartedAtMs = Date.now();
@@ -800,7 +800,7 @@ export async function runMatrixQaLive(params: {
                 observerPassword: provisioning.observer.password,
                 observerUserId: provisioning.observer.userId,
                 gatewayRuntimeEnv: scenarioGateway.harness.gateway.runtimeEnv,
-                gatewayStateDir: scenarioGateway.harness.gateway.runtimeEnv?.OPENCLAW_STATE_DIR,
+                gatewayStateDir: scenarioGateway.harness.gateway.runtimeEnv?.TINKERCLAW_STATE_DIR,
                 gatewayCall: async (method, params, opts) =>
                   await scenarioGateway.harness.gateway.call(method, params ?? {}, opts),
                 outputDir,

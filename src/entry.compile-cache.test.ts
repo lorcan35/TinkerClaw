@@ -92,7 +92,7 @@ describe("entry compile cache", () => {
       args: ["--no-warnings", path.join(root, "dist", "entry.js"), "status", "--json"],
       env: {
         NODE_DISABLE_COMPILE_CACHE: "1",
-        OPENCLAW_SOURCE_COMPILE_CACHE_RESPAWNED: "1",
+        TINKERCLAW_SOURCE_COMPILE_CACHE_RESPAWNED: "1",
       },
     });
   });
@@ -119,7 +119,7 @@ describe("entry compile cache", () => {
         currentFile: path.join(root, "dist", "entry.js"),
         env: {
           NODE_COMPILE_CACHE: "/tmp/openclaw-cache",
-          OPENCLAW_SOURCE_COMPILE_CACHE_RESPAWNED: "1",
+          TINKERCLAW_SOURCE_COMPILE_CACHE_RESPAWNED: "1",
         },
         installRoot: root,
       }),

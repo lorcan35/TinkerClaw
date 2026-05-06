@@ -29,7 +29,7 @@ export {
   type ResolvedGatewayAuthModeSource,
 } from "./auth-resolve.js";
 
-const LEGACY_OPENCLAW_ENV_NOTE =
+const LEGACY_TINKERCLAW_ENV_NOTE =
   " Legacy CLAWDBOT_* and MOLTBOT_* environment variables are ignored; use OPENCLAW_* names.";
 
 export type GatewayAuthResult = {
@@ -226,7 +226,7 @@ export function assertGatewayAuthConfigured(
       return;
     }
     throw new Error(
-      `gateway auth mode is token, but no token was configured (set gateway.auth.token or TINKERCLAW_GATEWAY_TOKEN).${LEGACY_OPENCLAW_ENV_NOTE}`,
+      `gateway auth mode is token, but no token was configured (set gateway.auth.token or TINKERCLAW_GATEWAY_TOKEN).${LEGACY_TINKERCLAW_ENV_NOTE}`,
     );
   }
   if (auth.mode === "password" && !auth.password) {
@@ -239,7 +239,7 @@ export function assertGatewayAuthConfigured(
       );
     }
     throw new Error(
-      `gateway auth mode is password, but no password was configured.${LEGACY_OPENCLAW_ENV_NOTE}`,
+      `gateway auth mode is password, but no password was configured.${LEGACY_TINKERCLAW_ENV_NOTE}`,
     );
   }
   if (auth.mode === "trusted-proxy") {

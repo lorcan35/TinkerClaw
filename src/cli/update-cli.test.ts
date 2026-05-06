@@ -571,7 +571,7 @@ describe("update-cli", () => {
       [path.join(root, "openclaw.mjs"), "completion", "--write-state"],
       expect.objectContaining({
         env: expect.objectContaining({
-          OPENCLAW_COMPLETION_SKIP_PLUGIN_COMMANDS: "1",
+          TINKERCLAW_COMPLETION_SKIP_PLUGIN_COMMANDS: "1",
         }),
         timeout: 30_000,
       }),
@@ -615,8 +615,8 @@ describe("update-cli", () => {
         stdio: "inherit",
         env: expect.objectContaining({
           NODE_DISABLE_COMPILE_CACHE: "1",
-          OPENCLAW_UPDATE_POST_CORE: "1",
-          OPENCLAW_UPDATE_POST_CORE_CHANNEL: "dev",
+          TINKERCLAW_UPDATE_POST_CORE: "1",
+          TINKERCLAW_UPDATE_POST_CORE_CHANNEL: "dev",
         }),
       }),
     );
@@ -630,7 +630,7 @@ describe("update-cli", () => {
     const kill = vi.fn();
     spawn.mockImplementationOnce((_command: unknown, _argv: unknown, options: unknown) => {
       const resultPath = (options as { env?: NodeJS.ProcessEnv }).env
-        ?.OPENCLAW_UPDATE_POST_CORE_RESULT_PATH;
+        ?.TINKERCLAW_UPDATE_POST_CORE_RESULT_PATH;
       if (!resultPath) {
         throw new Error("missing post-core result path");
       }
@@ -657,8 +657,8 @@ describe("update-cli", () => {
 
     await withEnvAsync(
       {
-        OPENCLAW_SERVICE_MARKER: "openclaw",
-        OPENCLAW_SERVICE_KIND: "gateway",
+        TINKERCLAW_SERVICE_MARKER: "openclaw",
+        TINKERCLAW_SERVICE_KIND: "gateway",
       },
       async () => {
         await updateCommand({ yes: true });
@@ -666,8 +666,8 @@ describe("update-cli", () => {
     );
 
     const spawnEnv = (spawn.mock.calls[0]?.[2] as { env?: NodeJS.ProcessEnv } | undefined)?.env;
-    expect(spawnEnv?.OPENCLAW_SERVICE_MARKER).toBeUndefined();
-    expect(spawnEnv?.OPENCLAW_SERVICE_KIND).toBeUndefined();
+    expect(spawnEnv?.TINKERCLAW_SERVICE_MARKER).toBeUndefined();
+    expect(spawnEnv?.TINKERCLAW_SERVICE_KIND).toBeUndefined();
   });
 
   it("respawns into the updated git root before requested channel persistence", async () => {
@@ -689,9 +689,9 @@ describe("update-cli", () => {
       expect.objectContaining({
         stdio: "inherit",
         env: expect.objectContaining({
-          OPENCLAW_UPDATE_POST_CORE: "1",
-          OPENCLAW_UPDATE_POST_CORE_CHANNEL: "dev",
-          OPENCLAW_UPDATE_POST_CORE_REQUESTED_CHANNEL: "dev",
+          TINKERCLAW_UPDATE_POST_CORE: "1",
+          TINKERCLAW_UPDATE_POST_CORE_CHANNEL: "dev",
+          TINKERCLAW_UPDATE_POST_CORE_REQUESTED_CHANNEL: "dev",
         }),
       }),
     );
@@ -766,8 +766,8 @@ describe("update-cli", () => {
   it("post-core resume mode skips the core update and only runs post-update tasks", async () => {
     await withEnvAsync(
       {
-        OPENCLAW_UPDATE_POST_CORE: "1",
-        OPENCLAW_UPDATE_POST_CORE_CHANNEL: "stable",
+        TINKERCLAW_UPDATE_POST_CORE: "1",
+        TINKERCLAW_UPDATE_POST_CORE_CHANNEL: "stable",
       },
       async () => {
         await updateCommand({ restart: false });
@@ -792,9 +792,9 @@ describe("update-cli", () => {
 
     await withEnvAsync(
       {
-        OPENCLAW_UPDATE_POST_CORE: "1",
-        OPENCLAW_UPDATE_POST_CORE_CHANNEL: "stable",
-        OPENCLAW_UPDATE_POST_CORE_RESULT_PATH: resultPath,
+        TINKERCLAW_UPDATE_POST_CORE: "1",
+        TINKERCLAW_UPDATE_POST_CORE_CHANNEL: "stable",
+        TINKERCLAW_UPDATE_POST_CORE_RESULT_PATH: resultPath,
       },
       async () => {
         await updateCommand({ restart: false });
@@ -823,9 +823,9 @@ describe("update-cli", () => {
 
     await withEnvAsync(
       {
-        OPENCLAW_UPDATE_POST_CORE: "1",
-        OPENCLAW_UPDATE_POST_CORE_CHANNEL: "dev",
-        OPENCLAW_UPDATE_POST_CORE_REQUESTED_CHANNEL: "dev",
+        TINKERCLAW_UPDATE_POST_CORE: "1",
+        TINKERCLAW_UPDATE_POST_CORE_CHANNEL: "dev",
+        TINKERCLAW_UPDATE_POST_CORE_REQUESTED_CHANNEL: "dev",
       },
       async () => {
         await updateCommand({ restart: false });
@@ -896,9 +896,9 @@ describe("update-cli", () => {
 
     await withEnvAsync(
       {
-        OPENCLAW_UPDATE_POST_CORE: "1",
-        OPENCLAW_UPDATE_POST_CORE_CHANNEL: "dev",
-        OPENCLAW_UPDATE_POST_CORE_REQUESTED_CHANNEL: "dev",
+        TINKERCLAW_UPDATE_POST_CORE: "1",
+        TINKERCLAW_UPDATE_POST_CORE_CHANNEL: "dev",
+        TINKERCLAW_UPDATE_POST_CORE_REQUESTED_CHANNEL: "dev",
       },
       async () => {
         await updateCommand({ restart: false });
@@ -926,8 +926,8 @@ describe("update-cli", () => {
   it("passes the update timeout budget into post-core plugin updates", async () => {
     await withEnvAsync(
       {
-        OPENCLAW_UPDATE_POST_CORE: "1",
-        OPENCLAW_UPDATE_POST_CORE_CHANNEL: "stable",
+        TINKERCLAW_UPDATE_POST_CORE: "1",
+        TINKERCLAW_UPDATE_POST_CORE_CHANNEL: "stable",
       },
       async () => {
         await updateCommand({ restart: false, timeout: "1800" });
@@ -942,8 +942,8 @@ describe("update-cli", () => {
   it("uses a fail-closed integrity policy for post-core plugin updates", async () => {
     await withEnvAsync(
       {
-        OPENCLAW_UPDATE_POST_CORE: "1",
-        OPENCLAW_UPDATE_POST_CORE_CHANNEL: "stable",
+        TINKERCLAW_UPDATE_POST_CORE: "1",
+        TINKERCLAW_UPDATE_POST_CORE_CHANNEL: "stable",
       },
       async () => {
         await updateCommand({ restart: false });
@@ -1180,7 +1180,7 @@ describe("update-cli", () => {
       };
       const env = (options as { env?: NodeJS.ProcessEnv }).env;
       queueMicrotask(async () => {
-        const resultPath = env?.OPENCLAW_UPDATE_POST_CORE_RESULT_PATH;
+        const resultPath = env?.TINKERCLAW_UPDATE_POST_CORE_RESULT_PATH;
         if (resultPath) {
           await fs.writeFile(
             resultPath,
@@ -1470,8 +1470,8 @@ describe("update-cli", () => {
 
     await withEnvAsync(
       {
-        OPENCLAW_SERVICE_MARKER: "openclaw",
-        OPENCLAW_SERVICE_KIND: "gateway",
+        TINKERCLAW_SERVICE_MARKER: "openclaw",
+        TINKERCLAW_SERVICE_KIND: "gateway",
       },
       async () => {
         await updateCommand({ yes: true });
@@ -1491,16 +1491,16 @@ describe("update-cli", () => {
     serviceReadCommand.mockResolvedValue({
       programArguments: ["openclaw", "gateway", "run"],
       environment: {
-        OPENCLAW_SERVICE_MARKER: "openclaw",
-        OPENCLAW_SERVICE_KIND: "gateway",
+        TINKERCLAW_SERVICE_MARKER: "openclaw",
+        TINKERCLAW_SERVICE_KIND: "gateway",
       },
     });
     serviceLoaded.mockResolvedValue(true);
 
     await withEnvAsync(
       {
-        OPENCLAW_SERVICE_MARKER: "openclaw",
-        OPENCLAW_SERVICE_KIND: "gateway",
+        TINKERCLAW_SERVICE_MARKER: "openclaw",
+        TINKERCLAW_SERVICE_KIND: "gateway",
       },
       async () => {
         await updateCommand({ yes: true, restart: false });
@@ -1538,16 +1538,16 @@ describe("update-cli", () => {
       serviceReadCommand.mockResolvedValue({
         programArguments: ["openclaw", "gateway", "run"],
         environment: {
-          OPENCLAW_SERVICE_MARKER: "openclaw",
-          OPENCLAW_SERVICE_KIND: "gateway",
+          TINKERCLAW_SERVICE_MARKER: "openclaw",
+          TINKERCLAW_SERVICE_KIND: "gateway",
         },
       });
       setupRuntime();
 
       await withEnvAsync(
         {
-          OPENCLAW_SERVICE_MARKER: "openclaw",
-          OPENCLAW_SERVICE_KIND: "gateway",
+          TINKERCLAW_SERVICE_MARKER: "openclaw",
+          TINKERCLAW_SERVICE_KIND: "gateway",
         },
         async () => {
           await updateCommand({ yes: true });
@@ -1580,8 +1580,8 @@ describe("update-cli", () => {
 
     await withEnvAsync(
       {
-        OPENCLAW_SERVICE_MARKER: "openclaw",
-        OPENCLAW_SERVICE_KIND: "gateway",
+        TINKERCLAW_SERVICE_MARKER: "openclaw",
+        TINKERCLAW_SERVICE_KIND: "gateway",
       },
       async () => {
         await updateCommand({ yes: true });
@@ -1672,11 +1672,11 @@ describe("update-cli", () => {
       expectedSpec: "github:openclaw/openclaw#main",
     },
     {
-      name: "OPENCLAW_UPDATE_PACKAGE_SPEC override",
+      name: "TINKERCLAW_UPDATE_PACKAGE_SPEC override",
       run: async () => {
         mockPackageInstallStatus(createCaseDir("openclaw-update"));
         await withEnvAsync(
-          { OPENCLAW_UPDATE_PACKAGE_SPEC: "http://10.211.55.2:8138/openclaw-next.tgz" },
+          { TINKERCLAW_UPDATE_PACKAGE_SPEC: "http://10.211.55.2:8138/openclaw-next.tgz" },
           async () => {
             await updateCommand({ yes: true, tag: "latest" });
           },
@@ -1876,7 +1876,7 @@ describe("update-cli", () => {
       [expect.stringMatching(/node/), entryPath, "doctor", "--non-interactive", "--fix"],
       expect.objectContaining({
         env: expect.objectContaining({
-          OPENCLAW_UPDATE_IN_PROGRESS: "1",
+          TINKERCLAW_UPDATE_IN_PROGRESS: "1",
         }),
       }),
     );
@@ -1899,8 +1899,8 @@ describe("update-cli", () => {
     serviceReadCommand.mockResolvedValue({
       programArguments: ["openclaw", "gateway", "run"],
       environment: {
-        OPENCLAW_SERVICE_MARKER: "openclaw",
-        OPENCLAW_SERVICE_KIND: "gateway",
+        TINKERCLAW_SERVICE_MARKER: "openclaw",
+        TINKERCLAW_SERVICE_KIND: "gateway",
       },
     });
     serviceLoaded.mockResolvedValue(true);
@@ -1940,8 +1940,8 @@ describe("update-cli", () => {
 
     await withEnvAsync(
       {
-        OPENCLAW_SERVICE_MARKER: "openclaw",
-        OPENCLAW_SERVICE_KIND: "gateway",
+        TINKERCLAW_SERVICE_MARKER: "openclaw",
+        TINKERCLAW_SERVICE_KIND: "gateway",
       },
       async () => {
         await updateCommand({ yes: true });
@@ -1958,8 +1958,8 @@ describe("update-cli", () => {
     expect(serviceStop).toHaveBeenCalledWith(
       expect.objectContaining({
         env: expect.objectContaining({
-          OPENCLAW_SERVICE_MARKER: "openclaw",
-          OPENCLAW_SERVICE_KIND: "gateway",
+          TINKERCLAW_SERVICE_MARKER: "openclaw",
+          TINKERCLAW_SERVICE_KIND: "gateway",
         }),
       }),
     );
@@ -2038,8 +2038,8 @@ describe("update-cli", () => {
       expect.objectContaining({
         stdio: "inherit",
         env: expect.objectContaining({
-          OPENCLAW_UPDATE_POST_CORE: "1",
-          OPENCLAW_UPDATE_POST_CORE_CHANNEL: "stable",
+          TINKERCLAW_UPDATE_POST_CORE: "1",
+          TINKERCLAW_UPDATE_POST_CORE_CHANNEL: "stable",
         }),
       }),
     );
@@ -2956,8 +2956,8 @@ describe("update-cli", () => {
       invoke: async () => {
         await withEnvAsync(
           {
-            OPENCLAW_STATE_DIR: "./state",
-            OPENCLAW_CONFIG_PATH: "./config/openclaw.json",
+            TINKERCLAW_STATE_DIR: "./state",
+            TINKERCLAW_CONFIG_PATH: "./config/openclaw.json",
           },
           async () => {
             await updateCommand({});
@@ -2968,8 +2968,8 @@ describe("update-cli", () => {
         expect.objectContaining({
           cwd: root,
           env: expect.objectContaining({
-            OPENCLAW_STATE_DIR: path.resolve("./state"),
-            OPENCLAW_CONFIG_PATH: path.resolve("./config/openclaw.json"),
+            TINKERCLAW_STATE_DIR: path.resolve("./state"),
+            TINKERCLAW_CONFIG_PATH: path.resolve("./config/openclaw.json"),
           }),
           timeoutMs: 60_000,
         }),
@@ -3000,7 +3000,7 @@ describe("update-cli", () => {
         try {
           await withEnvAsync(
             {
-              OPENCLAW_STATE_DIR: "./state",
+              TINKERCLAW_STATE_DIR: "./state",
             },
             async () => {
               await updateCommand({});
@@ -3016,7 +3016,7 @@ describe("update-cli", () => {
         expect.objectContaining({
           cwd: expect.any(String),
           env: expect.objectContaining({
-            OPENCLAW_STATE_DIR: path.resolve(context?.originalCwd ?? process.cwd(), "./state"),
+            TINKERCLAW_STATE_DIR: path.resolve(context?.originalCwd ?? process.cwd(), "./state"),
           }),
           timeoutMs: 60_000,
         }),
@@ -3043,7 +3043,7 @@ describe("update-cli", () => {
   it("updateCommand continues after doctor sub-step and clears update flag", async () => {
     const randomSpy = vi.spyOn(Math, "random").mockReturnValue(0);
     try {
-      await withEnvAsync({ OPENCLAW_UPDATE_IN_PROGRESS: undefined }, async () => {
+      await withEnvAsync({ TINKERCLAW_UPDATE_IN_PROGRESS: undefined }, async () => {
         vi.mocked(runGatewayUpdate).mockResolvedValue(makeOkUpdateResult());
         vi.mocked(runDaemonRestart).mockResolvedValue(true);
         vi.mocked(doctorCommand).mockResolvedValue(undefined);
@@ -3055,7 +3055,7 @@ describe("update-cli", () => {
           defaultRuntime,
           expect.objectContaining({ nonInteractive: true }),
         );
-        expect(process.env.OPENCLAW_UPDATE_IN_PROGRESS).toBeUndefined();
+        expect(process.env.TINKERCLAW_UPDATE_IN_PROGRESS).toBeUndefined();
 
         const logLines = vi.mocked(defaultRuntime.log).mock.calls.map((call) => String(call[0]));
         expect(
@@ -3144,7 +3144,7 @@ describe("update-cli", () => {
 
   it("updateWizardCommand offers dev checkout and forwards selections", async () => {
     const tempDir = createCaseDir("openclaw-update-wizard");
-    await withEnvAsync({ OPENCLAW_GIT_DIR: tempDir }, async () => {
+    await withEnvAsync({ TINKERCLAW_GIT_DIR: tempDir }, async () => {
       setTty(true);
 
       vi.mocked(checkUpdateStatus).mockResolvedValue({
@@ -3176,7 +3176,7 @@ describe("update-cli", () => {
 
   it("uses ~/openclaw as the default dev checkout directory", async () => {
     const homedirSpy = vi.spyOn(os, "homedir").mockReturnValue("/tmp/oc-home");
-    await withEnvAsync({ OPENCLAW_GIT_DIR: undefined }, async () => {
+    await withEnvAsync({ TINKERCLAW_GIT_DIR: undefined }, async () => {
       expect(resolveGitInstallDir()).toBe(path.posix.join("/tmp/oc-home", "openclaw"));
     });
     homedirSpy.mockRestore();

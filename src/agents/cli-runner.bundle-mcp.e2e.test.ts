@@ -77,16 +77,16 @@ describe("runCliAgent bundle MCP e2e", () => {
       const envSnapshot = captureEnv([
         "HOME",
         "USERPROFILE",
-        "OPENCLAW_HOME",
-        "OPENCLAW_STATE_DIR",
-        "OPENCLAW_DISABLE_PERSISTED_PLUGIN_REGISTRY",
+        "TINKERCLAW_HOME",
+        "TINKERCLAW_STATE_DIR",
+        "TINKERCLAW_DISABLE_PERSISTED_PLUGIN_REGISTRY",
       ]);
       const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-cli-bundle-mcp-"));
       process.env.HOME = tempHome;
       process.env.USERPROFILE = tempHome;
-      delete process.env.OPENCLAW_HOME;
-      delete process.env.OPENCLAW_STATE_DIR;
-      process.env.OPENCLAW_DISABLE_PERSISTED_PLUGIN_REGISTRY = "1";
+      delete process.env.TINKERCLAW_HOME;
+      delete process.env.TINKERCLAW_STATE_DIR;
+      process.env.TINKERCLAW_DISABLE_PERSISTED_PLUGIN_REGISTRY = "1";
       resetGlobalHookRunner();
 
       const workspaceDir = path.join(tempHome, "workspace");
@@ -150,16 +150,16 @@ describe("runCliAgent bundle MCP e2e", () => {
       const envSnapshot = captureEnv([
         "HOME",
         "USERPROFILE",
-        "OPENCLAW_HOME",
-        "OPENCLAW_STATE_DIR",
-        "OPENCLAW_DISABLE_PERSISTED_PLUGIN_REGISTRY",
+        "TINKERCLAW_HOME",
+        "TINKERCLAW_STATE_DIR",
+        "TINKERCLAW_DISABLE_PERSISTED_PLUGIN_REGISTRY",
       ]);
       const tempHome = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-cli-live-cleanup-"));
       process.env.HOME = tempHome;
       process.env.USERPROFILE = tempHome;
-      delete process.env.OPENCLAW_HOME;
-      delete process.env.OPENCLAW_STATE_DIR;
-      process.env.OPENCLAW_DISABLE_PERSISTED_PLUGIN_REGISTRY = "1";
+      delete process.env.TINKERCLAW_HOME;
+      delete process.env.TINKERCLAW_STATE_DIR;
+      process.env.TINKERCLAW_DISABLE_PERSISTED_PLUGIN_REGISTRY = "1";
       resetGlobalHookRunner();
       await closeMcpLoopbackServer();
 

@@ -20,7 +20,7 @@ function createJsonResponse(body: unknown, init?: { status?: number }) {
 describe("loginOpenAICodexDeviceCode", () => {
   it("requests a device code, polls for authorization, and exchanges OAuth tokens", async () => {
     vi.useFakeTimers();
-    vi.stubEnv("OPENCLAW_VERSION", "2026.3.22");
+    vi.stubEnv("TINKERCLAW_VERSION", "2026.3.22");
     try {
       const fetchMock = vi
         .fn()

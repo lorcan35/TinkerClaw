@@ -2,22 +2,22 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vite
 import { captureEnv, withEnvAsync } from "../test-utils/env.js";
 
 const PLUGIN_MANIFEST_ENV_KEYS = [
-  "OPENCLAW_BUNDLED_PLUGINS_DIR",
-  "OPENCLAW_DISABLE_BUNDLED_PLUGINS",
-  "OPENCLAW_SKIP_PROVIDERS",
-  "OPENCLAW_SKIP_CHANNELS",
-  "OPENCLAW_SKIP_CRON",
-  "OPENCLAW_TEST_MINIMAL_GATEWAY",
+  "TINKERCLAW_BUNDLED_PLUGINS_DIR",
+  "TINKERCLAW_DISABLE_BUNDLED_PLUGINS",
+  "TINKERCLAW_SKIP_PROVIDERS",
+  "TINKERCLAW_SKIP_CHANNELS",
+  "TINKERCLAW_SKIP_CRON",
+  "TINKERCLAW_TEST_MINIMAL_GATEWAY",
 ] as const;
 
 function cleanPluginManifestEnv(): Record<(typeof PLUGIN_MANIFEST_ENV_KEYS)[number], undefined> {
   return {
-    OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
-    OPENCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
-    OPENCLAW_SKIP_PROVIDERS: undefined,
-    OPENCLAW_SKIP_CHANNELS: undefined,
-    OPENCLAW_SKIP_CRON: undefined,
-    OPENCLAW_TEST_MINIMAL_GATEWAY: undefined,
+    TINKERCLAW_BUNDLED_PLUGINS_DIR: undefined,
+    TINKERCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
+    TINKERCLAW_SKIP_PROVIDERS: undefined,
+    TINKERCLAW_SKIP_CHANNELS: undefined,
+    TINKERCLAW_SKIP_CRON: undefined,
+    TINKERCLAW_TEST_MINIMAL_GATEWAY: undefined,
   };
 }
 

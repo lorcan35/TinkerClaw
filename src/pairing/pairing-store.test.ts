@@ -81,7 +81,7 @@ function setDefaultRandomIntMock() {
 async function withTempStateDir<T>(fn: (stateDir: string) => Promise<T>) {
   const dir = path.join(fixtureRoot, `case-${caseId++}`);
   fsSync.mkdirSync(dir, { recursive: true });
-  return await withEnvAsync({ OPENCLAW_STATE_DIR: dir }, async () => await fn(dir));
+  return await withEnvAsync({ TINKERCLAW_STATE_DIR: dir }, async () => await fn(dir));
 }
 
 function writeJsonFixture(filePath: string, value: unknown) {

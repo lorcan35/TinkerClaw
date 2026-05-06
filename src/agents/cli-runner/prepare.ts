@@ -201,14 +201,14 @@ export async function prepareCliRunContext(
       : undefined,
     env: mcpLoopbackRuntime
       ? {
-          OPENCLAW_MCP_TOKEN:
+          TINKERCLAW_MCP_TOKEN:
             params.senderIsOwner === true
               ? mcpLoopbackRuntime.ownerToken
               : mcpLoopbackRuntime.nonOwnerToken,
-          OPENCLAW_MCP_AGENT_ID: sessionAgentId ?? "",
-          OPENCLAW_MCP_ACCOUNT_ID: params.agentAccountId ?? "",
-          OPENCLAW_MCP_SESSION_KEY: params.sessionKey ?? "",
-          OPENCLAW_MCP_MESSAGE_CHANNEL: params.messageChannel ?? params.messageProvider ?? "",
+          TINKERCLAW_MCP_AGENT_ID: sessionAgentId ?? "",
+          TINKERCLAW_MCP_ACCOUNT_ID: params.agentAccountId ?? "",
+          TINKERCLAW_MCP_SESSION_KEY: params.sessionKey ?? "",
+          TINKERCLAW_MCP_MESSAGE_CHANNEL: params.messageChannel ?? params.messageProvider ?? "",
         }
       : undefined,
     warn: (message) => cliBackendLog.warn(message),

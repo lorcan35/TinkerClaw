@@ -116,7 +116,7 @@ describe("qa suite runtime agent tools helpers", () => {
             tempRoot: gatewayTempRoot,
             runtimeEnv: {
               PATH: "/usr/bin",
-              OPENCLAW_KEY: "1",
+              TINKERCLAW_KEY: "1",
               EMPTY: undefined,
             },
           },
@@ -140,7 +140,7 @@ describe("qa suite runtime agent tools helpers", () => {
       cwd: gatewayTempRoot,
       env: {
         PATH: "/usr/bin",
-        OPENCLAW_KEY: "1",
+        TINKERCLAW_KEY: "1",
       },
     });
     expect(callToolMock).toHaveBeenCalledWith({

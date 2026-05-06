@@ -133,10 +133,10 @@ describe("stuck session recovery", () => {
   });
 
   it("logs stopped cron context when aborting an active embedded run", async () => {
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-recovery-context-"));
     try {
-      process.env.OPENCLAW_STATE_DIR = tempDir;
+      process.env.TINKERCLAW_STATE_DIR = tempDir;
       fs.mkdirSync(path.join(tempDir, "cron"), { recursive: true });
       fs.writeFileSync(
         path.join(tempDir, "cron", "jobs.json"),
@@ -165,9 +165,9 @@ describe("stuck session recovery", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       fs.rmSync(tempDir, { recursive: true, force: true });
     }

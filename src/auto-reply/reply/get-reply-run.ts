@@ -435,7 +435,7 @@ export async function runPreparedReply(
   });
   const useFastReplyRuntime = shouldUseReplyFastTestRuntime({
     cfg,
-    isFastTestEnv: process.env.OPENCLAW_TEST_FAST === "1",
+    isFastTestEnv: process.env.TINKERCLAW_TEST_FAST === "1",
   });
   const fullAccessState = resolveEmbeddedFullAccessState({
     execElevated: {
@@ -727,7 +727,7 @@ export async function runPreparedReply(
     });
   };
   const skillResult =
-    process.env.OPENCLAW_TEST_FAST === "1"
+    process.env.TINKERCLAW_TEST_FAST === "1"
       ? {
           sessionEntry,
           skillsSnapshot: sessionEntry?.skillsSnapshot,

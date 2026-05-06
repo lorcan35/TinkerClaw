@@ -68,7 +68,7 @@ function resolveRawConfiguredRuntime(params: {
   agentId: string;
   env?: NodeJS.ProcessEnv;
 }): string | undefined {
-  const envRuntime = params.env?.OPENCLAW_AGENT_RUNTIME?.trim();
+  const envRuntime = params.env?.TINKERCLAW_AGENT_RUNTIME?.trim();
   if (envRuntime) {
     return normalizeProviderId(envRuntime);
   }

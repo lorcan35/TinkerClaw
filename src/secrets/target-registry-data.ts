@@ -478,7 +478,7 @@ export function getSourceSecretTargetRegistry(): SecretTargetRegistryEntry[] {
   return loadSecretTargetRegistryFromPluginMetadata({
     env: {
       ...process.env,
-      OPENCLAW_BUNDLED_PLUGINS_DIR: process.env.OPENCLAW_BUNDLED_PLUGINS_DIR ?? "extensions",
+      TINKERCLAW_BUNDLED_PLUGINS_DIR: process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR ?? "extensions",
     },
     preferPersisted: false,
   });

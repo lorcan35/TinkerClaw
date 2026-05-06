@@ -85,7 +85,7 @@ export function resolveGroupActivation(params: {
  *
  * Priority:
  *   1. `cfg.session.store` (supports `{agentId}` placeholder and `~` expansion)
- *   2. `$OPENCLAW_STATE_DIR` / `$CLAWDBOT_STATE_DIR`
+ *   2. `$TINKERCLAW_STATE_DIR` / `$CLAWDBOT_STATE_DIR`
  *   3. `~/.openclaw/agents/{agentId}/sessions/sessions.json`
  */
 function resolveSessionStorePath(
@@ -113,7 +113,7 @@ function resolveSessionStorePath(
   }
 
   const stateDir =
-    process.env.OPENCLAW_STATE_DIR?.trim() ||
+    process.env.TINKERCLAW_STATE_DIR?.trim() ||
     process.env.CLAWDBOT_STATE_DIR?.trim() ||
     path.join(process.env.HOME || process.env.USERPROFILE || "", ".openclaw");
   return path.join(stateDir, "agents", resolvedAgentId, "sessions", "sessions.json");

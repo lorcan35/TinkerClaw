@@ -126,7 +126,7 @@ describe("prepareCliBundleMcpConfig", () => {
             type: "http",
             url: "http://127.0.0.1:23119/mcp",
             headers: {
-              Authorization: "Bearer ${OPENCLAW_MCP_TOKEN}",
+              Authorization: "Bearer ${TINKERCLAW_MCP_TOKEN}",
             },
           },
         },
@@ -140,7 +140,7 @@ describe("prepareCliBundleMcpConfig", () => {
     };
     expect(Object.keys(raw.mcpServers ?? {}).toSorted()).toEqual(["bundleProbe", "openclaw"]);
     expect(raw.mcpServers?.openclaw?.url).toBe("http://127.0.0.1:23119/mcp");
-    expect(raw.mcpServers?.openclaw?.headers?.Authorization).toBe("Bearer ${OPENCLAW_MCP_TOKEN}");
+    expect(raw.mcpServers?.openclaw?.headers?.Authorization).toBe("Bearer ${TINKERCLAW_MCP_TOKEN}");
 
     await prepared.cleanup?.();
   });
@@ -160,14 +160,14 @@ describe("prepareCliBundleMcpConfig", () => {
       workspaceDir,
       config: { plugins: { enabled: false } },
       env: {
-        OPENCLAW_MCP_TOKEN: "loopback-token-123",
-        OPENCLAW_MCP_SESSION_KEY: "agent:main:telegram:group:chat123",
+        TINKERCLAW_MCP_TOKEN: "loopback-token-123",
+        TINKERCLAW_MCP_SESSION_KEY: "agent:main:telegram:group:chat123",
       },
     });
 
     expect(prepared.env).toEqual({
-      OPENCLAW_MCP_TOKEN: "loopback-token-123",
-      OPENCLAW_MCP_SESSION_KEY: "agent:main:telegram:group:chat123",
+      TINKERCLAW_MCP_TOKEN: "loopback-token-123",
+      TINKERCLAW_MCP_SESSION_KEY: "agent:main:telegram:group:chat123",
     });
 
     await prepared.cleanup?.();

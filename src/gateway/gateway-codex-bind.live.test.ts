@@ -25,7 +25,7 @@ import { renderCatFacePngBase64 } from "./live-image-probe.js";
 import { startGatewayServer } from "./server.js";
 
 const LIVE = isLiveTestEnabled();
-const CODEX_BIND_LIVE = isTruthyEnvValue(process.env.OPENCLAW_LIVE_CODEX_BIND);
+const CODEX_BIND_LIVE = isTruthyEnvValue(process.env.TINKERCLAW_LIVE_CODEX_BIND);
 const describeLive = LIVE && CODEX_BIND_LIVE ? describe : describe.skip;
 const CODEX_BIND_TIMEOUT_MS = 10 * 60_000;
 const CODEX_BIND_REQUEST_TIMEOUT_MS = 180_000;
@@ -304,14 +304,14 @@ describeLive("gateway live (native Codex conversation binding)", () => {
     async () => {
       const previous = {
         codexHome: process.env.CODEX_HOME,
-        configPath: process.env.OPENCLAW_CONFIG_PATH,
-        gatewayToken: process.env.OPENCLAW_GATEWAY_TOKEN,
+        configPath: process.env.TINKERCLAW_CONFIG_PATH,
+        gatewayToken: process.env.TINKERCLAW_GATEWAY_TOKEN,
         home: process.env.HOME,
-        skipCanvas: process.env.OPENCLAW_SKIP_CANVAS_HOST,
-        skipChannels: process.env.OPENCLAW_SKIP_CHANNELS,
-        skipCron: process.env.OPENCLAW_SKIP_CRON,
-        skipGmail: process.env.OPENCLAW_SKIP_GMAIL_WATCHER,
-        stateDir: process.env.OPENCLAW_STATE_DIR,
+        skipCanvas: process.env.TINKERCLAW_SKIP_CANVAS_HOST,
+        skipChannels: process.env.TINKERCLAW_SKIP_CHANNELS,
+        skipCron: process.env.TINKERCLAW_SKIP_CRON,
+        skipGmail: process.env.TINKERCLAW_SKIP_GMAIL_WATCHER,
+        stateDir: process.env.TINKERCLAW_STATE_DIR,
       };
       const tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-live-codex-bind-"));
       const tempHome = path.join(tempRoot, "home");
@@ -325,7 +325,7 @@ describeLive("gateway live (native Codex conversation binding)", () => {
       const slackUserId = `U${randomUUID().replace(/-/g, "").slice(0, 10).toUpperCase()}`;
       const conversationId = `user:${slackUserId}`;
       const bindModel =
-        process.env.OPENCLAW_LIVE_CODEX_BIND_MODEL?.trim() || DEFAULT_CODEX_BIND_MODEL;
+        process.env.TINKERCLAW_LIVE_CODEX_BIND_MODEL?.trim() || DEFAULT_CODEX_BIND_MODEL;
 
       await fs.mkdir(workspace, { recursive: true });
       await fs.writeFile(
@@ -353,13 +353,13 @@ describeLive("gateway live (native Codex conversation binding)", () => {
         delete process.env.CODEX_HOME;
       }
       process.env.HOME = tempHome;
-      process.env.OPENCLAW_CONFIG_PATH = configPath;
-      process.env.OPENCLAW_GATEWAY_TOKEN = token;
-      process.env.OPENCLAW_SKIP_CANVAS_HOST = "1";
-      process.env.OPENCLAW_SKIP_CHANNELS = "1";
-      process.env.OPENCLAW_SKIP_CRON = "1";
-      process.env.OPENCLAW_SKIP_GMAIL_WATCHER = "1";
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_CONFIG_PATH = configPath;
+      process.env.TINKERCLAW_GATEWAY_TOKEN = token;
+      process.env.TINKERCLAW_SKIP_CANVAS_HOST = "1";
+      process.env.TINKERCLAW_SKIP_CHANNELS = "1";
+      process.env.TINKERCLAW_SKIP_CRON = "1";
+      process.env.TINKERCLAW_SKIP_GMAIL_WATCHER = "1";
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
 
       const server = await startGatewayServer(port, {
         bind: "loopback",
@@ -501,14 +501,14 @@ describeLive("gateway live (native Codex conversation binding)", () => {
         await server.close();
         await fs.rm(tempRoot, { recursive: true, force: true });
         restoreEnvVar("CODEX_HOME", previous.codexHome);
-        restoreEnvVar("OPENCLAW_CONFIG_PATH", previous.configPath);
-        restoreEnvVar("OPENCLAW_GATEWAY_TOKEN", previous.gatewayToken);
+        restoreEnvVar("TINKERCLAW_CONFIG_PATH", previous.configPath);
+        restoreEnvVar("TINKERCLAW_GATEWAY_TOKEN", previous.gatewayToken);
         restoreEnvVar("HOME", previous.home);
-        restoreEnvVar("OPENCLAW_SKIP_CANVAS_HOST", previous.skipCanvas);
-        restoreEnvVar("OPENCLAW_SKIP_CHANNELS", previous.skipChannels);
-        restoreEnvVar("OPENCLAW_SKIP_CRON", previous.skipCron);
-        restoreEnvVar("OPENCLAW_SKIP_GMAIL_WATCHER", previous.skipGmail);
-        restoreEnvVar("OPENCLAW_STATE_DIR", previous.stateDir);
+        restoreEnvVar("TINKERCLAW_SKIP_CANVAS_HOST", previous.skipCanvas);
+        restoreEnvVar("TINKERCLAW_SKIP_CHANNELS", previous.skipChannels);
+        restoreEnvVar("TINKERCLAW_SKIP_CRON", previous.skipCron);
+        restoreEnvVar("TINKERCLAW_SKIP_GMAIL_WATCHER", previous.skipGmail);
+        restoreEnvVar("TINKERCLAW_STATE_DIR", previous.stateDir);
       }
     },
     CODEX_BIND_TIMEOUT_MS,

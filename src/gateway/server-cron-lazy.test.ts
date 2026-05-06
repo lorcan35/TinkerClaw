@@ -100,7 +100,7 @@ describe("createLazyGatewayCronState", () => {
   });
 
   it("preserves the startup cron enabled flag without loading cron runtime", () => {
-    vi.stubEnv("OPENCLAW_SKIP_CRON", "1");
+    vi.stubEnv("TINKERCLAW_SKIP_CRON", "1");
 
     const lazy = createLazyGatewayCronState(createParams());
 

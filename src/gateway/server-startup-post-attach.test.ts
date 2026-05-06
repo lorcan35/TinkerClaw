@@ -195,8 +195,8 @@ type PostAttachRuntimeDeps = NonNullable<Parameters<typeof startGatewayPostAttac
 
 describe("startGatewayPostAttachRuntime", () => {
   beforeEach(() => {
-    vi.stubEnv("OPENCLAW_SKIP_CHANNELS", "0");
-    vi.stubEnv("OPENCLAW_SKIP_PROVIDERS", "0");
+    vi.stubEnv("TINKERCLAW_SKIP_CHANNELS", "0");
+    vi.stubEnv("TINKERCLAW_SKIP_PROVIDERS", "0");
     hoisted.startPluginServices.mockClear();
     hoisted.startGmailWatcherWithLogs.mockClear();
     hoisted.loadInternalHooks.mockClear();
@@ -288,7 +288,7 @@ describe("startGatewayPostAttachRuntime", () => {
 
   it("skips heavy restart sentinel refresh when no sentinel file exists", async () => {
     const stateDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-no-sentinel-"));
-    vi.stubEnv("OPENCLAW_STATE_DIR", stateDir);
+    vi.stubEnv("TINKERCLAW_STATE_DIR", stateDir);
 
     const result = await __testing.refreshLatestUpdateRestartSentinelIfPresent();
 
@@ -300,7 +300,7 @@ describe("startGatewayPostAttachRuntime", () => {
   it("refreshes the restart sentinel when the sentinel file exists", async () => {
     const stateDir = fs.mkdtempSync(path.join(os.tmpdir(), "openclaw-sentinel-"));
     fs.writeFileSync(path.join(stateDir, "restart-sentinel.json"), "{}\n");
-    vi.stubEnv("OPENCLAW_STATE_DIR", stateDir);
+    vi.stubEnv("TINKERCLAW_STATE_DIR", stateDir);
     const sentinel = { kind: "update", status: "ok", ts: 1 } as const;
     hoisted.refreshLatestUpdateRestartSentinel.mockResolvedValue(sentinel);
 
@@ -322,7 +322,7 @@ describe("startGatewayPostAttachRuntime", () => {
       expect(
         __testing.hasRestartSentinelFileFast({
           HOME: osHome,
-          OPENCLAW_HOME: "~/openclaw-home",
+          TINKERCLAW_HOME: "~/openclaw-home",
         } as NodeJS.ProcessEnv),
       ).toBe(true);
 
@@ -333,7 +333,7 @@ describe("startGatewayPostAttachRuntime", () => {
       expect(
         __testing.hasRestartSentinelFileFast({
           HOME: osHome,
-          OPENCLAW_STATE_DIR: "~\\openclaw-state",
+          TINKERCLAW_STATE_DIR: "~\\openclaw-state",
         } as NodeJS.ProcessEnv),
       ).toBe(true);
     } finally {
@@ -578,7 +578,7 @@ describe("startGatewayPostAttachRuntime", () => {
 
   it("starts channels without waiting for primary model prewarm completion", async () => {
     await withEnvAsync(
-      { OPENCLAW_SKIP_CHANNELS: undefined, OPENCLAW_SKIP_PROVIDERS: undefined },
+      { TINKERCLAW_SKIP_CHANNELS: undefined, TINKERCLAW_SKIP_PROVIDERS: undefined },
       async () => {
         let resolvePrewarm!: () => void;
         const prewarmPrimaryModel = vi.fn(

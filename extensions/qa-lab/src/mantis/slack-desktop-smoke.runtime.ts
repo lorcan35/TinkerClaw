@@ -94,15 +94,15 @@ const DEFAULT_CREDENTIAL_ROLE = "maintainer";
 const DEFAULT_PROVIDER_MODE = "live-frontier";
 const DEFAULT_MODEL = "openai/gpt-5.4";
 const DEFAULT_SLACK_CHANNEL_ID = "C0AUXUC5AGN";
-const CRABBOX_BIN_ENV = "OPENCLAW_MANTIS_CRABBOX_BIN";
-const CRABBOX_PROVIDER_ENV = "OPENCLAW_MANTIS_CRABBOX_PROVIDER";
-const CRABBOX_CLASS_ENV = "OPENCLAW_MANTIS_CRABBOX_CLASS";
-const CRABBOX_LEASE_ID_ENV = "OPENCLAW_MANTIS_CRABBOX_LEASE_ID";
-const CRABBOX_KEEP_ENV = "OPENCLAW_MANTIS_KEEP_VM";
-const CRABBOX_IDLE_TIMEOUT_ENV = "OPENCLAW_MANTIS_CRABBOX_IDLE_TIMEOUT";
-const CRABBOX_TTL_ENV = "OPENCLAW_MANTIS_CRABBOX_TTL";
-const SLACK_URL_ENV = "OPENCLAW_MANTIS_SLACK_URL";
-const SLACK_CHANNEL_ID_ENV = "OPENCLAW_MANTIS_SLACK_CHANNEL_ID";
+const CRABBOX_BIN_ENV = "TINKERCLAW_MANTIS_CRABBOX_BIN";
+const CRABBOX_PROVIDER_ENV = "TINKERCLAW_MANTIS_CRABBOX_PROVIDER";
+const CRABBOX_CLASS_ENV = "TINKERCLAW_MANTIS_CRABBOX_CLASS";
+const CRABBOX_LEASE_ID_ENV = "TINKERCLAW_MANTIS_CRABBOX_LEASE_ID";
+const CRABBOX_KEEP_ENV = "TINKERCLAW_MANTIS_KEEP_VM";
+const CRABBOX_IDLE_TIMEOUT_ENV = "TINKERCLAW_MANTIS_CRABBOX_IDLE_TIMEOUT";
+const CRABBOX_TTL_ENV = "TINKERCLAW_MANTIS_CRABBOX_TTL";
+const SLACK_URL_ENV = "TINKERCLAW_MANTIS_SLACK_URL";
+const SLACK_CHANNEL_ID_ENV = "TINKERCLAW_MANTIS_SLACK_CHANNEL_ID";
 
 function trimToValue(value: string | undefined) {
   const trimmed = value?.trim();
@@ -186,14 +186,14 @@ function buildCrabboxEnv(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
   const next = {
     ...env,
   };
-  if (!trimToValue(next.OPENCLAW_LIVE_OPENAI_KEY) && trimToValue(next.OPENAI_API_KEY)) {
-    next.OPENCLAW_LIVE_OPENAI_KEY = next.OPENAI_API_KEY;
+  if (!trimToValue(next.TINKERCLAW_LIVE_OPENAI_KEY) && trimToValue(next.OPENAI_API_KEY)) {
+    next.TINKERCLAW_LIVE_OPENAI_KEY = next.OPENAI_API_KEY;
   }
-  if (!trimToValue(next.OPENCLAW_MANTIS_SLACK_BOT_TOKEN) && trimToValue(next.SLACK_BOT_TOKEN)) {
-    next.OPENCLAW_MANTIS_SLACK_BOT_TOKEN = next.SLACK_BOT_TOKEN;
+  if (!trimToValue(next.TINKERCLAW_MANTIS_SLACK_BOT_TOKEN) && trimToValue(next.SLACK_BOT_TOKEN)) {
+    next.TINKERCLAW_MANTIS_SLACK_BOT_TOKEN = next.SLACK_BOT_TOKEN;
   }
-  if (!trimToValue(next.OPENCLAW_MANTIS_SLACK_APP_TOKEN) && trimToValue(next.SLACK_APP_TOKEN)) {
-    next.OPENCLAW_MANTIS_SLACK_APP_TOKEN = next.SLACK_APP_TOKEN;
+  if (!trimToValue(next.TINKERCLAW_MANTIS_SLACK_APP_TOKEN) && trimToValue(next.SLACK_APP_TOKEN)) {
+    next.TINKERCLAW_MANTIS_SLACK_APP_TOKEN = next.SLACK_APP_TOKEN;
   }
   return next;
 }
@@ -244,8 +244,8 @@ slack_channel_id=${slackChannelId}
 rm -rf "$out"
 mkdir -p "$out"
 export DISPLAY="\${DISPLAY:-:99}"
-if [ -n "\${OPENCLAW_LIVE_OPENAI_KEY:-}" ] && [ -z "\${OPENAI_API_KEY:-}" ]; then
-  export OPENAI_API_KEY="$OPENCLAW_LIVE_OPENAI_KEY"
+if [ -n "\${TINKERCLAW_LIVE_OPENAI_KEY:-}" ] && [ -z "\${OPENAI_API_KEY:-}" ]; then
+  export OPENAI_API_KEY="$TINKERCLAW_LIVE_OPENAI_KEY"
 fi
 if ! command -v node >/dev/null 2>&1; then
   sudo apt-get update -y >"$out/node-apt.log" 2>&1
@@ -267,11 +267,11 @@ if [ -z "$browser_bin" ]; then
   echo "No browser binary found. Checked BROWSER, CHROME_BIN, google-chrome, chromium, chromium-browser." >&2
   exit 127
 fi
-team_id="\${OPENCLAW_QA_SLACK_TEAM_ID:-}"
-auth_test_token="\${OPENCLAW_QA_SLACK_SUT_BOT_TOKEN:-\${OPENCLAW_MANTIS_SLACK_BOT_TOKEN:-}}"
+team_id="\${TINKERCLAW_QA_SLACK_TEAM_ID:-}"
+auth_test_token="\${TINKERCLAW_QA_SLACK_SUT_BOT_TOKEN:-\${TINKERCLAW_MANTIS_SLACK_BOT_TOKEN:-}}"
 if [ -z "$slack_url_override" ] && [ -z "$team_id" ] && [ -n "$auth_test_token" ]; then
   node --input-type=module >"$out/slack-auth-test.json" 2>"$out/slack-auth-test.err" <<'MANTIS_SLACK_AUTH'
-const token = process.env.OPENCLAW_QA_SLACK_SUT_BOT_TOKEN || process.env.OPENCLAW_MANTIS_SLACK_BOT_TOKEN;
+const token = process.env.TINKERCLAW_QA_SLACK_SUT_BOT_TOKEN || process.env.TINKERCLAW_MANTIS_SLACK_BOT_TOKEN;
 const response = await fetch("https://slack.com/api/auth.test", {
   method: "POST",
   headers: { authorization: \`Bearer \${token}\` },
@@ -283,16 +283,16 @@ MANTIS_SLACK_AUTH
   team_id="$(node --input-type=module -e 'import fs from "node:fs"; const value = JSON.parse(fs.readFileSync(process.argv[1], "utf8")); process.stdout.write(value.team_id || "");' "$out/slack-auth-test.json" || true)"
 fi
 slack_url="$slack_url_override"
-if [ -z "$slack_url" ] && [ -n "$team_id" ] && [ -n "\${OPENCLAW_QA_SLACK_CHANNEL_ID:-}" ]; then
-  slack_url="https://app.slack.com/client/$team_id/$OPENCLAW_QA_SLACK_CHANNEL_ID"
+if [ -z "$slack_url" ] && [ -n "$team_id" ] && [ -n "\${TINKERCLAW_QA_SLACK_CHANNEL_ID:-}" ]; then
+  slack_url="https://app.slack.com/client/$team_id/$TINKERCLAW_QA_SLACK_CHANNEL_ID"
 fi
-profile="\${OPENCLAW_MANTIS_SLACK_BROWSER_PROFILE_DIR:-$HOME/.config/openclaw-mantis/slack-chrome-profile}"
+profile="\${TINKERCLAW_MANTIS_SLACK_BROWSER_PROFILE_DIR:-$HOME/.config/openclaw-mantis/slack-chrome-profile}"
 mkdir -p "$profile"
 if [ "$setup_gateway" = "1" ]; then
-  export SLACK_BOT_TOKEN="\${OPENCLAW_MANTIS_SLACK_BOT_TOKEN:-\${SLACK_BOT_TOKEN:-}}"
-  export SLACK_APP_TOKEN="\${OPENCLAW_MANTIS_SLACK_APP_TOKEN:-\${SLACK_APP_TOKEN:-}}"
+  export SLACK_BOT_TOKEN="\${TINKERCLAW_MANTIS_SLACK_BOT_TOKEN:-\${SLACK_BOT_TOKEN:-}}"
+  export SLACK_APP_TOKEN="\${TINKERCLAW_MANTIS_SLACK_APP_TOKEN:-\${SLACK_APP_TOKEN:-}}"
   if [ -z "$SLACK_BOT_TOKEN" ] || [ -z "$SLACK_APP_TOKEN" ]; then
-    echo "Gateway setup requires OPENCLAW_MANTIS_SLACK_BOT_TOKEN and OPENCLAW_MANTIS_SLACK_APP_TOKEN." >&2
+    echo "Gateway setup requires TINKERCLAW_MANTIS_SLACK_BOT_TOKEN and TINKERCLAW_MANTIS_SLACK_APP_TOKEN." >&2
     exit 2
   fi
   if [ -z "$slack_url" ] && [ -n "$team_id" ]; then
@@ -332,8 +332,8 @@ qa_status=0
   pnpm install --frozen-lockfile
   pnpm build
   if [ "$setup_gateway" = "1" ]; then
-    export OPENCLAW_HOME="$HOME/.openclaw-mantis/slack-openclaw"
-    mkdir -p "$OPENCLAW_HOME"
+    export TINKERCLAW_HOME="$HOME/.openclaw-mantis/slack-openclaw"
+    mkdir -p "$TINKERCLAW_HOME"
     cat >"$out/slack.socket.patch.json5" <<MANTIS_SLACK_PATCH
 {
   gateway: {
@@ -622,7 +622,7 @@ export async function runMantisSlackDesktopSmoke(
   const slackChannelId =
     trimToValue(opts.slackChannelId) ??
     trimToValue(env[SLACK_CHANNEL_ID_ENV]) ??
-    trimToValue(env.OPENCLAW_QA_SLACK_CHANNEL_ID) ??
+    trimToValue(env.TINKERCLAW_QA_SLACK_CHANNEL_ID) ??
     DEFAULT_SLACK_CHANNEL_ID;
   const slackUrl = trimToValue(opts.slackUrl) ?? trimToValue(env[SLACK_URL_ENV]);
   const runner = opts.commandRunner ?? defaultCommandRunner;

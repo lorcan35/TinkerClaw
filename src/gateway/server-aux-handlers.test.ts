@@ -62,20 +62,20 @@ async function invokeSecretsReload(params: {
 }
 
 // Other gateway test helpers (e.g. test-helpers.mocks.ts, test-helpers.server.ts)
-// set OPENCLAW_SKIP_CHANNELS / OPENCLAW_SKIP_PROVIDERS at module load. When a
+// set TINKERCLAW_SKIP_CHANNELS / TINKERCLAW_SKIP_PROVIDERS at module load. When a
 // shared vitest worker imports those helpers before this file's tests run,
 // the leaked env vars route the secrets.reload skip-mode branch and prevent
 // the channel restart loop from firing. Reset them before every test so this
 // suite is independent of worker import order.
 beforeEach(() => {
-  delete process.env.OPENCLAW_SKIP_CHANNELS;
-  delete process.env.OPENCLAW_SKIP_PROVIDERS;
+  delete process.env.TINKERCLAW_SKIP_CHANNELS;
+  delete process.env.TINKERCLAW_SKIP_PROVIDERS;
 });
 
 afterEach(() => {
   clearSecretsRuntimeSnapshot();
-  delete process.env.OPENCLAW_SKIP_CHANNELS;
-  delete process.env.OPENCLAW_SKIP_PROVIDERS;
+  delete process.env.TINKERCLAW_SKIP_CHANNELS;
+  delete process.env.TINKERCLAW_SKIP_PROVIDERS;
 });
 
 describe("gateway aux handlers", () => {
@@ -415,7 +415,7 @@ describe("gateway aux handlers", () => {
       createReloadPlan({
         restartChannels: new Set(["slack"]),
       });
-    process.env.OPENCLAW_SKIP_CHANNELS = "1";
+    process.env.TINKERCLAW_SKIP_CHANNELS = "1";
     activateSecretsRuntimeSnapshot(
       createSnapshot(
         asConfig({

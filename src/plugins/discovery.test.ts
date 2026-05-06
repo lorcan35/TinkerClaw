@@ -16,7 +16,7 @@ vi.mock("./bundled-dir.js", async (importOriginal) => {
   return {
     ...actual,
     resolveBundledPluginsDir: (env: NodeJS.ProcessEnv = process.env) =>
-      env.OPENCLAW_BUNDLED_PLUGINS_DIR ?? actual.resolveBundledPluginsDir(env),
+      env.TINKERCLAW_BUNDLED_PLUGINS_DIR ?? actual.resolveBundledPluginsDir(env),
   };
 });
 
@@ -80,10 +80,10 @@ function buildDiscoveryEnv(stateDir: string): NodeJS.ProcessEnv {
   const bundledPluginsDir = path.join(stateDir, "empty-bundled-plugins");
   mkdirSafe(bundledPluginsDir);
   return {
-    OPENCLAW_STATE_DIR: stateDir,
-    OPENCLAW_HOME: undefined,
-    OPENCLAW_DISABLE_BUNDLED_PLUGINS: "1",
-    OPENCLAW_BUNDLED_PLUGINS_DIR: bundledPluginsDir,
+    TINKERCLAW_STATE_DIR: stateDir,
+    TINKERCLAW_HOME: undefined,
+    TINKERCLAW_DISABLE_BUNDLED_PLUGINS: "1",
+    TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledPluginsDir,
   };
 }
 
@@ -92,11 +92,11 @@ function buildDiscoveryEnvWithOverrides(
   overrides: Partial<NodeJS.ProcessEnv> = {},
 ): NodeJS.ProcessEnv {
   const enablesBundledOverride =
-    Object.prototype.hasOwnProperty.call(overrides, "OPENCLAW_BUNDLED_PLUGINS_DIR") &&
-    overrides.OPENCLAW_BUNDLED_PLUGINS_DIR !== undefined;
+    Object.prototype.hasOwnProperty.call(overrides, "TINKERCLAW_BUNDLED_PLUGINS_DIR") &&
+    overrides.TINKERCLAW_BUNDLED_PLUGINS_DIR !== undefined;
   return {
     ...buildDiscoveryEnv(stateDir),
-    ...(enablesBundledOverride ? { OPENCLAW_DISABLE_BUNDLED_PLUGINS: undefined } : {}),
+    ...(enablesBundledOverride ? { TINKERCLAW_DISABLE_BUNDLED_PLUGINS: undefined } : {}),
     ...overrides,
   };
 }
@@ -104,8 +104,8 @@ function buildDiscoveryEnvWithOverrides(
 function buildBundledDiscoveryEnv(stateDir: string): NodeJS.ProcessEnv {
   return {
     ...buildDiscoveryEnv(stateDir),
-    OPENCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
-    OPENCLAW_BUNDLED_PLUGINS_DIR: undefined,
+    TINKERCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
+    TINKERCLAW_BUNDLED_PLUGINS_DIR: undefined,
   };
 }
 
@@ -554,8 +554,8 @@ describe("discoverOpenClawPlugins", () => {
       discoverOpenClawPlugins({
         env: {
           ...buildDiscoveryEnv(stateDir),
-          OPENCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
-          OPENCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
+          TINKERCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
+          TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
         },
       }),
     );
@@ -578,8 +578,8 @@ describe("discoverOpenClawPlugins", () => {
         extraPaths: [bundledPluginDir],
         env: {
           ...buildDiscoveryEnv(stateDir),
-          OPENCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
-          OPENCLAW_BUNDLED_PLUGINS_DIR: bundledRoot,
+          TINKERCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
+          TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledRoot,
         },
       }),
     );
@@ -615,8 +615,8 @@ describe("discoverOpenClawPlugins", () => {
         extraPaths: [legacyPluginDir],
         env: {
           ...buildDiscoveryEnv(stateDir),
-          OPENCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
-          OPENCLAW_BUNDLED_PLUGINS_DIR: bundledRoot,
+          TINKERCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
+          TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledRoot,
         },
       }),
     );
@@ -658,8 +658,8 @@ describe("discoverOpenClawPlugins", () => {
       discoverOpenClawPlugins({
         env: {
           ...buildDiscoveryEnv(stateDir),
-          OPENCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
-          OPENCLAW_BUNDLED_PLUGINS_DIR: bundledRoot,
+          TINKERCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
+          TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledRoot,
         },
       }),
     );
@@ -712,8 +712,8 @@ describe("discoverOpenClawPlugins", () => {
       discoverOpenClawPlugins({
         env: {
           ...buildDiscoveryEnv(stateDir),
-          OPENCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
-          OPENCLAW_BUNDLED_PLUGINS_DIR: bundledRoot,
+          TINKERCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
+          TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledRoot,
         },
       }),
     );
@@ -800,7 +800,7 @@ describe("discoverOpenClawPlugins", () => {
 
     const result = discoverOpenClawPlugins({
       env: buildDiscoveryEnvWithOverrides(stateDir, {
-        OPENCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
+        TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
       }),
     });
 
@@ -1099,7 +1099,7 @@ describe("discoverOpenClawPlugins", () => {
 
     const { candidates } = discoverOpenClawPlugins({
       env: buildDiscoveryEnvWithOverrides(stateDir, {
-        OPENCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
+        TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
       }),
     });
 
@@ -1150,7 +1150,7 @@ describe("discoverOpenClawPlugins", () => {
 
     const { candidates } = discoverOpenClawPlugins({
       env: buildDiscoveryEnvWithOverrides(stateDir, {
-        OPENCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
+        TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
       }),
     });
 
@@ -1738,7 +1738,7 @@ describe("discoverOpenClawPlugins", () => {
       const result = discoverOpenClawPlugins({
         env: {
           ...buildDiscoveryEnv(stateDir),
-          OPENCLAW_PLUGINS_PATHS: blockedDir,
+          TINKERCLAW_PLUGINS_PATHS: blockedDir,
         },
       });
       const blockedDiagnostics = result.diagnostics.filter(
@@ -1831,8 +1831,8 @@ describe("discoverOpenClawPlugins", () => {
 
     const env = {
       ...buildDiscoveryEnv(stateDir),
-      OPENCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
-      OPENCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
+      TINKERCLAW_DISABLE_BUNDLED_PLUGINS: undefined,
+      TINKERCLAW_BUNDLED_PLUGINS_DIR: bundledDir,
     };
     const first = withOpenClawPackageArgv(packageRoot, () =>
       discoverWithEnv({ workspaceDir: workspaceA, env }),

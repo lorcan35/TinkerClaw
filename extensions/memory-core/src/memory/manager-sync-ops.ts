@@ -1009,8 +1009,8 @@ export abstract class MemoryManagerSyncOps {
       reason: params?.reason,
       progress: progress ?? undefined,
       useUnsafeReindex:
-        process.env.OPENCLAW_TEST_FAST === "1" &&
-        process.env.OPENCLAW_TEST_MEMORY_UNSAFE_REINDEX === "1",
+        process.env.TINKERCLAW_TEST_FAST === "1" &&
+        process.env.TINKERCLAW_TEST_MEMORY_UNSAFE_REINDEX === "1",
       sessionsDirtyFiles: this.sessionsDirtyFiles,
       syncSessionFiles: async (targetedParams) => {
         await this.syncSessionFiles(targetedParams);
@@ -1045,8 +1045,8 @@ export abstract class MemoryManagerSyncOps {
     try {
       if (needsFullReindex) {
         if (
-          process.env.OPENCLAW_TEST_FAST === "1" &&
-          process.env.OPENCLAW_TEST_MEMORY_UNSAFE_REINDEX === "1"
+          process.env.TINKERCLAW_TEST_FAST === "1" &&
+          process.env.TINKERCLAW_TEST_MEMORY_UNSAFE_REINDEX === "1"
         ) {
           await this.runUnsafeReindex({
             reason: params?.reason,

@@ -753,8 +753,8 @@ describe("listSessionsFromStore subagent metadata", () => {
 
       const row = withEnv(
         {
-          OPENCLAW_STATE_DIR: stateDir,
-          OPENCLAW_TEST_READ_SUBAGENT_RUNS_FROM_DISK: "1",
+          TINKERCLAW_STATE_DIR: stateDir,
+          TINKERCLAW_TEST_READ_SUBAGENT_RUNS_FROM_DISK: "1",
         },
         () => {
           const result = listSessionsFromStore({
@@ -851,8 +851,8 @@ describe("listSessionsFromStore subagent metadata", () => {
     try {
       const result = withEnv(
         {
-          OPENCLAW_STATE_DIR: stateDir,
-          OPENCLAW_TEST_READ_SUBAGENT_RUNS_FROM_DISK: "1",
+          TINKERCLAW_STATE_DIR: stateDir,
+          TINKERCLAW_TEST_READ_SUBAGENT_RUNS_FROM_DISK: "1",
         },
         () =>
           listSessionsFromStore({
@@ -887,8 +887,8 @@ describe("listSessionsFromStore subagent metadata", () => {
     try {
       const result = withEnv(
         {
-          OPENCLAW_STATE_DIR: stateDir,
-          OPENCLAW_TEST_READ_SUBAGENT_RUNS_FROM_DISK: "1",
+          TINKERCLAW_STATE_DIR: stateDir,
+          TINKERCLAW_TEST_READ_SUBAGENT_RUNS_FROM_DISK: "1",
         },
         () =>
           listSessionsFromStore({

@@ -140,11 +140,11 @@ describe("watch-node script", () => {
           stdio: "inherit",
           env: expect.objectContaining({
             PATH: "/usr/bin",
-            OPENCLAW_WATCH_MODE: "1",
-            OPENCLAW_WATCH_SESSION: "1700000000000-4242",
-            OPENCLAW_NO_RESPAWN: "1",
-            OPENCLAW_TRACE_SYNC_IO: "1",
-            OPENCLAW_WATCH_COMMAND: "gateway --force",
+            TINKERCLAW_WATCH_MODE: "1",
+            TINKERCLAW_WATCH_SESSION: "1700000000000-4242",
+            TINKERCLAW_NO_RESPAWN: "1",
+            TINKERCLAW_TRACE_SYNC_IO: "1",
+            TINKERCLAW_WATCH_COMMAND: "gateway --force",
           }),
         }),
       );
@@ -163,7 +163,7 @@ describe("watch-node script", () => {
         args: ["gateway", "--force"],
         cwd,
         createWatcher,
-        env: { OPENCLAW_TRACE_SYNC_IO: "0" },
+        env: { TINKERCLAW_TRACE_SYNC_IO: "0" },
         lockDisabled: true,
         process: fakeProcess,
         spawn,
@@ -174,7 +174,7 @@ describe("watch-node script", () => {
         ["scripts/run-node.mjs", "gateway", "--force"],
         expect.objectContaining({
           env: expect.objectContaining({
-            OPENCLAW_TRACE_SYNC_IO: "0",
+            TINKERCLAW_TRACE_SYNC_IO: "0",
           }),
         }),
       );
@@ -336,7 +336,7 @@ describe("watch-node script", () => {
     const runPromise = runWatch({
       args: ["gateway", "--force"],
       createWatcher,
-      env: { OPENCLAW_GATEWAY_WATCH_AUTO_DOCTOR: "0" },
+      env: { TINKERCLAW_GATEWAY_WATCH_AUTO_DOCTOR: "0" },
       lockDisabled: true,
       process: fakeProcess,
       spawn,
@@ -392,7 +392,7 @@ describe("watch-node script", () => {
       expect.objectContaining({
         env: expect.objectContaining({
           LAUNCH_JOB_LABEL: "ai.openclaw.gateway",
-          OPENCLAW_NO_RESPAWN: "1",
+          TINKERCLAW_NO_RESPAWN: "1",
         }),
       }),
     );

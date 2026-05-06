@@ -114,11 +114,11 @@ export function createColdPluginHermeticEnv(
 ): NodeJS.ProcessEnv {
   return {
     ...process.env,
-    OPENCLAW_HOME: path.join(homeDir, "home"),
-    OPENCLAW_BUNDLED_PLUGINS_DIR: options.bundledPluginsDir,
-    OPENCLAW_DISABLE_PERSISTED_PLUGIN_REGISTRY:
+    TINKERCLAW_HOME: path.join(homeDir, "home"),
+    TINKERCLAW_BUNDLED_PLUGINS_DIR: options.bundledPluginsDir,
+    TINKERCLAW_DISABLE_PERSISTED_PLUGIN_REGISTRY:
       options.disablePersistedRegistry === false ? undefined : "1",
-    OPENCLAW_VERSION: "2026.4.25",
+    TINKERCLAW_VERSION: "2026.4.25",
     VITEST: "true",
   };
 }

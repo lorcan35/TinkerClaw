@@ -95,8 +95,8 @@ describe("resolveUpdatedGatewayRestartPort", () => {
     expect(
       resolveUpdatedGatewayRestartPort({
         config: { gateway: { port: 19000 } } as never,
-        processEnv: { OPENCLAW_GATEWAY_PORT: "19001" },
-        serviceEnv: { OPENCLAW_GATEWAY_PORT: "19002" },
+        processEnv: { TINKERCLAW_GATEWAY_PORT: "19001" },
+        serviceEnv: { TINKERCLAW_GATEWAY_PORT: "19002" },
       }),
     ).toBe(19002);
   });
@@ -118,39 +118,39 @@ describe("resolvePostInstallDoctorEnv", () => {
       invocationCwd: "/srv/openclaw",
       baseEnv: {
         PATH: "/bin",
-        OPENCLAW_STATE_DIR: "/wrong/state",
-        OPENCLAW_CONFIG_PATH: "/wrong/openclaw.json",
-        OPENCLAW_PROFILE: "wrong",
+        TINKERCLAW_STATE_DIR: "/wrong/state",
+        TINKERCLAW_CONFIG_PATH: "/wrong/openclaw.json",
+        TINKERCLAW_PROFILE: "wrong",
       },
       serviceEnv: {
-        OPENCLAW_STATE_DIR: "daemon-state",
-        OPENCLAW_CONFIG_PATH: "daemon-state/openclaw.json",
-        OPENCLAW_PROFILE: "work",
+        TINKERCLAW_STATE_DIR: "daemon-state",
+        TINKERCLAW_CONFIG_PATH: "daemon-state/openclaw.json",
+        TINKERCLAW_PROFILE: "work",
       },
     });
 
     expect(env.PATH).toBe("/bin");
     expect(env.NODE_DISABLE_COMPILE_CACHE).toBe("1");
-    expect(env.OPENCLAW_STATE_DIR).toBe(path.join("/srv/openclaw", "daemon-state"));
-    expect(env.OPENCLAW_CONFIG_PATH).toBe(
+    expect(env.TINKERCLAW_STATE_DIR).toBe(path.join("/srv/openclaw", "daemon-state"));
+    expect(env.TINKERCLAW_CONFIG_PATH).toBe(
       path.join("/srv/openclaw", "daemon-state", "openclaw.json"),
     );
-    expect(env.OPENCLAW_PROFILE).toBe("work");
+    expect(env.TINKERCLAW_PROFILE).toBe("work");
   });
 
   it("keeps the caller env when no managed service env is available", () => {
     const env = resolvePostInstallDoctorEnv({
       baseEnv: {
         PATH: "/bin",
-        OPENCLAW_STATE_DIR: "/caller/state",
-        OPENCLAW_PROFILE: "caller",
+        TINKERCLAW_STATE_DIR: "/caller/state",
+        TINKERCLAW_PROFILE: "caller",
       },
     });
 
     expect(env.PATH).toBe("/bin");
     expect(env.NODE_DISABLE_COMPILE_CACHE).toBe("1");
-    expect(env.OPENCLAW_STATE_DIR).toBe("/caller/state");
-    expect(env.OPENCLAW_PROFILE).toBe("caller");
+    expect(env.TINKERCLAW_STATE_DIR).toBe("/caller/state");
+    expect(env.TINKERCLAW_PROFILE).toBe("caller");
   });
 });
 
@@ -348,8 +348,8 @@ describe("shouldUseLegacyProcessRestartAfterUpdate", () => {
 describe("recoverInstalledLaunchAgentAfterUpdate", () => {
   it("re-bootstraps an installed-but-not-loaded macOS LaunchAgent after update", async () => {
     const service = {} as never;
-    const serviceEnv = { OPENCLAW_PROFILE: "stomme" } as NodeJS.ProcessEnv;
-    const recoveredEnv = { ...serviceEnv, OPENCLAW_PORT: "18790" } as NodeJS.ProcessEnv;
+    const serviceEnv = { TINKERCLAW_PROFILE: "stomme" } as NodeJS.ProcessEnv;
+    const recoveredEnv = { ...serviceEnv, TINKERCLAW_PORT: "18790" } as NodeJS.ProcessEnv;
     const readState = vi.fn(async () => ({
       installed: true,
       loaded: false,
@@ -408,7 +408,7 @@ describe("recoverInstalledLaunchAgentAfterUpdate", () => {
       installed: true,
       loaded: true,
       running: true,
-      env: { OPENCLAW_PROFILE: "stomme" } as NodeJS.ProcessEnv,
+      env: { TINKERCLAW_PROFILE: "stomme" } as NodeJS.ProcessEnv,
       command: null,
       runtime: { status: "running" },
     }));
@@ -433,7 +433,7 @@ describe("recoverInstalledLaunchAgentAfterUpdate", () => {
       installed: true,
       loaded: false,
       running: false,
-      env: { OPENCLAW_PROFILE: "stomme" } as NodeJS.ProcessEnv,
+      env: { TINKERCLAW_PROFILE: "stomme" } as NodeJS.ProcessEnv,
       command: null,
       runtime: { status: "unknown", missingSupervision: true },
     }));
@@ -488,7 +488,7 @@ describe("recoverLaunchAgentAndRecheckGatewayHealth", () => {
         service,
         port: 18790,
         expectedVersion: "2026.5.3",
-        env: { OPENCLAW_PROFILE: "stomme", OPENCLAW_PORT: "18790" },
+        env: { TINKERCLAW_PROFILE: "stomme", TINKERCLAW_PORT: "18790" },
         deps: { recoverLaunchAgent, waitForHealthy },
       }),
     ).resolves.toEqual({
@@ -505,7 +505,7 @@ describe("recoverLaunchAgentAndRecheckGatewayHealth", () => {
       service,
       port: 18790,
       expectedVersion: "2026.5.3",
-      env: { OPENCLAW_PROFILE: "stomme", OPENCLAW_PORT: "18790" },
+      env: { TINKERCLAW_PROFILE: "stomme", TINKERCLAW_PORT: "18790" },
     });
   });
 

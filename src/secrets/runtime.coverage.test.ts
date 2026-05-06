@@ -53,11 +53,11 @@ function loadCoverageRegistryEntries(): SecretRegistryEntry[] {
 }
 
 const COVERAGE_REGISTRY_ENTRIES = loadCoverageRegistryEntries();
-const DEBUG_COVERAGE_BATCHES = process.env.OPENCLAW_DEBUG_RUNTIME_COVERAGE === "1";
+const DEBUG_COVERAGE_BATCHES = process.env.TINKERCLAW_DEBUG_RUNTIME_COVERAGE === "1";
 const RUNTIME_COVERAGE_TEST_TIMEOUT_MS = 240_000;
 const COVERAGE_LOADABLE_PLUGIN_ORIGINS =
   buildCoverageLoadablePluginOrigins(COVERAGE_REGISTRY_ENTRIES);
-const PLUGIN_OWNED_OPENCLAW_COVERAGE_EXCLUSIONS = new Set([
+const PLUGIN_OWNED_TINKERCLAW_COVERAGE_EXCLUSIONS = new Set([
   "channels.googlechat.accounts.*.serviceAccount",
   // Doctor migrates legacy web search config into plugin-owned webSearch config.
   "tools.web.search.apiKey",
@@ -247,7 +247,7 @@ function collectOpenClawCoverageEntries(options: {
     (entry) =>
       entry.configFile === "openclaw.json" &&
       entry.id.startsWith("plugins.entries.") === options.includePluginEntries &&
-      !PLUGIN_OWNED_OPENCLAW_COVERAGE_EXCLUSIONS.has(entry.id),
+      !PLUGIN_OWNED_TINKERCLAW_COVERAGE_EXCLUSIONS.has(entry.id),
   );
 }
 
@@ -531,7 +531,7 @@ async function expectOpenClawCoverageEntriesResolved(
     const config = {} as OpenClawConfig;
     const env: Record<string, string> = {};
     for (const [index, entry] of batch.entries()) {
-      const envId = `OPENCLAW_SECRET_TARGET_${entry.id}`;
+      const envId = `TINKERCLAW_SECRET_TARGET_${entry.id}`;
       const runtimeEnvId = resolveCoverageEnvId(entry, envId);
       const expectedValue = `resolved-${entry.id}`;
       const wildcardToken = resolveCoverageWildcardToken(index);
@@ -599,7 +599,7 @@ describe("secrets runtime target coverage", () => {
         profiles: {},
       };
       for (const [index, entry] of batch.entries()) {
-        const envId = `OPENCLAW_AUTH_SECRET_TARGET_${entry.id}`;
+        const envId = `TINKERCLAW_AUTH_SECRET_TARGET_${entry.id}`;
         env[envId] = `resolved-${entry.id}`;
         applyAuthStoreTarget(authStore, entry, envId, resolveCoverageWildcardToken(index));
       }

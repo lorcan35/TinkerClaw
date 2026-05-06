@@ -154,8 +154,8 @@ describe("runDaemonRestart health checks", () => {
   });
 
   beforeEach(() => {
-    envSnapshot = captureEnv(["OPENCLAW_CONTAINER_HINT", "OPENCLAW_PROFILE"]);
-    delete process.env.OPENCLAW_CONTAINER_HINT;
+    envSnapshot = captureEnv(["TINKERCLAW_CONTAINER_HINT", "TINKERCLAW_PROFILE"]);
+    delete process.env.TINKERCLAW_CONTAINER_HINT;
     service.readCommand.mockReset();
     service.restart.mockReset();
     runServiceStart.mockReset();
@@ -301,7 +301,7 @@ describe("runDaemonRestart health checks", () => {
         await params.repairLoadedService?.({
           json: true,
           stdout: process.stdout,
-          state: { command: { environment: { OPENCLAW_SERVICE_VERSION: "2026.4.24" } } },
+          state: { command: { environment: { TINKERCLAW_SERVICE_VERSION: "2026.4.24" } } },
           issues: [{ code: "version-mismatch", message: "old service" }],
         });
       },
@@ -315,7 +315,7 @@ describe("runDaemonRestart health checks", () => {
         json: true,
         state: expect.objectContaining({
           command: expect.objectContaining({
-            environment: { OPENCLAW_SERVICE_VERSION: "2026.4.24" },
+            environment: { TINKERCLAW_SERVICE_VERSION: "2026.4.24" },
           }),
         }),
         issues: [expect.objectContaining({ code: "version-mismatch" })],

@@ -127,7 +127,7 @@ async function withManagedInboundPdf(
   const mediaPath = path.join(inboundDir, mediaId);
   await fs.mkdir(inboundDir, { recursive: true });
   await fs.writeFile(mediaPath, FAKE_PDF_MEDIA.buffer);
-  vi.stubEnv("OPENCLAW_STATE_DIR", stateDir);
+  vi.stubEnv("TINKERCLAW_STATE_DIR", stateDir);
   try {
     await run({ stateDir, mediaId, mediaPath });
   } finally {

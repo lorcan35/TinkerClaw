@@ -819,9 +819,9 @@ describe("host-hook fixture plugin contract", () => {
     const tempConfig = {
       session: { store: storePath },
     };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -902,9 +902,9 @@ describe("host-hook fixture plugin contract", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -1033,9 +1033,9 @@ describe("host-hook fixture plugin contract", () => {
     const tempConfig = {
       session: { store: storePath },
     };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -1085,9 +1085,9 @@ describe("host-hook fixture plugin contract", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -1127,9 +1127,9 @@ describe("host-hook fixture plugin contract", () => {
         },
       },
     };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -1189,9 +1189,9 @@ describe("host-hook fixture plugin contract", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -1219,9 +1219,9 @@ describe("host-hook fixture plugin contract", () => {
     const tempConfig = {
       session: { store: storePath },
     };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -1275,9 +1275,9 @@ describe("host-hook fixture plugin contract", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -1797,9 +1797,9 @@ describe("host-hook fixture plugin contract", () => {
     const tempConfig = {
       session: { store: path.join(stateDir, "sessions.json") },
     };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -1819,9 +1819,9 @@ describe("host-hook fixture plugin contract", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -2109,9 +2109,9 @@ describe("host-hook fixture plugin contract", () => {
     const tempConfig = {
       session: { store: storePath },
     };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -2179,9 +2179,9 @@ describe("host-hook fixture plugin contract", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -2208,9 +2208,9 @@ describe("host-hook fixture plugin contract", () => {
     const tempConfig = {
       session: { store: path.join(stateDir, "sessions.json") },
     };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -2224,9 +2224,9 @@ describe("host-hook fixture plugin contract", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -2269,9 +2269,9 @@ describe("host-hook fixture plugin contract", () => {
     const tempConfig = {
       session: { store: storePath },
     };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -2325,9 +2325,9 @@ describe("host-hook fixture plugin contract", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }
@@ -2349,9 +2349,9 @@ describe("host-hook fixture plugin contract", () => {
     const tempConfig = {
       session: { store: storePath },
     };
-    const previousStateDir = process.env.OPENCLAW_STATE_DIR;
+    const previousStateDir = process.env.TINKERCLAW_STATE_DIR;
     try {
-      process.env.OPENCLAW_STATE_DIR = stateDir;
+      process.env.TINKERCLAW_STATE_DIR = stateDir;
       await withTempConfig({
         cfg: tempConfig,
         run: async () => {
@@ -2388,9 +2388,9 @@ describe("host-hook fixture plugin contract", () => {
       });
     } finally {
       if (previousStateDir === undefined) {
-        delete process.env.OPENCLAW_STATE_DIR;
+        delete process.env.TINKERCLAW_STATE_DIR;
       } else {
-        process.env.OPENCLAW_STATE_DIR = previousStateDir;
+        process.env.TINKERCLAW_STATE_DIR = previousStateDir;
       }
       await fs.rm(stateDir, { recursive: true, force: true });
     }

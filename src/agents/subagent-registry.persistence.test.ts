@@ -47,7 +47,7 @@ vi.mock("./subagent-orphan-recovery.js", () => ({
 }));
 
 describe("subagent registry persistence", () => {
-  const envSnapshot = captureEnv(["OPENCLAW_STATE_DIR"]);
+  const envSnapshot = captureEnv(["TINKERCLAW_STATE_DIR"]);
   let tempStateDir: string | null = null;
 
   const resolveAgentIdFromSessionKey = (sessionKey: string) => {
@@ -113,7 +113,7 @@ describe("subagent registry persistence", () => {
     opts?: { seedChildSessions?: boolean },
   ) => {
     tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-subagent-"));
-    process.env.OPENCLAW_STATE_DIR = tempStateDir;
+    process.env.TINKERCLAW_STATE_DIR = tempStateDir;
     const registryPath = path.join(tempStateDir, "subagents", "runs.json");
     await fs.mkdir(path.dirname(registryPath), { recursive: true });
     await fs.writeFile(registryPath, `${JSON.stringify(persisted)}\n`, "utf8");
@@ -218,7 +218,7 @@ describe("subagent registry persistence", () => {
 
   it("persists completed subagent timing into the child session entry", async () => {
     tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-subagent-"));
-    process.env.OPENCLAW_STATE_DIR = tempStateDir;
+    process.env.TINKERCLAW_STATE_DIR = tempStateDir;
 
     const now = Date.now();
     const startedAt = now;
@@ -255,7 +255,7 @@ describe("subagent registry persistence", () => {
 
   it("skips cleanup when cleanupHandled was persisted", async () => {
     tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-subagent-"));
-    process.env.OPENCLAW_STATE_DIR = tempStateDir;
+    process.env.TINKERCLAW_STATE_DIR = tempStateDir;
 
     const registryPath = path.join(tempStateDir, "subagents", "runs.json");
     const persisted = {
@@ -405,7 +405,7 @@ describe("subagent registry persistence", () => {
 
   it("reuses unchanged invalid persisted registry snapshots as empty", async () => {
     tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-subagent-"));
-    process.env.OPENCLAW_STATE_DIR = tempStateDir;
+    process.env.TINKERCLAW_STATE_DIR = tempStateDir;
     const registryPath = path.join(tempStateDir, "subagents", "runs.json");
     await fs.mkdir(path.dirname(registryPath), { recursive: true });
     await fs.writeFile(registryPath, "{invalid", "utf8");
@@ -458,7 +458,7 @@ describe("subagent registry persistence", () => {
 
     resetSubagentRegistryForTests({ persist: false });
     tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-subagent-"));
-    process.env.OPENCLAW_STATE_DIR = tempStateDir;
+    process.env.TINKERCLAW_STATE_DIR = tempStateDir;
 
     vi.mocked(callGateway).mockResolvedValueOnce({
       status: "pending",
@@ -724,7 +724,7 @@ describe("subagent registry persistence", () => {
 
   it("removes attachments when pruning orphaned restored runs", async () => {
     tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-subagent-"));
-    process.env.OPENCLAW_STATE_DIR = tempStateDir;
+    process.env.TINKERCLAW_STATE_DIR = tempStateDir;
     const attachmentsRootDir = path.join(tempStateDir, "attachments");
     const attachmentsDir = path.join(attachmentsRootDir, "ghost");
     await fs.mkdir(attachmentsDir, { recursive: true });
@@ -797,7 +797,7 @@ describe("subagent registry persistence", () => {
 
     resetSubagentRegistryForTests({ persist: false });
 
-    const resolved = withEnv({ OPENCLAW_TEST_READ_SUBAGENT_RUNS_FROM_DISK: "1" }, () =>
+    const resolved = withEnv({ TINKERCLAW_TEST_READ_SUBAGENT_RUNS_FROM_DISK: "1" }, () =>
       getSubagentRunByChildSessionKey(childSessionKey),
     );
 
@@ -843,7 +843,7 @@ describe("subagent registry persistence", () => {
 
     resetSubagentRegistryForTests({ persist: false });
 
-    const resolved = withEnv({ OPENCLAW_TEST_READ_SUBAGENT_RUNS_FROM_DISK: "1" }, () =>
+    const resolved = withEnv({ TINKERCLAW_TEST_READ_SUBAGENT_RUNS_FROM_DISK: "1" }, () =>
       getLatestSubagentRunByChildSessionKey(childSessionKey),
     );
 
@@ -856,7 +856,7 @@ describe("subagent registry persistence", () => {
 
   it("resume guard prunes orphan runs before announce retry", async () => {
     tempStateDir = await fs.mkdtemp(path.join(os.tmpdir(), "openclaw-subagent-"));
-    process.env.OPENCLAW_STATE_DIR = tempStateDir;
+    process.env.TINKERCLAW_STATE_DIR = tempStateDir;
     const runId = "run-orphan-resume-guard";
     const childSessionKey = "agent:main:subagent:ghost-resume";
     const now = Date.now();
@@ -891,8 +891,8 @@ describe("subagent registry persistence", () => {
     expect(persisted.has(runId)).toBe(false);
   });
 
-  it("uses isolated temp state when OPENCLAW_STATE_DIR is unset in tests", async () => {
-    delete process.env.OPENCLAW_STATE_DIR;
+  it("uses isolated temp state when TINKERCLAW_STATE_DIR is unset in tests", async () => {
+    delete process.env.TINKERCLAW_STATE_DIR;
     const registryPath = resolveSubagentRegistryPath();
     expect(registryPath).toContain(path.join(os.tmpdir(), "openclaw-test-state"));
   });

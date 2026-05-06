@@ -28,7 +28,7 @@ const ACP_BACKEND_READY_TIMEOUT_MS = 5_000;
 const ACP_BACKEND_READY_POLL_MS = 50;
 const PRIMARY_MODEL_PREWARM_TIMEOUT_MS = 5_000;
 const STARTUP_PROVIDER_DISCOVERY_TIMEOUT_MS = 5_000;
-const SKIP_STARTUP_MODEL_PREWARM_ENV = "OPENCLAW_SKIP_STARTUP_MODEL_PREWARM";
+const SKIP_STARTUP_MODEL_PREWARM_ENV = "TINKERCLAW_SKIP_STARTUP_MODEL_PREWARM";
 const QMD_STARTUP_IDLE_DELAY_MS = 120_000;
 const RESTART_SENTINEL_FILENAME = "restart-sentinel.json";
 
@@ -152,7 +152,7 @@ function resolveRestartSentinelPathFast(env: NodeJS.ProcessEnv = process.env): s
   const resolveRawOsHome = () => normalizePathEnv(env.HOME) ?? normalizePathEnv(env.USERPROFILE);
   const expandHomePrefix = (input: string, home: string) => input.replace(/^~(?=$|[\\/])/, home);
   const resolveHome = () => {
-    const explicitHome = normalizePathEnv(env.OPENCLAW_HOME);
+    const explicitHome = normalizePathEnv(env.TINKERCLAW_HOME);
     if (explicitHome) {
       const osHome = resolveRawOsHome() ?? os.homedir();
       return path.resolve(expandHomePrefix(explicitHome, osHome));
@@ -166,13 +166,13 @@ function resolveRestartSentinelPathFast(env: NodeJS.ProcessEnv = process.env): s
     }
     return path.resolve(trimmed);
   };
-  const override = normalizePathEnv(env.OPENCLAW_STATE_DIR);
+  const override = normalizePathEnv(env.TINKERCLAW_STATE_DIR);
   if (override) {
     return path.join(resolveUserPath(override), RESTART_SENTINEL_FILENAME);
   }
   const home = resolveHome();
   const newStateDir = path.join(home, ".openclaw");
-  if (env.OPENCLAW_TEST_FAST === "1" || fs.existsSync(newStateDir)) {
+  if (env.TINKERCLAW_TEST_FAST === "1" || fs.existsSync(newStateDir)) {
     return path.join(newStateDir, RESTART_SENTINEL_FILENAME);
   }
   const legacyStateDir = path.join(home, ".clawdbot");
@@ -459,8 +459,8 @@ export async function startGatewaySidecars(params: {
   });
 
   const skipChannels =
-    isTruthyEnvValue(process.env.OPENCLAW_SKIP_CHANNELS) ||
-    isTruthyEnvValue(process.env.OPENCLAW_SKIP_PROVIDERS);
+    isTruthyEnvValue(process.env.TINKERCLAW_SKIP_CHANNELS) ||
+    isTruthyEnvValue(process.env.TINKERCLAW_SKIP_PROVIDERS);
   await measureStartup(params.startupTrace, "sidecars.channels", async () => {
     if (!skipChannels) {
       try {
@@ -481,7 +481,7 @@ export async function startGatewaySidecars(params: {
       }
     } else {
       params.logChannels.info(
-        "skipping channel start (OPENCLAW_SKIP_CHANNELS=1 or OPENCLAW_SKIP_PROVIDERS=1)",
+        "skipping channel start (TINKERCLAW_SKIP_CHANNELS=1 or TINKERCLAW_SKIP_PROVIDERS=1)",
       );
     }
   });

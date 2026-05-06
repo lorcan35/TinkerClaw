@@ -284,7 +284,7 @@ describe("createReplyMediaPathNormalizer", () => {
   });
 
   it("keeps managed generated media under the shared media root", async () => {
-    vi.stubEnv("OPENCLAW_STATE_DIR", "/Users/peter/.openclaw");
+    vi.stubEnv("TINKERCLAW_STATE_DIR", "/Users/peter/.openclaw");
     const normalize = createReplyMediaPathNormalizer({
       cfg: {},
       sessionKey: "session-key",
@@ -307,7 +307,7 @@ describe("createReplyMediaPathNormalizer", () => {
       workspaceDir: "/tmp/sandboxes/session-1",
       containerWorkdir: "/workspace",
     });
-    vi.stubEnv("OPENCLAW_STATE_DIR", "/Users/peter/.openclaw");
+    vi.stubEnv("TINKERCLAW_STATE_DIR", "/Users/peter/.openclaw");
     const normalize = createReplyMediaPathNormalizer({
       cfg: {},
       sessionKey: "session-key",
@@ -337,7 +337,7 @@ describe("createReplyMediaPathNormalizer", () => {
       await fs.mkdir(path.dirname(symlinkPath), { recursive: true });
       await fs.writeFile(outsideFile, "secret", "utf8");
       await fs.symlink(outsideFile, symlinkPath);
-      vi.stubEnv("OPENCLAW_STATE_DIR", stateDir);
+      vi.stubEnv("TINKERCLAW_STATE_DIR", stateDir);
       const normalize = createReplyMediaPathNormalizer({
         cfg: {},
         sessionKey: "session-key",

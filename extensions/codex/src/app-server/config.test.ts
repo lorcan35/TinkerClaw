@@ -25,8 +25,8 @@ describe("Codex app-server config", () => {
         },
       },
       env: {
-        OPENCLAW_CODEX_APP_SERVER_APPROVAL_POLICY: "never",
-        OPENCLAW_CODEX_APP_SERVER_SANDBOX: "read-only",
+        TINKERCLAW_CODEX_APP_SERVER_APPROVAL_POLICY: "never",
+        TINKERCLAW_CODEX_APP_SERVER_SANDBOX: "read-only",
       },
     });
 
@@ -154,7 +154,7 @@ describe("Codex app-server config", () => {
     expect(
       resolveCodexAppServerRuntimeOptions({
         pluginConfig: { appServer: { command: "/opt/codex/bin/codex" } },
-        env: { OPENCLAW_CODEX_APP_SERVER_BIN: "/usr/local/bin/codex" },
+        env: { TINKERCLAW_CODEX_APP_SERVER_BIN: "/usr/local/bin/codex" },
       }).start,
     ).toEqual(
       expect.objectContaining({
@@ -166,7 +166,7 @@ describe("Codex app-server config", () => {
     expect(
       resolveCodexAppServerRuntimeOptions({
         pluginConfig: {},
-        env: { OPENCLAW_CODEX_APP_SERVER_BIN: "/usr/local/bin/codex" },
+        env: { TINKERCLAW_CODEX_APP_SERVER_BIN: "/usr/local/bin/codex" },
       }).start,
     ).toEqual(
       expect.objectContaining({
@@ -186,7 +186,7 @@ describe("Codex app-server config", () => {
           },
         },
         env: {
-          OPENCLAW_CODEX_COMPUTER_USE_PLUGIN_NAME: "env-fallback-plugin",
+          TINKERCLAW_CODEX_COMPUTER_USE_PLUGIN_NAME: "env-fallback-plugin",
         },
       }),
     ).toEqual({
@@ -202,10 +202,10 @@ describe("Codex app-server config", () => {
       resolveCodexComputerUseConfig({
         pluginConfig: {},
         env: {
-          OPENCLAW_CODEX_COMPUTER_USE: "1",
-          OPENCLAW_CODEX_COMPUTER_USE_MARKETPLACE_SOURCE: "github:example/plugins",
-          OPENCLAW_CODEX_COMPUTER_USE_AUTO_INSTALL: "true",
-          OPENCLAW_CODEX_COMPUTER_USE_MARKETPLACE_DISCOVERY_TIMEOUT_MS: "30000",
+          TINKERCLAW_CODEX_COMPUTER_USE: "1",
+          TINKERCLAW_CODEX_COMPUTER_USE_MARKETPLACE_SOURCE: "github:example/plugins",
+          TINKERCLAW_CODEX_COMPUTER_USE_AUTO_INSTALL: "true",
+          TINKERCLAW_CODEX_COMPUTER_USE_MARKETPLACE_DISCOVERY_TIMEOUT_MS: "30000",
         },
       }),
     ).toEqual(
@@ -240,7 +240,7 @@ describe("Codex app-server config", () => {
   it("allows environment mode fallback to opt in to guardian-reviewed local execution", () => {
     const runtime = resolveCodexAppServerRuntimeOptions({
       pluginConfig: {},
-      env: { OPENCLAW_CODEX_APP_SERVER_MODE: "guardian" },
+      env: { TINKERCLAW_CODEX_APP_SERVER_MODE: "guardian" },
     });
 
     expect(runtime).toEqual(
@@ -267,10 +267,10 @@ describe("Codex app-server config", () => {
     ).toBe("guardian_subagent");
   });
 
-  it("ignores removed OPENCLAW_CODEX_APP_SERVER_GUARDIAN fallback", () => {
+  it("ignores removed TINKERCLAW_CODEX_APP_SERVER_GUARDIAN fallback", () => {
     const runtime = resolveCodexAppServerRuntimeOptions({
       pluginConfig: {},
-      env: { OPENCLAW_CODEX_APP_SERVER_GUARDIAN: "1" },
+      env: { TINKERCLAW_CODEX_APP_SERVER_GUARDIAN: "1" },
     });
 
     expect(runtime).toEqual(

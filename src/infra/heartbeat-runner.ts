@@ -389,7 +389,7 @@ function usesCodexHarness(params: {
   );
   const runtimeId =
     resolvePinnedHeartbeatRuntimeId(params.entry) ||
-    normalizeHeartbeatRuntimeId(process.env.OPENCLAW_AGENT_RUNTIME) ||
+    normalizeHeartbeatRuntimeId(process.env.TINKERCLAW_AGENT_RUNTIME) ||
     normalizeHeartbeatRuntimeId(agentEntry?.agentRuntime?.id) ||
     normalizeHeartbeatRuntimeId(agentEntry?.embeddedHarness?.runtime) ||
     normalizeHeartbeatRuntimeId(params.cfg.agents?.defaults?.agentRuntime?.id) ||

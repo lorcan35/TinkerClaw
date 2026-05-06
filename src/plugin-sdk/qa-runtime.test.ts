@@ -19,12 +19,12 @@ vi.mock("../infra/openclaw-root.js", () => ({
 
 describe("plugin-sdk qa-runtime", () => {
   const tempDirs: string[] = [];
-  const originalPrivateQaCli = process.env.OPENCLAW_ENABLE_PRIVATE_QA_CLI;
+  const originalPrivateQaCli = process.env.TINKERCLAW_ENABLE_PRIVATE_QA_CLI;
 
   beforeEach(() => {
     loadBundledPluginPublicSurfaceModuleSync.mockReset();
     resolveOpenClawPackageRootSync.mockReset().mockReturnValue(null);
-    delete process.env.OPENCLAW_ENABLE_PRIVATE_QA_CLI;
+    delete process.env.TINKERCLAW_ENABLE_PRIVATE_QA_CLI;
   });
 
   afterEach(() => {

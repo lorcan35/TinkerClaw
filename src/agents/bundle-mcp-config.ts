@@ -14,7 +14,7 @@ type MergedBundleMcpConfig = {
 
 type BundleMcpServerMapper = (server: BundleMcpServerConfig, name: string) => BundleMcpServerConfig;
 
-const OPENCLAW_TRANSPORT_TO_CLI_BUNDLE_TYPE: Record<string, string> = {
+const TINKERCLAW_TRANSPORT_TO_CLI_BUNDLE_TYPE: Record<string, string> = {
   "streamable-http": "http",
   http: "http",
   sse: "sse",
@@ -35,7 +35,7 @@ export function toCliBundleMcpServerConfig(server: BundleMcpServerConfig): Bundl
     return next as BundleMcpServerConfig;
   }
   if (typeof rawTransport === "string") {
-    const mapped = OPENCLAW_TRANSPORT_TO_CLI_BUNDLE_TYPE[rawTransport];
+    const mapped = TINKERCLAW_TRANSPORT_TO_CLI_BUNDLE_TYPE[rawTransport];
     if (mapped) {
       next.type = mapped;
     }

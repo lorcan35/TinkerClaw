@@ -34,7 +34,7 @@ describe("loadCrestodianOverview", () => {
       legacyIssues: [],
     };
     const overview = await loadCrestodianOverview({
-      env: { OPENCLAW_TEST_FAST: "1" },
+      env: { TINKERCLAW_TEST_FAST: "1" },
       deps: {
         readConfigFileSnapshot: async () => snapshot,
         resolveConfigPath: () => "/tmp/openclaw.json",

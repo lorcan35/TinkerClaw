@@ -61,7 +61,7 @@ describe("browser client fetch attachOnly diagnostics", () => {
         2,
       ),
     );
-    process.env.OPENCLAW_CONFIG_PATH = configPath;
+    process.env.TINKERCLAW_CONFIG_PATH = configPath;
     clearRuntimeConfigSnapshot();
 
     try {

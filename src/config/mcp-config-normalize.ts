@@ -3,7 +3,7 @@ import { isRecord } from "../utils.js";
 type ConfigMcpServers = Record<string, Record<string, unknown>>;
 type OpenClawMcpHttpTransport = "sse" | "streamable-http";
 
-const CLI_MCP_TYPE_TO_OPENCLAW_TRANSPORT: Record<string, OpenClawMcpHttpTransport | "stdio"> = {
+const CLI_MCP_TYPE_TO_TINKERCLAW_TRANSPORT: Record<string, OpenClawMcpHttpTransport | "stdio"> = {
   http: "streamable-http",
   "streamable-http": "streamable-http",
   sse: "sse",
@@ -17,12 +17,12 @@ function normalizeMcpString(value: unknown): string {
 export function resolveOpenClawMcpTransportAlias(
   value: unknown,
 ): OpenClawMcpHttpTransport | undefined {
-  const mapped = CLI_MCP_TYPE_TO_OPENCLAW_TRANSPORT[normalizeMcpString(value)];
+  const mapped = CLI_MCP_TYPE_TO_TINKERCLAW_TRANSPORT[normalizeMcpString(value)];
   return mapped === "sse" || mapped === "streamable-http" ? mapped : undefined;
 }
 
 export function isKnownCliMcpTypeAlias(value: unknown): boolean {
-  return Object.hasOwn(CLI_MCP_TYPE_TO_OPENCLAW_TRANSPORT, normalizeMcpString(value));
+  return Object.hasOwn(CLI_MCP_TYPE_TO_TINKERCLAW_TRANSPORT, normalizeMcpString(value));
 }
 
 export function canonicalizeConfiguredMcpServer(

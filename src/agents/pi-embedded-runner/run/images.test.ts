@@ -382,7 +382,7 @@ describe("detectAndLoadPromptImages", () => {
     const pngB64 =
       "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/woAAn8B9FD5fHAAAAAASUVORK5CYII=";
     await fs.writeFile(imagePath, Buffer.from(pngB64, "base64"));
-    vi.stubEnv("OPENCLAW_STATE_DIR", stateDir);
+    vi.stubEnv("TINKERCLAW_STATE_DIR", stateDir);
 
     try {
       const result = await detectAndLoadPromptImages({

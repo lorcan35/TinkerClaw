@@ -81,15 +81,17 @@ describe("command-registration-policy", () => {
   });
 
   it("matches lazy subcommand registration policy", () => {
-    expect(shouldEagerRegisterSubcommands({ OPENCLAW_DISABLE_LAZY_SUBCOMMANDS: "1" })).toBe(true);
-    expect(shouldEagerRegisterSubcommands({ OPENCLAW_DISABLE_LAZY_SUBCOMMANDS: "0" })).toBe(false);
+    expect(shouldEagerRegisterSubcommands({ TINKERCLAW_DISABLE_LAZY_SUBCOMMANDS: "1" })).toBe(true);
+    expect(shouldEagerRegisterSubcommands({ TINKERCLAW_DISABLE_LAZY_SUBCOMMANDS: "0" })).toBe(
+      false,
+    );
     expect(shouldRegisterPrimarySubcommandOnly(["node", "openclaw", "acp"], {})).toBe(true);
     expect(shouldRegisterPrimarySubcommandOnly(["node", "openclaw", "acp", "--help"], {})).toBe(
       true,
     );
     expect(
       shouldRegisterPrimarySubcommandOnly(["node", "openclaw", "acp"], {
-        OPENCLAW_DISABLE_LAZY_SUBCOMMANDS: "1",
+        TINKERCLAW_DISABLE_LAZY_SUBCOMMANDS: "1",
       }),
     ).toBe(false);
   });

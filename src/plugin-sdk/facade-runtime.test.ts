@@ -18,9 +18,9 @@ import {
 import { createPluginSdkTestHarness } from "./test-helpers.js";
 
 const { createTempDirSync } = createPluginSdkTestHarness();
-const originalBundledPluginsDir = process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
-const originalDisableBundledPlugins = process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS;
-const originalStateDir = process.env.OPENCLAW_STATE_DIR;
+const originalBundledPluginsDir = process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR;
+const originalDisableBundledPlugins = process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS;
+const originalStateDir = process.env.TINKERCLAW_STATE_DIR;
 const trustedBundledFixturesRoot = path.resolve("dist-runtime", "extensions");
 const trustedBundledFixtureDirs: string[] = [];
 
@@ -62,7 +62,7 @@ function createBundledPluginDir(prefix: string, marker: string): string {
 }
 
 function useBundledPluginDirOverrideForTest(dir: string): void {
-  process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = dir;
+  process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = dir;
   setBundledPluginsDirOverrideForTest(dir);
 }
 
@@ -80,9 +80,9 @@ function createThrowingPluginDir(prefix: string): string {
 }
 
 beforeEach(() => {
-  delete process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
-  delete process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS;
-  delete process.env.OPENCLAW_STATE_DIR;
+  delete process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR;
+  delete process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS;
+  delete process.env.TINKERCLAW_STATE_DIR;
 });
 
 afterEach(() => {
@@ -95,19 +95,19 @@ afterEach(() => {
   setBundledPluginsDirOverrideForTest(undefined);
   vi.doUnmock("../plugins/manifest-registry.js");
   if (originalBundledPluginsDir === undefined) {
-    delete process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
+    delete process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR;
   } else {
-    process.env.OPENCLAW_BUNDLED_PLUGINS_DIR = originalBundledPluginsDir;
+    process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR = originalBundledPluginsDir;
   }
   if (originalDisableBundledPlugins === undefined) {
-    delete process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS;
+    delete process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS;
   } else {
-    process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS = originalDisableBundledPlugins;
+    process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS = originalDisableBundledPlugins;
   }
   if (originalStateDir === undefined) {
-    delete process.env.OPENCLAW_STATE_DIR;
+    delete process.env.TINKERCLAW_STATE_DIR;
   } else {
-    process.env.OPENCLAW_STATE_DIR = originalStateDir;
+    process.env.TINKERCLAW_STATE_DIR = originalStateDir;
   }
 });
 
@@ -153,8 +153,8 @@ describe("plugin-sdk facade runtime", () => {
   });
 
   it("does not fall back to package source surfaces when bundled plugins are disabled", () => {
-    process.env.OPENCLAW_DISABLE_BUNDLED_PLUGINS = "1";
-    delete process.env.OPENCLAW_BUNDLED_PLUGINS_DIR;
+    process.env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS = "1";
+    delete process.env.TINKERCLAW_BUNDLED_PLUGINS_DIR;
 
     expect(
       __testing.resolveFacadeModuleLocation({

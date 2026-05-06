@@ -32,7 +32,7 @@ describe("commitments full-chain integration", () => {
     vi.setSystemTime(writeMs);
 
     await withTempHeartbeatSandbox(async ({ tmpDir, storePath, replySpy }) => {
-      vi.stubEnv("OPENCLAW_STATE_DIR", tmpDir);
+      vi.stubEnv("TINKERCLAW_STATE_DIR", tmpDir);
       const sessionKey = "agent:main:telegram:user-155462274";
       const cfg: OpenClawConfig = {
         agents: {

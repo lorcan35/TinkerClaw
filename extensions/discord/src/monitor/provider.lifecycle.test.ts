@@ -188,7 +188,7 @@ describe("runDiscordGatewayLifecycle", () => {
     expect(resolveDiscordGatewayReadyTimeoutMs({ configuredTimeoutMs: 45_000 })).toBe(45_000);
     expect(
       resolveDiscordGatewayReadyTimeoutMs({
-        env: { OPENCLAW_DISCORD_READY_TIMEOUT_MS: "90000" },
+        env: { TINKERCLAW_DISCORD_READY_TIMEOUT_MS: "90000" },
       }),
     ).toBe(90_000);
     expect(resolveDiscordGatewayReadyTimeoutMs({ env: {} })).toBe(15_000);
@@ -198,7 +198,7 @@ describe("runDiscordGatewayLifecycle", () => {
     );
     expect(
       resolveDiscordGatewayRuntimeReadyTimeoutMs({
-        env: { OPENCLAW_DISCORD_RUNTIME_READY_TIMEOUT_MS: "120000" },
+        env: { TINKERCLAW_DISCORD_RUNTIME_READY_TIMEOUT_MS: "120000" },
       }),
     ).toBe(120_000);
     expect(resolveDiscordGatewayRuntimeReadyTimeoutMs({ env: {} })).toBe(30_000);

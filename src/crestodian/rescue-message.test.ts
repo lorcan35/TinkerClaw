@@ -7,7 +7,7 @@ import type { OpenClawConfig } from "../config/types.openclaw.js";
 import type { RuntimeEnv } from "../runtime.js";
 import { extractCrestodianRescueMessage, runCrestodianRescueMessage } from "./rescue-message.js";
 
-const originalStateDir = process.env.OPENCLAW_STATE_DIR;
+const originalStateDir = process.env.TINKERCLAW_STATE_DIR;
 let tempRoot = "";
 let tempDirId = 0;
 
@@ -153,9 +153,9 @@ describe("Crestodian rescue message", () => {
 
   afterEach(() => {
     if (originalStateDir === undefined) {
-      delete process.env.OPENCLAW_STATE_DIR;
+      delete process.env.TINKERCLAW_STATE_DIR;
     } else {
-      process.env.OPENCLAW_STATE_DIR = originalStateDir;
+      process.env.TINKERCLAW_STATE_DIR = originalStateDir;
     }
   });
 
@@ -234,7 +234,7 @@ describe("Crestodian rescue message", () => {
 
   it("queues and applies persistent writes through conversational approval", async () => {
     const tempDir = await makeStateDir("models-");
-    vi.stubEnv("OPENCLAW_STATE_DIR", tempDir);
+    vi.stubEnv("TINKERCLAW_STATE_DIR", tempDir);
 
     const cfg: OpenClawConfig = { crestodian: { rescue: { enabled: true } } };
     await expect(runRescue("/crestodian set default model openai/gpt-5.2", cfg)).resolves.toContain(
@@ -258,7 +258,7 @@ describe("Crestodian rescue message", () => {
 
   it("queues and applies gateway restart through conversational approval", async () => {
     const tempDir = await makeStateDir("gateway-");
-    vi.stubEnv("OPENCLAW_STATE_DIR", tempDir);
+    vi.stubEnv("TINKERCLAW_STATE_DIR", tempDir);
     const cfg: OpenClawConfig = { crestodian: { rescue: { enabled: true } } };
     const deps = { runGatewayRestart: vi.fn(async () => {}) };
 
@@ -284,7 +284,7 @@ describe("Crestodian rescue message", () => {
 
   it("queues and applies agent creation through conversational approval", async () => {
     const tempDir = await makeStateDir("agent-");
-    vi.stubEnv("OPENCLAW_STATE_DIR", tempDir);
+    vi.stubEnv("TINKERCLAW_STATE_DIR", tempDir);
     const cfg: OpenClawConfig = { crestodian: { rescue: { enabled: true } } };
     const deps = { runAgentsAdd: vi.fn(async () => {}) };
 

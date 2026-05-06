@@ -213,7 +213,7 @@ async function expectBuiltArtifactNodeRequireFastPath(
   scope: string,
   artifactRoot = "dist",
 ): Promise<void> {
-  vi.stubEnv("OPENCLAW_PLUGIN_LOAD_PROFILE", "1");
+  vi.stubEnv("TINKERCLAW_PLUGIN_LOAD_PROFILE", "1");
   const errorSpy = vi.spyOn(console, "error").mockImplementation(() => undefined);
 
   try {
@@ -443,7 +443,7 @@ describe("loadBundledEntryExportSync", () => {
       }),
     ).toBe(42);
 
-    vi.stubEnv("OPENCLAW_DISABLE_BUNDLED_ENTRY_SOURCE_FALLBACK", "1");
+    vi.stubEnv("TINKERCLAW_DISABLE_BUNDLED_ENTRY_SOURCE_FALLBACK", "1");
 
     expect(() =>
       loadBundledEntryExportSync<number>(pathToFileURL(importerPath).href, {

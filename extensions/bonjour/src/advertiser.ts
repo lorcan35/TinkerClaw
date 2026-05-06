@@ -115,7 +115,7 @@ async function loadCiaoModule(): Promise<CiaoModule> {
 }
 
 function readBonjourDisableOverride(): boolean | null {
-  const raw = process.env.OPENCLAW_DISABLE_BONJOUR;
+  const raw = process.env.TINKERCLAW_DISABLE_BONJOUR;
   const normalized = raw?.trim().toLowerCase();
   if (!normalized) {
     return null;
@@ -416,7 +416,7 @@ export async function startGatewayBonjourAdvertiser(
     cleanupUncaughtException = deps.registerUncaughtExceptionHandler?.(handleCiaoProcessError);
 
     const hostnameRaw =
-      process.env.OPENCLAW_MDNS_HOSTNAME?.trim() || resolveSystemMdnsHostname() || "openclaw";
+      process.env.TINKERCLAW_MDNS_HOSTNAME?.trim() || resolveSystemMdnsHostname() || "openclaw";
     const hostname = truncateToDnsLabel(
       hostnameRaw
         .replace(/\.local$/i, "")
@@ -624,7 +624,7 @@ export async function startGatewayBonjourAdvertiser(
                   RESTART_WINDOW_MS / 60_000,
                 )} minutes`;
           logger.warn(
-            `bonjour: disabling advertiser after ${detail} (${reason}); set discovery.mdns.mode="off" or OPENCLAW_DISABLE_BONJOUR=1 to disable mDNS discovery`,
+            `bonjour: disabling advertiser after ${detail} (${reason}); set discovery.mdns.mode="off" or TINKERCLAW_DISABLE_BONJOUR=1 to disable mDNS discovery`,
           );
           const previous = cycle;
           cycle = null;

@@ -213,7 +213,7 @@ describe("chrome.ts internal", () => {
         profile: { ...baseProfile, headless: false, headlessSource: "profile" },
         userDataDir: "/tmp/foo",
         headlessOverride: true,
-        env: { OPENCLAW_BROWSER_HEADLESS: "0" },
+        env: { TINKERCLAW_BROWSER_HEADLESS: "0" },
       });
       expect(args).toContain("--headless=new");
       expect(args).toContain("--disable-gpu");
@@ -932,7 +932,7 @@ describe("chrome.ts internal", () => {
     });
 
     it("falls back to the default color when profile.color is undefined", async () => {
-      // Covers the `profile.color ?? DEFAULT_OPENCLAW_BROWSER_COLOR` coalescing.
+      // Covers the `profile.color ?? DEFAULT_TINKERCLAW_BROWSER_COLOR` coalescing.
       vi.spyOn(fs, "existsSync").mockImplementation((p) => {
         const s = String(p);
         if (
