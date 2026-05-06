@@ -14,7 +14,7 @@ import {
 import { expandHomePrefix } from "../infra/home-dir.js";
 import { isBlockedObjectKey } from "../infra/prototype-keys.js";
 import {
-  POSIX_OPENCLAW_TMP_DIR,
+  POSIX_TINKERCLAW_TMP_DIR,
   resolvePreferredOpenClawTmpDir,
 } from "../infra/tmp-openclaw-dir.js";
 import { readLoggingConfig, shouldSkipMutatingLoggingConfigRead } from "./config.js";
@@ -43,7 +43,7 @@ function canUseNodeFs(): boolean {
 }
 
 function resolveDefaultLogDir(): string {
-  return canUseNodeFs() ? resolvePreferredOpenClawTmpDir() : POSIX_OPENCLAW_TMP_DIR;
+  return canUseNodeFs() ? resolvePreferredOpenClawTmpDir() : POSIX_TINKERCLAW_TMP_DIR;
 }
 
 function resolveDefaultLogFile(defaultLogDir: string): string {
@@ -446,7 +446,7 @@ function attachDiagnosticEventTransport(logger: TsLogger<LogObj>): void {
 function canUseSilentVitestFileLogFastPath(envLevel: LogLevel | undefined): boolean {
   return (
     process.env.VITEST === "true" &&
-    process.env.OPENCLAW_TEST_FILE_LOG !== "1" &&
+    process.env.TINKERCLAW_TEST_FILE_LOG !== "1" &&
     !envLevel &&
     !loggingState.overrideSettings
   );
@@ -475,7 +475,9 @@ function resolveSettings(): ResolvedSettings {
   const cfg: OpenClawConfig["logging"] | undefined =
     (loggingState.overrideSettings as LoggerSettings | null) ?? readLoggingConfig();
   const defaultLevel =
-    process.env.VITEST === "true" && process.env.OPENCLAW_TEST_FILE_LOG !== "1" ? "silent" : "info";
+    process.env.VITEST === "true" && process.env.TINKERCLAW_TEST_FILE_LOG !== "1"
+      ? "silent"
+      : "info";
   const fromConfig = normalizeLogLevel(cfg?.level, defaultLevel);
   const level = envLevel ?? fromConfig;
   const file = cfg?.file ?? defaultRollingPathForToday();

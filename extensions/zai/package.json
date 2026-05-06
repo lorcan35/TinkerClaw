@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/zai-provider",
+  "name": "@tinkerclaw/zai-provider",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw Z.AI provider plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

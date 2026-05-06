@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/memory-core",
+  "name": "@tinkerclaw/memory-core",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw core memory search plugin",
@@ -10,11 +10,11 @@
     "typebox": "1.1.37"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*",
-    "openclaw": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*",
+    "tinkerclaw": "workspace:*"
   },
   "peerDependencies": {
-    "openclaw": ">=2026.5.5"
+    "tinkerclaw": ">=2026.5.5"
   },
   "peerDependenciesMeta": {
     "openclaw": {

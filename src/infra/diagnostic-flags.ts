@@ -1,7 +1,7 @@
 import type { OpenClawConfig } from "../config/types.openclaw.js";
 import { normalizeLowercaseStringOrEmpty } from "../shared/string-coerce.js";
 
-const DIAGNOSTICS_ENV = "OPENCLAW_DIAGNOSTICS";
+const DIAGNOSTICS_ENV = "TINKERCLAW_DIAGNOSTICS";
 
 type ParsedEnvFlags = {
   flags: string[];

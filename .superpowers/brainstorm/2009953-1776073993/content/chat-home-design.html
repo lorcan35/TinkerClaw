@@ -1,0 +1,61 @@
+<h2>Chat Home Screen — Design Options</h2>
+<p class="subtitle">The Tab5 needs a proper chat experience. Not just a single conversation — a home that shows history, lets you pick sessions, and feels like a real messaging app.</p>
+
+<div class="section">
+  <h3>What's missing from the current Chat?</h3>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0;">
+    <div style="background:#1a1a2e; padding:12px; border-radius:8px; border:1px solid #333;">
+      <strong style="color:#ff6b35;">Has Now</strong>
+      <ul style="color:#94a3b8; font-size:14px; padding-left:16px; margin-top:8px;">
+        <li>Single conversation</li>
+        <li>Text input + mic button</li>
+        <li>Mode badge (tappable)</li>
+        <li>New Chat button (clears)</li>
+        <li>Status indicator (Processing/Ready)</li>
+        <li>Thinking/tool indicators</li>
+      </ul>
+    </div>
+    <div style="background:#0a2030; padding:12px; border-radius:8px; border:1px solid #06b6d4;">
+      <strong style="color:#06b6d4;">Missing</strong>
+      <ul style="color:#94a3b8; font-size:14px; padding-left:16px; margin-top:8px;">
+        <li>Session history list</li>
+        <li>Previous conversations</li>
+        <li>Session metadata (date, preview)</li>
+        <li>Model selector for Cloud mode</li>
+        <li>Session search/filter</li>
+        <li>Delete old sessions</li>
+        <li>Token/cost info per session</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h3>Pick the architecture</h3>
+<p class="subtitle">How should session history integrate with the Chat screen?</p>
+
+<div class="options">
+  <div class="option" data-choice="drawer" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Drawer / Sidebar</h3>
+      <p>Swipe from left edge to reveal a session list panel (like ChatGPT mobile). Chat stays visible behind it. Tap a session to load it. Current conversation stays active until you switch.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="chat-home" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Chat Home → Conversation (Recommended)</h3>
+      <p>Tapping "Chat" from nav shows a <strong>Chat Home</strong> with session cards (like WhatsApp). Tap a card to enter that conversation. "New Chat" button at top. Each card shows: last message preview, timestamp, message count, mode used. Back from conversation returns to Chat Home.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="dropdown" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Dropdown Selector</h3>
+      <p>Keep current single-screen layout but add a dropdown at the top showing recent sessions. Minimal change, least disruption. But limited space for session metadata.</p>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:24px;">Click to select. Then tell me in the terminal.</p>
+</content>

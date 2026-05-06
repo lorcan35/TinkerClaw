@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/synthetic-provider",
+  "name": "@tinkerclaw/synthetic-provider",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw Synthetic provider plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

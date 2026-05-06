@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/line",
+  "name": "@tinkerclaw/line",
   "version": "2026.5.5",
   "description": "OpenClaw LINE channel plugin",
   "repository": {
@@ -11,11 +11,11 @@
     "@line/bot-sdk": "^11.0.0"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*",
-    "openclaw": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*",
+    "tinkerclaw": "workspace:*"
   },
   "peerDependencies": {
-    "openclaw": ">=2026.5.5"
+    "tinkerclaw": ">=2026.5.5"
   },
   "peerDependenciesMeta": {
     "openclaw": {
@@ -40,7 +40,7 @@
       "quickstartAllowFrom": true
     },
     "install": {
-      "npmSpec": "@openclaw/line",
+      "npmSpec": "@tinkerclaw/line",
       "defaultChoice": "npm",
       "minHostVersion": ">=2026.4.10"
     },

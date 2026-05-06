@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/diagnostics-prometheus",
+  "name": "@tinkerclaw/diagnostics-prometheus",
   "version": "2026.5.5",
   "description": "OpenClaw diagnostics Prometheus exporter",
   "repository": {
@@ -8,15 +8,15 @@
   },
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [
       "./index.ts"
     ],
     "install": {
-      "clawhubSpec": "clawhub:@openclaw/diagnostics-prometheus",
-      "npmSpec": "@openclaw/diagnostics-prometheus",
+      "clawhubSpec": "clawhub:@tinkerclaw/diagnostics-prometheus",
+      "npmSpec": "@tinkerclaw/diagnostics-prometheus",
       "defaultChoice": "npm",
       "minHostVersion": ">=2026.4.25"
     },

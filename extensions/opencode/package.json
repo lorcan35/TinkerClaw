@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/opencode-provider",
+  "name": "@tinkerclaw/opencode-provider",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw OpenCode Zen provider plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

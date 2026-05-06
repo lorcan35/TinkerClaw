@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/google-plugin",
+  "name": "@tinkerclaw/google-plugin",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw Google plugin",
@@ -9,7 +9,7 @@
     "@mariozechner/pi-ai": "0.73.0"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

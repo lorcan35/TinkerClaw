@@ -301,13 +301,13 @@ importers:
         specifier: 0.6.1
         version: 0.6.1
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/alibaba:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -323,7 +323,7 @@ importers:
         specifier: 3.972.39
         version: 3.972.39
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -339,7 +339,7 @@ importers:
         specifier: 0.73.0
         version: 0.73.0(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(ws@8.20.0)(zod@4.4.3)
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -349,7 +349,7 @@ importers:
         specifier: 0.73.0
         version: 0.73.0(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(ws@8.20.0)(zod@4.4.3)
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -365,28 +365,28 @@ importers:
         specifier: 0.73.0
         version: 0.73.0(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(ws@8.20.0)(zod@4.4.3)
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/arcee:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/azure-speech:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/bluebubbles:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -396,13 +396,13 @@ importers:
         specifier: ^1.3.8
         version: 1.3.8
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/brave:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -427,7 +427,7 @@ importers:
         specifier: ^8.20.0
         version: 8.20.0
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
       undici:
@@ -436,25 +436,25 @@ importers:
 
   extensions/byteplus:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/cerebras:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/chutes:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/cloudflare-ai-gateway:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -476,37 +476,37 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/comfy:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/copilot-proxy:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/deepgram:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/deepinfra:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/deepseek:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -546,13 +546,13 @@ importers:
         specifier: ^1.40.0
         version: 1.40.0
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/diagnostics-prometheus:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -571,7 +571,7 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -599,10 +599,10 @@ importers:
         specifier: ^8.20.0
         version: 8.20.0
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -615,31 +615,31 @@ importers:
         specifier: ^5.7.284
         version: 5.7.284
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/duckduckgo:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/elevenlabs:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/exa:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/fal:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -652,10 +652,10 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -668,7 +668,7 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -678,7 +678,7 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -688,7 +688,7 @@ importers:
         specifier: 0.73.0
         version: 0.73.0(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(ws@8.20.0)(zod@4.4.3)
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -701,7 +701,7 @@ importers:
       '@mariozechner/pi-ai':
         specifier: 0.73.0
         version: 0.73.0(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(ws@8.20.0)(zod@4.4.3)
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -714,7 +714,7 @@ importers:
         specifier: 0.73.0
         version: 0.73.0(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(ws@8.20.0)(zod@4.4.3)
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -727,10 +727,10 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -746,58 +746,58 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
   extensions/gradium:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/groq:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/huggingface:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/image-generation-core:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/imessage:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/inworld:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/irc:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/kilocode:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -807,7 +807,7 @@ importers:
         specifier: 0.73.0
         version: 0.73.0(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(ws@8.20.0)(zod@4.4.3)
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -817,16 +817,16 @@ importers:
         specifier: ^11.0.0
         version: 11.0.0
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
   extensions/litellm:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -839,7 +839,7 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -861,7 +861,7 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -889,10 +889,10 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -902,10 +902,10 @@ importers:
         specifier: ^8.20.0
         version: 8.20.0
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -915,7 +915,7 @@ importers:
         specifier: ^0.34.5
         version: 0.34.5
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -931,10 +931,10 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -953,7 +953,7 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -966,10 +966,10 @@ importers:
         specifier: ^2.8.4
         version: 2.8.4
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -979,22 +979,22 @@ importers:
         specifier: ^1.2.10
         version: 1.2.10
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/microsoft-foundry:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/migrate-claude:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -1004,28 +1004,28 @@ importers:
         specifier: ^2.8.4
         version: 2.8.4
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
   extensions/minimax:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/mistral:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/moonshot:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1053,13 +1053,13 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
       '@types/jsonwebtoken':
         specifier: ^9.0.10
         version: 9.0.10
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -1069,10 +1069,10 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -1085,16 +1085,16 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
   extensions/nvidia:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1107,13 +1107,13 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/open-prose:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1126,25 +1126,25 @@ importers:
         specifier: ^8.20.0
         version: 8.20.0
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/opencode:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/opencode-go:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/openrouter:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1154,13 +1154,13 @@ importers:
         specifier: 0.1.0
         version: 0.1.0
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/perplexity:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1170,10 +1170,10 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -1195,16 +1195,16 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@openclaw/discord':
+      '@tinkerclaw/discord':
         specifier: workspace:*
         version: link:../discord
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      '@openclaw/slack':
+      '@tinkerclaw/slack':
         specifier: workspace:*
         version: link:../slack
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -1214,19 +1214,19 @@ importers:
         specifier: 8.2.0
         version: 8.2.0
     devDependencies:
-      '@openclaw/matrix':
+      '@tinkerclaw/matrix':
         specifier: workspace:*
         version: link:../matrix
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
   extensions/qianfan:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1248,49 +1248,49 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
       '@types/ws':
         specifier: ^8.18.1
         version: 8.18.1
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
   extensions/qwen:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/runway:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/searxng:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/senseaudio:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/sglang:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/signal:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1300,7 +1300,7 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1319,19 +1319,19 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/speech-core:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/stepfun:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1341,13 +1341,13 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/synthetic:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1357,7 +1357,7 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1379,13 +1379,13 @@ importers:
         specifier: 8.2.0
         version: 8.2.0
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/tencent:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1404,16 +1404,16 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
   extensions/together:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1423,13 +1423,13 @@ importers:
         specifier: 0.7.0
         version: 0.7.0
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/tts-local-cli:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1445,31 +1445,31 @@ importers:
         specifier: ^8.1.3
         version: 8.1.3(@twurple/auth@8.1.3)
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/venice:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/vercel-ai-gateway:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/video-generation-core:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/vllm:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1485,28 +1485,28 @@ importers:
         specifier: ^8.20.0
         version: 8.20.0
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
   extensions/volcengine:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/voyage:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/vydra:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1519,7 +1519,7 @@ importers:
         specifier: ^0.18.12
         version: 0.18.12
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1529,7 +1529,7 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1551,10 +1551,10 @@ importers:
         specifier: 8.2.0
         version: 8.2.0
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -1567,7 +1567,7 @@ importers:
         specifier: 1.1.37
         version: 1.1.37
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
       ws:
@@ -1576,13 +1576,13 @@ importers:
 
   extensions/xiaomi:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
   extensions/zai:
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
 
@@ -1592,10 +1592,10 @@ importers:
         specifier: 8.2.0
         version: 8.2.0
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 
@@ -1608,10 +1608,10 @@ importers:
         specifier: 2.1.2
         version: 2.1.2
     devDependencies:
-      '@openclaw/plugin-sdk':
+      '@tinkerclaw/plugin-sdk':
         specifier: workspace:*
         version: link:../../packages/plugin-sdk
-      openclaw:
+      tinkerclaw:
         specifier: workspace:*
         version: link:../..
 

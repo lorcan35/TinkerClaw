@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/azure-speech",
+  "name": "@tinkerclaw/azure-speech",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw Azure Speech plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

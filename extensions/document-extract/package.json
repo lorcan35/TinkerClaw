@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/document-extract-plugin",
+  "name": "@tinkerclaw/document-extract-plugin",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw local document extraction plugin",
@@ -8,7 +8,7 @@
     "pdfjs-dist": "^5.7.284"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "peerDependencies": {
     "@napi-rs/canvas": "^0.1.89"

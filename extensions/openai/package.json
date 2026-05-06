@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/openai-provider",
+  "name": "@tinkerclaw/openai-provider",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw OpenAI provider plugins",
@@ -9,7 +9,7 @@
     "ws": "^8.20.0"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

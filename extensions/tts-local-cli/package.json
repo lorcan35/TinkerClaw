@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/tts-local-cli",
+  "name": "@tinkerclaw/tts-local-cli",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw local CLI TTS plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

@@ -195,10 +195,10 @@ export async function configureGatewayForSetup(
           provider: "gateway-auth-token",
           config: nextConfig,
           prompter,
-          preferredEnvVar: "OPENCLAW_GATEWAY_TOKEN",
+          preferredEnvVar: "TINKERCLAW_GATEWAY_TOKEN",
           copy: {
             sourceMessage: "Where is this gateway token stored?",
-            envVarPlaceholder: "OPENCLAW_GATEWAY_TOKEN",
+            envVarPlaceholder: "TINKERCLAW_GATEWAY_TOKEN",
           },
         });
         gatewayTokenInput = resolved.ref;
@@ -206,12 +206,13 @@ export async function configureGatewayForSetup(
       }
     } else if (flow === "quickstart") {
       gatewayToken =
-        (quickstartTokenString ?? normalizeGatewayTokenInput(process.env.OPENCLAW_GATEWAY_TOKEN)) ||
+        (quickstartTokenString ??
+          normalizeGatewayTokenInput(process.env.TINKERCLAW_GATEWAY_TOKEN)) ||
         randomToken();
       gatewayTokenInput = gatewayToken;
     } else {
       const existingToken =
-        quickstartTokenString ?? normalizeGatewayTokenInput(process.env.OPENCLAW_GATEWAY_TOKEN);
+        quickstartTokenString ?? normalizeGatewayTokenInput(process.env.TINKERCLAW_GATEWAY_TOKEN);
       let tokenInput: string | undefined;
       if (existingToken) {
         const keep = await prompter.confirm({
@@ -255,10 +256,10 @@ export async function configureGatewayForSetup(
           provider: "gateway-auth-password",
           config: nextConfig,
           prompter,
-          preferredEnvVar: "OPENCLAW_GATEWAY_PASSWORD",
+          preferredEnvVar: "TINKERCLAW_GATEWAY_PASSWORD",
           copy: {
             sourceMessage: "Where is this gateway password stored?",
-            envVarPlaceholder: "OPENCLAW_GATEWAY_PASSWORD",
+            envVarPlaceholder: "TINKERCLAW_GATEWAY_PASSWORD",
           },
         });
         password = resolved.ref;

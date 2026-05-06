@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/comfy-provider",
+  "name": "@tinkerclaw/comfy-provider",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw ComfyUI provider plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

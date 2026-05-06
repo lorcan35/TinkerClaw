@@ -9,7 +9,7 @@ import { resolveSecretInputRef } from "../config/types.secrets.js";
 import { resolveGatewayLaunchAgentLabel } from "../daemon/constants.js";
 import { resolveGatewayStateDir } from "../daemon/paths.js";
 import {
-  OPENCLAW_WRAPPER_ENV_KEY,
+  TINKERCLAW_WRAPPER_ENV_KEY,
   resolveGatewayProgramArguments,
   resolveOpenClawWrapperPath,
 } from "../daemon/program-args.js";
@@ -509,10 +509,10 @@ export async function buildGatewayInstallPlan(params: {
     nodePath: params.nodePath,
   });
   const wrapperPath = await resolveOpenClawWrapperPath(
-    params.wrapperPath ?? params.env[OPENCLAW_WRAPPER_ENV_KEY],
+    params.wrapperPath ?? params.env[TINKERCLAW_WRAPPER_ENV_KEY],
   );
   const serviceInputEnv: Record<string, string | undefined> = wrapperPath
-    ? { ...params.env, [OPENCLAW_WRAPPER_ENV_KEY]: wrapperPath }
+    ? { ...params.env, [TINKERCLAW_WRAPPER_ENV_KEY]: wrapperPath }
     : params.env;
   const { programArguments, workingDirectory } = await resolveGatewayProgramArguments({
     port: params.port,
@@ -533,7 +533,7 @@ export async function buildGatewayInstallPlan(params: {
     port: params.port,
     launchdLabel:
       platform === "darwin"
-        ? resolveGatewayLaunchAgentLabel(serviceInputEnv.OPENCLAW_PROFILE)
+        ? resolveGatewayLaunchAgentLabel(serviceInputEnv.TINKERCLAW_PROFILE)
         : undefined,
     platform,
     extraPathDirs: resolveDaemonNodeBinDir(nodePath),

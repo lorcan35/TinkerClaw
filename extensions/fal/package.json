@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/fal-provider",
+  "name": "@tinkerclaw/fal-provider",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw fal provider plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

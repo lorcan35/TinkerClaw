@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/signal",
+  "name": "@tinkerclaw/signal",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw Signal channel plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

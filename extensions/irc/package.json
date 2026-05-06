@@ -1,10 +1,10 @@
 {
-  "name": "@openclaw/irc",
+  "name": "@tinkerclaw/irc",
   "version": "2026.5.5",
   "description": "OpenClaw IRC channel plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

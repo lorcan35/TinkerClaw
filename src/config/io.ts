@@ -2125,7 +2125,7 @@ export function createConfigIO(
         return;
       }
       const isVitest = deps.env.VITEST === "true";
-      const shouldLogInVitest = deps.env.OPENCLAW_TEST_CONFIG_OVERWRITE_LOG === "1";
+      const shouldLogInVitest = deps.env.TINKERCLAW_TEST_CONFIG_OVERWRITE_LOG === "1";
       if (isVitest && !shouldLogInVitest) {
         return;
       }
@@ -2147,7 +2147,7 @@ export function createConfigIO(
       }
       // Tests often write minimal configs (missing meta, etc); keep output quiet unless requested.
       const isVitest = deps.env.VITEST === "true";
-      const shouldLogInVitest = deps.env.OPENCLAW_TEST_CONFIG_WRITE_ANOMALY_LOG === "1";
+      const shouldLogInVitest = deps.env.TINKERCLAW_TEST_CONFIG_WRITE_ANOMALY_LOG === "1";
       if (isVitest && !shouldLogInVitest) {
         return;
       }
@@ -2288,7 +2288,7 @@ export function createConfigIO(
 }
 
 // NOTE: These wrappers intentionally do *not* cache the resolved config path at
-// module scope. `OPENCLAW_CONFIG_PATH` (and friends) are expected to work even
+// module scope. `TINKERCLAW_CONFIG_PATH` (and friends) are expected to work even
 // when set after the module has been imported (tests, one-off scripts, etc.).
 const AUTO_OWNER_DISPLAY_SECRET_BY_PATH = new Map<string, string>();
 const AUTO_OWNER_DISPLAY_SECRET_PERSIST_IN_FLIGHT = new Set<string>();

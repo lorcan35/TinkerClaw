@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/diffs",
+  "name": "@tinkerclaw/diffs",
   "version": "2026.5.5",
   "description": "OpenClaw diff viewer plugin",
   "repository": {
@@ -17,14 +17,14 @@
     "typebox": "1.1.37"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [
       "./index.ts"
     ],
     "install": {
-      "npmSpec": "@openclaw/diffs",
+      "npmSpec": "@tinkerclaw/diffs",
       "localPath": "extensions/diffs",
       "defaultChoice": "npm",
       "minHostVersion": ">=2026.4.30"

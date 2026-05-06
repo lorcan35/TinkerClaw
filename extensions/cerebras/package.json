@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/cerebras-provider",
+  "name": "@tinkerclaw/cerebras-provider",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw Cerebras provider plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

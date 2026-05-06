@@ -380,8 +380,8 @@ function resolveGatewayCallTimeout(
     Number.isFinite(configuredHandshakeTimeoutMs) &&
     configuredHandshakeTimeoutMs > 0;
   const hasEnvHandshakeTimeout =
-    Boolean(process.env.OPENCLAW_HANDSHAKE_TIMEOUT_MS) ||
-    Boolean(process.env.VITEST && process.env.OPENCLAW_TEST_HANDSHAKE_TIMEOUT_MS);
+    Boolean(process.env.TINKERCLAW_HANDSHAKE_TIMEOUT_MS) ||
+    Boolean(process.env.VITEST && process.env.TINKERCLAW_TEST_HANDSHAKE_TIMEOUT_MS);
   const resolvedHandshakeTimeoutMs =
     hasConfiguredHandshakeTimeout || hasEnvHandshakeTimeout
       ? resolvePreauthHandshakeTimeoutMs({ configuredTimeoutMs: configuredHandshakeTimeoutMs })
@@ -401,7 +401,7 @@ function resolveGatewayCallContext(opts: CallGatewayBaseOptions): ResolvedGatewa
   const explicitAuth = resolveExplicitGatewayAuth({ token: opts.token, password: opts.password });
   const envUrlOverride = cliUrlOverride
     ? undefined
-    : trimToUndefined(process.env.OPENCLAW_GATEWAY_URL);
+    : trimToUndefined(process.env.TINKERCLAW_GATEWAY_URL);
   const urlOverride = cliUrlOverride ?? envUrlOverride;
   const urlOverrideSource = cliUrlOverride ? "cli" : envUrlOverride ? "env" : undefined;
   const canSkipConfigLoad = canSkipGatewayConfigLoad({

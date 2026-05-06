@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/google-meet",
+  "name": "@tinkerclaw/google-meet",
   "version": "2026.5.5",
   "description": "OpenClaw Google Meet participant plugin",
   "repository": {
@@ -12,11 +12,11 @@
     "typebox": "1.1.37"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*",
-    "openclaw": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*",
+    "tinkerclaw": "workspace:*"
   },
   "peerDependencies": {
-    "openclaw": ">=2026.5.5"
+    "tinkerclaw": ">=2026.5.5"
   },
   "peerDependenciesMeta": {
     "openclaw": {
@@ -28,7 +28,7 @@
       "./index.ts"
     ],
     "install": {
-      "npmSpec": "@openclaw/google-meet",
+      "npmSpec": "@tinkerclaw/google-meet",
       "defaultChoice": "npm",
       "minHostVersion": ">=2026.4.20"
     },

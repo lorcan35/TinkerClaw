@@ -274,7 +274,7 @@ async function runAutoUpdateCommand(params: {
     const res = await runCommandWithTimeout(argv, {
       timeoutMs: params.timeoutMs,
       env: {
-        OPENCLAW_AUTO_UPDATE: "1",
+        TINKERCLAW_AUTO_UPDATE: "1",
       },
     });
     return {

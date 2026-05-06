@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/voice-call",
+  "name": "@tinkerclaw/voice-call",
   "version": "2026.5.5",
   "description": "OpenClaw voice-call plugin",
   "repository": {
@@ -13,11 +13,11 @@
     "ws": "^8.20.0"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*",
-    "openclaw": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*",
+    "tinkerclaw": "workspace:*"
   },
   "peerDependencies": {
-    "openclaw": ">=2026.5.5"
+    "tinkerclaw": ">=2026.5.5"
   },
   "peerDependenciesMeta": {
     "openclaw": {
@@ -29,7 +29,7 @@
       "./index.ts"
     ],
     "install": {
-      "npmSpec": "@openclaw/voice-call",
+      "npmSpec": "@tinkerclaw/voice-call",
       "defaultChoice": "npm",
       "minHostVersion": ">=2026.4.10"
     },

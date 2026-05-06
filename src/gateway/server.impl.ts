@@ -202,7 +202,7 @@ const gatewayRuntime = runtimeForLogger(log);
 const canvasRuntime = runtimeForLogger(logCanvas);
 
 function createGatewayStartupTrace() {
-  const logEnabled = isTruthyEnvValue(process.env.OPENCLAW_GATEWAY_STARTUP_TRACE);
+  const logEnabled = isTruthyEnvValue(process.env.TINKERCLAW_GATEWAY_STARTUP_TRACE);
   let timelineConfig: OpenClawConfig | undefined;
   let eventLoopDelay: ReturnType<typeof monitorEventLoopDelay> | undefined;
   const timelineOptions = () => ({
@@ -211,7 +211,7 @@ function createGatewayStartupTrace() {
   });
   const eventLoopTimelineEnabled = () =>
     isDiagnosticsTimelineEnabled(timelineOptions()) &&
-    isTruthyEnvValue(process.env.OPENCLAW_DIAGNOSTICS_EVENT_LOOP);
+    isTruthyEnvValue(process.env.TINKERCLAW_DIAGNOSTICS_EVENT_LOOP);
   const ensureEventLoopDelay = () => {
     if (eventLoopDelay || (!logEnabled && !eventLoopTimelineEnabled())) {
       return;
@@ -513,16 +513,16 @@ export async function startGatewayServer(
   bootstrapGatewayNetworkRuntime();
 
   const minimalTestGateway =
-    isVitestRuntimeEnv() && process.env.OPENCLAW_TEST_MINIMAL_GATEWAY === "1";
+    isVitestRuntimeEnv() && process.env.TINKERCLAW_TEST_MINIMAL_GATEWAY === "1";
 
   // Ensure all default port derivations (browser/canvas) see the actual runtime port.
-  process.env.OPENCLAW_GATEWAY_PORT = String(port);
+  process.env.TINKERCLAW_GATEWAY_PORT = String(port);
   logAcceptedEnvOption({
-    key: "OPENCLAW_RAW_STREAM",
+    key: "TINKERCLAW_RAW_STREAM",
     description: "raw stream logging enabled",
   });
   logAcceptedEnvOption({
-    key: "OPENCLAW_RAW_STREAM_PATH",
+    key: "TINKERCLAW_RAW_STREAM_PATH",
     description: "raw stream log path override",
   });
   const startupTrace = createGatewayStartupTrace();
@@ -814,8 +814,8 @@ export async function startGatewayServer(
     getStartupPendingReason: () => startupPendingReason,
     getEventLoopHealth: readinessEventLoopHealth.snapshot,
     shouldSkipChannelReadiness: () =>
-      isTruthyEnvValue(process.env.OPENCLAW_SKIP_CHANNELS) ||
-      isTruthyEnvValue(process.env.OPENCLAW_SKIP_PROVIDERS),
+      isTruthyEnvValue(process.env.TINKERCLAW_SKIP_CHANNELS) ||
+      isTruthyEnvValue(process.env.TINKERCLAW_SKIP_PROVIDERS),
   });
   log.info("starting HTTP server...");
   const {

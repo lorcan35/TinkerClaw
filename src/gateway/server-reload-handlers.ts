@@ -278,8 +278,8 @@ export function createGatewayReloadHandlers(params: GatewayReloadHandlerParams) 
     const channelsStoppedBeforePluginReload = new Set<ChannelKind>();
     let activePluginChannelsAfterReload: ReadonlySet<ChannelKind> | null = null;
     const shouldSkipChannelRestart = () =>
-      isTruthyEnvValue(process.env.OPENCLAW_SKIP_CHANNELS) ||
-      isTruthyEnvValue(process.env.OPENCLAW_SKIP_PROVIDERS);
+      isTruthyEnvValue(process.env.TINKERCLAW_SKIP_CHANNELS) ||
+      isTruthyEnvValue(process.env.TINKERCLAW_SKIP_PROVIDERS);
     if (plan.reloadPlugins) {
       const stopChannelsBeforePluginReplace = async (channels: ReadonlySet<ChannelKind>) => {
         for (const channel of channels) {
@@ -349,14 +349,14 @@ export function createGatewayReloadHandlers(params: GatewayReloadHandlerParams) 
         cfg: nextConfig,
         log: params.logHooks,
         onSkipped: () =>
-          params.logHooks.info("skipping gmail watcher restart (OPENCLAW_SKIP_GMAIL_WATCHER=1)"),
+          params.logHooks.info("skipping gmail watcher restart (TINKERCLAW_SKIP_GMAIL_WATCHER=1)"),
       });
     }
 
     if (channelsToRestart.size > 0) {
       if (shouldSkipChannelRestart()) {
         params.logChannels.info(
-          "skipping channel reload (OPENCLAW_SKIP_CHANNELS=1 or OPENCLAW_SKIP_PROVIDERS=1)",
+          "skipping channel reload (TINKERCLAW_SKIP_CHANNELS=1 or TINKERCLAW_SKIP_PROVIDERS=1)",
         );
       } else {
         if (!plan.reloadPlugins) {

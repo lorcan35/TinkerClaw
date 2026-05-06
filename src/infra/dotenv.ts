@@ -38,44 +38,44 @@ const BLOCKED_WORKSPACE_DOTENV_KEYS = new Set([
   "NPM_EXECPATH",
   "OPENAI_API_KEY",
   "OPENAI_API_KEYS",
-  "OPENCLAW_AGENT_DIR",
-  "OPENCLAW_ALLOW_INSECURE_PRIVATE_WS",
-  "OPENCLAW_ALLOW_PROJECT_LOCAL_BIN",
-  "OPENCLAW_BROWSER_EXECUTABLE_PATH",
-  "OPENCLAW_BROWSER_CONTROL_MODULE",
-  "OPENCLAW_BUNDLED_HOOKS_DIR",
-  "OPENCLAW_BUNDLED_PLUGINS_DIR",
-  "OPENCLAW_BUNDLED_SKILLS_DIR",
-  "OPENCLAW_CACHE_TRACE",
-  "OPENCLAW_CACHE_TRACE_FILE",
-  "OPENCLAW_CACHE_TRACE_MESSAGES",
-  "OPENCLAW_CACHE_TRACE_PROMPT",
-  "OPENCLAW_CACHE_TRACE_SYSTEM",
-  "OPENCLAW_CONFIG_PATH",
-  "OPENCLAW_GATEWAY_PASSWORD",
-  "OPENCLAW_GATEWAY_PORT",
-  "OPENCLAW_GATEWAY_SECRET",
-  "OPENCLAW_GATEWAY_TOKEN",
-  "OPENCLAW_GATEWAY_URL",
-  "OPENCLAW_HOME",
-  "OPENCLAW_LIVE_ANTHROPIC_KEY",
-  "OPENCLAW_LIVE_ANTHROPIC_KEYS",
-  "OPENCLAW_LIVE_GEMINI_KEY",
-  "OPENCLAW_LIVE_OPENAI_KEY",
-  "OPENCLAW_MPM_CATALOG_PATHS",
-  "OPENCLAW_NODE_EXEC_FALLBACK",
-  "OPENCLAW_NODE_EXEC_HOST",
-  "OPENCLAW_OAUTH_DIR",
-  "OPENCLAW_PINNED_PYTHON",
-  "OPENCLAW_PINNED_WRITE_PYTHON",
-  "OPENCLAW_PLUGIN_CATALOG_PATHS",
-  "OPENCLAW_PROFILE",
-  "OPENCLAW_RAW_STREAM",
-  "OPENCLAW_RAW_STREAM_PATH",
-  "OPENCLAW_SHOW_SECRETS",
-  "OPENCLAW_SKIP_BROWSER_CONTROL_SERVER",
-  "OPENCLAW_STATE_DIR",
-  "OPENCLAW_TEST_TAILSCALE_BINARY",
+  "TINKERCLAW_AGENT_DIR",
+  "TINKERCLAW_ALLOW_INSECURE_PRIVATE_WS",
+  "TINKERCLAW_ALLOW_PROJECT_LOCAL_BIN",
+  "TINKERCLAW_BROWSER_EXECUTABLE_PATH",
+  "TINKERCLAW_BROWSER_CONTROL_MODULE",
+  "TINKERCLAW_BUNDLED_HOOKS_DIR",
+  "TINKERCLAW_BUNDLED_PLUGINS_DIR",
+  "TINKERCLAW_BUNDLED_SKILLS_DIR",
+  "TINKERCLAW_CACHE_TRACE",
+  "TINKERCLAW_CACHE_TRACE_FILE",
+  "TINKERCLAW_CACHE_TRACE_MESSAGES",
+  "TINKERCLAW_CACHE_TRACE_PROMPT",
+  "TINKERCLAW_CACHE_TRACE_SYSTEM",
+  "TINKERCLAW_CONFIG_PATH",
+  "TINKERCLAW_GATEWAY_PASSWORD",
+  "TINKERCLAW_GATEWAY_PORT",
+  "TINKERCLAW_GATEWAY_SECRET",
+  "TINKERCLAW_GATEWAY_TOKEN",
+  "TINKERCLAW_GATEWAY_URL",
+  "TINKERCLAW_HOME",
+  "TINKERCLAW_LIVE_ANTHROPIC_KEY",
+  "TINKERCLAW_LIVE_ANTHROPIC_KEYS",
+  "TINKERCLAW_LIVE_GEMINI_KEY",
+  "TINKERCLAW_LIVE_OPENAI_KEY",
+  "TINKERCLAW_MPM_CATALOG_PATHS",
+  "TINKERCLAW_NODE_EXEC_FALLBACK",
+  "TINKERCLAW_NODE_EXEC_HOST",
+  "TINKERCLAW_OAUTH_DIR",
+  "TINKERCLAW_PINNED_PYTHON",
+  "TINKERCLAW_PINNED_WRITE_PYTHON",
+  "TINKERCLAW_PLUGIN_CATALOG_PATHS",
+  "TINKERCLAW_PROFILE",
+  "TINKERCLAW_RAW_STREAM",
+  "TINKERCLAW_RAW_STREAM_PATH",
+  "TINKERCLAW_SHOW_SECRETS",
+  "TINKERCLAW_SKIP_BROWSER_CONTROL_SERVER",
+  "TINKERCLAW_STATE_DIR",
+  "TINKERCLAW_TEST_TAILSCALE_BINARY",
   "PI_CODING_AGENT_DIR",
   "PATH",
   "PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH",
@@ -99,10 +99,10 @@ const BLOCKED_WORKSPACE_DOTENV_PREFIXES = [
   // Workspace .env is untrusted; reserve the full OpenClaw runtime namespace
   // for shell/global config so new OPENCLAW_* controls are fail-closed by default.
   "OPENCLAW_",
-  "OPENCLAW_CLAWHUB_",
-  "OPENCLAW_DISABLE_",
-  "OPENCLAW_SKIP_",
-  "OPENCLAW_UPDATE_",
+  "TINKERCLAW_CLAWHUB_",
+  "TINKERCLAW_DISABLE_",
+  "TINKERCLAW_SKIP_",
+  "TINKERCLAW_UPDATE_",
 ];
 
 function shouldBlockWorkspaceRuntimeDotEnvKey(key: string): boolean {
@@ -110,7 +110,7 @@ function shouldBlockWorkspaceRuntimeDotEnvKey(key: string): boolean {
 }
 
 function shouldBlockRuntimeDotEnvKey(key: string): boolean {
-  // The global ~/.openclaw/.env (or OPENCLAW_STATE_DIR/.env) is a trusted
+  // The global ~/.openclaw/.env (or TINKERCLAW_STATE_DIR/.env) is a trusted
   // operator-controlled runtime surface. Workspace .env is untrusted and gets
   // the strict blocklist, but the trusted global fallback is allowed to set
   // runtime vars like proxy/base-url/auth values.
@@ -249,7 +249,7 @@ export function loadGlobalRuntimeDotEnvFiles(opts?: { quiet?: boolean; stateEnvP
     ".env",
   );
   const hasExplicitNonDefaultStateDir =
-    process.env.OPENCLAW_STATE_DIR?.trim() !== undefined &&
+    process.env.TINKERCLAW_STATE_DIR?.trim() !== undefined &&
     path.resolve(stateEnvPath) !== path.resolve(defaultStateEnvPath);
   const parsedFiles = [
     readDotEnvFile({
@@ -281,7 +281,7 @@ export function loadDotEnv(opts?: { quiet?: boolean }) {
   const cwdEnvPath = path.join(process.cwd(), ".env");
   loadWorkspaceDotEnvFile(cwdEnvPath, { quiet });
 
-  // Then load global fallback: ~/.openclaw/.env (or OPENCLAW_STATE_DIR/.env),
+  // Then load global fallback: ~/.openclaw/.env (or TINKERCLAW_STATE_DIR/.env),
   // without overriding any env vars already present.
   loadGlobalRuntimeDotEnvFiles({ quiet });
 }

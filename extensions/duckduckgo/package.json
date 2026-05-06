@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/duckduckgo-plugin",
+  "name": "@tinkerclaw/duckduckgo-plugin",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw DuckDuckGo plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

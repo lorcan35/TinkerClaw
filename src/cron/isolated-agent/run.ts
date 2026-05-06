@@ -1060,7 +1060,7 @@ export async function runCronIsolatedAgentTurn(params: {
       ? reason.trim()
       : "cron: job execution timed out";
   };
-  const isFastTestEnv = process.env.OPENCLAW_TEST_FAST === "1";
+  const isFastTestEnv = process.env.TINKERCLAW_TEST_FAST === "1";
   const prepared = await prepareCronRunContext({ input: params, isFastTestEnv });
   if (!prepared.ok) {
     return prepared.result;

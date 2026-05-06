@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/bonjour",
+  "name": "@tinkerclaw/bonjour",
   "version": "2026.5.5",
   "description": "OpenClaw Bonjour/mDNS gateway discovery",
   "type": "module",
@@ -7,7 +7,7 @@
     "@homebridge/ciao": "^1.3.8"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

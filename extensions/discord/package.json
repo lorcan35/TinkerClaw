@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/discord",
+  "name": "@tinkerclaw/discord",
   "version": "2026.5.5",
   "description": "OpenClaw Discord channel plugin",
   "repository": {
@@ -17,11 +17,11 @@
     "ws": "^8.20.0"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*",
-    "openclaw": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*",
+    "tinkerclaw": "workspace:*"
   },
   "peerDependencies": {
-    "openclaw": ">=2026.5.5"
+    "tinkerclaw": ">=2026.5.5"
   },
   "peerDependenciesMeta": {
     "openclaw": {
@@ -59,7 +59,7 @@
       }
     },
     "install": {
-      "npmSpec": "@openclaw/discord",
+      "npmSpec": "@tinkerclaw/discord",
       "defaultChoice": "npm",
       "minHostVersion": ">=2026.4.10",
       "allowInvalidConfigRecovery": true

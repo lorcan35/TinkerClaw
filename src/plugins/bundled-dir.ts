@@ -7,7 +7,7 @@ import { normalizeOptionalLowercaseString } from "../shared/string-coerce.js";
 import { resolveUserPath } from "../utils.js";
 
 const DISABLED_BUNDLED_PLUGINS_DIR = path.join(os.tmpdir(), "openclaw-empty-bundled-plugins");
-const TEST_TRUST_BUNDLED_PLUGINS_DIR_ENV = "OPENCLAW_TEST_TRUST_BUNDLED_PLUGINS_DIR";
+const TEST_TRUST_BUNDLED_PLUGINS_DIR_ENV = "TINKERCLAW_TEST_TRUST_BUNDLED_PLUGINS_DIR";
 let bundledPluginsDirOverrideForTest: string | undefined;
 const bundledPluginsDirCache = new Map<string, string | undefined>();
 
@@ -17,7 +17,7 @@ export type SourceCheckoutDependencyDiagnostic = {
 };
 
 export function areBundledPluginsDisabled(env: NodeJS.ProcessEnv = process.env): boolean {
-  const raw = normalizeOptionalLowercaseString(env.OPENCLAW_DISABLE_BUNDLED_PLUGINS);
+  const raw = normalizeOptionalLowercaseString(env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS);
   return raw === "1" || raw === "true";
 }
 
@@ -197,8 +197,8 @@ function resolveBundledDirFromPackageRoot(packageRoot: string): string | undefin
 
 function createBundledPluginsDirCacheKey(env: NodeJS.ProcessEnv): string {
   return JSON.stringify({
-    disabled: env.OPENCLAW_DISABLE_BUNDLED_PLUGINS ?? "",
-    override: env.OPENCLAW_BUNDLED_PLUGINS_DIR ?? "",
+    disabled: env.TINKERCLAW_DISABLE_BUNDLED_PLUGINS ?? "",
+    override: env.TINKERCLAW_BUNDLED_PLUGINS_DIR ?? "",
     trustOverride: env[TEST_TRUST_BUNDLED_PLUGINS_DIR_ENV] ?? "",
     processTrustOverride: process.env[TEST_TRUST_BUNDLED_PLUGINS_DIR_ENV] ?? "",
     vitest: env.VITEST ?? "",
@@ -206,7 +206,7 @@ function createBundledPluginsDirCacheKey(env: NodeJS.ProcessEnv): string {
     nodeEnv: process.env.NODE_ENV ?? "",
     argv1: process.argv[1] ?? "",
     execPath: process.execPath,
-    openClawHome: env.OPENCLAW_HOME ?? "",
+    openClawHome: env.TINKERCLAW_HOME ?? "",
     home: env.HOME ?? "",
     userProfile: env.USERPROFILE ?? "",
     testOverride: bundledPluginsDirOverrideForTest ?? "",
@@ -222,7 +222,7 @@ function resolveBundledPluginsDirUncached(env: NodeJS.ProcessEnv): string | unde
     return bundledPluginsDirOverrideForTest;
   }
 
-  const override = env.OPENCLAW_BUNDLED_PLUGINS_DIR?.trim();
+  const override = env.TINKERCLAW_BUNDLED_PLUGINS_DIR?.trim();
   let rejectedExistingOverride: string | null = null;
   if (override) {
     const resolvedOverride = resolveUserPath(override, env);

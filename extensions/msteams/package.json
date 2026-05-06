@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/msteams",
+  "name": "@tinkerclaw/msteams",
   "version": "2026.5.5",
   "description": "OpenClaw Microsoft Teams channel plugin",
   "repository": {
@@ -17,12 +17,12 @@
     "typebox": "1.1.37"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*",
+    "@tinkerclaw/plugin-sdk": "workspace:*",
     "@types/jsonwebtoken": "^9.0.10",
-    "openclaw": "workspace:*"
+    "tinkerclaw": "workspace:*"
   },
   "peerDependencies": {
-    "openclaw": ">=2026.5.5"
+    "tinkerclaw": ">=2026.5.5"
   },
   "peerDependenciesMeta": {
     "openclaw": {
@@ -53,7 +53,7 @@
       }
     },
     "install": {
-      "npmSpec": "@openclaw/msteams",
+      "npmSpec": "@tinkerclaw/msteams",
       "defaultChoice": "npm",
       "minHostVersion": ">=2026.4.10"
     },

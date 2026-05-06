@@ -121,8 +121,8 @@ function readCompatBoolean(
   return typeof value === "boolean" ? value : undefined;
 }
 
-const OPENCLAW_ATTRIBUTION_PRODUCT = "OpenClaw";
-const OPENCLAW_ATTRIBUTION_ORIGINATOR = "openclaw";
+const TINKERCLAW_ATTRIBUTION_PRODUCT = "OpenClaw";
+const TINKERCLAW_ATTRIBUTION_ORIGINATOR = "openclaw";
 const OPENROUTER_ATTRIBUTION_CATEGORIES =
   "cli-agent,cloud-agent,programming-app,creative-writing,writing-assistant,general-chat,personal-agent";
 
@@ -170,7 +170,7 @@ let manifestProviderEndpointCache: ManifestProviderEndpointCacheEntry[] | null =
 let manifestProviderRequestCache: Map<string, ManifestProviderRequestCacheEntry> | null = null;
 
 function formatOpenClawUserAgent(version: string): string {
-  return `${OPENCLAW_ATTRIBUTION_ORIGINATOR}/${version}`;
+  return `${TINKERCLAW_ATTRIBUTION_ORIGINATOR}/${version}`;
 }
 
 function tryParseHostname(value: string): string | undefined {
@@ -455,7 +455,7 @@ export function resolveProviderAttributionIdentity(
   env: RuntimeVersionEnv = process.env as RuntimeVersionEnv,
 ): ProviderAttributionIdentity {
   return {
-    product: OPENCLAW_ATTRIBUTION_PRODUCT,
+    product: TINKERCLAW_ATTRIBUTION_PRODUCT,
     version: resolveRuntimeServiceVersion(env),
   };
 }
@@ -493,7 +493,7 @@ function buildOpenAIAttributionPolicy(
       "OpenAI native traffic supports hidden originator/User-Agent attribution. Verified against the Codex wire contract.",
     ...identity,
     headers: {
-      originator: OPENCLAW_ATTRIBUTION_ORIGINATOR,
+      originator: TINKERCLAW_ATTRIBUTION_ORIGINATOR,
       version: identity.version,
       "User-Agent": formatOpenClawUserAgent(identity.version),
     },
@@ -513,7 +513,7 @@ function buildOpenAICodexAttributionPolicy(
       "OpenAI Codex ChatGPT-backed traffic supports the same hidden originator/User-Agent attribution contract.",
     ...identity,
     headers: {
-      originator: OPENCLAW_ATTRIBUTION_ORIGINATOR,
+      originator: TINKERCLAW_ATTRIBUTION_ORIGINATOR,
       version: identity.version,
       "User-Agent": formatOpenClawUserAgent(identity.version),
     },

@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/brave-plugin",
+  "name": "@tinkerclaw/brave-plugin",
   "version": "2026.5.5",
   "description": "OpenClaw Brave plugin",
   "repository": {
@@ -8,14 +8,14 @@
   },
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [
       "./index.ts"
     ],
     "install": {
-      "npmSpec": "@openclaw/brave-plugin",
+      "npmSpec": "@tinkerclaw/brave-plugin",
       "defaultChoice": "npm",
       "minHostVersion": ">=2026.4.10"
     },

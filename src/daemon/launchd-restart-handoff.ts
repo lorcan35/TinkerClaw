@@ -29,8 +29,8 @@ const START_AFTER_EXIT_PRINT_RETRY_DELAY_SECONDS = 0.2;
 type LaunchdRestartLogEnv = {
   HOME?: string;
   USERPROFILE?: string;
-  OPENCLAW_STATE_DIR?: string;
-  OPENCLAW_PROFILE?: string;
+  TINKERCLAW_STATE_DIR?: string;
+  TINKERCLAW_PROFILE?: string;
 };
 
 function assertValidLaunchAgentLabel(label: string): string {
@@ -64,17 +64,17 @@ function collectRestartLogEnv(env?: Record<string, string | undefined>): Launchd
   return {
     HOME: source.HOME,
     USERPROFILE: source.USERPROFILE,
-    OPENCLAW_STATE_DIR: source.OPENCLAW_STATE_DIR,
-    OPENCLAW_PROFILE: source.OPENCLAW_PROFILE,
+    TINKERCLAW_STATE_DIR: source.TINKERCLAW_STATE_DIR,
+    TINKERCLAW_PROFILE: source.TINKERCLAW_PROFILE,
   };
 }
 
 function resolveLaunchAgentLabel(env?: Record<string, string | undefined>): string {
-  const envLabel = normalizeOptionalString(env?.OPENCLAW_LAUNCHD_LABEL);
+  const envLabel = normalizeOptionalString(env?.TINKERCLAW_LAUNCHD_LABEL);
   if (envLabel) {
     return assertValidLaunchAgentLabel(envLabel);
   }
-  return assertValidLaunchAgentLabel(resolveGatewayLaunchAgentLabel(env?.OPENCLAW_PROFILE));
+  return assertValidLaunchAgentLabel(resolveGatewayLaunchAgentLabel(env?.TINKERCLAW_PROFILE));
 }
 
 function resolveLaunchdRestartTarget(
@@ -103,7 +103,7 @@ export function isCurrentProcessLaunchdServiceLabel(
   if (launchdLabel) {
     return launchdLabel === label;
   }
-  const configuredLabel = normalizeOptionalString(env.OPENCLAW_LAUNCHD_LABEL);
+  const configuredLabel = normalizeOptionalString(env.TINKERCLAW_LAUNCHD_LABEL);
   return Boolean(configuredLabel && configuredLabel === label);
 }
 

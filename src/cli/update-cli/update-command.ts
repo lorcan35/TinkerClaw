@@ -109,21 +109,21 @@ import { suppressDeprecations } from "./suppress-deprecations.js";
 const CLI_NAME = resolveCliName();
 const SERVICE_REFRESH_TIMEOUT_MS = 60_000;
 const DEFAULT_UPDATE_STEP_TIMEOUT_MS = 30 * 60_000;
-const POST_CORE_UPDATE_ENV = "OPENCLAW_UPDATE_POST_CORE";
-const POST_CORE_UPDATE_CHANNEL_ENV = "OPENCLAW_UPDATE_POST_CORE_CHANNEL";
-const POST_CORE_UPDATE_REQUESTED_CHANNEL_ENV = "OPENCLAW_UPDATE_POST_CORE_REQUESTED_CHANNEL";
-const POST_CORE_UPDATE_RESULT_PATH_ENV = "OPENCLAW_UPDATE_POST_CORE_RESULT_PATH";
+const POST_CORE_UPDATE_ENV = "TINKERCLAW_UPDATE_POST_CORE";
+const POST_CORE_UPDATE_CHANNEL_ENV = "TINKERCLAW_UPDATE_POST_CORE_CHANNEL";
+const POST_CORE_UPDATE_REQUESTED_CHANNEL_ENV = "TINKERCLAW_UPDATE_POST_CORE_REQUESTED_CHANNEL";
+const POST_CORE_UPDATE_RESULT_PATH_ENV = "TINKERCLAW_UPDATE_POST_CORE_RESULT_PATH";
 const POST_CORE_UPDATE_RESULT_POLL_MS = 100;
 const UPDATE_PARENT_SUPPORTS_DOCTOR_CONFIG_WRITE_ENV =
-  "OPENCLAW_UPDATE_PARENT_SUPPORTS_DOCTOR_CONFIG_WRITE";
+  "TINKERCLAW_UPDATE_PARENT_SUPPORTS_DOCTOR_CONFIG_WRITE";
 const SERVICE_REFRESH_PATH_ENV_KEYS = [
-  "OPENCLAW_HOME",
-  "OPENCLAW_STATE_DIR",
-  "OPENCLAW_CONFIG_PATH",
+  "TINKERCLAW_HOME",
+  "TINKERCLAW_STATE_DIR",
+  "TINKERCLAW_CONFIG_PATH",
 ] as const;
 const POST_INSTALL_DOCTOR_SERVICE_ENV_KEYS = [
   ...SERVICE_REFRESH_PATH_ENV_KEYS,
-  "OPENCLAW_PROFILE",
+  "TINKERCLAW_PROFILE",
 ] as const;
 const POST_UPDATE_PLUGIN_REPAIR_GUIDANCE = "Run openclaw doctor --fix to attempt automatic repair.";
 
@@ -560,10 +560,10 @@ async function maybeRestartServiceAfterFailedPackageUpdate(params: {
 function isRunningInsideGatewayService(
   env: Record<string, string | undefined> = process.env,
 ): boolean {
-  if (env.OPENCLAW_SERVICE_MARKER?.trim() !== GATEWAY_SERVICE_MARKER) {
+  if (env.TINKERCLAW_SERVICE_MARKER?.trim() !== GATEWAY_SERVICE_MARKER) {
     return false;
   }
-  const serviceKind = env.OPENCLAW_SERVICE_KIND?.trim();
+  const serviceKind = env.TINKERCLAW_SERVICE_KIND?.trim();
   return !serviceKind || serviceKind === GATEWAY_SERVICE_KIND;
 }
 
@@ -666,8 +666,8 @@ function disableUpdatedPackageCompileCacheEnv(env: NodeJS.ProcessEnv): NodeJS.Pr
 
 function stripGatewayServiceMarkerEnv(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
   const resolvedEnv = { ...env };
-  delete resolvedEnv.OPENCLAW_SERVICE_MARKER;
-  delete resolvedEnv.OPENCLAW_SERVICE_KIND;
+  delete resolvedEnv.TINKERCLAW_SERVICE_MARKER;
+  delete resolvedEnv.TINKERCLAW_SERVICE_KIND;
   return resolvedEnv;
 }
 
@@ -963,7 +963,7 @@ async function runPackageInstallUpdate(params: {
               serviceEnv: params.managedServiceEnv,
               invocationCwd: params.invocationCwd,
             }),
-            OPENCLAW_UPDATE_IN_PROGRESS: "1",
+            TINKERCLAW_UPDATE_IN_PROGRESS: "1",
             [UPDATE_PARENT_SUPPORTS_DOCTOR_CONFIG_WRITE_ENV]: "1",
           },
           timeoutMs: params.timeoutMs,
@@ -1549,7 +1549,7 @@ async function maybeRestartService(params: {
       if (!params.opts.json && restarted) {
         defaultRuntime.log(theme.success("Daemon restarted successfully."));
         defaultRuntime.log("");
-        process.env.OPENCLAW_UPDATE_IN_PROGRESS = "1";
+        process.env.TINKERCLAW_UPDATE_IN_PROGRESS = "1";
         process.env[UPDATE_PARENT_SUPPORTS_DOCTOR_CONFIG_WRITE_ENV] = "1";
         try {
           const interactiveDoctor =
@@ -1560,7 +1560,7 @@ async function maybeRestartService(params: {
         } catch (err) {
           defaultRuntime.log(theme.warn(`Doctor failed: ${String(err)}`));
         } finally {
-          delete process.env.OPENCLAW_UPDATE_IN_PROGRESS;
+          delete process.env.TINKERCLAW_UPDATE_IN_PROGRESS;
           delete process.env[UPDATE_PARENT_SUPPORTS_DOCTOR_CONFIG_WRITE_ENV];
         }
       }
@@ -1998,7 +1998,9 @@ export async function updateCommand(opts: UpdateCommandOptions): Promise<void> {
     updateInstallKind === "git" ? DEFAULT_GIT_CHANNEL : DEFAULT_PACKAGE_CHANNEL;
   const channel = requestedChannel ?? storedChannel ?? defaultChannel;
   const devTargetRef =
-    channel === "dev" ? process.env.OPENCLAW_UPDATE_DEV_TARGET_REF?.trim() || undefined : undefined;
+    channel === "dev"
+      ? process.env.TINKERCLAW_UPDATE_DEV_TARGET_REF?.trim() || undefined
+      : undefined;
 
   const explicitTag = normalizeTag(opts.tag);
   let tag = explicitTag ?? channelToNpmTag(channel);

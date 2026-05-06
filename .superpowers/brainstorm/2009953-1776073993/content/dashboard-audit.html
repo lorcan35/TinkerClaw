@@ -1,0 +1,79 @@
+<h2>TinkerClaw Dashboard Audit</h2>
+<p class="subtitle">14/15 API endpoints working. 6 bugs found. What should we fix first?</p>
+
+<div class="section">
+  <h3>Critical Bugs (must fix)</h3>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="notes-404" onclick="toggleSelect(this)">
+      <div class="letter">1</div>
+      <div class="content">
+        <h3>Notes Tab Completely Broken (404)</h3>
+        <p><code>/api/notes</code> returns 404 — the Notes tab shows nothing. Voice server has notes at <code>/api/notes</code> but the dashboard proxy route doesn't reach it. Entire Notes feature is dead.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="config-post" onclick="toggleSelect(this)">
+      <div class="letter">2</div>
+      <div class="content">
+        <h3>Config POST Goes Nowhere</h3>
+        <p>The "Apply" button in Overview pipeline config POSTs to <code>/api/voice-config</code> on the dashboard, not through the proxy to the voice server. Config changes don't actually apply.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>High Priority Bugs</h3>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="cors" onclick="toggleSelect(this)">
+      <div class="letter">3</div>
+      <div class="content">
+        <h3>Missing CORS on Proxy Responses</h3>
+        <p>Non-SSE proxy responses have no CORS headers. Cross-origin access fails for all non-streaming endpoints.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="tool-doubleclick" onclick="toggleSelect(this)">
+      <div class="letter">4</div>
+      <div class="content">
+        <h3>Tool Execute Double-Click</h3>
+        <p>Execute button not disabled during API call. Users can fire duplicate requests by clicking twice.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>UX Improvements</h3>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="loading-states" onclick="toggleSelect(this)">
+      <div class="letter">5</div>
+      <div class="content">
+        <h3>Add Loading States Everywhere</h3>
+        <p>No spinners, no disabled buttons during fetches. Users have no idea if their click registered or if the system is working.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="error-toasts" onclick="toggleSelect(this)">
+      <div class="letter">6</div>
+      <div class="content">
+        <h3>Show Errors to User</h3>
+        <p>Config load failures, event polling errors — all silently swallowed. User sees stale data with no indication anything's wrong.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="ota-tab" onclick="toggleSelect(this)">
+      <div class="letter">7</div>
+      <div class="content">
+        <h3>Add OTA Firmware Update Tab</h3>
+        <p>Dragon has <code>/api/ota/check</code> and <code>/api/ota/firmware.bin</code> endpoints but no dashboard UI to trigger updates.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="device-config" onclick="toggleSelect(this)">
+      <div class="letter">8</div>
+      <div class="content">
+        <h3>Device Config Push</h3>
+        <p>No way to change device WiFi, voice mode, or LLM model from the dashboard. Currently requires physical Tab5 interaction.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:2rem;">Select all items you want included in the fix. Click to toggle each one.</p>
+</content>

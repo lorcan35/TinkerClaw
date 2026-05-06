@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/alibaba-provider",
+  "name": "@tinkerclaw/alibaba-provider",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw Alibaba Model Studio video provider plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

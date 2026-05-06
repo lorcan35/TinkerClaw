@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/moonshot-provider",
+  "name": "@tinkerclaw/moonshot-provider",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw Moonshot provider plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

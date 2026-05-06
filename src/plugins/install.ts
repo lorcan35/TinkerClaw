@@ -854,7 +854,7 @@ async function validatePackagePluginInstallSource(params: {
     if (minHostVersionCheck.kind === "unknown_host_version") {
       return {
         ok: false,
-        error: `plugin "${pluginId}" requires OpenClaw >=${minHostVersionCheck.requirement.minimumLabel}, but this host version could not be determined. Re-run from a released build or set OPENCLAW_VERSION and retry.`,
+        error: `plugin "${pluginId}" requires OpenClaw >=${minHostVersionCheck.requirement.minimumLabel}, but this host version could not be determined. Re-run from a released build or set TINKERCLAW_VERSION and retry.`,
         code: PLUGIN_INSTALL_ERROR_CODE.UNKNOWN_HOST_VERSION,
       };
     }

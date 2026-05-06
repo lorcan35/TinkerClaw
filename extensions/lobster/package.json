@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/lobster",
+  "name": "@tinkerclaw/lobster",
   "version": "2026.5.5",
   "description": "Lobster workflow tool plugin (typed pipelines + resumable approvals)",
   "repository": {
@@ -13,14 +13,14 @@
     "typebox": "1.1.37"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [
       "./index.ts"
     ],
     "install": {
-      "npmSpec": "@openclaw/lobster",
+      "npmSpec": "@tinkerclaw/lobster",
       "defaultChoice": "npm",
       "minHostVersion": ">=2026.4.25"
     },

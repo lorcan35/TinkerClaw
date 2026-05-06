@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/diagnostics-otel",
+  "name": "@tinkerclaw/diagnostics-otel",
   "version": "2026.5.5",
   "description": "OpenClaw diagnostics OpenTelemetry exporter",
   "repository": {
@@ -21,15 +21,15 @@
     "@opentelemetry/semantic-conventions": "^1.40.0"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [
       "./index.ts"
     ],
     "install": {
-      "clawhubSpec": "clawhub:@openclaw/diagnostics-otel",
-      "npmSpec": "@openclaw/diagnostics-otel",
+      "clawhubSpec": "clawhub:@tinkerclaw/diagnostics-otel",
+      "npmSpec": "@tinkerclaw/diagnostics-otel",
       "defaultChoice": "npm",
       "minHostVersion": ">=2026.4.25"
     },

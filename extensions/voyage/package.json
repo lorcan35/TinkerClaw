@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/voyage-provider",
+  "name": "@tinkerclaw/voyage-provider",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw Voyage embedding provider plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

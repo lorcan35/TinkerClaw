@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/acpx",
+  "name": "@tinkerclaw/acpx",
   "version": "2026.5.5",
   "description": "OpenClaw ACP runtime backend",
   "repository": {
@@ -13,14 +13,14 @@
     "acpx": "0.6.1"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [
       "./index.ts"
     ],
     "install": {
-      "npmSpec": "@openclaw/acpx",
+      "npmSpec": "@tinkerclaw/acpx",
       "defaultChoice": "npm",
       "minHostVersion": ">=2026.4.25"
     },

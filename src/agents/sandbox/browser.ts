@@ -50,7 +50,7 @@ import { validateNetworkMode } from "./validate-sandbox-security.js";
 import { appendWorkspaceMountArgs, SANDBOX_MOUNT_FORMAT_VERSION } from "./workspace-mounts.js";
 
 const HOT_BROWSER_WINDOW_MS = 5 * 60 * 1000;
-const CDP_SOURCE_RANGE_ENV_KEY = "OPENCLAW_BROWSER_CDP_SOURCE_RANGE";
+const CDP_SOURCE_RANGE_ENV_KEY = "TINKERCLAW_BROWSER_CDP_SOURCE_RANGE";
 
 async function waitForSandboxCdp(params: { cdpPort: number; timeoutMs: number }): Promise<boolean> {
   const deadline = Date.now() + Math.max(0, params.timeoutMs);
@@ -315,19 +315,22 @@ export async function ensureSandboxBrowser(params: {
     if (noVncEnabled) {
       args.push("-p", `127.0.0.1::${params.cfg.browser.noVncPort}`);
     }
-    args.push("-e", `OPENCLAW_BROWSER_HEADLESS=${params.cfg.browser.headless ? "1" : "0"}`);
-    args.push("-e", `OPENCLAW_BROWSER_ENABLE_NOVNC=${params.cfg.browser.enableNoVnc ? "1" : "0"}`);
-    args.push("-e", `OPENCLAW_BROWSER_CDP_PORT=${params.cfg.browser.cdpPort}`);
+    args.push("-e", `TINKERCLAW_BROWSER_HEADLESS=${params.cfg.browser.headless ? "1" : "0"}`);
     args.push(
       "-e",
-      `OPENCLAW_BROWSER_AUTO_START_TIMEOUT_MS=${params.cfg.browser.autoStartTimeoutMs}`,
+      `TINKERCLAW_BROWSER_ENABLE_NOVNC=${params.cfg.browser.enableNoVnc ? "1" : "0"}`,
+    );
+    args.push("-e", `TINKERCLAW_BROWSER_CDP_PORT=${params.cfg.browser.cdpPort}`);
+    args.push(
+      "-e",
+      `TINKERCLAW_BROWSER_AUTO_START_TIMEOUT_MS=${params.cfg.browser.autoStartTimeoutMs}`,
     );
     if (effectiveCdpSourceRange) {
       args.push("-e", `${CDP_SOURCE_RANGE_ENV_KEY}=${effectiveCdpSourceRange}`);
     }
-    args.push("-e", `OPENCLAW_BROWSER_VNC_PORT=${params.cfg.browser.vncPort}`);
-    args.push("-e", `OPENCLAW_BROWSER_NOVNC_PORT=${params.cfg.browser.noVncPort}`);
-    args.push("-e", "OPENCLAW_BROWSER_NO_SANDBOX=1");
+    args.push("-e", `TINKERCLAW_BROWSER_VNC_PORT=${params.cfg.browser.vncPort}`);
+    args.push("-e", `TINKERCLAW_BROWSER_NOVNC_PORT=${params.cfg.browser.noVncPort}`);
+    args.push("-e", "TINKERCLAW_BROWSER_NO_SANDBOX=1");
     if (noVncEnabled && noVncPassword) {
       args.push("-e", `${NOVNC_PASSWORD_ENV_KEY}=${noVncPassword}`);
     }

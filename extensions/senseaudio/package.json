@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/senseaudio-provider",
+  "name": "@tinkerclaw/senseaudio-provider",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw SenseAudio media-understanding provider",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

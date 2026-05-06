@@ -1,11 +1,11 @@
 {
-  "name": "@openclaw/together-provider",
+  "name": "@tinkerclaw/together-provider",
   "version": "2026.5.5",
   "private": true,
   "description": "OpenClaw Together provider plugin",
   "type": "module",
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*"
   },
   "openclaw": {
     "extensions": [

@@ -1,5 +1,5 @@
 {
-  "name": "@openclaw/matrix",
+  "name": "@tinkerclaw/matrix",
   "version": "2026.5.5",
   "description": "OpenClaw Matrix channel plugin",
   "repository": {
@@ -17,11 +17,11 @@
     "typebox": "1.1.37"
   },
   "devDependencies": {
-    "@openclaw/plugin-sdk": "workspace:*",
-    "openclaw": "workspace:*"
+    "@tinkerclaw/plugin-sdk": "workspace:*",
+    "tinkerclaw": "workspace:*"
   },
   "peerDependencies": {
-    "openclaw": ">=2026.5.5"
+    "tinkerclaw": ">=2026.5.5"
   },
   "peerDependenciesMeta": {
     "openclaw": {
