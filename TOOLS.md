@@ -236,3 +236,13 @@ sqlite3 ~/.tinkerclaw/sessions/sessions.db "SELECT COUNT(*) FROM sessions WHERE 
 # ngrok tunnels
 curl http://localhost:4040/api/tunnels 2>/dev/null | python3 -m json.tool | grep public_url
 ```
+
+---
+
+## Ollama (Dragon ARM)
+
+- Current: `qwen2.5:3b-instruct-q4_K_M` (fallback for vmode=3 if
+  OpenRouter unreachable)
+- Latency: 60-90 s/turn on Q6A CPU (no NPU lane)
+- See LEARNINGS.md "Ollama on ARM latency" for the 45× speedup
+  story via llama-server (TinkerBox-side, not Ollama)
