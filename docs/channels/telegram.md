@@ -977,6 +977,36 @@ dig +short api.telegram.org AAAA
 
 More help: [Channel troubleshooting](/channels/troubleshooting).
 
+## TinkerClaw-Specific Short-Code Flow (W7-F.5)
+
+Tab5 → TinkerClaw uses 2-letter short codes for channel names.
+TinkerBox `dragon_voice/channels/gateway.py` carries the mapping in
+`_TAB5_CHANNEL_ALIASES`:
+
+| Short | Canonical | NVS gate |
+| ----- | --------- | -------- |
+| tg    | telegram  | ch_tg_on |
+| wa    | whatsapp  | ch_wa_on |
+| dc    | discord   | ch_dc_on |
+| sl    | slack     | ch_sl_on |
+| sg    | signal    | ch_sg_on |
+| im    | imessage  | ch_im_on |
+| ma    | matrix    | ch_ma_on |
+| em    | email     | ch_em_on |
+
+- Short codes are sent only on Tab5↔Dragon WS to save bytes
+- Dragon ↔ TinkerClaw uses canonical names
+- New channels: update the mapping in BOTH TinkerBox gateway.py AND
+  TinkerTab settings.h `ch_*_on` keys
+
+### Pairing
+
+- User runs `/start <code>` in Telegram chat with the TinkerClaw bot
+- TinkerClaw matches the short-code to the registered device_id
+- Short-codes expire 1h after generation
+- Wrong-device fallback: TinkerClaw issues `pair_invalid` event;
+  Tab5 surfaces a toast
+
 ## Configuration reference
 
 Primary reference: [Configuration reference - Telegram](/gateway/config-channels#telegram).

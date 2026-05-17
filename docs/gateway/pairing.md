@@ -201,6 +201,32 @@ Security notes:
 - If the Gateway is offline or pairing is disabled, nodes cannot pair.
 - If the Gateway is in remote mode, pairing still happens against the remote Gateway’s store.
 
+## Ed25519 Device-Identity Handshake (W7-F.4)
+
+TinkerClaw verifies the Dragon GatewayConnector via ed25519 signature:
+
+### Flow
+
+1. TinkerClaw issues a 32-byte random nonce to Dragon on connect
+2. Dragon signs nonce + timestamp with its ed25519 private key
+3. TinkerClaw verifies signature against the Dragon device's
+   registered public key (stored in TinkerClaw config or DB)
+4. On match: session is authenticated; vmode=3 routing accepted
+5. On mismatch: connection refused; doctor flow recommended
+
+### Token rotation
+
+- Default: keys rotate every ≈90 days (configurable)
+- Manual rotation: `tinkerclaw doctor --rotate-device-key`
+- Old keys remain valid for a ≈24h grace window after rotation
+
+### Key mismatch recovery
+
+- Dragon side: re-pair via TinkerBox `dragon_voice/channels/gateway.py`
+  init flow
+- TinkerClaw side: delete the stale public key from device DB,
+  re-pair Dragon
+
 ## Related
 
 - [Channel pairing](/channels/pairing)

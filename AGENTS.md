@@ -52,6 +52,13 @@ nmap -p 22,3502,18789 --open <subnet>/24   # signature-port sweep
 
 **Tab5 sits on the same LAN.** Tab5 IP is also DHCP — current lease 2026-05-04: `192.168.70.128` (hostname `espressif`). Was `192.168.1.90` on the .1.x LAN.
 
+### LAN IP discovery (if Dragon IP flips)
+
+- Dragon's LAN flips between 192.168.1.x and 192.168.70.x
+  periodically. Locate via:
+  `nmap -p 22,3502,18789 --open <subnet>/24`
+- hostname `radxa-dragon-q6a` works on most LANs (mDNS)
+
 **Services on Dragon:**
 
 ```bash
