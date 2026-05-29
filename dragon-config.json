@@ -12,7 +12,7 @@
         "baseUrl": "http://localhost:11434"
       }
     },
-    "default": "ollama/qwen3:1.7b"
+    "default": "minimax/MiniMax-M2.5"
   },
   "agents": {
     "defaults": {
