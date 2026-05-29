@@ -1,8 +1,6 @@
-export const PROJECT_NAME = "tinkerclaw" as const;
+export const PROJECT_NAME = "openclaw" as const;
 
-// Canonical name is tinkerclaw; keep openclaw (and its own legacy clawdbot) as
-// legacy manifest keys so existing openclaw.plugin.json manifests still load.
-const LEGACY_PROJECT_NAMES = ["openclaw", "clawdbot"] as const;
+const LEGACY_PROJECT_NAMES = ["clawdbot"] as const;
 
 export const MANIFEST_KEY = PROJECT_NAME;
 

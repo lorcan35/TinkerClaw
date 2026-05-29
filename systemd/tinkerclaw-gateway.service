@@ -11,7 +11,11 @@ ExecStart=/usr/bin/node dist/index.js gateway --port 18789
 Restart=on-failure
 RestartSec=5
 Environment=NODE_ENV=production
-Environment=TINKERCLAW_STATE_DIR=/home/radxa/.tinkerclaw
+# Upstream OpenClaw reads OPENCLAW_STATE_DIR (the fork's old TINKERCLAW_STATE_DIR
+# is ignored). This is how TinkerClaw gets its ~/.tinkerclaw identity WITHOUT a
+# code-level rebrand — keeps the source byte-identical to upstream for clean syncs.
+# Config seed deploys to ~/.tinkerclaw/openclaw.json (CONFIG_FILENAME is openclaw.json upstream).
+Environment=OPENCLAW_STATE_DIR=/home/radxa/.tinkerclaw
 MemoryMax=2G
 
 [Install]

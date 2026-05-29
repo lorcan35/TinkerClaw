@@ -18,13 +18,11 @@ export function resolveIsNixMode(env: NodeJS.ProcessEnv = process.env): boolean 
 
 export const isNixMode = resolveIsNixMode();
 
-// TinkerClaw rebrand: canonical state dir is ~/.tinkerclaw; read-fall back to the
-// pre-rebrand OpenClaw dir (and its own legacy clawdbot dir) so existing installs
-// keep working. Mirrors the upstream clawdbot->openclaw migration pattern.
-const LEGACY_STATE_DIRNAMES = [".openclaw", ".clawdbot"] as const;
-const NEW_STATE_DIRNAME = ".tinkerclaw";
-const CONFIG_FILENAME = "tinkerclaw.json";
-const LEGACY_CONFIG_FILENAMES = ["openclaw.json", "clawdbot.json"] as const;
+// Support the remaining legacy pre-rebrand state dir.
+const LEGACY_STATE_DIRNAMES = [".clawdbot"] as const;
+const NEW_STATE_DIRNAME = ".openclaw";
+const CONFIG_FILENAME = "openclaw.json";
+const LEGACY_CONFIG_FILENAMES = ["clawdbot.json"] as const;
 
 function resolveDefaultHomeDir(): string {
   return resolveRequiredHomeDir(process.env, os.homedir);
